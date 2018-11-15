@@ -1,0 +1,80 @@
+﻿{
+  "success": true,
+  "errorMessage": null,
+  "data": {
+    "taskTopologyId": 1,
+    "taskTopologyName": "修改标题",
+    "instanceState": 6,
+    "instanceStateName": "停止失败",
+    "instanceStartDate": null,
+    "taskTopologyLevelParams": [],
+    "taskToplologyNodesDetails": [
+      {
+        "nodeId": 9,
+        "nodeName": "试试",
+        "metadataName": "试试",
+        "sourceName": "1",
+        "nodeStateVO": {
+          "state": 3,
+          "stateName": "启动失败",
+          "flowCount": 1,
+          "startedCount": 0,
+          "percentage": 0
+        },
+        "taskNodeLevelParams": []
+      },
+      {
+        "nodeId": 10,
+        "nodeName": "试试",
+        "metadataName": "试试",
+        "sourceName": "1",
+        "nodeStateVO": {
+          "state": 0,
+          "stateName": "未启动",
+          "flowCount": 1,
+          "startedCount": 0,
+          "percentage": 0
+        },
+        "taskNodeLevelParams": [
+          {
+            "key": "日志级别",
+            "object": ""
+          },
+          {
+            "key": "日志级别",
+            "object": ""
+          },
+          {
+            "key": "XDR读取路径",
+            "object": ""
+          },
+          {
+            "key": "XDR路径时间",
+            "object": "4445"
+          },
+          {
+            "key": "错误XDR输出路径",
+            "object": "$DATA01/gprs_name/error"
+          },
+          {
+            "key": "日志级别",
+            "object": ""
+          }
+        ]
+      }
+    ],
+    "selectNodeInstances": {
+      "total": 1,
+      "data": [
+        {
+          "id": 6,
+          "taskProcessUnitName": "bill_detach_prom_1_A_D1.1.9.6",
+          "taskProcessUnitState": 0,
+          "taskProcessUnitStateName": "未启动",
+          "startDate": null
+        }
+      ]
+    },
+    "instanceEndDate": null
+  }
+}

@@ -1,0 +1,76 @@
+.main-container {
+  padding: 14px 20px;
+  .form-panel {
+    background: #FFFFFF;
+    border: 1px solid #E1E6E9;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    .form-panel-title {
+      height: 38px;
+      line-height: 28px;
+      padding: 5px 20px;
+      border-bottom: 1px solid #E1E6E9;
+    }
+    .form-panel-content{
+      padding:16px 20px;
+    }
+    form {
+      padding: 16px 20px 0 20px;
+    }
+    .form-panel-table {
+      padding: 20px;
+    }
+  }
+  .table-head-btns {
+    margin-bottom: 10px;
+  }
+
+  .table-pager {
+    text-align: right;
+    margin-top: 10px;
+  }
+  .table-oper-btns {
+    i {
+      cursor: pointer;
+      margin-left: 6px;
+      &:first-child{
+        margin-left: 0;
+      }
+    }
+  }
+  .el-form-item__content {
+    word-break: break-all;
+  }
+}
+
+.el-tooltip__popper {
+  max-width: 400px;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+//border
+.bb {
+  border-bottom: 1px solid #E1E6E9;
+}
+
+.bt {
+  border-top: 1px solid #E1E6E9;
+}
+
+//padding
+.pl10 {
+  padding-left: 10px;
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.mr10 {
+  margin-right: 10px;
+}
+
+a.active{
+  color:#2A9DFF;
+}

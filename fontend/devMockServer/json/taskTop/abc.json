@@ -1,0 +1,26 @@
+ {
+     "total": "我是ABC",
+     "list": [{
+             "userId": 4,
+             "corpId": 10000,
+             "username": "device@微群客",
+             "userRole": "ROLE_USER",
+             "disabled": true,
+             "recordVersion": 1,
+             "recordUpdateTime": 1489398363000,
+             "recordCreateTime": 1489205470000,
+             "corpname": "微群客"
+         },
+         {
+             "userId": 2,
+             "corpId": 10000,
+             "username": "admin@微群客",
+             "userRole": "ROLE_ADMIN",
+             "disabled": false,
+             "recordVersion": 1,
+             "recordUpdateTime": 1489239344000,
+             "recordCreateTime": 1489205469000,
+             "corpname": "微群客"
+         }
+     ]
+ }

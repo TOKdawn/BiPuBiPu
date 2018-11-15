@@ -1,0 +1,144 @@
+﻿{
+  "success": true,
+  "errorMessage": null,
+  "data": {
+    "id": 1,
+    "name": "修改标题",
+    "capacity": null,
+    "capacityType": null,
+    "description": "修改标题",
+    "createDate": 1507621829000,
+    "modifyDate": 1508237233000,
+    "graphic": null,
+    "topologyVersion": null,
+    "params": [],
+    "nodes": null,
+    "instance": {
+      "id": 2,
+      "taskTopologyId": 1,
+      "instanceName": "修改标题",
+      "instanceState": 6,
+      "topologyVersion": 18,
+      "startDate": null,
+      "endDate": null,
+      "taskTopology": null,
+      "taskInstanceFlowRelList": null
+    },
+    "taskNodes": [
+      {
+        "id": 9,
+        "topologyId": 1,
+        "metadateId": 2,
+        "capacityId": null,
+        "name": "试试",
+        "domain": null,
+        "host": null,
+        "taskNodeCapacity": null,
+        "taskNodeMetadata": null,
+        "taskNodeParaList": null,
+        "flows": null,
+        "instances": [
+          {
+            "id": 5,
+            "instanceId": 2,
+            "nodeId": 9,
+            "taskNode": null,
+            "flowId": 117073,
+            "flowState": 3,
+            "startDate": null,
+            "endDate": null,
+            "flowName": "bill_detach_prom_1_A_D1.1.9.5",
+            "statusText": null,
+            "srvs": null,
+            "instanceNodeParameters": null,
+            "instanceServices": null,
+            "deleted": false
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "topologyId": 1,
+        "metadateId": 1,
+        "capacityId": null,
+        "name": "试试",
+        "domain": null,
+        "host": null,
+        "taskNodeCapacity": null,
+        "taskNodeMetadata": null,
+        "taskNodeParaList": null,
+        "flows": null,
+        "instances": [
+          {
+            "id": 6,
+            "instanceId": 2,
+            "nodeId": 10,
+            "taskNode": null,
+            "flowId": 117074,
+            "flowState": 0,
+            "startDate": null,
+            "endDate": null,
+            "flowName": "bill_detach_prom_1_A_D1.1.9.6",
+            "statusText": null,
+            "srvs": null,
+            "instanceNodeParameters": null,
+            "instanceServices": null,
+            "deleted": false
+          }
+        ]
+      }
+    ],
+    "mergedParameters": [
+      {
+        "code": "pre-define-log-level",
+        "label": "日志级别",
+        "path": "/log/log4j-configuration/root/priority/value",
+        "type": null,
+        "value": null,
+        "taskNodeId": 9,
+        "taskNodeParaId": null,
+        "global": true
+      },
+      {
+        "code": "47af19ce-5717-425e-ae1c-d7e28e5874ad",
+        "label": "读取XDR路径",
+        "path": "./functions/function/func_configs/read_xdr_file_path",
+        "type": "NUMBER",
+        "value": "$DATA01/gprs_name/error",
+        "taskNodeId": 9,
+        "taskNodeParaId": 14,
+        "global": false
+      },
+      {
+        "code": "72f8f8d5-2102-4e3e-a6de-57adb12736f3",
+        "label": "XDR读取路径",
+        "path": "./functions/function/func_configs/read_xdr_file_path",
+        "type": "NUMBER",
+        "value": "",
+        "taskNodeId": 10,
+        "taskNodeParaId": 15,
+        "global": false
+      },
+      {
+        "code": "9dc1148b-70cc-4021-aa7a-4ae70073d0af",
+        "label": "XDR路径时间",
+        "path": "./functions/function/func_configs/wrong_xdr_written_interval",
+        "type": "QUEUE_NAME",
+        "value": "4445",
+        "taskNodeId": 10,
+        "taskNodeParaId": 16,
+        "global": false
+      },
+      {
+        "code": "38d7bb2e-db1d-49c1-b8eb-b52fc8c00687",
+        "label": "错误XDR输出路径",
+        "path": "./functions/function/func_configs/wrong_xdr_path",
+        "type": "NUMBER",
+        "value": "$DATA01/gprs_name/error",
+        "taskNodeId": 10,
+        "taskNodeParaId": 13,
+        "global": false
+      }
+    ]
+  }
+}

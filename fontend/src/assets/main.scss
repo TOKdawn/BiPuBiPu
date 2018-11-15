@@ -1,0 +1,9 @@
+@charset "utf-8";
+//reset
+@import "./inc/_reset";
+// common
+@import "./inc/_common";
+//Layout 布局
+@import "./inc/_layout";
+//根据项目来，自定义css
+@import "./inc/_project";

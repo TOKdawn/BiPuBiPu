@@ -1,0 +1,67 @@
+@mixin tiny-border($color, $radius:10px, $pseudo:before) {
+    position: relative;
+    box-sizing: border-box;
+    &:#{$pseudo} {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-style: solid;
+        border-width: 1PX;
+        border-radius: $radius;
+        border-color: $color;
+    }
+    @media (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi) {
+        &:#{$pseudo} {
+            -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+            top: -50%;
+            bottom: -50%;
+            left: -50%;
+            right: -50%;
+        }
+    }
+}
+
+@mixin direct-tiny-border($direct, $color, $pseudo:before) {
+    position: relative;
+    box-sizing: border-box;
+    &:#{$pseudo} {
+        content: '';
+        
+        display: block;
+        border-#{$direct}: 1PX solid $color;
+        position: absolute;
+        #{$direct}: 0;
+        @if $direct=="top" or $direct=="bottom" {
+            left: 0;
+            right: 0;
+            height: 1PX;
+        }
+        @else{
+            top: 0;
+            bottom: 0;
+            height: 100%;
+        }
+    }
+    @media (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi) {
+        &:#{$pseudo} {
+            @if $direct=="top" {
+                transform: scaleY(0.5) translateY(-50%);
+            }
+            @else if $direct=="bottom" {
+                transform: scaleY(0.5) translateY(50%);
+            }
+            @else if $direct=="left" {
+                transform: scaleX(0.5) translateX(-50%);
+            }
+            @else {
+                transform: scaleX(0.5) translateX(50%);
+            }
+        }
+    }
+}
