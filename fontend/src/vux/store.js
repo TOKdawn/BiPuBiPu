@@ -4,8 +4,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    name: '我是初始化姓名',
+    name: '未命名用户',
     data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    rule: 0,
     page_loading: false,
     date_loading: false,
     auth_login: false,
@@ -22,6 +23,9 @@ export default new Vuex.Store({
   mutations: {
     SET_USER_NAME (state, newname) {
       state.name = newname
+    },
+    SET_USER_RULE (state, newrule) {
+      state.name = newrule
     },
     PUSH_USER_DATA (state, str) {
       state.data.push(str)

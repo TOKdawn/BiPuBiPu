@@ -4,6 +4,10 @@
       <div class="banner">
         <div class="navbox">
           <div class="container">
+            <div class="title-info">
+              <p>一个兴趣使然的口琴小站</p>
+              <p>A station in the interest of the harmonica</p>
+            </div>
             <div class="nav">
               <div class="item">
                 <a href='/about/about/'>
@@ -12,7 +16,6 @@
                   </div>
                 </a>
                 <div class="dropdown">
-                  
                 </div>
               </div>
               <div class="item">
@@ -65,17 +68,6 @@
                   </div>
                 </a>
                 <div class="dropdown">
-
-                </div>
-              </div>
-              <div class="item">
-                <a href="#">
-                  <div class="butn"><i class="icon-paper-plane"></i>
-                    <p>公共服务</p>
-                  </div>
-                </a>
-                <div class="dropdown">
-
                 </div>
               </div>
             </div>
@@ -118,6 +110,7 @@ $--bannerImg: url("./banner.jpg");
       position: relative;
     }
     .navbox {
+      box-sizing: border-box;
       position: absolute;
       bottom: 0;
       left: 0;
@@ -125,8 +118,24 @@ $--bannerImg: url("./banner.jpg");
       width: 100%;
       text-align: right;
       height: 130px;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 0px 10%;
+      .title-info{
+        float: left;
+        text-align: left;
+        p{
+          font-size: 28px;
+          color: #fff;
+          margin-top: 30px;
+        }
+        p+p{
+          font-size: 18px;
+          margin-top: 4px;
+        }
+      }
       .nav {
         display: inline-block;
+        opacity: 1;
         .item {
           float: left;
           text-align: center;
@@ -161,7 +170,7 @@ $--bannerImg: url("./banner.jpg");
               width: 80px;
               height: 0;
               background-color: #1f8dd6;
-              opacity: 0.8;
+              opacity: 0.9;
               transition: 0.5s all;
               z-index: -1;
               height: 0;
