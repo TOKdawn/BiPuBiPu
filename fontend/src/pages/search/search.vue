@@ -16,6 +16,9 @@ export default {
   methods: {
     querySearchAsync () {
 
+    },
+    handleSelect () {
+
     }
   }
 }
@@ -25,10 +28,11 @@ export default {
   .search-template{
     z-index: 5;
     div{
-      display: inline-block;
-      line-height: 50px;
+      display: inline;
+     
     }
     input {
+      margin-bottom: 5px;
       background-color: transparent !important;
       box-sizing: border-box;
       padding: 0px 30px 0px 5px;
@@ -52,7 +56,8 @@ export default {
       font-size: 25px;
       margin-left: -30px;
       color: $--basicColor;
-      z-index: 6;
+      z-index: 60;
+      position: relative;
       cursor: pointer;
       &:hover{
         color: $--activeColor;

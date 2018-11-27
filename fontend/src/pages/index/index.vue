@@ -1,6 +1,5 @@
 <template>
   <div class="index">
-
     <div class="banner">
       <div class="navbox">
         <div class="container">
@@ -74,8 +73,47 @@
         </div>
       </div>
     </div>
-    <div class="searchBar">
-<Search></Search>
+    <div style="margin-top:500px; z-index:10; postion:relative; ">
+      <div class="searchBar">
+        <Search></Search>
+      </div>
+      <div class="scoreList">
+        <div class="title">
+          谱册<span>/</span><router-link to="/index">More</router-link>
+        </div>
+        <div class="left">
+          <el-carousel indicator-position="outside" class="carousel" height="400px">
+            <el-carousel-item v-for="(item, index) in scoreListCarousel" :key="index" >
+              <div class="carouselImg"><img :src="item.img" style="width: 100%; height: auto;" @click="$router.push(item.router)"></div>
+              <h2 @click="$router.push(item.router)"> {{item.title}}</h2>
+              <p @click="$router.push(item.router)">{{item.describe}}</p>
+            </el-carousel-item>
+          </el-carousel>
+        </div>
+        <div class="right">sssssssssss </div>
+      </div>
+      <div class="score">
+        <div class="title">
+          曲谱<span>/</span><router-link to="/index">More</router-link>
+        </div>
+      </div>
+      <div class="information">
+        <div class="one">
+        <div class="title">
+          资讯<span>/</span><router-link to="/index">More</router-link>
+        </div>
+        </div>
+          <div class="two">
+        <div class="title">
+          资讯<span>/</span><router-link to="/index">More</router-link>
+        </div>
+        </div>
+          <div class="three">
+        <div class="title">
+          资讯<span>/</span><router-link to="/index">More</router-link>
+        </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -86,7 +124,24 @@
 import Search from '../search/search'
 export default {
   data () {
-    return {}
+    return {
+      scoreListCarousel: [{
+        img: 'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185971-102.jpg',
+        title: '新手谱册推荐',
+        describe: '这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述',
+        router: '/index'
+      }, {
+        img: 'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185979-102.jpg',
+        title: '新手谱册推荐',
+        describe: '这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述',
+        router: '/index'
+      }, {
+        img: 'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185981-102.jpg',
+        title: '新手谱册推荐',
+        describe: '这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述',
+        router: '/index'
+      }]
+    }
   },
   created () {},
   mounted () {},
@@ -101,207 +156,205 @@ export default {
 @import "src/assets/style.scss";
 
 .index {
-  // border: 5px solid #ccc;
+  // min-width: 1200px;
+  width: 100%;
   .container {
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
   }
+  .title {
+    font-size: $--FontSizeXXXL;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    margin-bottom: 30px;
+    color: $--darkFontColor;
+    span {
+      color: $--shallowFontColor;
+      font-weight: 400;
+      font-size: $--FontSizeXXL;
+      margin-left: 5px;
+    }
+    a {
+      font-size:$--FontSizeL;
+      margin-left: 5px;
+      color: $--shallowFontColor;
+      font-weight: 400;
+      &:hover {
+        color: $--activeColor;
+      }
+    }
+  }
   .banner {
     width: 100%;
     height: 500px;
     background: $--bannerImg 0 0 /100% auto no-repeat;
-    position: relative;
-  }
-  .navbox {
-    box-sizing: border-box;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 6000;
-    width: 100%;
-    text-align: right;
-    height: 130px;
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: 0px 10%;
-    .title-info {
-      float: left;
-      text-align: left;
-      p {
-        font-size: 28px;
-        color: #fff;
-        margin-top: 30px;
-      }
-      p + p {
-        font-size: 18px;
-        margin-top: 4px;
-      }
-    }
-    .nav {
-      display: inline-block;
-      opacity: 1;
-      .item {
+    position: fixed;
+    top: 0px;
+    z-index: 0;
+    .navbox {
+      box-sizing: border-box;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 6;
+      width: 100%;
+      text-align: right;
+      height: 130px;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 0px 10%;
+      .title-info {
         float: left;
-        text-align: center;
-        &:hover {
+        text-align: left;
+        p {
+          font-size: $--FontSizeXXL;
+          color: #fff;
+          margin-top: 30px;
+        }
+        p + p {
+          font-size: 18px;
+          margin-top: 4px;
+        }
+      }
+      .nav {
+        display: inline-block;
+        opacity: 1;
+        .item {
+          float: left;
+          text-align: center;
+          &:hover {
+            .butn {
+              opacity: 1;
+              margin: 0px;
+              &::after {
+                height: 130px;
+              }
+            }
+            .dropdown {
+              height: 220px;
+              opacity: 1;
+              &:hover {
+                background-color: rgba(0, 0, 0, 0.7);
+              }
+            }
+          }
           .butn {
-            opacity: 1;
-            margin: 0px;
+            position: relative;
+            box-sizing: border-box;
+            padding: 30px 0;
+            width: 80px;
+            opacity: 0.8;
+            transition: 0.3s all;
             &::after {
-              height: 130px;
+              content: "";
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 80px;
+              height: 0;
+              background-color: #1f8dd6;
+              opacity: 0.9;
+              transition: 0.5s all;
+              z-index: -1;
+              height: 0;
+            }
+            i {
+              width: 35px;
+              font-size: $--FontSizeXL;
+              text-align: center;
+              color: #fff;
+            }
+            p {
+              padding-top: 15px;
+              color: rgba(255, 255, 255, 1);
+              font-size: $--FontSizeXM;
+              font-weight: bolder;
             }
           }
           .dropdown {
-            height: 220px;
-            opacity: 1;
-            &:hover {
-              background-color: rgba(0, 0, 0, 0.7);
-            }
-          }
-        }
-        .butn {
-          position: relative;
-          box-sizing: border-box;
-          padding: 30px 0;
-          width: 80px;
-          opacity: 0.8;
-          transition: 0.3s all;
-          &::after {
-            content: "";
             position: absolute;
-            bottom: 0;
             left: 0;
-            width: 80px;
+            top: 0;
+            width: 100%;
+            transform: translateY(-100%);
             height: 0;
-            background-color: #1f8dd6;
-            opacity: 0.9;
-            transition: 0.5s all;
-            z-index: -1;
-            height: 0;
-          }
-          i {
-            width: 35px;
-            font-size: 25px;
-            text-align: center;
+            z-index: 7;
+
+            transition: 0.5s all 0.2s;
             color: #fff;
-          }
-          p {
-            padding-top: 15px;
-            color: rgba(255, 255, 255, 1);
-            font-size: 12px;
-            font-weight: bolder;
+            background-color: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            // height: 220px;
           }
         }
-        .dropdown {
-          position: absolute;
-          left: 0;
-          top: 0;
-          width: 100%;
-          transform: translateY(-100%);
-          height: 0;
-          z-index: 7777;
-          overflow: hidden;
-          transition: 0.5s all 0.2s;
-          color: #fff;
-          background-color: rgba(0, 0, 0, 0.4);
-          opacity: 0;
-          // height: 220px;
+        .item:nth-child(1) .butn::after {
+          background-color: #f44336;
         }
-      }
-      .item:nth-child(1) .butn::after {
-        background-color: #f44336;
-      }
-      .item:nth-child(2) .butn::after {
-        background-color: #9c27b0;
-      }
-      .item:nth-child(3) .butn::after {
-        background-color: #448aff;
-      }
-      .item:nth-child(4) .butn::after {
-        background-color: #00bcd4;
-      }
-      .item:nth-child(5) .butn::after {
-        background-color: #4caf50;
-      }
-      .item:nth-child(6) .butn::after {
-        background-color: #cddc39;
-      }
-    }
-  }
-  .button_bar {
-    width: 100%;
-    height: 15vh;
-    background-color: rgba(250, 80, 54, 0.9);
-    // rgba(255, 111, 67, 0.9);
-    font-size: 16px;
-    z-index: 888;
-    .dropdown {
-      position: fixed;
-      left: 0;
-      width: 100vw;
-      transform: translateY(-100%);
-      height: 0;
-      z-index: 7777;
-      overflow: hidden;
-      transition: 0.5s all 0.2s;
-      color: #fff;
-      background-color: rgba(255, 255, 255, 0.9);
-      opacity: 0;
-    }
-    .home_button {
-      opacity: 1;
-      transition: 0.3s all;
-      height: 15vh;
-      cursor: pointer;
-      position: relative;
-      box-sizing: border-box;
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        opacity: 1;
-        transition: 0.5s all;
-        z-index: -1;
-        height: 0;
-      }
-      &:hover:after {
-        height: 100%;
-      }
-      &:hover {
-        .dropdown {
-          height: 450px;
-          opacity: 1;
-          &:hover {
-            background-color: #fff;
-          }
+        .item:nth-child(2) .butn::after {
+          background-color: #9c27b0;
         }
-      }
-      .item {
-        top: 50%;
-        text-align: center;
-        position: relative;
-        transform: translateY(-50%);
-        color: #fff;
-        font-size: 1.1em;
-      }
-      i {
-        font-size: 1.2em;
+        .item:nth-child(3) .butn::after {
+          background-color: #448aff;
+        }
+        .item:nth-child(4) .butn::after {
+          background-color: #00bcd4;
+        }
+        .item:nth-child(5) .butn::after {
+          background-color: #4caf50;
+        }
+        .item:nth-child(6) .butn::after {
+          background-color: #cddc39;
+        }
       }
     }
   }
   .searchBar {
     background-color: #f5f5f6;
-    height: 50px;
     width: 100%;
-    padding: 0px 10%;
-
+    padding: 0px 12%;
+    text-align: right;
+    position: relative;
+  }
+  .scoreList {
+    padding: 50px 10%;
+    position: relative;
+    background-color: #fff;
+    .carousel{
+      font-weight: 400;
+      cursor: pointer;
+      .carouselImg{
+        height: 80%;
+        overflow: hidden;
+      }
+      h2{
+        font-size: $--FontSizeL;
+        font-weight: 450;
+        color: $--darkFontColor;
+      }
+      p{
+        font-size: $--FontSizeM;
+        color: $--shallowFontColor;
+      }
+    }
+  }
+  .score {
+    width: 100%;
+    height: 600px;
+    padding: 50px 10%;
+    position: relative;
+    background-color: #448aff;
+  }
+  .information {
+    width: 100%;
+    height: 600px;
+    padding: 50px 10%;
+    position: relative;
+    background-color: #9c27b0;
   }
 }
 </style>
 <style >
-  .index .searchBar input{
-    background-color: transparent !important;
-  }
+.index .searchBar input {
+  background-color: transparent !important;
+}
 </style>

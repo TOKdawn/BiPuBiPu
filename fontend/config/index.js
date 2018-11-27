@@ -1,8 +1,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
-// var proxyTarget = 'http://127.0.0.1:8080';
-var proxyTarget = 'http://10.10.12.151:8080' // npm run mock,devMockServer
-// var proxyTarget = 'http://10.10.14.130:8080'
+var proxyTarget = 'http://127.0.0.1:8080';
+
 
 var proxyTable = {
   '/api': {
