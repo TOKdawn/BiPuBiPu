@@ -75,43 +75,28 @@
     </div>
     <div style="margin-top:500px; z-index:10; postion:relative; ">
       <div class="searchBar">
-        <Search></Search>
+       <Search></Search>
       </div>
-      <div class="scoreList">
-        <div class="title">
-          谱册<span>/</span><router-link to="/index">More</router-link>
-        </div>
-        <div class="left">
-          <el-carousel indicator-position="outside" class="carousel" height="400px">
-            <el-carousel-item v-for="(item, index) in scoreListCarousel" :key="index" >
-              <div class="carouselImg"><img :src="item.img" style="width: 100%; height: auto;" @click="$router.push(item.router)"></div>
-              <h2 @click="$router.push(item.router)"> {{item.title}}</h2>
-              <p @click="$router.push(item.router)">{{item.describe}}</p>
-            </el-carousel-item>
-          </el-carousel>
-        </div>
-        <div class="right">sssssssssss </div>
-      </div>
-      <div class="score">
-        <div class="title">
-          曲谱<span>/</span><router-link to="/index">More</router-link>
-        </div>
-      </div>
+        <Score></Score>
+        <ScoreList></ScoreList>
       <div class="information">
         <div class="one">
-        <div class="title">
-          资讯<span>/</span><router-link to="/index">More</router-link>
+          <div class="title">
+            资讯<span>/</span>
+            <router-link to="/index">More</router-link>
+          </div>
         </div>
+        <div class="two">
+          <div class="title">
+            资讯<span>/</span>
+            <router-link to="/index">More</router-link>
+          </div>
         </div>
-          <div class="two">
-        <div class="title">
-          资讯<span>/</span><router-link to="/index">More</router-link>
-        </div>
-        </div>
-          <div class="three">
-        <div class="title">
-          资讯<span>/</span><router-link to="/index">More</router-link>
-        </div>
+        <div class="three">
+          <div class="title">
+            资讯<span>/</span>
+            <router-link to="/index">More</router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -122,25 +107,37 @@
 // import { getEnumData, ttTempManage } from 'common/urls'
 // import { URL, API_SUCCESS } from 'common/urls'
 import Search from '../search/search'
+import Score from './components/score'
+import ScoreList from './components/scoreList'
 export default {
   data () {
     return {
-      scoreListCarousel: [{
-        img: 'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185971-102.jpg',
-        title: '新手谱册推荐',
-        describe: '这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述',
-        router: '/index'
-      }, {
-        img: 'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185979-102.jpg',
-        title: '新手谱册推荐',
-        describe: '这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述',
-        router: '/index'
-      }, {
-        img: 'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185981-102.jpg',
-        title: '新手谱册推荐',
-        describe: '这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述',
-        router: '/index'
-      }]
+      scoreListCarousel: [
+        {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185971-102.jpg',
+          title: '新手谱册推荐',
+          describe:
+            '这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述',
+          router: '/index'
+        },
+        {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185979-102.jpg',
+          title: '新手谱册推荐',
+          describe:
+            '这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述',
+          router: '/index'
+        },
+        {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185981-102.jpg',
+          title: '新手谱册推荐',
+          describe:
+            '这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述',
+          router: '/index'
+        }
+      ]
     }
   },
   created () {},
@@ -148,7 +145,9 @@ export default {
   filters: {},
   methods: {},
   components: {
-    Search
+    Search,
+    Score,
+    ScoreList
   }
 }
 </script>
@@ -176,10 +175,11 @@ export default {
       margin-left: 5px;
     }
     a {
-      font-size:$--FontSizeL;
+      font-size: $--FontSizeL;
       margin-left: 5px;
       color: $--shallowFontColor;
       font-weight: 400;
+      transition: all 0.4s;
       &:hover {
         color: $--activeColor;
       }
@@ -222,6 +222,7 @@ export default {
         .item {
           float: left;
           text-align: center;
+          transition: all 0.4s;
           &:hover {
             .butn {
               opacity: 1;
@@ -233,6 +234,7 @@ export default {
             .dropdown {
               height: 220px;
               opacity: 1;
+              transition: all 0.4s;
               &:hover {
                 background-color: rgba(0, 0, 0, 0.7);
               }
@@ -279,7 +281,6 @@ export default {
             transform: translateY(-100%);
             height: 0;
             z-index: 7;
-
             transition: 0.5s all 0.2s;
             color: #fff;
             background-color: rgba(0, 0, 0, 0.4);
@@ -315,35 +316,8 @@ export default {
     text-align: right;
     position: relative;
   }
-  .scoreList {
-    padding: 50px 10%;
-    position: relative;
-    background-color: #fff;
-    .carousel{
-      font-weight: 400;
-      cursor: pointer;
-      .carouselImg{
-        height: 80%;
-        overflow: hidden;
-      }
-      h2{
-        font-size: $--FontSizeL;
-        font-weight: 450;
-        color: $--darkFontColor;
-      }
-      p{
-        font-size: $--FontSizeM;
-        color: $--shallowFontColor;
-      }
-    }
-  }
-  .score {
-    width: 100%;
-    height: 600px;
-    padding: 50px 10%;
-    position: relative;
-    background-color: #448aff;
-  }
+
+
   .information {
     width: 100%;
     height: 600px;

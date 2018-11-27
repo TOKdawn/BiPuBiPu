@@ -19,7 +19,11 @@
   width: 33%;
   float: right;
 }
-@media screen and (max-width: 1100px) {
+.corresponding {
+  flex: 1 1 33%;
+  // width: 33%;
+}
+@media screen and (max-width: 1200px) {
   .left{
     width: 100%; 
     display: inline-block;
@@ -34,4 +38,12 @@
      float: none;
      display: block;
    }
+   .corresponding {
+    flex: 1 1 50%;
+  }
 } 
+@media screen and (max-width:768px) {
+  .corresponding {
+    flex: 1 1 100%;
+  }
+}
