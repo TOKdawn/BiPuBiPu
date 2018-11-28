@@ -6,20 +6,7 @@
   width: 55%;
   float: right;
 }
-.one{
-  width: 33%;
-  display: inline;
-  float: left;
-}
-.two{
-  width: 33%;
-  display: inline-block;
-}
-.three{
-  width: 33%;
-  float: right;
-}
-.corresponding {
+.threeBar {
   flex: 1 1 33%;
   // width: 33%;
 }
@@ -33,17 +20,12 @@
      float: none;
      display: block;
    }
-   .one,.two,.three{
-     width: 33%;
-     float: none;
-     display: block;
-   }
-   .corresponding {
+   .threeBar {
     flex: 1 1 50%;
   }
 } 
 @media screen and (max-width:768px) {
-  .corresponding {
+  .threeBar {
     flex: 1 1 100%;
   }
 }

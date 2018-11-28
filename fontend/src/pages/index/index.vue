@@ -77,28 +77,9 @@
       <div class="searchBar">
        <Search></Search>
       </div>
-        <Score></Score>
+        <Information></Information>
         <ScoreList></ScoreList>
-      <div class="information">
-        <div class="one">
-          <div class="title">
-            资讯<span>/</span>
-            <router-link to="/index">More</router-link>
-          </div>
-        </div>
-        <div class="two">
-          <div class="title">
-            资讯<span>/</span>
-            <router-link to="/index">More</router-link>
-          </div>
-        </div>
-        <div class="three">
-          <div class="title">
-            资讯<span>/</span>
-            <router-link to="/index">More</router-link>
-          </div>
-        </div>
-      </div>
+        <Other></Other>
     </div>
   </div>
 </template>
@@ -107,37 +88,12 @@
 // import { getEnumData, ttTempManage } from 'common/urls'
 // import { URL, API_SUCCESS } from 'common/urls'
 import Search from '../search/search'
-import Score from './components/score'
+import Information from './components/information'
 import ScoreList from './components/scoreList'
+import Other from './components/other'
 export default {
   data () {
     return {
-      scoreListCarousel: [
-        {
-          img:
-            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185971-102.jpg',
-          title: '新手谱册推荐',
-          describe:
-            '这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述',
-          router: '/index'
-        },
-        {
-          img:
-            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185979-102.jpg',
-          title: '新手谱册推荐',
-          describe:
-            '这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述',
-          router: '/index'
-        },
-        {
-          img:
-            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185981-102.jpg',
-          title: '新手谱册推荐',
-          describe:
-            '这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述',
-          router: '/index'
-        }
-      ]
     }
   },
   created () {},
@@ -146,8 +102,9 @@ export default {
   methods: {},
   components: {
     Search,
-    Score,
-    ScoreList
+    Information,
+    ScoreList,
+    Other
   }
 }
 </script>
@@ -315,15 +272,6 @@ export default {
     padding: 0px 12%;
     text-align: right;
     position: relative;
-  }
-
-
-  .information {
-    width: 100%;
-    height: 600px;
-    padding: 50px 10%;
-    position: relative;
-    background-color: #9c27b0;
   }
 }
 </style>

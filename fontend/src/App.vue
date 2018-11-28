@@ -1,7 +1,6 @@
 <template>
     <div>
         <router-view></router-view>
-        <!-- <button class="btn" @click="setNameOrData">父组件按钮，调用mutations里面的方法</button> -->
     </div>
 </template>
 <script type="text/javascript">

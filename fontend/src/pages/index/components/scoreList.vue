@@ -5,9 +5,9 @@
       <router-link to="/index">More</router-link>
     </div>
     <div>
-      <div style="  display: flex;flex-wrap: wrap;">
+      <div style="display: flex;flex-wrap: wrap;">
         <div
-          class="corresponding"
+          class="threeBar"
           v-for="(item, index) in nodeData"
           :key="index"
         >
@@ -15,8 +15,7 @@
             <img
               :src="item.img"
               :alt="item.title"
-              class="img"
-            >
+              class="img">
             <h2> {{item.title}}</h2>
             <p>{{item.describe}}</p>
             <ul>
@@ -28,6 +27,7 @@
               </li>
             </ul>
             <div class="hide"></div>
+            <div class="star">{{item.star}}</div>
           </div>
         </div>
       </div>
@@ -249,14 +249,21 @@ export default {
   position: relative;
   // height: 700px;
   background-color: $--scoreListBgColor;
-  .corresponding {
+  .threeBar {
     padding: 0px 15px 0px 65px;
     .node {
+      cursor: pointer;
       margin-bottom: 60px;
       height: 150px;
       width: 100%;
       background-color: $--scoreListColor;
       padding-left: 65px;
+      &:hover {
+        background-color: $--scoreListActiveColor;
+        .hide {
+          background-color: $--scoreListActiveColor;
+        }
+      }
       img {
         position: absolute;
         margin: 25px 0px 0px -115px;
@@ -276,6 +283,13 @@ export default {
         height: 60px;
         overflow: auto;
         z-index: 1;
+      }
+      .star {
+        float: right;
+        margin-top: -147px;
+        margin-right: 15px;
+        font-size: $--FontSizeXXL;
+        font-weight: 600;
       }
       .hide {
         background-color: $--scoreListColor;

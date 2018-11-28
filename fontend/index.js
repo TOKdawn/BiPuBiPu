@@ -1,4 +1,3 @@
-var argv = require('yargs').argv
 require('./build/check-versions')()
 var config = require('./config')
 var path = require('path')

@@ -16,11 +16,6 @@ export default {
     }
   },
   created () {
-    /*
-    this.$http.get( '/api/task-instance-details/1/9').then(function(data){
-        console.info(data);
-    });
-    */
 
   },
   computed: {

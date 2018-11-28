@@ -1,7 +1,7 @@
 <template>
-  <div class="score">
+  <div class="information">
     <div class="title">
-      曲谱<span>/</span>
+      资讯<span>/</span>
       <router-link to="/index">More</router-link>
     </div>
     <div class="left">
@@ -10,7 +10,7 @@
         class="carousel"
         height="400px">
         <el-carousel-item
-          v-for="(item, index) in scoreListCarousel"
+          v-for="(item, index) in informationCarousel"
           :key="index">
           <div class="carouselImg"><img
               :src="item.img"
@@ -22,14 +22,22 @@
         </el-carousel-item>
       </el-carousel>
     </div>
-    <div class="right">sssssssssss </div>
+    <div class="right">
+      <div style="display: flex;flex-wrap: wrap;">
+        <div class="articles" v-for="(item,index) in articlesData" :key="index"> 
+          <div class="line"></div>
+          <h2>{{item.title}}</h2>
+          <p>{{item.time}} / {{item.author}}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 export default {
   data () {
     return {
-      scoreListCarousel: [
+      informationCarousel: [
         {
           img:
             'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185971-102.jpg',
@@ -54,7 +62,38 @@ export default {
             '这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述',
           router: '/index'
         }
-      ]
+      ],
+      articlesData: [{
+        title: '前端测试用文章标题前端测试用文章标题前端测试用文章标题',
+        router: '/index',
+        time: '2018-11-28',
+        author: 'TOKdawn'
+      }, {
+        title: '前端测试用文章标题',
+        router: '/index',
+        time: '2018-11-28',
+        author: 'TOKdawn'
+      }, {
+        title: '前端测试用文章标题',
+        router: '/index',
+        time: '2018-11-28',
+        author: 'TOKdawn'
+      }, {
+        title: '前端测试用文章标题',
+        router: '/index',
+        time: '2018-11-28',
+        author: 'TOKdawn'
+      }, {
+        title: '前端测试用文章标题',
+        router: '/index',
+        time: '2018-11-28',
+        author: 'TOKdawn'
+      }, {
+        title: '前端测试用文章标题',
+        router: '/index',
+        time: '2018-11-28',
+        author: 'TOKdawn'
+      }]
     }
   }
 }
@@ -84,7 +123,7 @@ export default {
     }
   }
 }
-.score {
+.information {
   padding: 50px 10%;
   position: relative;
   background-color: #fff;
@@ -110,6 +149,42 @@ export default {
       font-size: $--FontSizeM;
       color: $--shallowFontColor;
     }
+  }
+  .articles{
+    flex: 1 1 50%;
+    padding: 20px 20px 50px 0px;
+    &:hover{
+      .line {
+        width: 60%;
+      }
+      h2{
+        color: $--activeColor;
+      }
+    }
+    .line {
+      width: 35%;
+      height: 2px;
+      background-color: $--darkColor;
+      margin-top: -20px;
+      display: block;
+      transition: all .3s;
+    }
+    h2 {
+      margin-top: 20px;
+      font-size: $--basicFontSize;
+      height: 44px;
+      font-weight: 500;
+      color:$--darkFontColor;
+      transition: all .5s;
+      cursor: pointer;
+    }
+    p{
+      font-size: $--FontSizeM;
+      margin-top:10px;
+      font-weight:400;
+      color: $--shallowFontColor;
+    }
+
   }
 }
 </style>
