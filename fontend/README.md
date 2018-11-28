@@ -57,8 +57,6 @@ cnpm install -g pm2
 4. 代码提交到git
 
 ### 线上运行(服务器运维人员只需关注这一步) 
-####nodejs作为接入层以及反向代理服务器
-1. 修改后端服务器地址,到config目录下,index.js文件中, var proxyTarget = 'http://192.168.1.199:8080'
 #### nginx作为接入层以及反向代理服务器
 1. dist目录下,html文件作为静态页面文件
 2. static 为静态资源文件,注意html中引用路径;如果html中引用的是cdn文件路径,可忽略

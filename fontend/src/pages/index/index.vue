@@ -80,6 +80,7 @@
         <Information></Information>
         <ScoreList></ScoreList>
         <Other></Other>
+        <Foot></Foot>
     </div>
   </div>
 </template>
@@ -91,6 +92,7 @@ import Search from '../search/search'
 import Information from './components/information'
 import ScoreList from './components/scoreList'
 import Other from './components/other'
+import Foot from '../layout/footer'
 export default {
   data () {
     return {
@@ -104,7 +106,8 @@ export default {
     Search,
     Information,
     ScoreList,
-    Other
+    Other,
+    Foot
   }
 }
 </script>
