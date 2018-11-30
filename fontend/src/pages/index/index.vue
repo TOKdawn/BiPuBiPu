@@ -113,7 +113,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "src/assets/style.scss";
-
 .index {
   // min-width: 1200px;
   width: 100%;

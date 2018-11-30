@@ -48,7 +48,6 @@ export default {
         text-decoration: underline;
       }
       margin-bottom: 5px;
-      
     }
   }
 }
