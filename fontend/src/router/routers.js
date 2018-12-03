@@ -13,5 +13,9 @@ module.exports = [{
     path: 'scorelist',
     name: 'scorelist',
     component: require('pages/scorelist/scoreList')
+  }, {
+    path: 'translator',
+    name: 'translator',
+    component: require('pages/translator/translator')
   }]
 }]

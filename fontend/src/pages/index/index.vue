@@ -18,11 +18,11 @@
               </div>
             </div>
             <div class="item">
-              <a href="http://news.neusoft.edu.cn/">
+               <router-link :to= "{ name: 'scorelist'}">
                 <div class="butn"><i class="iconfont icon-shu"></i>
                   <p>谱册</p>
                 </div>
-              </a>
+               </router-link>
             </div>
             <div class="item">
               <a href="/schools&departments/">
@@ -31,15 +31,14 @@
                 </div>
               </a>
               <div class="dropdown">
-
               </div>
             </div>
             <div class="item">
-              <a href="/2016/1025/6947.shtml">
+              <router-link :to= "{ name: 'translator'}">
                 <div class="butn"><i class="iconfont icon-suiji"></i>
                   <p>转谱</p>
                 </div>
-              </a>
+              </router-link>
             </div>
             <div class="item">
               <a href="/adademics/">
@@ -178,6 +177,7 @@ export default {
       .nav {
         display: inline-block;
         opacity: 1;
+        margin-top: 1px;
         .item {
           float: left;
           text-align: center;

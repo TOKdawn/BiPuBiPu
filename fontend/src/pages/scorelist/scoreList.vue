@@ -15,37 +15,47 @@
     >
       <h2>我的谱册</h2>
       <div class="line"></div>
-      <div
-        class="copies"
-        v-for="(item,index) in myScoreList"
-        :key="index"
-      >
-        <img
-          :src="item.img"
-          alt=""
+      <div class="myScoreListDiv">
+        <div
+          class="copies"
+          v-for="(item,index) in myScoreList"
+          :key="index"
         >
-        <h1> {{item.title}}</h1>
-        <p> {{item.describe}}}</p>
-        <div>收藏数:{{item.star}}</div>
+          <img
+            :src="item.img"
+            alt=""
+          >
+          <h1> {{item.title}}</h1>
+          <p> {{item.describe}}}</p>
+          <div>收藏数:{{item.star}}</div>
+        </div>
       </div>
     </div>
     <div :class="{ 'allSocreList': !login, 'otherSocreList':login }">
       <h2>全部谱册</h2>
       <div class="line"></div>
-      <div
-        class="copies"
-        v-for="(item,index) in myScoreList"
-        :key="index"
-      >
-        <img
-          :src="item.img"
-          alt=""
+      <div class="otherScoreListDiv">
+        <div
+          class="copies"
+          v-for="(item,index) in myScoreList"
+          :key="index"
         >
-        <h1> {{item.title}}</h1>
-        <p> {{item.describe}}}</p>
-        <div>收藏数:{{item.star}}</div>
+          <img
+            :src="item.img"
+            alt=""
+          >
+          <h1> {{item.title}}</h1>
+          <p> {{item.describe}}}</p>
+          <div>收藏数:{{item.star}}</div>
+        </div>
       </div>
     </div>
+<el-pagination
+  background
+  layout="prev, pager, next"
+  :total="50"
+  class="pagination">
+</el-pagination>
   </div>
 </template>
 <script>
@@ -56,7 +66,527 @@ export default {
         {
           img:
             'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
+          title: '东ass方啊实打实大所大所大所大叔大婶大所大所大所大所谱册',
+          star: '100',
+          describe: '一个谱册的介绍',
+          list: [
+            {
+              title: '谱子1',
+              id: '121'
+            },
+            {
+              title: '谱子2',
+              id: '122'
+            },
+            {
+              title: '谱子3',
+              id: '123'
+            },
+            {
+              title: '谱子4',
+              id: '124'
+            },
+            {
+              title: '谱子5',
+              id: '125'
+            }
+          ]
+        },
+        {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186146-102.jpg',
           title: '东方谱册',
+          star: '100',
+          describe: '一个谱册的介绍',
+          list: [
+            {
+              title: '谱子1',
+              id: '121'
+            },
+            {
+              title: '谱子2',
+              id: '122'
+            },
+            {
+              title: '谱子3',
+              id: '123'
+            },
+            {
+              title: '谱子4',
+              id: '124'
+            },
+            {
+              title: '谱子5',
+              id: '125'
+            }
+          ]
+        },
+        {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186139-102.jpg',
+          title: '东方谱册',
+          star: '100',
+          describe: '一个谱册的介绍',
+          list: [
+            {
+              title: '谱子1',
+              id: '121'
+            },
+            {
+              title: '谱子2',
+              id: '122'
+            },
+            {
+              title: '谱子3',
+              id: '123'
+            },
+            {
+              title: '谱子4',
+              id: '124'
+            },
+            {
+              title: '谱子5',
+              id: '125'
+            }
+          ]
+        },
+        {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186036-102.jpg',
+          title: '东方谱册',
+          star: '100',
+          describe: '一个谱册的介绍',
+          list: [
+            {
+              title: '谱子1',
+              id: '121'
+            },
+            {
+              title: '谱子2',
+              id: '122'
+            },
+            {
+              title: '谱子3',
+              id: '123'
+            },
+            {
+              title: '谱子4',
+              id: '124'
+            },
+            {
+              title: '谱子5',
+              id: '125'
+            }
+          ]
+        },
+        {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
+          title: '东方谱册',
+          star: '100',
+          describe: '一个谱册的介绍',
+          list: [
+            {
+              title: '谱子1',
+              id: '121'
+            },
+            {
+              title: '谱子2',
+              id: '122'
+            },
+            {
+              title: '谱子3',
+              id: '123'
+            },
+            {
+              title: '谱子4',
+              id: '124'
+            },
+            {
+              title: '谱子5',
+              id: '125'
+            }
+          ]
+        },
+        {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186026-102.jpg',
+          title: '东方谱册',
+          star: '100',
+          describe: '一个谱册的介绍',
+          list: [
+            {
+              title: '谱子1',
+              id: '121'
+            },
+            {
+              title: '谱子2',
+              id: '122'
+            },
+            {
+              title: '谱子3',
+              id: '123'
+            },
+            {
+              title: '谱子4',
+              id: '124'
+            },
+            {
+              title: '谱子5',
+              id: '125'
+            }
+          ]
+        },
+        {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
+          title: '东ass方啊实打实大所大所大所大叔大婶大所大所大所大所谱册',
+          star: '100',
+          describe: '一个谱册的介绍',
+          list: [
+            {
+              title: '谱子1',
+              id: '121'
+            },
+            {
+              title: '谱子2',
+              id: '122'
+            },
+            {
+              title: '谱子3',
+              id: '123'
+            },
+            {
+              title: '谱子4',
+              id: '124'
+            },
+            {
+              title: '谱子5',
+              id: '125'
+            }
+          ]
+        },
+        {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186146-102.jpg',
+          title: '东方谱册',
+          star: '100',
+          describe: '一个谱册的介绍',
+          list: [
+            {
+              title: '谱子1',
+              id: '121'
+            },
+            {
+              title: '谱子2',
+              id: '122'
+            },
+            {
+              title: '谱子3',
+              id: '123'
+            },
+            {
+              title: '谱子4',
+              id: '124'
+            },
+            {
+              title: '谱子5',
+              id: '125'
+            }
+          ]
+        },
+        {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186139-102.jpg',
+          title: '东方谱册',
+          star: '100',
+          describe: '一个谱册的介绍',
+          list: [
+            {
+              title: '谱子1',
+              id: '121'
+            },
+            {
+              title: '谱子2',
+              id: '122'
+            },
+            {
+              title: '谱子3',
+              id: '123'
+            },
+            {
+              title: '谱子4',
+              id: '124'
+            },
+            {
+              title: '谱子5',
+              id: '125'
+            }
+          ]
+        },
+        {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186036-102.jpg',
+          title: '东方谱册',
+          star: '100',
+          describe: '一个谱册的介绍',
+          list: [
+            {
+              title: '谱子1',
+              id: '121'
+            },
+            {
+              title: '谱子2',
+              id: '122'
+            },
+            {
+              title: '谱子3',
+              id: '123'
+            },
+            {
+              title: '谱子4',
+              id: '124'
+            },
+            {
+              title: '谱子5',
+              id: '125'
+            }
+          ]
+        },
+        {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
+          title: '东方谱册',
+          star: '100',
+          describe: '一个谱册的介绍',
+          list: [
+            {
+              title: '谱子1',
+              id: '121'
+            },
+            {
+              title: '谱子2',
+              id: '122'
+            },
+            {
+              title: '谱子3',
+              id: '123'
+            },
+            {
+              title: '谱子4',
+              id: '124'
+            },
+            {
+              title: '谱子5',
+              id: '125'
+            }
+          ]
+        },
+        {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186026-102.jpg',
+          title: '东方谱册',
+          star: '100',
+          describe: '一个谱册的介绍',
+          list: [
+            {
+              title: '谱子1',
+              id: '121'
+            },
+            {
+              title: '谱子2',
+              id: '122'
+            },
+            {
+              title: '谱子3',
+              id: '123'
+            },
+            {
+              title: '谱子4',
+              id: '124'
+            },
+            {
+              title: '谱子5',
+              id: '125'
+            }
+          ]
+        }, {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
+          title: '东ass方啊实打实大所大所大所大叔大婶大所大所大所大所谱册',
+          star: '100',
+          describe: '一个谱册的介绍',
+          list: [
+            {
+              title: '谱子1',
+              id: '121'
+            },
+            {
+              title: '谱子2',
+              id: '122'
+            },
+            {
+              title: '谱子3',
+              id: '123'
+            },
+            {
+              title: '谱子4',
+              id: '124'
+            },
+            {
+              title: '谱子5',
+              id: '125'
+            }
+          ]
+        },
+        {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186146-102.jpg',
+          title: '东方谱册',
+          star: '100',
+          describe: '一个谱册的介绍',
+          list: [
+            {
+              title: '谱子1',
+              id: '121'
+            },
+            {
+              title: '谱子2',
+              id: '122'
+            },
+            {
+              title: '谱子3',
+              id: '123'
+            },
+            {
+              title: '谱子4',
+              id: '124'
+            },
+            {
+              title: '谱子5',
+              id: '125'
+            }
+          ]
+        },
+        {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186139-102.jpg',
+          title: '东方谱册',
+          star: '100',
+          describe: '一个谱册的介绍',
+          list: [
+            {
+              title: '谱子1',
+              id: '121'
+            },
+            {
+              title: '谱子2',
+              id: '122'
+            },
+            {
+              title: '谱子3',
+              id: '123'
+            },
+            {
+              title: '谱子4',
+              id: '124'
+            },
+            {
+              title: '谱子5',
+              id: '125'
+            }
+          ]
+        },
+        {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186036-102.jpg',
+          title: '东方谱册',
+          star: '100',
+          describe: '一个谱册的介绍',
+          list: [
+            {
+              title: '谱子1',
+              id: '121'
+            },
+            {
+              title: '谱子2',
+              id: '122'
+            },
+            {
+              title: '谱子3',
+              id: '123'
+            },
+            {
+              title: '谱子4',
+              id: '124'
+            },
+            {
+              title: '谱子5',
+              id: '125'
+            }
+          ]
+        },
+        {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
+          title: '东方谱册',
+          star: '100',
+          describe: '一个谱册的介绍',
+          list: [
+            {
+              title: '谱子1',
+              id: '121'
+            },
+            {
+              title: '谱子2',
+              id: '122'
+            },
+            {
+              title: '谱子3',
+              id: '123'
+            },
+            {
+              title: '谱子4',
+              id: '124'
+            },
+            {
+              title: '谱子5',
+              id: '125'
+            }
+          ]
+        },
+        {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186026-102.jpg',
+          title: '东方谱册',
+          star: '100',
+          describe: '一个谱册的介绍',
+          list: [
+            {
+              title: '谱子1',
+              id: '121'
+            },
+            {
+              title: '谱子2',
+              id: '122'
+            },
+            {
+              title: '谱子3',
+              id: '123'
+            },
+            {
+              title: '谱子4',
+              id: '124'
+            },
+            {
+              title: '谱子5',
+              id: '125'
+            }
+          ]
+        }, {
+          img:
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
+          title: '东ass方啊实打实大所大所大所大叔大婶大所大所大所大所谱册',
           star: '100',
           describe: '一个谱册的介绍',
           list: [
@@ -241,45 +771,99 @@ export default {
   padding: 0px 6%;
   min-width: 1024px;
   overflow: hidden;
+  margin-bottom: 50px;
   .otherSocreList {
     width: 100%;
-    height: 600px;
     padding-right: 20%;
+    .otherScoreListDiv {
+      min-height: 600px;
+      max-height: 1200px;
+    }
+    .copies {
+      width: 25%;
+    }
+    .block {
+      background-color: transparent;
+    }
   }
   .allSocreList {
     width: 100%;
-    height: 600px;
+    // height: 600px;
+    padding-right: 20%;
+  }
+  .pagination{
+    height: 33px;
+    text-align: center;
+    position: absolute;
+    left: 30%;
   }
   .myScoreList {
     width: 20%;
-    height: 600px;
     float: right;
     margin-top: 67px;
     text-align: right;
+    .myScoreListDiv {
+      min-height: 600px;
+      max-height: 1200px;
+      overflow: auto;
+    }
     h2 {
       border-bottom: $--activeColor 2px solid;
     }
     .line {
       background-color: $--activeColor;
     }
+    .copies {
+      width: 100%;
+    }
+  }
+  .copies {
+    display: inline-block;
+    text-align: center;
+    margin-top: 20px;
+    img {
+      width: 150px;
+      height: 150px;
+      cursor: pointer;
+    }
+    h1 {
+      font-size: $--basicFontSize;
+      line-height: $--basicFontSize;
+      font-weight: 500;
+      overflow: hidden;
+      height: 33px;
+      padding: 0px 15px;
+      color: $--darkFontColor;
+      cursor: pointer;
+      transition: all 0.4s;
+      &:hover {
+        color: $--activeColor;
+      }
+    }
+    p {
+      font-size: $--FontSizeM;
+      line-height: $--FontSizeM;
+      font-weight: 400;
+      overflow: hidden;
+      height: 60px;
+      padding: 0px 15px;
+      color: $--middleFontColor;
+      margin-top: 5px;
+    }
   }
   h2 {
     border-bottom: $--basicColor 2px solid;
     display: inline;
     font-size: $--FontSizeL;
-    font-weight: 500px;
+    font-weight: 500;
     padding-bottom: 3px;
     color: #444;
   }
   .line {
     width: 100%;
     height: 1px;
+    margin-top: 2px;
     background-color: $--basicColor;
-  }
-  .copies{
-    display: inline-block;
-    width: 20%;
-
   }
 }
 </style>
