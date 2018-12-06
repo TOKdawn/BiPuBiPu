@@ -17,5 +17,9 @@ module.exports = [{
     path: 'translator',
     name: 'translator',
     component: require('pages/translator/translator')
+  }, {
+    path: 'searchres/:searchtext',
+    name: 'searchres',
+    component: require('pages/searchres/searchres')
   }]
 }]

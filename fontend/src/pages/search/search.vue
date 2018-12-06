@@ -10,6 +10,7 @@
     <i
       slot="prefix"
       class=" el-icon-search"
+      @click="handleSelect()"
     ></i>
   </div>
 </template>
@@ -22,7 +23,10 @@ export default {
   },
   methods: {
     querySearchAsync () {},
-    handleSelect () {}
+    handleSelect () {
+      // console.log('aaaa')
+      this.$router.push(`/page/searchres/${this.searchText}`)
+    }
   }
 }
 </script>

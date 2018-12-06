@@ -4,8 +4,7 @@
       :default-active="activeIndex"
       class="el-menu-demo"
       mode="horizontal"
-      @select="handleSelect"
-    >
+      @select="handleSelect">
       <el-menu-item index="1" @click="$router.push({ path: `/index` })">主页</el-menu-item>
       <el-menu-item index="2" @click="$router.push({ path: `/page/scorelist` })">谱册</el-menu-item>
       <el-menu-item
@@ -63,7 +62,7 @@ export default {
   },
   methods: {
     handleSelect (key, keyPath) {
-      console.log(key, keyPath)
+      // console.log(key, keyPath)
     }
   },
   components: {
