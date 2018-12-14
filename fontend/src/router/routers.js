@@ -21,5 +21,9 @@ module.exports = [{
     path: 'searchres/:searchtext',
     name: 'searchres',
     component: require('pages/searchres/searchres')
+  }, {
+    path: 'score/:scoreid',
+    name: 'score',
+    component: require('pages/score/score')
   }]
 }]
