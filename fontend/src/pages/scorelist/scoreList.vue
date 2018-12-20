@@ -1,5 +1,5 @@
 <template>
-  <div class="scoreList">
+  <div class="main-context">
     <el-radio-group
       v-model="radio3"
       size="small"
@@ -767,11 +767,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "src/assets/style.scss";
-.scoreList {
-  padding: 0px 6%;
-  min-width: 1024px;
-  overflow: hidden;
-  margin-bottom: 50px;
+.main-context {
+
   .otherSocreList {
     width: 100%;
     padding-right: 20%;
