@@ -27,8 +27,8 @@
         </el-table>
     </el-tab-pane>
     <el-tab-pane label="谱册" name="second">
-      <h1 @click="router.push({ name: 'score', params: { userid : '123' }}) ">123</h1>
-      <h1 @click="router.push({ name: 'score', params: { userid : '456' }})">456</h1>
+      <h1 @click="$router.push({ name: 'score', params: { scoreid : '123' }})">123</h1>
+      <h1 @click="$router.push({ name: 'score', params: { scoreid : '456' }})">456</h1>
     </el-tab-pane>
     <el-tab-pane label="用户" name="third">用户</el-tab-pane>
   </el-tabs>

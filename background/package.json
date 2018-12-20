@@ -1,16 +1,16 @@
 {
-  "name": "BiPu",
+  "name": "bipu",
   "version": "1.0.0",
-  "description": "BiPu background",
+  "description": " bipu backend",
   "private": true,
   "dependencies": {
     "egg": "^2.2.1",
-    "egg-scripts": "^2.5.0",
     "egg-cors": "^2.0.0",
     "egg-oss": "^1.1.0",
     "egg-passport": "^2.0.1",
     "egg-passport-github": "^1.0.0",
     "egg-passport-weibo": "^1.0.0",
+    "egg-scripts": "^2.5.0",
     "egg-sequelize": "^3.1.4",
     "egg-static": "^2.1.1",
     "egg-userrole": "^2.0.0",
@@ -32,8 +32,8 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-BiPu",
-    "stop": "egg-scripts stop --title=egg-server-BiPu",
+    "start": "egg-scripts start --daemon --title=egg-server-bipu",
+    "stop": "egg-scripts stop --title=egg-server-bipu",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
@@ -41,7 +41,10 @@
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
-    "autod": "autod"
+    "autod": "autod",
+    "migrate:new": "egg-sequelize migration:create",
+    "migrate:up": "egg-sequelize db:migrate",
+    "migrate:down": "egg-sequelize db:migrate:undo"
   },
   "ci": {
     "version": "8"
@@ -50,6 +53,6 @@
     "type": "git",
     "url": ""
   },
-  "author": "dawn",
+  "author": "TOKdawn",
   "license": "MIT"
 }

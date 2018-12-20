@@ -85,7 +85,7 @@ export default {
   z-index:100;
   // min-width: 1024px;
   text-align: right;
-  // box-shadow: 0 1px 3px rgba(26, 26, 26, 0.1);
+  box-shadow: 0 1px 3px rgba(26, 26, 26, 0.1);
   .el-menu-demo {
     background-color: transparent;
   }

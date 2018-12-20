@@ -4,6 +4,7 @@ $--activeColor: rgb(242, 103, 98);
 $--scoreListBgColor: #fbf3d9;
 $--scoreListColor: #faddac;
 $--scoreListActiveColor: #fadcb6;
+$--linkBlue:#409EFF;
 $--footTextColor: #fff;
 $--darkFontColor: #333;
 $--shallowFontColor: #999;
@@ -18,3 +19,16 @@ $--FontSizeXM: 12px;
 $--FontSizeXXM: 10px;
 $--FontSizeXXXM: 8px;
 $--bannerImg: url("./banner.jpg");
+.main-context{
+  overflow: hidden;
+  margin-bottom: 50px;
+  max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+@media (max-width: 1240px){
+  .main-context {
+    min-width: 1024px;
+    margin: 0 25px;
+  }
+}
