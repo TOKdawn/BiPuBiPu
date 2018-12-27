@@ -6,6 +6,7 @@
 module.exports = app => {
     const { router, controller } = app;
     router.get('/', controller.home.index);
+    router.post('/user/register',controller.user.register);
     router.get('/user', controller.user.getMyInfo);
     router.get('/user/logout', controller.user.logout);
     router.get('/user/collection/', controller.user.getMyCollection); //用户权限
@@ -13,6 +14,7 @@ module.exports = app => {
     router.get('/user/collection/:uid', controller.user.getUserCollection); //用户权限
     router.post('/user/collection', controller.user.addCollectionVolume); //拥有者权限
     router.delete('/user/collection/:vid', controller.user.deleteCollectionVolume); //拥有者权限
+
     //router.put('/user/userinfo',controller.user.updateUserInfo);
     //router.put('/user/password',controller.user.updatePassword);// 更改密码
     //router.post('/user/registered', controller.user.registered);// 注册
