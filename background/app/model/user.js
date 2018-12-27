@@ -35,7 +35,7 @@ module.exports = app => {
         role: { //
             type: INTEGER,
             allowNull: false,
-            defaultValue: 1, //1登录 ,0未验证,2管理员
+            defaultValue: 1, //1登录 ,0未登录,2管理员
         },
         created_at: {
             type: DATE,

@@ -13,9 +13,11 @@ module.exports = app => {
     router.get('/user/collection/:uid', controller.user.getUserCollection); //用户权限
     router.post('/user/collection', controller.user.addCollectionVolume); //拥有者权限
     router.delete('/user/collection/:vid', controller.user.deleteCollectionVolume); //拥有者权限
-    router.put('/user/userinfo',controller.user.updateUserInfo);
-    router.put('/user/password',controller.user.updatePassword);
-    router.post('/user/login',controller.user.login); //登录
+    //router.put('/user/userinfo',controller.user.updateUserInfo);
+    //router.put('/user/password',controller.user.updatePassword);// 更改密码
+    //router.post('/user/registered', controller.user.registered);// 注册
+    //router.post('/user/login',controller.user.login); //登录
+    router.get('/system/catcha/:type',controller.system.getCatcha)
     router.get('/volume', controller.volume.getVolumeList);
     router.post('/volume', controller.volume.createVolume); // 用户
     router.delete('/volume/:vid', controller.volume.deleteVolume); //拥有者权限

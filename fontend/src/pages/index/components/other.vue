@@ -24,6 +24,7 @@
         待定<span>/</span>
         <router-link to="/index">More</router-link>
       </div>
+
     </div>
   </div>
 </template>
