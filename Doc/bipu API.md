@@ -19,14 +19,14 @@
 
 #### HTTP Request
 
-`POST /api/register`
+`POST /user/register`
 
 #### 请求实例
 
 ```
 {
   "username": "foo",
-  "email": "12345678@qq.com",
+  "email": "1874662665@163.com",
   "password": "bar",
   "password2": "bar",
   "captcha": "1234"
@@ -49,16 +49,20 @@
 	}
 }
  ```
-### Verify User
+ 
+ 
+### Check email
 验证用户邮箱
 #### HTTP Request
 
-`GET /api/verify`
+`post /user/checkEmail`
 
 #### 请求实例
 
 ```
-/api/verify?code=b7300fcdf45d4848894e046b96bfbcd8
+{
+	"email":"12323123@163.com"
+}
 ```
 #### 返回实例
 
@@ -74,7 +78,7 @@
 
 {
   "sucess": "false",
-  "message": "验证码已失效",
+  "message": "此邮箱已被使用",
   "data": {}
 }
  ```

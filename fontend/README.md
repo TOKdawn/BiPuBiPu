@@ -1,7 +1,3 @@
-### TODO
-***
-1. 用imagemin-webpack-plugin 压缩图片
-2. 用webpack-spritesmith 合并雪碧图
 
 ### 项目技术架构
 ***
@@ -33,7 +29,7 @@ cnpm install -g pm2
 ```
 ### 开发环境运行项目步骤
 ***
-1. 修改后端服务器地址,到config目录下,修改index.js文件中, var proxyTarget = 'http://192.168.1.199:8080'
+1. 修改后端服务器地址,到config目录下,修改index.js文件中, var proxyTarget = 'http://172.0.0.1:8080'
 2. 切换到当前目录
 3. npm run dev
 
