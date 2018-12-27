@@ -332,7 +332,14 @@
     ` DELETE  /collection/volume/:vid` -->
 
 
+### 系统
 
+1. 获取验证码
+	
+	`GET /system/catcha/:type`
+	
+	type: 1  注册页验证码
+	
 
 
 ### search （搜索）
