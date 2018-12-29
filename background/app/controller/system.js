@@ -19,8 +19,6 @@ class SystemController extends Controller {
       this.ctx.helper.applyCatcha(type);
     }
   }
- 
-
 }
 
 module.exports = SystemController;

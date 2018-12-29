@@ -15,7 +15,6 @@ module.exports = appInfo => {
             csrf: {
                 enable: false,
             },
-
         },
         multipart: {
             whitelist: [

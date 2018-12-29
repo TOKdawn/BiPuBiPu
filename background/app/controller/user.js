@@ -59,6 +59,45 @@ class UserController extends Controller {
     const response = await this.userService.getUserCollection(uid, offset, pagesize, owned);
     this.ctx.body = response;
   }
+
+  async login() {
+    const {
+      email,
+      password,
+      captcha
+    } = this.ctx.request.body;
+        // if(this.ctx.header.checkCaptcha(captcha)){
+    //   this.ctx.helper.createRes(400, '验证码错误 凸(⊙▂⊙✖ )');
+    // }
+    const response = await userService.Login(email, password);
+    this.ctx.body = response;
+  }
+
+  async register() {
+    const {
+      username,
+      email,
+      password,
+      password2,
+      captcha
+    } = this.ctx.request.body;
+    // if(this.ctx.header.checkCaptcha(captcha)){
+    //   this.ctx.helper.createRes(400, '验证码错误 凸(⊙▂⊙✖ )');
+    // }
+    if(await this.userService.checkEmail(email)){
+      this.ctx.helper.createRes(400, '此邮箱已被使用 凸(⊙▂⊙✖ )');
+    }
+    if(password === password2){
+      const response = await this.userService.Register(username, email, password);
+      console.log(this.session,response)
+      this.session.passport.user = response.dataValues;
+
+      this.ctx.body = response;
+    }else{
+      this.ctx.helper.createRes(400, '两次输入的密码不同 凸(⊙▂⊙✖ )');
+    }
+  }
+
   async logout() {
     this.ctx.logout();
     this.ctx.body = 'success';
