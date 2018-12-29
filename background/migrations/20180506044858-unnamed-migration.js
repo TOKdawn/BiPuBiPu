@@ -37,6 +37,10 @@ module.exports = {
         type: STRING(200),
         allowNull: true,
       },
+      email:{
+        type: STRING(50),
+        allowNull: false,
+      },
       name: {
         type: STRING(10),
         allowNull: false,
@@ -47,7 +51,7 @@ module.exports = {
         allowNull: false,
       },
       signature: {
-        type: STRING(100),
+        type: STRING(50),
         allowNull: true,
         defaultValue: 'undefined',
       },

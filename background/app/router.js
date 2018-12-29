@@ -13,8 +13,8 @@ module.exports = app => {
     router.get('/user/:uid', controller.user.getInfo);
     router.get('/user/collection/:uid', controller.user.getUserCollection); //用户权限
     router.post('/user/collection', controller.user.addCollectionVolume); //拥有者权限
-    router.delete('/user/collection/:vid', controller.user.deleteCollectionVolume); //拥有者权限
-
+    router.delete('/user/collection/:vid', controller.user.deleteCollectionVolume); //拥有者权限  
+    router.post('/user/login',controller.user.login);
     //router.put('/user/userinfo',controller.user.updateUserInfo);
     //router.put('/user/password',controller.user.updatePassword);// 更改密码
     //router.post('/user/registered', controller.user.registered);// 注册
@@ -29,6 +29,7 @@ module.exports = app => {
     router.post('/volume/:vid/score', controller.volume.addVolumeScore); //拥有者
     router.delete('/volume/:vid/score/:sid', controller.volume.deleteVolumeScore); //拥有者
     router.post('/upload', controller.multipart.upload); //拥有者
+    // router.post('/uploadScore', controller.multipart.uploadScore); //拥有者
     router.get('/volume/:vid/comment', controller.volume.getComment);
     router.post('/volume/:vid/comment', controller.volume.addComment); //用户
     router.delete('/comment/:cid', controller.volume.delectComment); //拥有者

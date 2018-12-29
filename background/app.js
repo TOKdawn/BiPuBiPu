@@ -35,7 +35,6 @@ module.exports = app => {
             return existsUser;
         }
         // console.log("faiture")
-
         // 调用 service 注册新用户
         const newUser = await ctx.service.userService.register(user);
         return newUser;

@@ -14,6 +14,10 @@ module.exports = app => {
             primaryKey: true,
             autoIncrement: true,
         },
+        email:{
+          type: STRING(50),
+          allowNull: false,
+        },
         avatar: {
             type: STRING(200),
             allowNull: true,
@@ -28,7 +32,7 @@ module.exports = app => {
           allowNull: false,
         },
         signature: {
-            type: STRING(100),
+            type: STRING(50),
             allowNull: true,
             defaultValue: 'undefined',
         },

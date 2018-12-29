@@ -85,30 +85,30 @@
     "onerror": {
       "errorPageUrl": "",
       "appErrorFilter": null,
-      "templatePath": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-onerror/lib/onerror_page.mustache"
+      "templatePath": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-onerror/lib/onerror_page.mustache"
     },
     "i18n": {
       "defaultLocale": "en_US",
       "dirs": [
-        "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-session/config/locales",
-        "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-security/config/locales",
-        "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-jsonp/config/locales",
-        "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-onerror/config/locales",
-        "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-i18n/config/locales",
-        "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-watcher/config/locales",
-        "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-schedule/config/locales",
-        "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-multipart/config/locales",
-        "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-development/config/locales",
-        "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-logrotator/config/locales",
-        "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-static/config/locales",
-        "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-view/config/locales",
-        "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-sequelize/config/locales",
-        "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-oss/config/locales",
-        "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-passport/config/locales",
-        "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-passport-github/config/locales",
-        "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-cors/config/locales",
-        "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg/config/locales",
-        "/Users/dawn/GitHub/BiPuBiPu/backend/config/locales"
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-session/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-security/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-jsonp/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-onerror/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-i18n/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-watcher/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-schedule/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-multipart/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-development/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-logrotator/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-static/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-view/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-sequelize/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-oss/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-passport/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-passport-github/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-cors/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/config/locales"
       ],
       "queryField": "locale",
       "cookieField": "locale",
@@ -118,14 +118,14 @@
     "watcher": {
       "type": "development",
       "eventSources": {
-        "default": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-watcher/lib/event-sources/default",
-        "development": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-watcher/lib/event-sources/development"
+        "default": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-watcher/lib/event-sources/default",
+        "development": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-watcher/lib/event-sources/development"
       }
     },
     "customLogger": {
       "scheduleLogger": {
         "consoleLevel": "NONE",
-        "file": "/Users/dawn/GitHub/BiPuBiPu/backend/logs/bipu/egg-schedule.log"
+        "file": "/Users/dawn/GitHub/BiPuBiPu/background/logs/bipu/egg-schedule.log"
       }
     },
     "schedule": {
@@ -168,7 +168,7 @@
     },
     "static": {
       "prefix": "/",
-      "dir": "/Users/dawn/GitHub/BiPuBiPu/backend/app/public",
+      "dir": "/Users/dawn/GitHub/BiPuBiPu/background/app/public",
       "dynamic": true,
       "preload": false,
       "buffer": false,
@@ -176,7 +176,7 @@
       "files": "<LRU>"
     },
     "view": {
-      "root": "/Users/dawn/GitHub/BiPuBiPu/backend/app/view",
+      "root": "/Users/dawn/GitHub/BiPuBiPu/background/app/view",
       "cache": false,
       "defaultExtension": ".html",
       "defaultViewEngine": "",
@@ -288,9 +288,9 @@
       "author": "TOKdawn",
       "license": "MIT"
     },
-    "baseDir": "/Users/dawn/GitHub/BiPuBiPu/backend",
+    "baseDir": "/Users/dawn/GitHub/BiPuBiPu/background",
     "HOME": "/Users/dawn",
-    "rundir": "/Users/dawn/GitHub/BiPuBiPu/backend/run",
+    "rundir": "/Users/dawn/GitHub/BiPuBiPu/background/run",
     "dump": {
       "ignore": "<Set>"
     },
@@ -321,7 +321,7 @@
       "returnRawBody": true
     },
     "logger": {
-      "dir": "/Users/dawn/GitHub/BiPuBiPu/backend/logs/bipu",
+      "dir": "/Users/dawn/GitHub/BiPuBiPu/background/logs/bipu",
       "encoding": "utf8",
       "env": "local",
       "level": "INFO",
@@ -421,8 +421,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg/config/plugin.js",
-      "path": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-session",
+      "from": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/plugin.js",
+      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-session",
       "version": "3.1.0"
     },
     "security": {
@@ -434,8 +434,8 @@
         "session"
       ],
       "env": [],
-      "from": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg/config/plugin.js",
-      "path": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-security",
+      "from": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/plugin.js",
+      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-security",
       "version": "2.4.1"
     },
     "jsonp": {
@@ -447,8 +447,8 @@
         "security"
       ],
       "env": [],
-      "from": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg/config/plugin.js",
-      "path": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-jsonp",
+      "from": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/plugin.js",
+      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-jsonp",
       "version": "2.0.0"
     },
     "onerror": {
@@ -460,8 +460,8 @@
         "jsonp"
       ],
       "env": [],
-      "from": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg/config/plugin.js",
-      "path": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-onerror",
+      "from": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/plugin.js",
+      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-onerror",
       "version": "2.1.0"
     },
     "i18n": {
@@ -471,8 +471,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg/config/plugin.js",
-      "path": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-i18n",
+      "from": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/plugin.js",
+      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-i18n",
       "version": "2.0.0"
     },
     "watcher": {
@@ -482,8 +482,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg/config/plugin.js",
-      "path": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-watcher",
+      "from": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/plugin.js",
+      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-watcher",
       "version": "3.1.0"
     },
     "schedule": {
@@ -493,8 +493,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg/config/plugin.js",
-      "path": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-schedule",
+      "from": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/plugin.js",
+      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-schedule",
       "version": "3.6.0"
     },
     "multipart": {
@@ -506,8 +506,8 @@
         "schedule"
       ],
       "env": [],
-      "from": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg/config/plugin.js",
-      "path": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-multipart",
+      "from": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/plugin.js",
+      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-multipart",
       "version": "2.3.0"
     },
     "development": {
@@ -521,8 +521,8 @@
       "env": [
         "local"
       ],
-      "from": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg/config/plugin.js",
-      "path": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-development",
+      "from": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/plugin.js",
+      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-development",
       "version": "2.4.1"
     },
     "logrotator": {
@@ -534,8 +534,8 @@
       ],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg/config/plugin.js",
-      "path": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-logrotator",
+      "from": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/plugin.js",
+      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-logrotator",
       "version": "3.0.5"
     },
     "static": {
@@ -544,9 +544,9 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/dawn/GitHub/BiPuBiPu/backend/config/plugin.js",
+      "from": "/Users/dawn/GitHub/BiPuBiPu/background/config/plugin.js",
       "package": "egg-static",
-      "path": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-static",
+      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-static",
       "version": "2.1.1"
     },
     "view": {
@@ -556,8 +556,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg/config/plugin.js",
-      "path": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-view",
+      "from": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/plugin.js",
+      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-view",
       "version": "2.1.0"
     },
     "sequelize": {
@@ -567,8 +567,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/dawn/GitHub/BiPuBiPu/backend/config/plugin.js",
-      "path": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-sequelize",
+      "from": "/Users/dawn/GitHub/BiPuBiPu/background/config/plugin.js",
+      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-sequelize",
       "version": "3.1.5"
     },
     "oss": {
@@ -578,8 +578,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/dawn/GitHub/BiPuBiPu/backend/config/plugin.js",
-      "path": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-oss",
+      "from": "/Users/dawn/GitHub/BiPuBiPu/background/config/plugin.js",
+      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-oss",
       "version": "1.1.0"
     },
     "passport": {
@@ -591,8 +591,8 @@
       ],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/dawn/GitHub/BiPuBiPu/backend/config/plugin.js",
-      "path": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-passport",
+      "from": "/Users/dawn/GitHub/BiPuBiPu/background/config/plugin.js",
+      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-passport",
       "version": "2.0.1"
     },
     "passportGithub": {
@@ -604,8 +604,8 @@
       ],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/dawn/GitHub/BiPuBiPu/backend/config/plugin.js",
-      "path": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-passport-github",
+      "from": "/Users/dawn/GitHub/BiPuBiPu/background/config/plugin.js",
+      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-passport-github",
       "version": "1.0.0"
     },
     "cors": {
@@ -615,8 +615,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/dawn/GitHub/BiPuBiPu/backend/config/plugin.js",
-      "path": "/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-cors",
+      "from": "/Users/dawn/GitHub/BiPuBiPu/background/config/plugin.js",
+      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-cors",
       "version": "2.1.2"
     }
   }

@@ -26,19 +26,23 @@ module.exports = {
         noise:2
       }
       const Captcha = svgCaptcha.createMathExpr(options);
-     
       switch (type-0){
         case 1: 
         this.ctx.session.login_catcha = Captcha.text;
-       
         break;
       }
-
       this.ctx.session.maxAge = 1000*60*10;
       this.ctx.body = {
         status:0,
         message: 'success',
         data: Captcha.data.replace(/"/g,"'")
+      }
+    },
+    async checkCaptcha(captcha){
+      if(this.ctx.session.login_catcha+'' == captcha ){
+        return false //验证成功
+      }else{
+        return true //验证失败
       }
     }
     // async checktoken (ctx, next) {

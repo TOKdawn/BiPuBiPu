@@ -61,9 +61,47 @@ class UserService extends Service {
     // console.log(data);
     return data;
   }
+  async checkEmail(email){
+    const data = await this.User.findOne({
+      where: {
+        email
+      }
+    })
+    if(data !== ''){
+      return true //有重复邮箱
+    }else{
+      return false//无重复邮箱
+    }
+  }
 
+  async Register(username, email, password) {
+    var crypto = require('crypto');
+    var md5 = crypto.createHash('md5');
+    var cryptostr = md5.update(password+'').digest('hex');
+    const data = await this.User.create({
+      name: username,
+      avatar: 'http://bipu.oss-cn-beijing.aliyuncs.com/egg-multipart-test/akari.jpg',
+      signature: '这个人很懒,啥也没写╮(╯_╰)╭',
+      password: cryptostr,
+      email: email
+    });
+    return data;
+  }
+  async Login(email,password){
+    var crypto = require('crypto');
+    var md5 = crypto.createHash('md5');
+    var cryptostr = md5.update(password).digest('hex');
+    const data = await this.User.findOne({
+      where:{
+      email: email,
+      password: cryptostr
+      }
+    })
+    console.log(data)
+    return data;
+  }
 
-  async register(user) {
+  async gitRegister(user) {
     const t = await this.ctx.model.transaction();
     try {
       const data = await this.User.create({
@@ -85,6 +123,29 @@ class UserService extends Service {
       return err;
     }
   }
+  async weiboRegister(user) {
+    const t = await this.ctx.model.transaction();
+    try {
+      const data = await this.User.create({
+        name: user.name,
+        avatar: user.photo,
+        signature: user.profile._json.bio
+      });
+      // console.log(data);
+      const author = await this.Auhtor.create({
+        uid: data.get('id'),
+        provider: user.provider,
+        token: user.id,
+      })
+      await t.commit();
+      return data;
+    } catch (err) {
+      await t.rollback();
+      console.log(err);
+      return err;
+    }
+  }
+
 }
 
 module.exports = UserService;
