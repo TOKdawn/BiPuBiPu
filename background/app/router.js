@@ -6,20 +6,21 @@
 module.exports = app => {
     const { router, controller } = app;
     router.get('/', controller.home.index);
-    router.post('/user/register',controller.user.register);
+    router.post('/user/register',controller.user.register);//注册
+    router.post('/user/login',controller.user.login);//登录
     router.get('/user', controller.user.getMyInfo);
     router.get('/user/logout', controller.user.logout);
     router.get('/user/collection/', controller.user.getMyCollection); //用户权限
     router.get('/user/:uid', controller.user.getInfo);
     router.get('/user/collection/:uid', controller.user.getUserCollection); //用户权限
     router.post('/user/collection', controller.user.addCollectionVolume); //拥有者权限
-    router.delete('/user/collection/:vid', controller.user.deleteCollectionVolume); //拥有者权限  
-    router.post('/user/login',controller.user.login);
+    router.delete('/user/collection/:vid', controller.user.deleteCollectionVolume); //拥有者权限
+    router.get('/user/checkemail/:email',controller.user.checkEmail);  
     //router.put('/user/userinfo',controller.user.updateUserInfo);
     //router.put('/user/password',controller.user.updatePassword);// 更改密码
     //router.post('/user/registered', controller.user.registered);// 注册
-    //router.post('/user/login',controller.user.login); //登录
-    router.get('/system/catcha/:type',controller.system.getCatcha)
+    router.get('/system/catcha/:type',controller.system.getCatcha);
+    router.post('/score/tag',controller.s)
     router.get('/volume', controller.volume.getVolumeList);
     router.post('/volume', controller.volume.createVolume); // 用户
     router.delete('/volume/:vid', controller.volume.deleteVolume); //拥有者权限
@@ -34,10 +35,8 @@ module.exports = app => {
     router.post('/volume/:vid/comment', controller.volume.addComment); //用户
     router.delete('/comment/:cid', controller.volume.delectComment); //拥有者
     router.delete('/subcomment/:cid', controller.volume.delectSubcomment); //拥有者 
-    
-    // router.get('/login',controller.user.login)
-    // router.get("/success",controller.user.success)
-    
+    // router.get('/login',controller.user.login);
+    // router.get("/success",controller.user.success);
     app.passport.mount('github', {
         successRedirect: '/'
     });

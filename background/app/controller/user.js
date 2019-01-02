@@ -11,23 +11,25 @@ class UserController extends Controller {
     this.userService = ctx.service.userService;
     // this.ctx.session.uid = 123; // 测试用
   }
+
   async getMyInfo() {
     const uid = this.ctx.user.id;
     uid || this.ctx.helper.createRes(403, 'User not login QAQ');
     const response = await this.userService.getInfo(uid);
     if (response) {
-      this.ctx.body = response;
+      this.ctx.helper.successRes('sucess',response);
     } else {
       this.ctx.helper.createRes(404, 'User is not found QAQ');
     }
   }
+
   async getInfo() {
     const {
       uid
     } = this.ctx.params; // 等价于 const uid = this.ctx.params.uid;
     const response = await this.userService.getInfo(uid);
     if (response) {
-      this.ctx.body = response;
+      this.ctx.helper.successRes('sucess',response);
     } else {
       this.ctx.helper.createRes(404, 'User is not found QAQ');
     }
@@ -44,7 +46,7 @@ class UserController extends Controller {
       this.ctx.helper.createRes(403, 'permission denied ಠ益ಠ');
     }
     const response = await this.userService.getUserCollection(uid, offset, pagesize, owned);
-    this.ctx.body = response;
+    this.ctx.helper.successRes('sucess',response);
   }
 
   async getMyCollection() {
@@ -57,7 +59,17 @@ class UserController extends Controller {
       offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE, owned = false,
     } = this.ctx.query;
     const response = await this.userService.getUserCollection(uid, offset, pagesize, owned);
-    this.ctx.body = response;
+    this.ctx.helper.successRes('sucess',response);
+  }
+
+  async checkEmail() {
+    const {email}= this.ctx.params;
+    const response = await this.userService.checkEmail(email);
+    if (response) {
+      this.ctx.helper.createRes(400,'邮箱名已经被使用')
+    } else {
+      this.ctx.helper.successRes('邮箱名未被使用')     
+    }
   }
 
   async login() {
@@ -66,11 +78,14 @@ class UserController extends Controller {
       password,
       captcha
     } = this.ctx.request.body;
-        // if(this.ctx.header.checkCaptcha(captcha)){
+    // if(this.ctx.header.checkCaptcha(captcha)){
     //   this.ctx.helper.createRes(400, '验证码错误 凸(⊙▂⊙✖ )');
     // }
-    const response = await userService.Login(email, password);
-    this.ctx.body = response;
+    const response = await this.userService.Login(email, password);
+    if(response == null){
+      this.ctx.helper.createRes(400, '用户名或密码错误(ﾟДﾟ;)')
+    }
+    this.ctx.helper.successRes('成功登录',response)
   }
 
   async register() {
@@ -89,10 +104,10 @@ class UserController extends Controller {
     }
     if(password === password2){
       const response = await this.userService.Register(username, email, password);
-      console.log(this.session,response)
-      this.session.passport.user = response.dataValues;
+      // console.log(this.ctx.session,response)
+      this.ctx.session.user = response.dataValues;
 
-      this.ctx.body = response;
+      this.ctx.helper.successRes('sucess',response);
     }else{
       this.ctx.helper.createRes(400, '两次输入的密码不同 凸(⊙▂⊙✖ )');
     }
@@ -105,7 +120,7 @@ class UserController extends Controller {
 
   async addCollectionVolume() {
     const {
-      vid,
+      vid
     } = this.ctx.request.body;
     const uid = this.ctx.user.id;
     const response = await this.userService.addCollectionVolume(uid, vid);
@@ -129,7 +144,7 @@ class UserController extends Controller {
       this.ctx.helper.createRes(409, 'Delete err Orz  ');
 
     }
-    this.ctx.body = response;
+    this.ctx.helper.successRes('sucess',response);
   }
 
 }

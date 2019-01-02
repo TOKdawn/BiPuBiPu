@@ -9,6 +9,7 @@ class UserService extends Service {
     this.Volume = this.ctx.model.Volume;
     this.Auhtor = this.ctx.model.Authorization;
   }
+
   async getInfo(uid) {
     if (!uid) return {
       error: true,
@@ -23,6 +24,20 @@ class UserService extends Service {
     // console.log(user);
     return user;
   }
+
+  async checkEmail(email) {
+    const data = await this.User.findOne({
+      where:{
+        email:email
+      }
+    });
+    if(data){
+      return true
+    } else {
+      return false
+    }
+  }
+
   async getUserCollection(uid, offset, pagesize, owned) {
     // this.Volume.belongsTo(this.CollectionVolume, { foreignKey: 'vid', sourceKey: 'id' });
     const tablename = !owned ? 'collectionVolume' : 'ownVolume';
@@ -41,6 +56,7 @@ class UserService extends Service {
     // console.log(data)
     return data;
   }
+
   async addCollectionVolume(uid, vid) {
     const data = await this.CollectionVolume.findOrCreate({
       where: {
@@ -50,6 +66,7 @@ class UserService extends Service {
     });
     return data;
   }
+
   async deleteCollectionVolume(uid, vid) {
     // const Op = this.app.Sequelize.Op
     const data = await this.CollectionVolume.destroy({
@@ -61,6 +78,7 @@ class UserService extends Service {
     // console.log(data);
     return data;
   }
+
   async checkEmail(email){
     const data = await this.User.findOne({
       where: {
@@ -87,6 +105,7 @@ class UserService extends Service {
     });
     return data;
   }
+  
   async Login(email,password){
     var crypto = require('crypto');
     var md5 = crypto.createHash('md5');
@@ -97,7 +116,7 @@ class UserService extends Service {
       password: cryptostr
       }
     })
-    console.log(data)
+    // console.log(data)
     return data;
   }
 

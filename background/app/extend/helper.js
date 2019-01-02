@@ -10,6 +10,14 @@ module.exports = {
         this.status = status;
         this.ctx.body = text;
     },
+    successRes(text,data){
+      this.status = 200
+      let Res = {
+        message: text,
+        data:data
+      }
+      this.ctx.body  = Res
+    },
     async getIssue(number) {
         const result = await this.ctx.curl(`https://api.github.com/repos/zytx121/je/issues/${number}`, {
             method: 'GET',

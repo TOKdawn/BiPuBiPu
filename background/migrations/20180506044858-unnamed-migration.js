@@ -8,6 +8,18 @@ module.exports = {
       ARRAY,
       DATE,
     } = Sequelize;
+    await queryInterface.createTable('Tag',{
+      id: {
+        type: INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      content: {
+        type: INTEGER,
+        allowNull: false,
+      }
+    })
     await queryInterface.createTable('Score', {
       id: {
         type: INTEGER,
@@ -15,11 +27,51 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      name: {
+      name: { //标题
         type: STRING,
         allowNull: false,
       },
-      sid: {
+      alias:{ //别名
+        type: STRING,
+        allowNull: true,
+      },
+      addtion:{ //简介
+        type: STRING,
+        allowNull: true,
+      },
+      image_url: { //图片
+        type: STRING,
+        allowNull: false,
+      },
+      score_text:{//内容本体
+        type: STRING,
+        allowNull: false,
+      },
+      source_url:{//原谱地址
+        type:STRING,
+        allowNull:true,
+      },
+      provider:{//扒谱人
+        type:STRING,
+        allowNull:true,
+      },
+      provider_url:{ //扒谱人url
+        type:STRING,
+        allowNull:true,
+      },
+      carrier:{ //传谱人
+        type:STRING,
+        allowNull:true,
+      },
+      // sid: {
+      //   type: INTEGER,
+      //   allowNull: false,
+      // },
+      performs:{//B站作品
+        type: INTEGER,
+        allowNull: false,
+      },
+      songs:{ //网易云音乐
         type: INTEGER,
         allowNull: false,
       },
@@ -37,7 +89,7 @@ module.exports = {
         type: STRING(200),
         allowNull: true,
       },
-      email:{
+      email: {
         type: STRING(50),
         allowNull: false,
       },
@@ -184,6 +236,29 @@ module.exports = {
       created_at: DATE,
       updated_at: DATE,
     });
+
+
+    await queryInterface.createTable('userStar', {
+      id: {
+        type: INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      uid: {
+        type: INTEGER,
+        allowNull: false,
+
+      },
+      sid: {
+        type: INTEGER,
+        allowNull: false,
+      },
+    }, {
+      timestamps: false,
+      freezeTableName: true, // 默认表名会被加s,此选项强制表名跟model一致
+    })
+
     await queryInterface.createTable('scoreVolume', {
       id: {
         type: INTEGER,
@@ -283,12 +358,11 @@ module.exports = {
 
     });
     /*
-              Add altering commands here.
-              Return a promise to correctly handle asynchronicity.
-
-              Example:
-              return queryInterface.createTable('users', { id: Sequelize.INTEGER });
-            */
+      Add altering commands here.
+      Return a promise to correctly handle asynchronicity.
+      Example:
+      return queryInterface.createTable('users', { id: Sequelize.INTEGER });
+    */
   },
 
   async down(queryInterface) {
@@ -301,12 +375,14 @@ module.exports = {
     await queryInterface.dropTable('Score');
     await queryInterface.dropTable('subComment');
     await queryInterface.dropTable('Authorization')
+    await queryInterface.dropTable('userStar')
+    await queryInterface.dropTable('Tag')
     /*
-              Add reverting commands here.
-              Return a promise to correctly handle asynchronicity.
+      Add reverting commands here.
+      Return a promise to correctly handle asynchronicity.
 
-              Example:
-              return queryInterface.dropTable('users');
-            */
+      Example:
+      return queryInterface.dropTable('users');
+    */
   },
 };
