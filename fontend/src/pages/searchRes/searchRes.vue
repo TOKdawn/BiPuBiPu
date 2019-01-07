@@ -14,15 +14,18 @@
             prop="date"
             label="日期"
             width="180">
+
           </el-table-column>
           <el-table-column
             prop="name"
             label="姓名"
             width="180">
+
           </el-table-column>
           <el-table-column
             prop="address"
             label="地址">
+
           </el-table-column>
         </el-table>
     </el-tab-pane>
@@ -30,7 +33,9 @@
       <h1 @click="$router.push({ name: 'score', params: { scoreid : '123' }})">123</h1>
       <h1 @click="$router.push({ name: 'score', params: { scoreid : '456' }})">456</h1>
     </el-tab-pane>
-    <el-tab-pane label="用户" name="third">用户</el-tab-pane>
+    <el-tab-pane label="用户" name="third">
+      <h1 @click="$router.push({ name: 'user', params: { uid : '456' }})">用户甲</h1>
+    </el-tab-pane>
   </el-tabs>
   </div>
 </div>
