@@ -20,7 +20,8 @@ module.exports = app => {
     //router.put('/user/password',controller.user.updatePassword);// 更改密码
     //router.post('/user/registered', controller.user.registered);// 注册
     router.get('/system/catcha/:type',controller.system.getCatcha);
-    router.post('/score/tag',controller.s)
+    router.get('/tag/alltag',controller.tag.allTag);
+    router.post('/tag/uploadtag',controller.tag.upLoadTag);
     router.get('/volume', controller.volume.getVolumeList);
     router.post('/volume', controller.volume.createVolume); // 用户
     router.delete('/volume/:vid', controller.volume.deleteVolume); //拥有者权限

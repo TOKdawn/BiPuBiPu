@@ -1,6 +1,7 @@
 <template>
-  <div class="score">
+  <div class="upload">
     <div class="main-context">
+      <el-form ref="form" :model="form" label-width="80px">
       <div>
         <img
           :src="scoreData.img"
@@ -8,8 +9,9 @@
           style="width:250px; height:250px; float:left;"
         >
         <div class="score-info">
-          <h1>{{scoreData.name}}-{{scoreData.addtion}}</h1>
-          <div class="uploader">@{{scoreData.author}}</div>
+            <el-form-item label="">
+              <el-input v-model="form.name"></el-input>
+            </el-form-item>
           <ul>
             <li>专辑: {{scoreData.album}}</li>
             <li>作者: {{scoreData.uploader}}</li>
@@ -105,6 +107,7 @@
           </div>
         </div>
       </div>
+      </el-form>
     </div>
   </div>
 </template>
@@ -113,9 +116,8 @@ export default {
   data () {
     return {
       scoreData: {
-        image_url: 'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
-        name: '雪之花 雪の华',
-        addtion: '',
+        img: 'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
+        title: '雪之花 雪の华',
         author: 'dawn',
         authorId: '12333',
         album: '未命名专辑',
@@ -166,7 +168,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "src/assets/style.scss";
-.score {
+.upload {
   background: linear-gradient(rgb(258, 238, 215), #ffffff);
   .score-info {
     position: relative;

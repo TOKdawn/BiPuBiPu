@@ -27,6 +27,18 @@
   {
     "name": null,
     "methods": [
+      "POST"
+    ],
+    "paramNames": [],
+    "path": "/user/login",
+    "regexp": "/^\\/user\\/login(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
       "HEAD",
       "GET"
     ],
@@ -149,11 +161,23 @@
   {
     "name": null,
     "methods": [
-      "POST"
+      "HEAD",
+      "GET"
     ],
-    "paramNames": [],
-    "path": "/user/login",
-    "regexp": "/^\\/user\\/login(?:\\/(?=$))?$/",
+    "paramNames": [
+      {
+        "name": "email",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/user/checkemail/:email",
+    "regexp": "/^\\/user\\/checkemail\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -178,6 +202,31 @@
     ],
     "path": "/system/catcha/:type",
     "regexp": "/^\\/system\\/catcha\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "HEAD",
+      "GET"
+    ],
+    "paramNames": [],
+    "path": "/tag/alltag",
+    "regexp": "/^\\/tag\\/alltag(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "POST"
+    ],
+    "paramNames": [],
+    "path": "/tag/uploadtag",
+    "regexp": "/^\\/tag\\/uploadtag(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]

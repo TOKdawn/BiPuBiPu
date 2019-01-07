@@ -56,10 +56,8 @@ class VolumeController extends Controller {
     const response = await this.VolumeService.deleteVolume(vid, uid);
     if (response) {
       this.ctx.helper.createRes(200, 'Delete success QwQ');
-
     } else {
       this.ctx.helper.createRes(409, 'Delete err Orz  ');
-
     }
     this.ctx.helper.successRes('sucess', response);
   }
@@ -147,7 +145,7 @@ class VolumeController extends Controller {
     const response = await this.VolumeService.delectComment(cid);
     this.ctx.helper.successRes('sucess', response);
   }
-  
+
   async delectSubcomment() {
     const {
       cid

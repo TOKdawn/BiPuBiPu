@@ -25,5 +25,17 @@ module.exports = [{
     path: 'score/:scoreid',
     name: 'score',
     component: require('pages/score/score')
+  }, {
+    path: 'text',
+    name: 'text',
+    component: require('pages/text/scrollbg')
+  }, {
+    path: 'upload',
+    name: 'upload',
+    component: require('pages/upload/upload')
+  }, {
+    path: 'user/:uid',
+    name: 'user',
+    component: require('pages/user/user')
   }]
 }]
