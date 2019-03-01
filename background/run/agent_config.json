@@ -178,6 +178,11 @@
       "origin": "https://github.com/",
       "allowMethods": "GET,HEAD,PUT,POST,DELETE,PATCH"
     },
+    "passportWeibo": {
+      "key": "1056843709",
+      "secret": "<String len: 32>",
+      "callbackURL": "http://127.0.0.1:7001/passport/weibo/callback"
+    },
     "env": "local",
     "name": "bipu",
     "keys": "<String len: 23>",
@@ -554,6 +559,19 @@
       "from": "/Users/dawn/GitHub/BiPuBiPu/background/config/plugin.js",
       "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-cors",
       "version": "2.1.2"
+    },
+    "passportWeibo": {
+      "enable": true,
+      "package": "egg-passport-weibo",
+      "name": "passportWeibo",
+      "dependencies": [
+        "passport"
+      ],
+      "optionalDependencies": [],
+      "env": [],
+      "from": "/Users/dawn/GitHub/BiPuBiPu/background/config/plugin.js",
+      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-passport-weibo",
+      "version": "1.0.0"
     }
   }
 }

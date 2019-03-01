@@ -25,10 +25,10 @@ class UserService extends Service {
     return user;
   }
 
-  async checkEmail(email) {
+  async checkPhone(phone) {
     const data = await this.User.findOne({
       where:{
-        email:email
+        email:phone
       }
     });
     if(data){
@@ -53,7 +53,6 @@ class UserService extends Service {
       limit: pagesize,
       offset,
     });
-    // console.log(data)
     return data;
   }
 
@@ -79,18 +78,6 @@ class UserService extends Service {
     return data;
   }
 
-  async checkEmail(email){
-    const data = await this.User.findOne({
-      where: {
-        email
-      }
-    })
-    if(data !== ''){
-      return true //有重复邮箱
-    }else{
-      return false//无重复邮箱
-    }
-  }
 
   async Register(username, email, password) {
     var crypto = require('crypto');
@@ -120,50 +107,30 @@ class UserService extends Service {
     return data;
   }
 
-  async gitRegister(user) {
-    const t = await this.ctx.model.transaction();
-    try {
-      const data = await this.User.create({
-        name: user.name,
-        avatar: user.photo,
-        signature: user.profile._json.bio
-      });
-      // console.log(data);
-      const author = await this.Auhtor.create({
-        uid: data.get('id'),
-        provider: user.provider,
-        token: user.id,
-      })
-      await t.commit();
-      return data;
-    } catch (err) {
-      await t.rollback();
-      console.log(err);
-      return err;
-    }
-  }
-  async weiboRegister(user) {
-    const t = await this.ctx.model.transaction();
-    try {
-      const data = await this.User.create({
-        name: user.name,
-        avatar: user.photo,
-        signature: user.profile._json.bio
-      });
-      // console.log(data);
-      const author = await this.Auhtor.create({
-        uid: data.get('id'),
-        provider: user.provider,
-        token: user.id,
-      })
-      await t.commit();
-      return data;
-    } catch (err) {
-      await t.rollback();
-      console.log(err);
-      return err;
-    }
-  }
+  // async gitRegister(user) {
+  //   const t = await this.ctx.model.transaction();
+  //   try {
+  //     const data = await this.User.create({
+  //       name: user.name,
+  //       avatar: user.photo,
+  //       signature: user.profile._json.bio
+  //     });
+  //     // console.log(data);
+  //     const author = await this.Auhtor.create({
+  //       uid: data.get('id'),
+  //       provider: user.provider,
+  //       token: user.id,
+  //     })
+  //     await t.commit();
+  //     return data;
+  //   } catch (err) {
+  //     await t.rollback();
+  //     console.log(err);
+  //     return err;
+  //   }
+  // }
+
+
 
 }
 

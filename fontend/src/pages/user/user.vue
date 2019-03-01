@@ -3,25 +3,26 @@
   <el-card class="card">
     <el-container>
       <el-aside class="left" style="width:150px;">
-    <el-menu
-      default-active="1"
-      class="el-menu-vertical-demo"
-      background-color="#545c64"
-      text-color="#fff"
-      active-text-color="#ffd04b">
-      <el-menu-item index="1" @click="menuData = 1">
-        <i class="el-icon-menu"></i>
-        <span slot="title">个人中心</span>
-      </el-menu-item>
-      <el-menu-item index="2" @click="menuData = 2">
-        <i class="el-icon-document"></i>
-        <span slot="title">修改信息</span>
-      </el-menu-item>
-      <el-menu-item index="3" @click="menuData = 3">
-        <i class="el-icon-setting"></i>
-        <span slot="title">账号安全</span>
-      </el-menu-item>
-    </el-menu></el-aside>
+        <el-menu
+          default-active="1"
+          class="el-menu-vertical-demo"
+          background-color="#545c64"
+          text-color="#fff"
+          active-text-color="#ffd04b">
+          <el-menu-item index="1" @click="menuData = 1">
+            <i class="el-icon-menu"></i>
+            <span slot="title">个人中心</span>
+          </el-menu-item>
+          <el-menu-item index="2" @click="menuData = 2">
+            <i class="el-icon-document"></i>
+            <span slot="title">修改信息</span>
+          </el-menu-item>
+          <el-menu-item index="3" @click="menuData = 3">
+            <i class="el-icon-setting"></i>
+            <span slot="title">账号安全</span>
+          </el-menu-item>
+        </el-menu>
+      </el-aside>
       <el-main class="right">
         <div v-show="menuData == 1" class="personalCenter">
           <div >
@@ -52,7 +53,6 @@
         <div v-show=" menuData == 3">
           3333
         </div>
-
       </el-main>
     </el-container>
   </el-card>
@@ -101,7 +101,7 @@ export default {
         width: 70px;
         height: 70px;
         border-radius: 50%;
-        float: left;;
+        float: left;
       }
       .info{
         // background-color: aqua;
@@ -114,7 +114,6 @@ export default {
         }
       }
       .collection{
-
       }
       .personalCenter{
         padding: 15px;

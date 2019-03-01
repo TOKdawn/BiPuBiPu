@@ -93,6 +93,11 @@
     "secret": "/Users/dawn/GitHub/BiPuBiPu/background/config/config.default.js",
     "callbackURL": "/Users/dawn/GitHub/BiPuBiPu/background/config/config.default.js"
   },
+  "passportWeibo": {
+    "key": "/Users/dawn/GitHub/BiPuBiPu/background/config/config.default.js",
+    "secret": "/Users/dawn/GitHub/BiPuBiPu/background/config/config.default.js",
+    "callbackURL": "/Users/dawn/GitHub/BiPuBiPu/background/config/config.default.js"
+  },
   "cors": {
     "origin": "/Users/dawn/GitHub/BiPuBiPu/background/config/config.default.js",
     "allowMethods": "/Users/dawn/GitHub/BiPuBiPu/background/config/config.default.js"

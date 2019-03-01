@@ -212,6 +212,30 @@
       "HEAD",
       "GET"
     ],
+    "paramNames": [
+      {
+        "name": "keyword",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/system/search/:keyword",
+    "regexp": "/^\\/system\\/search\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "HEAD",
+      "GET"
+    ],
     "paramNames": [],
     "path": "/tag/alltag",
     "regexp": "/^\\/tag\\/alltag(?:\\/(?=$))?$/",
@@ -507,32 +531,6 @@
     ],
     "path": "/subcomment/:cid",
     "regexp": "/^\\/subcomment\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
-    "stack": [
-      "wrappedController"
-    ]
-  },
-  {
-    "name": null,
-    "methods": [
-      "HEAD",
-      "GET"
-    ],
-    "paramNames": [],
-    "path": "/passport/github",
-    "regexp": "/^\\/passport\\/github(?:\\/(?=$))?$/",
-    "stack": [
-      "wrappedController"
-    ]
-  },
-  {
-    "name": null,
-    "methods": [
-      "HEAD",
-      "GET"
-    ],
-    "paramNames": [],
-    "path": "/passport/github/callback",
-    "regexp": "/^\\/passport\\/github\\/callback(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]

@@ -27,7 +27,7 @@
             <div class="hide"></div>
             <div class="star">{{item.star}}</div>
           </div>
-        </div>
+        </div> 
       </div>
     </div>
   </div>

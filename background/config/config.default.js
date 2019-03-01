@@ -39,6 +39,11 @@ module.exports = appInfo => {
             callbackURL: 'http://127.0.0.1:7001/passport/github/callback',
             // proxy: false,
         },
+        passportWeibo:{
+          key: '1056843709',
+          secret: '13cae9e10c7892713f83dd20a3b07b75',
+          callbackURL: 'http://127.0.0.1:7001/passport/weibo/callback'
+        },
         cors: {
             origin: 'https://github.com/',
             allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',

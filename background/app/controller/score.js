@@ -11,7 +11,15 @@ class ScoreController extends Controller {
       this.scoreService = ctx.service.scoreService;
       // this.ctx.session.uid = 123; // 测试用
   }
+  async getScore(sid){
+    const {
+     sid
+    } = this.ctx.request.body;
+    const response = await this.scoreService.getScore(sid);
+    return response
+  }
 
+  
 }
 
 module.exports = ScoreController;

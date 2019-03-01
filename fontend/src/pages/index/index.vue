@@ -56,15 +56,14 @@
                 </div>
               </a>
               <div class="dropdown">
-
               </div>
             </div>
             <div class="item">
-              <a href="#">
+              <router-link :to= "{ name: 'login'}">
                 <div class="butn"><i class="iconfont icon-denglu"></i>
                   <p>登录</p>
                 </div>
-              </a>
+              </router-link>
               <div class="dropdown">
               </div>
             </div>

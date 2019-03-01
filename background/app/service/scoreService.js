@@ -9,6 +9,9 @@ class ScoreService extends Service {
     this.Volume = this.ctx.model.Volume;
     this.Auhtor = this.ctx.model.Authorization;
   }
+  async searchWord(keyword){
+    
+  }
  
 }
 

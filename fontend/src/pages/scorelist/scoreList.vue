@@ -774,7 +774,8 @@ export default {
     padding-right: 20%;
     .otherScoreListDiv {
       min-height: 600px;
-      max-height: 1200px;
+      max-height: 1120px;
+    overflow: auto;
     }
     .copies {
       width: 25%;
@@ -799,9 +800,10 @@ export default {
     float: right;
     margin-top: 67px;
     text-align: right;
+    height: 1200px;
     .myScoreListDiv {
       min-height: 600px;
-      max-height: 1200px;
+      max-height: 1120px;
       overflow: auto;
     }
     h2 {
@@ -842,7 +844,7 @@ export default {
       line-height: $--FontSizeM;
       font-weight: 400;
       overflow: hidden;
-      height: 60px;
+      height: 40px;
       padding: 0px 15px;
       color: $--middleFontColor;
       margin-top: 5px;
