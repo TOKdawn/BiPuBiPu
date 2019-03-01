@@ -14,18 +14,15 @@
             prop="date"
             label="日期"
             width="180">
-
           </el-table-column>
           <el-table-column
             prop="name"
             label="姓名"
             width="180">
-
           </el-table-column>
           <el-table-column
             prop="address"
             label="地址">
-
           </el-table-column>
         </el-table>
     </el-tab-pane>
@@ -69,7 +66,7 @@ export default {
     Search
   },
   created () {
-    console.log('aaaaaaaaaaaa')
+    console.log('aabbbdddaa')
     console.log(this.$route.params.searchtext)
   },
   methods: {

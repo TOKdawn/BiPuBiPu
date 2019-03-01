@@ -28,14 +28,6 @@
             <div class="avatar">
               <img :src="scoreData.img" alt="" style="width:100%;height:100%; z-index:1;">
             </div>
-            <!-- <div class="translator">
-              <el-button-group>
-                <el-button type="primary" icon="el-icon-arrow-left"  size="small" plain>升一调</el-button>
-                <el-button type="primary" size="small" plain>转BD谱</el-button>
-                <el-button type="primary" size="small" plain>转数字谱</el-button>
-                <el-button type="primary" size="small" plain>降一调<i class="el-icon-arrow-right el-icon--right"></i></el-button>
-              </el-button-group>
-            </div> -->
             <div class="translator-button-one">
               升一调
             </div>

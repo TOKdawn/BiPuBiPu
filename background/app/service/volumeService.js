@@ -38,6 +38,7 @@ class VolumeService extends Service {
       return err;
     }
   }
+  
   async editVolume(id, title, describe, url) {
     const data = await this.Volume.update({
       title,
@@ -82,7 +83,6 @@ class VolumeService extends Service {
     return volume;
   }
   async addVolumeScore(vid, sid) {
-
     const t = await this.ctx.model.transaction();
     const score = await this.Score.findOne({
       where: {

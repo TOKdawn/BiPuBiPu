@@ -6,6 +6,10 @@ module.exports = [{
   path: '',
   redirect: '/index'
 }, {
+  path: 'login',
+  name: 'login',
+  component: require('pages/login/login')
+}, {
   path: '/page',
   name: 'page',
   component: require('pages/page'),

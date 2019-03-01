@@ -62,26 +62,29 @@ class UserController extends Controller {
     this.ctx.helper.successRes('sucess',response);
   }
 
-  async checkEmail() {
-    const {email}= this.ctx.params;
-    const response = await this.userService.checkEmail(email);
+  async checkPhone() {
+    const {phone}= this.ctx.params;
+    const response = await this.userService.checkPhone(phone);
     if (response) {
-      this.ctx.helper.createRes(400,'邮箱名已经被使用')
+      this.ctx.helper.createRes(400,'此电话已经被使用')
     } else {
-      this.ctx.helper.successRes('邮箱名未被使用')     
+      this.ctx.helper.successRes('此电话未被使用')     
     }
   }
 
   async login() {
     const {
-      email,
+      phone,
       password,
       captcha
     } = this.ctx.request.body;
-    // if(this.ctx.header.checkCaptcha(captcha)){
-    //   this.ctx.helper.createRes(400, '验证码错误 凸(⊙▂⊙✖ )');
-    // }
-    const response = await this.userService.Login(email, password);
+    if(this.ctx.header.checkCaptcha(captcha)){
+      this.ctx.helper.createRes(400, '验证码错误 凸(⊙▂⊙✖ )');
+    }
+    if(!(await this.userService.checkPhone(phone))){
+      this.ctx.helper.createRes(400, '此电话号未注册 凸(⊙▂⊙✖ )');
+    }
+    const response = await this.userService.Login(phone, password);
     if(response == null){
       this.ctx.helper.createRes(400, '用户名或密码错误(ﾟДﾟ;)')
     }
@@ -91,22 +94,26 @@ class UserController extends Controller {
   async register() {
     const {
       username,
-      email,
+      phone,
       password,
       password2,
-      captcha
+      captcha,
+      sms
     } = this.ctx.request.body;
-    // if(this.ctx.header.checkCaptcha(captcha)){
-    //   this.ctx.helper.createRes(400, '验证码错误 凸(⊙▂⊙✖ )');
-    // }
-    if(await this.userService.checkEmail(email)){
-      this.ctx.helper.createRes(400, '此邮箱已被使用 凸(⊙▂⊙✖ )');
+    if(this.ctx.header.checkCaptcha(captcha)){
+      this.ctx.helper.createRes(400, '验证码错误 凸(⊙▂⊙✖ )');
     }
+    if(await this.userService.checkPhone(phone)){
+      this.ctx.helper.createRes(400, '此电话已被使用 凸(⊙▂⊙✖ )');
+    }
+    if(await this.ctx.header.checkSMS(phone)){
+      this.ctx.helper.createRes(400, '此电话已被使用 凸(⊙▂⊙✖ )');
+    }
+  
     if(password === password2){
-      const response = await this.userService.Register(username, email, password);
+      const response = await this.userService.Register(username, phone, password);
       // console.log(this.ctx.session,response)
       this.ctx.session.user = response.dataValues;
-
       this.ctx.helper.successRes('sucess',response);
     }else{
       this.ctx.helper.createRes(400, '两次输入的密码不同 凸(⊙▂⊙✖ )');
@@ -115,7 +122,7 @@ class UserController extends Controller {
 
   async logout() {
     this.ctx.logout();
-    this.ctx.body = 'success';
+    this.ctx.helper.successRes('sucess',this.ctx.session);
   }
 
   async addCollectionVolume() {

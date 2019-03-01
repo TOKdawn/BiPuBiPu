@@ -15,7 +15,7 @@ module.exports = app => {
             autoIncrement: true,
         },
         email:{
-          type: STRING(50),
+          type: STRING(15),
           allowNull: false,
         },
         avatar: {

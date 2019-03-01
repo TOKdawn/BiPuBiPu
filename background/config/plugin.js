@@ -25,10 +25,10 @@ exports.static = {
         package: 'egg-static',
 };
 
-    // module.exports.passportWeibo = {
-    //     enable: true,
-    //     package: 'egg-passport-weibo',
-    // };
+    module.exports.passportWeibo = {
+        enable: true,
+        package: 'egg-passport-weibo',
+    };
 
 // had enabled by egg
 // exports.static = true;
