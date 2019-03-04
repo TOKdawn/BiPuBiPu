@@ -33,6 +33,7 @@ class TagController extends Controller {
   async addTag(){
     const response = await this.TagService.addTag();
     console.log('addTag'+response);
+    this.ctx.helper.successRes('sucess', response);
   }
 
   async searchTag(){
@@ -40,6 +41,7 @@ class TagController extends Controller {
       keyword
     } = this.ctx.request.body;
     const response = await this.TagService.searchTag(keyword);
+    this.ctx.helper.successRes('sucess', response);
   }
 
   

@@ -14,7 +14,9 @@ module.exports = appInfo => {
             // enable: false
             csrf: {
                 enable: false,
+                ignoreJSON: true
             },
+            domainWhiteList: ['http://localhost:8888']
         },
         multipart: {
             whitelist: [
@@ -44,10 +46,14 @@ module.exports = appInfo => {
           secret: '13cae9e10c7892713f83dd20a3b07b75',
           callbackURL: 'http://127.0.0.1:7001/passport/weibo/callback'
         },
+        // cors: {
+        //     origin: 'https://github.com/',
+        //     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+        // },
         cors: {
-            origin: 'https://github.com/',
-            allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
-        },
+          origin: '*',
+          allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+      },
         session: {
             key: 'EGG_SESS',
             maxAge: 24 * 3600 * 1000, // 1 天

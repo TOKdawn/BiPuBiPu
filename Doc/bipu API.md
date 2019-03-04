@@ -16,7 +16,7 @@
 ### getCatcha
 获取验证码,默认type为1
 ### HTTP Request
-`GET /system/getCatcha/:type`
+`GET /system/catcha`
 #### 返回实例
 ```
 {
@@ -93,11 +93,10 @@
 
 ```
 {
-  "username": "foo",
-  "email": "1874662665@163.com",
+  
+  "phone": "18746442232",
   "password": "bar",
-  "password2": "bar",
-  "captcha": "1234"
+  "sms": "1234"
 }
 ```
 #### 返回实例
@@ -119,17 +118,17 @@
  ```
  
  
-### Check email
+### Check phone
 检测用户名重复
 #### HTTP Request
 
-`post /user/checkemail`
+`post /user/checkphone`
 
 #### 请求实例
 
 ```
 {
-	"email":"12323123@163.com"
+	"phone":"18746442232"
 }
 ```
 #### 返回实例
@@ -138,7 +137,7 @@
 200
 {
   "sucess": "true",
-  "message": "邮箱名未被使用",
+  "message": "此手机未被使用",
   "data": {}
 }
 
@@ -146,7 +145,7 @@
 
 {
   "sucess": "false",
-  "message": "此用户名已被使用",
+  "message": "此手机已被使用",
   "data": {}
 }
  ```
@@ -155,13 +154,13 @@
 用户登录
 #### HTTP Request
 
-`POST /user/register`
+`POST /user/login`
 
 #### 请求实例
 
 ```
 {
-	"email": "其实就是用户名",
+	"phone": "其实就是用户名",
 	"password": "用户密码",
 	"captcha": "验证码"
 }

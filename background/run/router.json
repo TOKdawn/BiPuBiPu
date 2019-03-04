@@ -39,6 +39,42 @@
   {
     "name": null,
     "methods": [
+      "POST"
+    ],
+    "paramNames": [],
+    "path": "/user/remakespassword",
+    "regexp": "/^\\/user\\/remakespassword(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "POST"
+    ],
+    "paramNames": [],
+    "path": "/user/changepassword",
+    "regexp": "/^\\/user\\/changepassword(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "POST"
+    ],
+    "paramNames": [],
+    "path": "/user/changephone",
+    "regexp": "/^\\/user\\/changephone(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
       "HEAD",
       "GET"
     ],
@@ -164,20 +200,9 @@
       "HEAD",
       "GET"
     ],
-    "paramNames": [
-      {
-        "name": "email",
-        "prefix": "/",
-        "delimiter": "/",
-        "optional": false,
-        "repeat": false,
-        "partial": false,
-        "asterisk": false,
-        "pattern": "[^\\/]+?"
-      }
-    ],
-    "path": "/user/checkemail/:email",
-    "regexp": "/^\\/user\\/checkemail\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "paramNames": [],
+    "path": "/system/catcha",
+    "regexp": "/^\\/system\\/catcha(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -185,23 +210,11 @@
   {
     "name": null,
     "methods": [
-      "HEAD",
-      "GET"
+      "POST"
     ],
-    "paramNames": [
-      {
-        "name": "type",
-        "prefix": "/",
-        "delimiter": "/",
-        "optional": false,
-        "repeat": false,
-        "partial": false,
-        "asterisk": false,
-        "pattern": "[^\\/]+?"
-      }
-    ],
-    "path": "/system/catcha/:type",
-    "regexp": "/^\\/system\\/catcha\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "paramNames": [],
+    "path": "/system/sms",
+    "regexp": "/^\\/system\\/sms(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]

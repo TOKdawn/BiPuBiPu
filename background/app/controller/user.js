@@ -71,6 +71,18 @@ class UserController extends Controller {
       this.ctx.helper.successRes('此电话未被使用')     
     }
   }
+  
+  async changephone() {
+
+  }
+
+  async remakespassword() {
+    
+  }
+
+  async changepassword() {
+    
+  }
 
   async login() {
     const {
@@ -88,6 +100,7 @@ class UserController extends Controller {
     if(response == null){
       this.ctx.helper.createRes(400, '用户名或密码错误(ﾟДﾟ;)')
     }
+    console.log(this.response)
     this.ctx.helper.successRes('成功登录',response)
   }
 
@@ -96,7 +109,7 @@ class UserController extends Controller {
       username,
       phone,
       password,
-      password2,
+      
       captcha,
       sms
     } = this.ctx.request.body;
@@ -109,15 +122,10 @@ class UserController extends Controller {
     if(await this.ctx.header.checkSMS(phone)){
       this.ctx.helper.createRes(400, '此电话已被使用 凸(⊙▂⊙✖ )');
     }
-  
-    if(password === password2){
       const response = await this.userService.Register(username, phone, password);
       // console.log(this.ctx.session,response)
       this.ctx.session.user = response.dataValues;
       this.ctx.helper.successRes('sucess',response);
-    }else{
-      this.ctx.helper.createRes(400, '两次输入的密码不同 凸(⊙▂⊙✖ )');
-    }
   }
 
   async logout() {

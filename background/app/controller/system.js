@@ -12,12 +12,7 @@ class SystemController extends Controller {
       // this.ctx.session.uid = 123; // 测试用
   }
   async getCatcha(){
-    const {
-      type
-    } = this.ctx.params;
-    if (type){
-      this.ctx.helper.applyCatcha(type);
-    }
+      this.ctx.helper.applyCatcha();
   }
   async searchWord(){
     const{
@@ -25,6 +20,12 @@ class SystemController extends Controller {
     } = this.ctx.params;
     const response = await this.scoreService.searchWord(keyword);
     return response
+  }
+  async getSMS(){
+    const{
+      phone
+    } = this.ctx.request.body;
+    this.ctx.helper.applySMS(phone);
   }
 }
 
