@@ -11,7 +11,7 @@ import axios from 'axios'
 
 axios.defaults.withCredentials = true
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
-
+// axios.defaults.baseURL = 'http://127.0.0.1:7003'
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
 

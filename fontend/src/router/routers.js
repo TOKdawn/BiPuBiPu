@@ -6,7 +6,7 @@ module.exports = [{
   path: '',
   redirect: '/index'
 }, {
-  path: 'login',
+  path: '/login',
   name: 'login',
   component: require('pages/login/login')
 }, {
@@ -29,10 +29,6 @@ module.exports = [{
     path: 'score/:scoreid',
     name: 'score',
     component: require('pages/score/score')
-  }, {
-    path: 'text',
-    name: 'text',
-    component: require('pages/text/scrollbg')
   }, {
     path: 'upload',
     name: 'upload',

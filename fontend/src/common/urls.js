@@ -7,7 +7,10 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const Login = {
-  weiboLogin: baseUrl + '/passport/weibo'
+  login: baseUrl + '/user/login',
+  register: baseUrl + '/user/register',
+  getCatcha: baseUrl + '/system/catcha',
+  getSMS: baseUrl + '/system/sms'
 
 }
 export {

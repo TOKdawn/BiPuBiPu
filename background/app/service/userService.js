@@ -106,32 +106,6 @@ class UserService extends Service {
     // console.log(data)
     return data;
   }
-
-  // async gitRegister(user) {
-  //   const t = await this.ctx.model.transaction();
-  //   try {
-  //     const data = await this.User.create({
-  //       name: user.name,
-  //       avatar: user.photo,
-  //       signature: user.profile._json.bio
-  //     });
-  //     // console.log(data);
-  //     const author = await this.Auhtor.create({
-  //       uid: data.get('id'),
-  //       provider: user.provider,
-  //       token: user.id,
-  //     })
-  //     await t.commit();
-  //     return data;
-  //   } catch (err) {
-  //     await t.rollback();
-  //     console.log(err);
-  //     return err;
-  //   }
-  // }
-
-
-
 }
 
 module.exports = UserService;

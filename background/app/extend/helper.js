@@ -53,11 +53,12 @@ module.exports = {
     }
   },
   async applySMS(phone) {
+    // console.log('phone',phone);
     const smsOptions = {
       "ext": "",
       "extend": "",
       "params": [
-        "验证码",
+      
         "1234",
         "1"
       ],
@@ -68,20 +69,21 @@ module.exports = {
         "nationcode": "86"
       },
       "time": 1457336869,
-      "tpl_id": 19
+      "tpl_id": 285795
     }
     const sms =  parseInt(Math.random()*(9999-1000+1)+1000,10)  
     const strMobile = phone; //tel 的 mobile 字段的内容
-    const strAppKey = "	6cd5a907422525162a450801eac5c94e"; //sdkappid 对应的 appkey，需要业务方高度保密
+    const strAppKey = "6cd5a907422525162a450801eac5c94e"; //sdkappid 对应的 appkey，需要业务方高度保密
     const strTime = (Date.now()+'').substring(0, 10); //UNIX 时间戳
     const sig = crypto.createHash('SHA256').update('appkey='+strAppKey+'&random='+sms+'&time='+strTime+'&mobile='+strMobile).digest('hex');
     // console.log(sms,sig,strAppKey,strMobile,strTime)
     smsOptions.time = strTime
-    smsOptions.params[1] = sms
+    smsOptions.params[0] = sms.toString()
     smsOptions.tel.mobile = phone
     smsOptions.sig = sig
     let str = "https://yun.tim.qq.com/v5/tlssmssvr/sendsms?sdkappid=1400189769&random="+sms
     const ctx = this.ctx;
+    // console.log('data',smsOptions);
     const result = await ctx.curl(str, {
       // 必须指定 method
       method: 'POST',
@@ -91,7 +93,23 @@ module.exports = {
       // 明确告诉 HttpClient 以 JSON 格式处理返回的响应 body
       dataType: 'json',
     });
-    Console.log(result.data);
+    // console.log(result.data);
+    if(result.data.result === 0){
+      this.ctx.session.sms = sms;
+      this.ctx.session.maxAge = 1000 * 60 * 1;
+      console.log('SMS:',sms)
+      this.ctx.body = {
+        status: 200,
+        message: 'success',
+        data: result.data
+      }
+    } else {
+      this.ctx.body = {
+        status: 400,
+        message: 'error',
+        data: result.data.errmsg
+      }
+    }
 },
   async checkSMS(sms){
   if(sms) {

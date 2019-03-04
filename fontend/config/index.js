@@ -1,6 +1,6 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
-var proxyTarget = 'http://127.0.0.1:7001'
+var proxyTarget = 'http://127.0.0.1:7003'
 var proxyTable = {
   '/api': {
     target: proxyTarget,
