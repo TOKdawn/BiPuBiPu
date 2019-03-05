@@ -17,7 +17,7 @@ module.exports = {
       data: text
     }
     this.ctx.body = Res;
-    this.ctx.status = 201;
+    this.ctx.status = status;
   },
   successRes(text, data) {
     this.ctx.status = 200
@@ -52,7 +52,8 @@ module.exports = {
     }
   },
   async checkCaptcha(captcha) {
-    if (this.ctx.session.catcha + '' == captcha) {
+    if (this.ctx.session.catcha + '' === captcha +'') {
+      console.log('验证svg',this.ctx.session.catcha, captcha)
       return false //验证成功
     } else {
       return true //验证失败

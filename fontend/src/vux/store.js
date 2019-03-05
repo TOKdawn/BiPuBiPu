@@ -5,12 +5,11 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     name: '未命名用户',
-    data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    rule: 0,
-    page_loading: false,
-    date_loading: false,
-    auth_login: false,
-    user_data: {}
+    avatar: 'http://bipu.oss-cn-beijing.aliyuncs.com/egg-multipart-test/akari.jpg',
+    role: 0,
+    signature: '这个人很懒,啥也没写╮(╯_╰)╭',
+    phone: 18700000000
+
   },
   getters: {
     user: state => {
@@ -21,8 +20,22 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    SET_USER_NAME (state, newname) {
-      state.name = newname
+    uploadUserData (state, userData) {
+      console.log(userData)
+      state.role = userData.role
+      state.username = userData.name
+      state.avatar = userData.avatar
+      state.signature = userData.signature
+      state.phone = userData.email
+    },
+    logout (state) {
+      state = {
+        username: '未命名用户',
+        avatar: 'http://bipu.oss-cn-beijing.aliyuncs.com/egg-multipart-test/akari.jpg',
+        role: 0,
+        signature: '这个人很懒,啥也没写╮(╯_╰)╭',
+        phone: 18700000000
+      }
     },
     SET_USER_RULE (state, newrule) {
       state.name = newrule

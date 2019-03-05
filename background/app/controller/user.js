@@ -90,18 +90,19 @@ class UserController extends Controller {
       password,
       captcha
     } = this.ctx.request.body;
-    if(this.ctx.header.checkCaptcha(captcha)){
+    if( await this.ctx.helper.checkCaptcha(captcha)){
+      console.log('res',this.ctx.helper.checkCaptcha(captcha))
       this.ctx.helper.createRes(400, '验证码错误 凸(⊙▂⊙✖ )');
-    }
-    if(!(await this.userService.checkPhone(phone))){
+    }else if(!(await this.userService.checkPhone(phone))){
       this.ctx.helper.createRes(400, '此电话号未注册 凸(⊙▂⊙✖ )');
+    }else{
+      const response = await this.userService.Login(phone, password);
+      if(response == null){
+        this.ctx.helper.createRes(400, '用户名或密码错误(ﾟДﾟ;)')
+      }
+      console.log(this.response)
+      this.ctx.helper.successRes('成功登录',response)
     }
-    const response = await this.userService.Login(phone, password);
-    if(response == null){
-      this.ctx.helper.createRes(400, '用户名或密码错误(ﾟДﾟ;)')
-    }
-    console.log(this.response)
-    this.ctx.helper.successRes('成功登录',response)
   }
 
   async register() {
@@ -122,7 +123,7 @@ class UserController extends Controller {
       const response = await this.userService.Register(username, phone, password);
       console.log('注册成功',this.ctx.session, '返回信息',response.dataValues)
       this.ctx.session.user = response.dataValues;
-      this.ctx.helper.successRes('sucess',response);
+      this.ctx.helper.successRes('sucess',response); 
     }
   }
 

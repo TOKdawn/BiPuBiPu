@@ -50,22 +50,23 @@
               </div>
             </div>
             <div class="item">
-              <a href="/admissions&employmen/">
-                <div class="butn"><i class="iconfont icon-xiazai"></i>
+           
+                <div class="butn" @click="jump(6)"><i class="iconfont icon-xiazai"></i>
                   <p>下载</p>
                 </div>
-              </a>
+             
               <div class="dropdown">
               </div>
             </div>
             <div class="item">
-              <router-link :to= "{ name: 'login'}">
+              <router-link :to= "{ name: 'login'}" v-show="userRole == 0">
                 <div class="butn"><i class="iconfont icon-denglu"></i>
                   <p>登录</p>
                 </div>
               </router-link>
-              <div class="dropdown">
-              </div>
+                <div class="butn" @click="jump(7)" v-show="userRole !== 0"><i class="iconfont icon-denglu"></i>
+                  <p>个人中心</p>
+                </div>
             </div>
           </div>
         </div>
@@ -91,15 +92,29 @@ import Information from './components/information'
 import ScoreList from './components/scoreList'
 import Other from './components/other'
 import Foot from '../layout/footer'
+import store from 'vux/store.js'
 export default {
   data () {
     return {
+      userRole: 0,
+      userId: 123
     }
   },
-  created () {},
-  mounted () {},
+  created () {
+    this.userRole = store.state.role
+    this.userId = store.state.phone
+    console.log(store.state)
+  },
+  methods: {
+    jump (type) {
+      switch (type) {
+        case 7:
+          this.$router.push({name: 'user', params: { uid: this.userId }})
+      }
+    }
+  },
   filters: {},
-  methods: {},
+
   components: {
     Search,
     Information,
@@ -185,6 +200,7 @@ export default {
             .butn {
               opacity: 1;
               margin: 0px;
+              cursor: pointer;
               &::after {
                 height: 130px;
               }
