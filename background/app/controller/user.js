@@ -62,15 +62,15 @@ class UserController extends Controller {
     this.ctx.helper.successRes('sucess',response);
   }
 
-  async checkPhone() {
-    const {phone}= this.ctx.params;
-    const response = await this.userService.checkPhone(phone);
-    if (response) {
-      this.ctx.helper.createRes(400,'此电话已经被使用')
-    } else {
-      this.ctx.helper.successRes('此电话未被使用')     
-    }
-  }
+  // async checkPhone() {
+  //   const {phone}= this.ctx.params;
+  //   const response = await this.userService.checkPhone(phone);
+  //   if (response) {
+  //     this.ctx.helper.createRes(400,'此电话已经被使用')
+  //   } else {
+  //     this.ctx.helper.successRes('此电话未被使用')     
+  //   }
+  // }
   
   async changephone() {
 
@@ -106,26 +106,24 @@ class UserController extends Controller {
 
   async register() {
     const {
-      username,
+      // username,
       phone,
       password,
-      
-      captcha,
+      // captcha,
       sms
     } = this.ctx.request.body;
-    if(this.ctx.header.checkCaptcha(captcha)){
-      this.ctx.helper.createRes(400, '验证码错误 凸(⊙▂⊙✖ )');
-    }
+    let username = '用户'+ phone
+
     if(await this.userService.checkPhone(phone)){
       this.ctx.helper.createRes(400, '此电话已被使用 凸(⊙▂⊙✖ )');
-    }
-    if(await this.ctx.header.checkSMS(phone)){
-      this.ctx.helper.createRes(400, '此电话已被使用 凸(⊙▂⊙✖ )');
-    }
+    }else if(await this.ctx.helper.checkSMS(sms)){
+      this.ctx.helper.createRes(400, '短信验证码错误');
+    }else{
       const response = await this.userService.Register(username, phone, password);
-      // console.log(this.ctx.session,response)
+      console.log('注册成功',this.ctx.session, '返回信息',response.dataValues)
       this.ctx.session.user = response.dataValues;
       this.ctx.helper.successRes('sucess',response);
+    }
   }
 
   async logout() {

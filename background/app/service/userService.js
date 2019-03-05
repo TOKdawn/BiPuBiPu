@@ -31,8 +31,9 @@ class UserService extends Service {
         email:phone
       }
     });
+    console.log( '检查电话结果',data)
     if(data){
-      return true
+      return true 
     } else {
       return false
     }
@@ -79,7 +80,7 @@ class UserService extends Service {
   }
 
 
-  async Register(username, email, password) {
+  async Register(username, phone, password) {
     var crypto = require('crypto');
     var md5 = crypto.createHash('md5');
     var cryptostr = md5.update(password+'').digest('hex');
@@ -88,7 +89,7 @@ class UserService extends Service {
       avatar: 'http://bipu.oss-cn-beijing.aliyuncs.com/egg-multipart-test/akari.jpg',
       signature: '这个人很懒,啥也没写╮(╯_╰)╭',
       password: cryptostr,
-      email: email
+      email: phone
     });
     return data;
   }
