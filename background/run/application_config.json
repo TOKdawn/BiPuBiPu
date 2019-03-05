@@ -1,7 +1,7 @@
 {
   "config": {
     "session": {
-      "maxAge": 86400000,
+      "maxAge": 3600000,
       "key": "EGG_SESS",
       "httpOnly": true,
       "encrypt": true,

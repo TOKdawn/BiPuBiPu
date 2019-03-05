@@ -136,6 +136,7 @@
           <div class="form-wrap">
             <div class="type">
               <span>注册新用户</span>
+                       
             </div>
             <div>
               <div class="input-item">
@@ -261,7 +262,7 @@ export default {
         }
       }).then(res => {
         if (res.status === 200) {
-          console.log('注册成功', res.data)
+          console.log('注册成功', res)
         }
       }).catcha((err) => {
         this.$message({
@@ -316,12 +317,12 @@ export default {
           console.log(res.data.data)
         }
       }).catch(() => {
-        this.$message({
-          showClose: true,
-          duration: 2000,
-          message: '获取短信失败',
-          type: 'error'
-        })
+        // this.$message({
+        //   showClose: true,
+        //   duration: 2000,
+        //   message: '获取短信失败',
+        //   type: 'error'
+        // })
       })
       let _this = this
       this.count = TIME_COUNT
@@ -340,7 +341,7 @@ export default {
     },
     checkEmailAndPwd (email, pwd, catcha) {
       var myreg = /^[1][3,4,5,7,8][0-9]{9}$/
-      if (email === '' || pwd === '' || catcha) {
+      if (email === '' || pwd === '' || catcha === '') {
         this.loginTipMsg = '账号及密码或验证码不能为空！'
         return false
       } else if (!myreg.test(email)) {

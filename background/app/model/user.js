@@ -23,7 +23,7 @@ module.exports = app => {
             allowNull: true,
         },
         name: {
-            type: STRING(10),
+            type: STRING(20),
             allowNull: false,
             defaultValue: 'undefined',
         },

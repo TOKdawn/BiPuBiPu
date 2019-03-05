@@ -94,7 +94,7 @@ module.exports = {
         allowNull: false,
       },
       name: {
-        type: STRING(10),
+        type: STRING(20),
         allowNull: false,
         defaultValue: 'undefined',
       },
