@@ -81,7 +81,7 @@
 
               <div
                 style="float:right;  cursor: pointer;"
-               
+                @click="forget()"
               >
                 忘记密码
               </div>
@@ -110,26 +110,26 @@
     >
       <div class="login-box clear">
         <div class="aside fl">
-          <p class="disclaimer">
-            您将注册成为精易论坛的会员，请您阅读以下内容，对您有帮助：
+          <p class="disclaimer" style="text-align: left;">
+            您将注册成为pipubipu会员，请您阅读以下内容，对您有帮助：<br>
 
-            （1）、禁止讨论违法国家法律法规的内容，本站只做技术交流，国家的事情请勿在本站发布讨论。
+            （1）、禁止讨论违法国家法律法规的内容，本站只做口琴交流，国家的事情请勿在本站发布讨论。<br>
 
-            （2）、禁止在本站侮辱他人或者捏造事实诽谤他人的，或者进行其他恶意攻击的，侵害他人合法权益的。
+            （2）、禁止在本站侮辱他人或者捏造事实诽谤他人的，或者进行其他恶意攻击的，侵害他人合法权益的。<br>
 
-            （3）、请勿以任何方式对本论坛进行各种破坏行为的，如：CC攻击、DDOS、网站入侵、盗取会员账号煽动破坏、采用发贴机散布广告等；
+            （3）、请勿以任何方式对本站进行各种破坏行为的，如：CC攻击、DDOS、网站入侵、盗取会员账号煽动破坏、散布广告等；<br>
 
-            （4）、严禁用党和国家领导人的名字作论坛昵称，严禁用党和国家领导人的头像作为论坛的个人头像；
+            （4）、严禁用党和国家领导人的名字作昵称，严禁用党和国家领导人的头像作为个人头像；<br>
 
-            （5）、严禁使用论坛管理员（含版主）的谐音字或头像，防止会员误解，请配合；
+            （5）、严禁使用低俗、不文明的文字或字母作为用户名。<br>
 
-            （6）、严禁发表有关国家或国家领导人的笑话文章或恶搞图片；
+            （6）、阅读论坛指引帖：《新人必看文章》，了解论坛相关情况。<br>
 
-            （7）、严禁使用低俗、不文明的文字或字母作为用户名。
+            （7）、阅读论坛《总版规》与各个版块规定，防止违规。<br>
+              
+            （8）、本站琴谱只做学习交流用,禁止用作商业行为。<br>
 
-            （8）、阅读论坛指引帖：《新人必看文章》，了解论坛相关情况。
-
-            （9）、阅读论坛《总版规》与各个版块规定，防止违规；
+            （9）、以上各项最终解释权归本站所有。<br>
           </p>
         </div>
         <div class="content fl">
@@ -201,6 +201,7 @@
 <script>
 import Head from '../layout/header'
 import {Login} from 'common/urls'
+import store from 'vux/store.js'
 export default {
   name: 'VLOGIN',
   data () {
@@ -240,13 +241,24 @@ export default {
           captcha: this.user_catcha
         }
       }).then(res => {
-        // if (res.status === 200) {
-        //   console.log(this.loginSwitch)
-        //   this.svg = 'ddddd'
-        // }
+        if (res.status === 200) {
+          console.log('登录成功', res.data)
+          store.commit('uploadUserData', res.data.data)
+          this.$router.push('/')
+        }
       })
+      // .catch(() => {
+      //   this.$message({
+      //     showClose: true,
+      //     duration: 2000,
+      //     message: '登录失败',
+      //     type: 'error'
+      //   })
+      // })
     },
-
+    forget () {
+      this.$router.push('/index')
+    },
     register () {
       let isCheck = this.checkEmailAndPwd(this.res_phone, this.res_pwd, this.res_sms)
       if (!isCheck) {
@@ -262,13 +274,16 @@ export default {
         }
       }).then(res => {
         if (res.status === 200) {
-          console.log('注册成功', res)
+          // console.log('注册成功', res.data.data)
+          store.commit('uploadUserData', res.data.data)
+          this.$router.push('/')
         }
-      }).catcha((err) => {
+      })
+      .catch(() => {
         this.$message({
           showClose: true,
           duration: 2000,
-          message: err.data.message,
+          message: '注册失败',
           type: 'error'
         })
       })
@@ -297,7 +312,6 @@ export default {
         })
     },
     getSMS () {
-      // console.log('http')
       var myreg = /^[1][3,4,5,7,8][0-9]{9}$/
       if (!myreg.test(this.res_phone)) {
         this.loginTipMsg = '请输入正确格式的手机号'
@@ -711,3 +725,4 @@ a {
   }
 }
 </style>
+

@@ -36,6 +36,9 @@ module.exports = [{
   }, {
     path: 'user/:uid',
     name: 'user',
-    component: require('pages/user/user')
+    component: require('pages/user/user'),
+    meta: {
+      requireAuth: true
+    }
   }]
 }]

@@ -18,7 +18,22 @@ Vue.config.productionTip = false
 Vue.use(ElementUI)
 // const commit = store.commit
 Vue.prototype.Utils = Utils
-
+router.beforeEach((to, from, next) => {
+  if (to.meta.requireAuth) {
+    if (store.state.role === 0) {
+      next({
+        path: '/login',
+        query: {
+          redirect: to.fullPath
+        }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
 let vRouter = new Vue({
   el: '#app',
   router,
