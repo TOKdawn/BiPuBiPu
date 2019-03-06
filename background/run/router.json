@@ -250,6 +250,19 @@
       "GET"
     ],
     "paramNames": [],
+    "path": "/system/checkuser",
+    "regexp": "/^\\/system\\/checkuser(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "HEAD",
+      "GET"
+    ],
+    "paramNames": [],
     "path": "/tag/alltag",
     "regexp": "/^\\/tag\\/alltag(?:\\/(?=$))?$/",
     "stack": [

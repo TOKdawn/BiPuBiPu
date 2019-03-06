@@ -4,20 +4,19 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    name: '未命名用户',
-    avatar: 'http://bipu.oss-cn-beijing.aliyuncs.com/egg-multipart-test/akari.jpg',
-    role: 0,
-    signature: '这个人很懒,啥也没写╮(╯_╰)╭',
-    phone: 18700000000
-
+    username: '' || localStorage.getItem('username'),
+    avatar: '' || localStorage.getItem('avatar'),
+    role: '' || localStorage.getItem('role'),
+    signature: '' || localStorage.getItem('signature'),
+    phone: '' || localStorage.getItem('phone')
   },
   getters: {
-    user: state => {
-      return '我是来自getter的数据：' + state.name
-    },
-    data1: state => {
-      return '我是来自getter的数据：' + state.data
-    }
+    role: (state) => state.role,
+    username: (state) => state.username,
+    avatar: (state) => state.avatar,
+    signature: (state) => state.signature,
+    phone: (state) => state.phone
+
   },
   mutations: {
     uploadUserData (state, userData) {
@@ -27,15 +26,23 @@ export default new Vuex.Store({
       state.avatar = userData.avatar
       state.signature = userData.signature
       state.phone = userData.email
+      localStorage.setItem('role', userData.role)
+      localStorage.setItem('username', userData.name)
+      localStorage.setItem('avatar', userData.avatar)
+      localStorage.setItem('signature', userData.signature)
+      localStorage.setItem('phone', userData.email)
     },
     logout (state) {
-      state = {
-        username: '未命名用户',
-        avatar: 'http://bipu.oss-cn-beijing.aliyuncs.com/egg-multipart-test/akari.jpg',
-        role: 0,
-        signature: '这个人很懒,啥也没写╮(╯_╰)╭',
-        phone: 18700000000
-      }
+      state.username = ''
+      state.avatar = ''
+      state.role = ''
+      state.signature = ''
+      state.phone = ''
+      localStorage.setItem('role', 0)
+      localStorage.setItem('username', '未命名用户')
+      localStorage.setItem('avatar', 'http://bipu.oss-cn-beijing.aliyuncs.com/egg-multipart-test/akari.jpg')
+      localStorage.setItem('signature', '这个人很懒,啥也没写╮(╯_╰)╭')
+      localStorage.setItem('phone', '000')
     },
     SET_USER_RULE (state, newrule) {
       state.name = newrule

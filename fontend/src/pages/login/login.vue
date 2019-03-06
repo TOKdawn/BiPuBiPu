@@ -245,16 +245,24 @@ export default {
           console.log('登录成功', res.data)
           store.commit('uploadUserData', res.data.data)
           this.$router.push('/')
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.data.message,
+            type: 'error'
+          })
         }
       })
-      // .catch(() => {
-      //   this.$message({
-      //     showClose: true,
-      //     duration: 2000,
-      //     message: '登录失败',
-      //     type: 'error'
-      //   })
-      // })
+      .catch((res) => {
+        console.log(res)
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: '登录失败',
+          type: 'error'
+        })
+      })
     },
     forget () {
       this.$router.push('/index')

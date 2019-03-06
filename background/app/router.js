@@ -21,6 +21,7 @@ module.exports = app => {
     router.get('/system/catcha',controller.system.getCatcha);// 获取验证码
     router.post('/system/sms',controller.system.getSMS);// 发送短信验证码
     router.get('/system/search/:keyword',controller.system.searchWord);// 查询
+    router.get('/system/checkuser',controller.system.checkUserInfo) //查询用户登录状态
     router.get('/tag/alltag',controller.tag.allTag); //拉取tag标签
     router.post('/tag/uploadtag',controller.tag.upLoadTag); //创建标签
     router.get('/volume', controller.volume.getVolumeList); //拉取歌单

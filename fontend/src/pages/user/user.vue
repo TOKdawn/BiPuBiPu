@@ -1,129 +1,100 @@
 <template>
-<div class="user">
-  <el-card class="card">
-    <el-container>
-      <el-aside class="left" style="width:150px;">
-        <el-menu
-          default-active="1"
-          class="el-menu-vertical-demo"
-          background-color="#545c64"
-          text-color="#fff"
-          active-text-color="#ffd04b">
-          <el-menu-item index="1" @click="menuData = 1">
-            <i class="el-icon-menu"></i>
-            <span slot="title">个人中心</span>
-          </el-menu-item>
-          <el-menu-item index="2" @click="menuData = 2">
-            <i class="el-icon-document"></i>
-            <span slot="title">修改信息</span>
-          </el-menu-item>
-          <el-menu-item index="3" @click="menuData = 3">
-            <i class="el-icon-setting"></i>
-            <span slot="title">账号安全</span>
-          </el-menu-item>
-        </el-menu>
-      </el-aside>
-      <el-main class="right">
-        <div v-show="menuData == 1" class="personalCenter">
-          <div >
-            <img :src="img" alt="" class="avatar">
-            <div class="info">
-              <p>{{name}}</p>
-            </div>
-            <div class="collection">
-              12321
-            </div>
-          </div>
-        </div>
-        <div v-show=" menuData == 2">
-          <h2>我的信息</h2>
-          <el-form ref="userData" :model="userData" label-width="80px">
-            <el-form-item label="昵称">
-              <el-input v-model="userData.email" size="small"></el-input>
-            </el-form-item>
-            <el-form-item label="用户名">
-              <el-input v-model="userData.name" size="small"></el-input>
-            </el-form-item>
-             <el-form-item label="签名">
-               <el-input type="textarea" v-model="userData.signature"></el-input>
-            </el-form-item>
-              <el-button>保存</el-button>
-          </el-form>
-        </div>
-        <div v-show=" menuData == 3">
-          3333
-        </div>
-      </el-main>
-    </el-container>
-  </el-card>
-</div>
+  <div class="user">
+    <el-card class="card">
+      <div class="user-info">
+        <el-row :gutter="20">
+          <el-col
+            :span="6"
+            class="img-bar"
+          >
+            <img
+              :src="userData.avatar"
+              alt=""
+              style="width:180px; height:180px;"
+            >
+            <div class="img-info" @click="jump(1)">更换头像</div>
+          </el-col>
+          <el-col :span="6">
+
+          </el-col>
+        </el-row>
+      </div>
+    </el-card>
+  </div>
 </template>
 <script>
-
+import store from 'vux/store.js'
 export default {
   data () {
     return {
-      menuData: 1,
-      img: 'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
-      name: 'TOKDawn',
       userData: {
-        name: '222',
-        email: '1118746442232'
+        username: '未命名用户',
+        avatar:
+          'http://bipu.oss-cn-beijing.aliyuncs.com/egg-multipart-test/akari.jpg',
+        signature: '这个人很懒,啥也没写╮(╯_╰)╭',
+        phone: 18700000000
       }
     }
   },
-  components: {
-
-  },
+  components: {},
   methods: {
-
+    jump (type) {
+      switch (type) {
+        case 1:
+          this.router.push()
+      }
+    }
+  },
+  created () {
+    this.userData.username = store.getters.username
+    this.userData.avatar = store.getters.avatar
+    this.userData.signature = store.getters.signature
+    this.userData.phone = store.getters.phone
   }
 }
 </script>
 <style lang="scss" scoped>
 @import "src/assets/style.scss";
-.user{
-  margin-top: 90px !important;
-  .card{
-    width: 1024px;
-    margin: 0px auto 50px auto;
-    height: 500px;
-    .left{
-      background-color: #545c64;
-      height: 500px;
-      .el-menu-vertical-demo{
-        border: 0px;
-      }
-    }
-    .right{
-      background-color: #fff;
-        .avatar{
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        float: left;
-      }
-      .info{
-        // background-color: aqua;
-        width: 100%;
-        padding-left: 90px;
-        height: 100px;
-        p{
-          font-size: $--FontSizeL;
-          color: rgb(242,103,98);
+.user {
+  .card {
+    width: 980px;
+    margin: 0px auto 0px auto;
+    padding: 40px;
+    .user-info {
+      .img-bar {
+        height: 180px;
+        &:hover{
+          .img-info{
+            display:block;
+          }
         }
-      }
-      .collection{
-      }
-      .personalCenter{
-        padding: 15px;
+        img {
+          z-index: 1;
+        }
+        .img-info {
+          cursor: pointer;
+          height: 23px;
+          display: none;
+          background-color: rgba(66, 66, 66, 0.5);
+          color: #fff;
+          text-align: center;
+          font-size: 14px;
+          line-height: 23px;
+          margin-top: -27px;
+          z-index: 2;
+          width: 180px;
+          position: relative;
+          &:hover {
+            color: $--basicColor;
+          }
+        }
       }
     }
   }
 }
 </style>
 <style >
-  .user .card .el-card__body{
-    padding: 0px !important;
-  }
+.user .card .el-card__body {
+  padding: 0px !important;
+}
 </style>

@@ -40,5 +40,12 @@ module.exports = [{
     meta: {
       requireAuth: true
     }
+  }, {
+    path: 'uploadimg/:uid',
+    name: 'uploadimg',
+    component: require('pages/user/uploadimg'),
+    meta: {
+      requireAuth: true
+    }
   }]
 }]
