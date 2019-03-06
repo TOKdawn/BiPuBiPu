@@ -93,6 +93,7 @@ import ScoreList from './components/scoreList'
 import Other from './components/other'
 import Foot from '../layout/footer'
 import store from 'vux/store.js'
+import {System} from 'common/urls'
 export default {
   data () {
     return {
@@ -101,8 +102,19 @@ export default {
     }
   },
   created () {
-    this.userRole = store.state.role
-    this.userId = store.state.phone
+    this.$http({
+      method: 'get',
+      url: System.checkUser
+    }).then(res => {
+      if (res.status === 200) {
+        console.log('用户已登录', res.data)
+        store.commit('uploadUserData', res.data.data)
+        this.userRole = store.getters.role
+        this.userId = store.getters.phone
+      }
+    }).catch(() => {
+      store.commit('logout')
+    })
     console.log(store.state)
   },
   methods: {

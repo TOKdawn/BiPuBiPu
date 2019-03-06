@@ -1,0 +1,14 @@
+{
+  "message": "sucess",
+  "data": {
+    "role": 1,
+    "id": 10,
+    "name": "用户18746442232",
+    "avatar": "http://bipu.oss-cn-beijing.aliyuncs.com/egg-multipart-test/akari.jpg",
+    "signature": "这个人很懒,啥也没写╮(╯_╰)╭",
+    "password": "e10adc3949ba59abbe56e057f20f883e",
+    "email": "18746442232",
+    "updated_at": "2019-03-05T09:02:48.352Z",
+    "created_at": "2019-03-05T09:02:48.352Z"
+  }
+}

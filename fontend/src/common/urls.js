@@ -13,6 +13,10 @@ const Login = {
   getSMS: baseUrl + '/system/sms'
 
 }
+const System = {
+  checkUser: baseUrl + '/system/checkuser'
+}
 export {
-  Login
+  Login,
+  System
 }

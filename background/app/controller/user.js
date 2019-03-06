@@ -92,16 +92,19 @@ class UserController extends Controller {
     } = this.ctx.request.body;
     if( await this.ctx.helper.checkCaptcha(captcha)){
       console.log('res',this.ctx.helper.checkCaptcha(captcha))
-      this.ctx.helper.createRes(400, '验证码错误 凸(⊙▂⊙✖ )');
+      this.ctx.helper.createRes(202, '验证码错误 凸(⊙▂⊙✖ )');
     }else if(!(await this.userService.checkPhone(phone))){
-      this.ctx.helper.createRes(400, '此电话号未注册 凸(⊙▂⊙✖ )');
+      this.ctx.helper.createRes(202, '此电话号未注册 凸(⊙▂⊙✖ )');
     }else{
       const response = await this.userService.Login(phone, password);
+      console.log( this.response)
       if(response == null){
-        this.ctx.helper.createRes(400, '用户名或密码错误(ﾟДﾟ;)')
+        this.ctx.helper.createRes(202, '用户名或密码错误(ﾟДﾟ;)')
+      }else{
+        this.ctx.session.user = response
+        this.ctx.helper.successRes('成功登录',response)
       }
-      console.log(this.response)
-      this.ctx.helper.successRes('成功登录',response)
+     
     }
   }
 
