@@ -857,6 +857,7 @@ export default {
     font-weight: 500;
     padding-bottom: 3px;
     color: #444;
+  
   }
   .line {
     width: 100%;

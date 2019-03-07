@@ -44,7 +44,7 @@ module.exports = {
     }
     const Captcha = svgCaptcha.createMathExpr(options);
     this.ctx.session.catcha = Captcha.text;
-    this.ctx.session.maxAge = 1000 * 60 * 10;
+    this.ctx.session.maxAge = 1000 * 60 * 120;
     this.ctx.body = {
       status: 0,
       message: 'success',
