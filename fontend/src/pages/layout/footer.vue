@@ -5,8 +5,14 @@
   </div>
   <div class="info">
     <h2>BipuBipu曲谱站</h2>
-    <p>Made with ❤️by  <a href="http://dawninshadow.com/">TOKdawn</a></p>
-    <div>Copyright 2018-2019 BipuBipu @哔谱哔谱</div>
+       <div>QQ群:690514210  &nbsp; B站账号:<a style="color:rgb(210, 239, 89); font-weight: 500">@哔谱哔谱</a></div>
+    <p>Made with ❤️by  <a href="http://dawninshadow.com/">TOKdawn</a> </p>
+    
+ 
+    <div>Copyright 2018-2019 BipuBipu </div>
+  </div>
+  <div>
+
   </div>
 </div>
 </template>
@@ -40,6 +46,7 @@ export default {
     color: $--footTextColor;
     h2{
       font-size: $--FontSizeXXXL;
+      margin-top: -15px;
     }
     p{
       font-size: $--basicFontSize;
@@ -48,7 +55,7 @@ export default {
         color: $--footTextColor;
         text-decoration: underline;
       }
-      margin-bottom: 5px;
+      margin-bottom: 3px;
     }
   }
 }

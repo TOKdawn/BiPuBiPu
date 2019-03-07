@@ -47,5 +47,12 @@ module.exports = [{
     meta: {
       requireAuth: true
     }
+  }, {
+    path: 'editInfo/:uid',
+    name: 'editInfo',
+    component: require('pages/user/editInfo'),
+    meta: {
+      requireAuth: true
+    }
   }]
 }]
