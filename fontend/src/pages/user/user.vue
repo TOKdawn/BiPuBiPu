@@ -61,51 +61,55 @@
         </el-row>
       </div>
       <div class="collection">
-        <div class="title"> <h3>收藏的音乐</h3>
-         <p> 查看更多>> </p>
+        <div class="title">
+          <h3>收藏的音乐</h3>
+          <p> 查看更多>> </p>
         </div>
-   <el-table
-    ref="userCollection"
-    :data="userCollection"
-    highlight-current-row
-    style="width: 100%">
-    <el-table-column
-      type="index"
-      width="50">
-    </el-table-column>
-    <el-table-column
-      property="name"
-      label="谱名"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      property="addtion"
-      label="别名"
-      >
-    </el-table-column>
+        <el-table
+          ref="userCollection"
+          :data="userCollection"
+          highlight-current-row
+          style="width: 100%"
+        >
+          <el-table-column
+            type="index"
+            width="50"
+          >
+          </el-table-column>
+          <el-table-column
+            property="name"
+            label="谱名"
+            width="120"
+          >
+          </el-table-column>
+          <el-table-column
+            property="addtion"
+            label="别名"
+          >
+          </el-table-column>
 
-  </el-table>
+        </el-table>
       </div>
       <div class="creat">
         <div class="title">
-        <h3>收藏的谱册</h3>
+          <h3>收藏的谱册</h3>
 
         </div>
-             <div class="otherScoreListDiv">
-        <div
-          class="copies"
-          v-for="(item,index) in myScoreList"
-          :key="index"
-        >
-          <img
-            :src="item.img"
-            alt=""
+        <div class="otherScoreListDiv">
+          <div
+            class="copies"
+            v-for="(item,index) in myScoreList"
+            :key="index"
           >
-          <h1> {{item.title}}</h1>
-          <p> {{item.describe}}}</p>
-          <div>收藏数:{{item.star}}</div>
+            <img
+              :src="item.img"
+              alt=""
+            >
+            <h1> {{item.title}}</h1>
+            <p> {{item.describe}}}</p>
+            <div>收藏数:{{item.star}}</div>
+          </div>
         </div>
-      </div>
       </div>
     </el-card>
   </div>
@@ -165,7 +169,8 @@ export default {
           visits: 1,
           created_at: '2018-07-11T09:13:53.001Z',
           updated_at: '2018-07-11T09:15:02.142Z'
-        }, {
+        },
+        {
           id: 4,
           photo: null,
           name: '鳥の詩333',
@@ -303,7 +308,6 @@ export default {
             }
           ]
         }
-
       ]
     }
   },
@@ -394,61 +398,60 @@ export default {
         }
       }
     }
-    .title{
+    .title {
       height: 38px;
-      border-bottom: 3px solid #Ec908c;
+      border-bottom: 3px solid #ec908c;
       color: #666;
       margin-top: 20px;
-      h3{
+      h3 {
         font-size: 22px;
         font-weight: 600;
         line-height: 38px;
       }
-      p{
+      p {
         float: right;
         margin-top: -26px;
       }
     }
-      .otherScoreListDiv {
-      
+    .otherScoreListDiv {
       max-height: 1120px;
-    overflow: auto;
+      overflow: auto;
     }
     .copies {
-    display: inline-block;
-    text-align: center;
-    margin-top: 20px;
-    width: 25%;
-    img {
-      width: 150px;
-      height: 150px;
-      cursor: pointer;
-    }
-    h1 {
-      font-size: $--basicFontSize;
-      line-height: $--basicFontSize;
-      font-weight: 500;
-      overflow: hidden;
-      height: 33px;
-      padding: 0px 15px;
-      color: $--darkFontColor;
-      cursor: pointer;
-      transition: all 0.4s;
-      &:hover {
-        color: $--activeColor;
+      display: inline-block;
+      text-align: center;
+      margin-top: 20px;
+      width: 25%;
+      img {
+        width: 150px;
+        height: 150px;
+        cursor: pointer;
+      }
+      h1 {
+        font-size: $--basicFontSize;
+        line-height: $--basicFontSize;
+        font-weight: 500;
+        overflow: hidden;
+        height: 33px;
+        padding: 0px 15px;
+        color: $--darkFontColor;
+        cursor: pointer;
+        transition: all 0.4s;
+        &:hover {
+          color: $--activeColor;
+        }
+      }
+      p {
+        font-size: $--FontSizeM;
+        line-height: $--FontSizeM;
+        font-weight: 400;
+        overflow: hidden;
+        height: 40px;
+        padding: 0px 15px;
+        color: $--middleFontColor;
+        margin-top: 5px;
       }
     }
-    p {
-      font-size: $--FontSizeM;
-      line-height: $--FontSizeM;
-      font-weight: 400;
-      overflow: hidden;
-      height: 40px;
-      padding: 0px 15px;
-      color: $--middleFontColor;
-      margin-top: 5px;
-    }
-  }
   }
 }
 </style>

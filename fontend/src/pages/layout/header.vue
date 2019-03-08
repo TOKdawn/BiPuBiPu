@@ -32,14 +32,14 @@
       placement="bottom"
       width="100"
       trigger="hover"
-      v-if="true"
+      v-if="userRole!=0"
       class="avatar"
     >
-      <ul>
-        <li>
+      <ul class="more-info">
+        <li style=" height:25px; line-height: 25px;  cursor: pointer;" @click="this.$router.push(`/page/user/${userId}`)">
           个人中心
         </li>
-        <li>
+        <li style=" height:25px; line-height: 25px;  cursor: pointer;" @click="logout()">
           注销
         </li>
       </ul>
@@ -53,20 +53,30 @@
 </template>
 <script>
 import Search from '../search/search'
+import store from 'vux/store.js'
 export default {
   data () {
     return {
       activeIndex: '1',
-      activeIndex2: '1'
+      activeIndex2: '1',
+      userRole: 0,
+      userId: 123
     }
   },
   methods: {
     handleSelect (key, keyPath) {
       // console.log(key, keyPath)
+    },
+    logout () {
+
     }
   },
   components: {
     Search
+  },
+  created () {
+    this.userRole = store.getters.role
+    this.userId = store.getters.phone
   }
 }
 </script>
@@ -106,6 +116,14 @@ export default {
       height: 50px;
       cursor: pointer;
       border-radius: 50%;
+    }
+    .more-info{
+      li{
+        height:20px;
+        line-height: 20px;
+        background-color: aqua;
+        cursor: pointer;
+      }
     }
   }
 }

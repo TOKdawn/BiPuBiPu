@@ -37,7 +37,7 @@
         <div class="content fl">
           <div class="form-wrap">
             <div class="type">
-              <span>登录到后台</span>
+              <span>用户登录</span>
             </div>
             <div>
               <div class="input-item">

@@ -14,8 +14,7 @@
                   <p>主页</p>
                 </div>
               </a>
-              <div class="dropdown">
-              </div>
+
             </div>
             <div class="item">
                <router-link :to= "{ name: 'scorelist'}">
@@ -27,7 +26,7 @@
             <div class="item">
               <a href="/schools&departments/">
                 <div class="butn"><i class="iconfont icon-shujia1"></i>
-                  <p>周刊</p>
+                  <p>文章</p>
                 </div>
               </a>
               <div class="dropdown">
@@ -46,17 +45,13 @@
                   <p>关于</p>
                 </div>
               </a>
-              <div class="dropdown">
-              </div>
+
             </div>
             <div class="item">
-           
                 <div class="butn" @click="jump(6)"><i class="iconfont icon-xiazai"></i>
                   <p>下载</p>
                 </div>
-             
-              <div class="dropdown">
-              </div>
+
             </div>
             <div class="item">
               <router-link :to= "{ name: 'login'}" v-show="userRole == 0">
