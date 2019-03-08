@@ -159,7 +159,97 @@
         <el-tab-pane
           label="安全设置"
           name="third"
-        >角色管理</el-tab-pane>
+        >
+          <h2>修改密码</h2>
+          <el-form
+            :model="userData"
+            :rules="rules"
+            ref="userDataForm"
+            label-width="80px"
+            class="userDataForm"
+          >
+
+            <el-form-item
+              label="旧密码:"
+              prop="username"
+            >
+              <el-input
+                v-model="userData.username"
+                size="small"
+              >
+
+              </el-input>
+            </el-form-item>
+            <el-form-item
+              label="新密码:"
+              prop="username"
+            >
+              <el-input
+                v-model="userData.username"
+           
+                size="small"
+              ></el-input>
+            </el-form-item>
+            <el-form-item>
+              
+              <el-button size="small">
+                保存
+              </el-button>
+            </el-form-item>
+          </el-form>
+
+          <h2>更换手机</h2>
+
+          <el-form
+            :model="userData"
+            :rules="rules"
+            ref="userDataForm"
+            label-width="80px"
+            class="userDataForm"
+          >
+
+            <el-form-item
+              label="旧手机:"
+              prop="username"
+            >
+              <el-input
+                v-model="userData.username"
+                size="small"
+              >
+
+              </el-input>
+            </el-form-item>
+            <el-form-item
+              label="新手机:"
+              prop="username"
+            >
+              <el-input
+                v-model="userData.username"
+             
+                size="small"
+              ></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-input
+                placeholder="短信验证码"
+                v-model="res_sms"
+                class="input-with-select"
+              >
+                <el-button
+                  slot="append"
+                  :disabled="smsFlag"
+                  @click.stop="getSMS"
+                > {{SMStext}}</el-button>
+              </el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button size="small">
+                保存
+              </el-button>
+            </el-form-item>
+          </el-form>
+
+        </el-tab-pane>
 
       </el-tabs>
     </el-card>
@@ -177,7 +267,8 @@ export default {
         signature: '这个人很懒,啥也没写╮(╯_╰)╭',
         phone: 18700000000
       },
-      activeName: 'first'
+      activeName: 'first',
+      SMStext: '获取短信验证码'
     }
   },
   components: {},
@@ -192,6 +283,50 @@ export default {
     this.userData.avatar = store.getters.avatar
     this.userData.signature = store.getters.signature
     this.userData.phone = store.getters.phone
+  },
+  getSMS () {
+    var myreg = /^[1][3,4,5,7,8][0-9]{9}$/
+    if (!myreg.test(this.res_phone)) {
+      this.loginTipMsg = '请输入正确格式的手机号'
+      return false
+    }
+    this.smsFlag = true
+    this.SMStext = '重新发送(60)'
+    let TIME_COUNT = 60
+    this.$http({
+      method: 'post',
+      url: '',
+      data: {
+        phone: this.res_phone
+      }
+    })
+      .then(res => {
+        if (res.status === 200) {
+          console.log(res.data.data)
+        }
+      })
+      .catch(() => {
+        // this.$message({
+        //   showClose: true,
+        //   duration: 2000,
+        //   message: '获取短信失败',
+        //   type: 'error'
+        // })
+      })
+    let _this = this
+    this.count = TIME_COUNT
+    let timer = setInterval(() => {
+      if (this.count > 0 && this.count <= TIME_COUNT) {
+        this.count--
+        _this.smsFlag = true
+        _this.SMStext = '重新发送(' + this.count + ')'
+      } else {
+        clearInterval(timer)
+        _this.smsFlag = false
+        _this.SMStext = '获取短信验证码'
+      }
+    }, 1000)
+    // }
   }
 }
 </script>
