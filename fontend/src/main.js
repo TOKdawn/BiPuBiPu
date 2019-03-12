@@ -9,6 +9,9 @@ import App from './App'
 import Utils from 'common/utils'
 import axios from 'axios'
 
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+
 axios.defaults.withCredentials = true
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 // axios.defaults.baseURL = 'http://127.0.0.1:7003'
@@ -16,6 +19,7 @@ Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
+Vue.use(mavonEditor)
 // const commit = store.commit
 Vue.prototype.Utils = Utils
 router.beforeEach((to, from, next) => {

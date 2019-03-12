@@ -50,12 +50,13 @@
         </div>
       </div>
     </div>
-<el-pagination
-  background
-  layout="prev, pager, next"
-  :total="50"
-  class="pagination">
-</el-pagination>
+    <el-pagination
+      background
+      layout="prev, pager, next"
+      :total="50"
+      class="pagination"
+    >
+    </el-pagination>
   </div>
 </template>
 <script>
@@ -410,7 +411,8 @@ export default {
               id: '125'
             }
           ]
-        }, {
+        },
+        {
           img:
             'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
           title: '东ass方啊实打实大所大所大所大叔大婶大所大所大所大所谱册',
@@ -583,7 +585,8 @@ export default {
               id: '125'
             }
           ]
-        }, {
+        },
+        {
           img:
             'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
           title: '东ass方啊实打实大所大所大所大叔大婶大所大所大所大所谱册',
@@ -768,14 +771,13 @@ export default {
 <style lang="scss" scoped>
 @import "src/assets/style.scss";
 .main-context {
-
   .otherSocreList {
     width: 100%;
     padding-right: 20%;
     .otherScoreListDiv {
       min-height: 600px;
       max-height: 1120px;
-    overflow: auto;
+      overflow: auto;
     }
     .copies {
       width: 25%;
@@ -789,11 +791,12 @@ export default {
     // height: 600px;
     padding-right: 20%;
   }
-  .pagination{
+  .pagination {
     height: 33px;
     text-align: center;
     position: absolute;
     left: 30%;
+    margin-top: 5px;
   }
   .myScoreList {
     width: 20%;
@@ -857,7 +860,6 @@ export default {
     font-weight: 500;
     padding-bottom: 3px;
     color: #444;
-  
   }
   .line {
     width: 100%;

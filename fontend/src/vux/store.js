@@ -8,7 +8,8 @@ export default new Vuex.Store({
     avatar: '' || localStorage.getItem('avatar'),
     role: '' || localStorage.getItem('role'),
     signature: '' || localStorage.getItem('signature'),
-    phone: '' || localStorage.getItem('phone')
+    phone: '' || localStorage.getItem('phone'),
+    activahead: 1
   },
   getters: {
     role: (state) => state.role,
@@ -44,6 +45,7 @@ export default new Vuex.Store({
       localStorage.setItem('signature', '这个人很懒,啥也没写╮(╯_╰)╭')
       localStorage.setItem('phone', '000')
     },
+
     SET_USER_RULE (state, newrule) {
       state.name = newrule
     },

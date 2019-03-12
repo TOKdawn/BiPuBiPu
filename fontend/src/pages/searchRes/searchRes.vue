@@ -2,7 +2,6 @@
   <div class="searchRes">
     <div class="bannder">
       <div class="bg">
-
         <el-autocomplete
           v-model="searchText"
           :fetch-suggestions="querySearchAsync"
@@ -57,30 +56,29 @@
           label="谱册"
           name="second"
         >
-             <div class="otherScoreListDiv">
-        <div
-          class="copies"
-          v-for="(item,index) in myScoreList"
-          :key="index"
-        >
-          <img
-            :src="item.img"
-            alt=""
-          >
-          <h1> {{item.title}}</h1>
-          <p> {{item.describe}}}</p>
-          <div>收藏数:{{item.star}}</div>
-        </div>
-             </div>
+          <div class="otherScoreListDiv">
+            <div
+              class="copies"
+              v-for="(item,index) in myScoreList"
+              :key="index"
+            >
+              <img
+                :src="item.img"
+                alt=""
+              >
+              <h1> {{item.title}}</h1>
+              <p> {{item.describe}}}</p>
+              <div>收藏数:{{item.star}}</div>
+            </div>
+          </div>
         </el-tab-pane>
         <el-tab-pane
           label="用户"
           name="third"
         >
-        <div style="height:800px; width:100%; text-align:center; padding-top:50px;">
-          暂无数据
-        </div>
-
+          <div style="height:800px; width:100%; text-align:center; padding-top:50px;">
+            暂无数据
+          </div>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -271,7 +269,8 @@ export default {
               id: '125'
             }
           ]
-        }, {
+        },
+        {
           img:
             'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186139-102.jpg',
           title: '东方谱册',
@@ -299,7 +298,8 @@ export default {
               id: '125'
             }
           ]
-        }, {
+        },
+        {
           img:
             'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186139-102.jpg',
           title: '东方谱册',
@@ -357,7 +357,6 @@ export default {
             }
           ]
         }
-
       ]
     }
   },
@@ -422,6 +421,7 @@ export default {
     .otherScoreListDiv {
       max-height: 1120px;
       overflow: auto;
+      padding-bottom: 30px;
     }
     .copies {
       display: inline-block;
@@ -439,7 +439,7 @@ export default {
         font-weight: 500;
         overflow: hidden;
         height: 33px;
-        padding: 0px 15px;
+        padding: 0px 20px;
         color: $--darkFontColor;
         cursor: pointer;
         transition: all 0.4s;
@@ -475,10 +475,9 @@ export default {
   border-left: 0px;
   border-right: 0px;
   border-radius: 0px;
-  
 }
 .searchRes input:hover {
-  border-color: #F29a58;
+  border-color: #f29a58;
 }
 .searchRes input:focus {
   border-color: rgb(242, 103, 98);

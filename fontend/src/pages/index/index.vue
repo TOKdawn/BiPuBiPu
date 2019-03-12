@@ -9,59 +9,71 @@
           </div>
           <div class="nav">
             <div class="item">
-              <a href='/about/about/'>
+              <a href=''>
                 <div class="butn"><i class="iconfont icon-zhuye"></i>
                   <p>主页</p>
                 </div>
               </a>
-
             </div>
             <div class="item">
-               <router-link :to= "{ name: 'scorelist'}">
+              <router-link :to="{ name: 'scorelist'}">
                 <div class="butn"><i class="iconfont icon-shu"></i>
                   <p>谱册</p>
                 </div>
-               </router-link>
+              </router-link>
             </div>
             <div class="item">
-              <a href="/schools&departments/">
+              <router-link :to="{ name:'articleList'} ">
                 <div class="butn"><i class="iconfont icon-shujia1"></i>
                   <p>文章</p>
                 </div>
-              </a>
-              <div class="dropdown">
-              </div>
+              </router-link>
+              <!-- <div class="dropdown">
+                <el-row type="flex" class="row-bg" justify="space-between">
+                  <el-col :span="6"></el-col>
+                  <el-col :span="6"></el-col>
+                  <el-col :span="6"></el-col>
+                </el-row>
+              </div> -->
             </div>
             <div class="item">
-              <router-link :to= "{ name: 'translator'}">
+              <router-link :to="{ name: 'translator'}">
                 <div class="butn"><i class="iconfont icon-suiji"></i>
                   <p>转谱</p>
                 </div>
               </router-link>
             </div>
             <div class="item">
-              <a href="/adademics/">
+              <router-link :to="{ name: 'volume',  params: { vid: '123' }}">
                 <div class="butn"><i class="iconfont icon-guanyu"></i>
                   <p>关于</p>
                 </div>
-              </a>
-
+              </router-link>
             </div>
             <div class="item">
-                <div class="butn" @click="jump(6)"><i class="iconfont icon-xiazai"></i>
-                  <p>下载</p>
-                </div>
-
+              <div
+                class="butn"
+                @click="jump(6)"
+              ><i class="iconfont icon-xiazai"></i>
+                <p>下载</p>
+              </div>
             </div>
             <div class="item">
-              <router-link :to= "{ name: 'login'}" v-show="userRole == 0">
+              <router-link
+                :to="{ name: 'login'}"
+                v-show="userRole == 0"
+              >
                 <div class="butn"><i class="iconfont icon-denglu"></i>
                   <p>登录</p>
                 </div>
               </router-link>
-                <div class="butn" @click="jump(7)" v-show="userRole !== 0"><i class="iconfont icon-denglu"></i>
-                  <p>个人中心</p>
-                </div>
+              <div
+                class="butn"
+                @click="jump(7)"
+                v-show="userRole !== 0"
+              ><i class="iconfont icon-denglu"></i>
+                <p>个人中心</p>
+              </div>
             </div>
           </div>
         </div>
@@ -69,12 +81,17 @@
     </div>
     <div style="margin-top:500px; z-index:10; postion:relative; ">
       <div class="searchBar">
-       <Search></Search>
+        <p
+          class="upload"
+          @click=" $router.push({name: 'upload'})"
+        >发布曲谱 ＼_(･ω･`)ｺｺ</p>
+        <Search></Search>
+
       </div>
-        <Information></Information>
-        <ScoreList></ScoreList>
-        <Other></Other>
-        <Foot></Foot>
+      <Information></Information>
+      <ScoreList></ScoreList>
+      <Other></Other>
+      <Foot></Foot>
     </div>
   </div>
 </template>
@@ -88,7 +105,7 @@ import ScoreList from './components/scoreList'
 import Other from './components/other'
 import Foot from '../layout/footer'
 import store from 'vux/store.js'
-import {System} from 'common/urls'
+import { System } from 'common/urls'
 export default {
   data () {
     return {
@@ -100,28 +117,33 @@ export default {
     this.$http({
       method: 'get',
       url: System.checkUser
-    }).then(res => {
-      if (res.status === 200) {
-        console.log('用户已登录', res.data)
-        store.commit('uploadUserData', res.data.data)
-        this.userRole = store.getters.role
-        this.userId = store.getters.phone
-      }
-    }).catch(() => {
-      store.commit('logout')
     })
+      .then(res => {
+        if (res.status === 200) {
+          console.log('用户已登录', res.data)
+          store.commit('uploadUserData', res.data.data)
+          this.userRole = store.getters.role
+          this.userId = store.getters.phone
+        }
+      })
+      .catch(() => {
+        store.commit('logout')
+      })
     console.log(store.state)
   },
   methods: {
     jump (type) {
       switch (type) {
         case 7:
-          this.$router.push({name: 'user', params: { uid: this.userId }})
+          this.$router.push({ name: 'user', params: { uid: this.userId } })
+          break
+        case 6:
+          this.$router.push({ name: 'score', params: { scoreid: 123 } })
+          break
       }
     }
   },
   filters: {},
-
   components: {
     Search,
     Information,
@@ -287,6 +309,9 @@ export default {
         .item:nth-child(6) .butn::after {
           background-color: #cddc39;
         }
+        .item:nth-child(7) .butn::after {
+          background-color: #795548;
+        }
       }
     }
   }
@@ -296,6 +321,15 @@ export default {
     padding: 0px 12%;
     text-align: right;
     position: relative;
+
+    .upload {
+      float: left;
+      line-height: 62px;
+      font-weight: 600;
+      font-size: 18px;
+      color: $--activeColor;
+      cursor: pointer;
+    }
   }
 }
 </style>
