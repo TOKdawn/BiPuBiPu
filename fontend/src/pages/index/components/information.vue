@@ -26,7 +26,7 @@
       <div style="display: flex;flex-wrap: wrap;">
         <div class="articles" v-for="(item,index) in articlesData" :key="index"> 
           <div class="line"></div>
-          <h2>{{item.title}}</h2>
+          <h2 @click="$router.push({name: 'article', params: { Atitle: item.router }})">{{item.title}}</h2>
           <p>{{item.time}} / {{item.author}}</p>
         </div>
       </div>
@@ -64,34 +64,34 @@ export default {
         }
       ],
       articlesData: [{
-        title: '前端测试用文章标题前端测试用文章标题前端测试用文章标题',
-        router: '/index',
-        time: '2018-11-28',
+        title: '【哔谱实验室】机器能够学会扒谱吗？',
+        router: 'bapu',
+        time: '2019-3-11',
         author: 'TOKdawn'
       }, {
-        title: '前端测试用文章标题',
-        router: '/index',
-        time: '2018-11-28',
+        title: 'VCの扒谱、乐理教学',
+        router: 'vcYueli',
+        time: '2019-3-11',
         author: 'TOKdawn'
       }, {
-        title: '前端测试用文章标题',
-        router: '/index',
-        time: '2018-11-28',
+        title: '新手向导，咱肯定不是无聊才写这些的喵~~~！',
+        router: 'xiangdao',
+        time: '2019-3-11',
         author: 'TOKdawn'
       }, {
-        title: '前端测试用文章标题',
-        router: '/index',
-        time: '2018-11-28',
+        title: '昆叔教你修按键',
+        router: 'kunshu',
+        time: '2019-3-11',
         author: 'TOKdawn'
       }, {
-        title: '前端测试用文章标题',
-        router: '/index',
-        time: '2018-11-28',
+        title: '复音口琴acg向指南',
+        router: 'fuyin',
+        time: '2019-3-11',
         author: 'TOKdawn'
       }, {
-        title: '前端测试用文章标题',
-        router: '/index',
-        time: '2018-11-28',
+        title: '我一路走过来的二年口琴生涯总结',
+        router: 'kouqin',
+        time: '2019-3-11',
         author: 'TOKdawn'
       }]
     }

@@ -184,7 +184,7 @@ export default {
         },
         {
           img:
-            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186026-102.jpg',
+            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
           title: '东方谱册',
           star: '100',
           describe: '一个谱册的介绍',

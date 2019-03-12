@@ -2,7 +2,7 @@
   <div class="other">
     <div class="threeBar">
       <div class="title">
-        周刊<span>/</span>
+        月刊<span>/</span>
         <router-link to="/index">More</router-link>
       </div>
       <div class="weekly" v-for="(item, index) in weeklyData" :key="index">

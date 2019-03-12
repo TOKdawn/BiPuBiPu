@@ -5,7 +5,7 @@
       <el-tabs
         v-model="activeName"
         type="card"
-        @tab-click="handleClick"
+        
       >
         <el-tab-pane
           label="基本设置"
@@ -23,8 +23,6 @@
                 class="avatar-uploader"
                 action="https://jsonplaceholder.typicode.com/posts/"
                 :show-file-list="false"
-                :on-success="handleAvatarSuccess"
-                :before-upload="beforeAvatarUpload"
               >
                 <img
                   v-if="userData.avatar"
@@ -268,7 +266,12 @@ export default {
         phone: 18700000000
       },
       activeName: 'first',
-      SMStext: '获取短信验证码'
+      SMStext: '获取短信验证码',
+      rules: {
+
+      },
+      smsFlag: '',
+      res_sms: ''
     }
   },
   components: {},

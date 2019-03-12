@@ -7,14 +7,8 @@
       @select="handleSelect">
       <el-menu-item index="1" @click="$router.push({ path: `/index` })">主页</el-menu-item>
       <el-menu-item index="2" @click="$router.push({ path: `/page/scorelist` })">谱册</el-menu-item>
-      <el-menu-item
-        index="3"
-        disabled
-      >周刊</el-menu-item>
-      <el-menu-item index="4"><a
-          href="https://www.ele.me"
-          target="_blank"
-        >转谱</a></el-menu-item>
+      <el-menu-item index="3"  >文章</el-menu-item>
+      <el-menu-item index="4">转谱</el-menu-item>
       <el-menu-item index="5">关于</el-menu-item>
       <el-menu-item index="6">下载</el-menu-item>
     </el-menu>
@@ -55,10 +49,15 @@
 import Search from '../search/search'
 import store from 'vux/store.js'
 export default {
+  props: {
+    activeIndex: {
+      type: String,
+      default: '1'
+    }
+  },
   data () {
     return {
-      activeIndex: '1',
-      activeIndex2: '1',
+
       userRole: 0,
       userId: 123
     }

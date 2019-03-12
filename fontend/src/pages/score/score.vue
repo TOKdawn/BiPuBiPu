@@ -3,7 +3,7 @@
     <div class="main-context">
       <div>
         <img
-          :src="scoreData.img"
+          :src="scoreData.image_url"
           alt=""
           style="width:250px; height:250px; float:left;"
         >
@@ -26,7 +26,7 @@
         <div class="score-context">
           <div class="context">
             <div class="avatar">
-              <img :src="scoreData.img" alt="" style="width:100%;height:100%; z-index:1;">
+              <img :src="scoreData.image_url" alt="" style="width:100%;height:100%; z-index:1;">
             </div>
             <div class="translator-button-one">
               升一调
@@ -101,6 +101,7 @@
   </div>
 </template>
 <script>
+
 export default {
   data () {
     return {
@@ -242,6 +243,8 @@ export default {
       .translator-button-one{
         position: absolute;
         // position: relative;
+        padding-top:20px;
+        color: antiquewhite;
         width: 90px;
         height: 90px;
         border-radius: 50%;
@@ -252,6 +255,8 @@ export default {
       .translator-button-two{
         position: absolute;
         // position: relative;
+                padding-top:15px;
+        color: antiquewhite;
         width: 80px;
         height: 80px;
         border-radius: 50%;
@@ -262,6 +267,8 @@ export default {
       .translator-button-thr{
         position: absolute;
         // position: relative;
+                padding-top:10px;
+        color: antiquewhite;
         width: 70px;
         height: 70px;
         border-radius: 50%;
@@ -272,6 +279,8 @@ export default {
       .translator-button-fou{
         position: absolute;
         // position: relative;
+                padding-top:5px;
+        color: antiquewhite;
         width: 60px;
         height: 60px;
         border-radius: 50%;

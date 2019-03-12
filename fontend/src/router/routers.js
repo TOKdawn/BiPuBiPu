@@ -34,6 +34,18 @@ module.exports = [{
     name: 'upload',
     component: require('pages/upload/upload')
   }, {
+    path: 'article/:Atitle',
+    name: 'article',
+    component: require('pages/article/article')
+  }, {
+    path: 'articleList',
+    name: 'articleList',
+    component: require('pages/article/articleList')
+  }, {
+    path: 'volume/vid',
+    name: 'volume',
+    component: require('pages/volume/volume')
+  }, {
     path: 'user/:uid',
     name: 'user',
     component: require('pages/user/user'),

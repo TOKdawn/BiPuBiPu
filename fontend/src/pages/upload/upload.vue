@@ -1,6 +1,5 @@
 <template>
   <div class="upload">
-
     <el-card
       shadow="always"
       class="card"
@@ -65,7 +64,7 @@
                 ></i>
               </el-upload>
             </el-form-item>
-
+                <el-button type="primary" class="submit" size="small">提交</el-button>
           </el-col>
           <el-col :span="12">
             <el-form-item
@@ -137,7 +136,9 @@ export default {
         otherLink: 'www.baidu.com'
       },
       imageUrl: '',
-      rules: {}
+      rules: {},
+      value: ''
+
     }
   },
   created () {},
@@ -195,6 +196,11 @@ export default {
       width: 178px;
       height: 178px;
       display: block;
+    }
+    .submit{
+      margin-top: -30px;
+      margin-left:20px;
+      float: right;
     }
   }
 }
