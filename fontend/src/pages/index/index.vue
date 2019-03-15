@@ -86,7 +86,6 @@
           @click=" $router.push({name: 'upload'})"
         >发布曲谱 ＼_(･ω･`)ｺｺ</p>
         <Search></Search>
-
       </div>
       <Information></Information>
       <ScoreList></ScoreList>

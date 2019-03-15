@@ -29,7 +29,15 @@ module.exports = app => {
       type: STRING,
       allowNull: false,
     },
+    tonality: {
+      type: Number,
+      allowNull: false,
+    },
     score_text:{//内容本体
+      type: STRING,
+      allowNull: false,
+    },
+    description:{
       type: STRING,
       allowNull: false,
     },
@@ -45,10 +53,6 @@ module.exports = app => {
       type:STRING,
       allowNull:true,
     },
-    carrier:{ //传谱人
-      type:STRING,
-      allowNull:true,
-    },
     performs:{//B站作品
       type: INTEGER,
       allowNull: false,
@@ -56,6 +60,14 @@ module.exports = app => {
     songs:{ //网易云音乐
       type: INTEGER,
       allowNull: false,
+    },
+    other_url:{
+      type:STRING,
+      allowNull:true,
+    },
+    other_img:{
+      type:STRING,
+      allowNull:true,
     }
   }, {
     timestamps: true,

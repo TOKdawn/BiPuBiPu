@@ -288,5 +288,8 @@
 
 ```
 
+https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/Spectrum.png
 
+https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/Transparent_Akkarin.jpg
 
+https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/score.jpg
