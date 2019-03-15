@@ -52,10 +52,6 @@
               <div>
                 个人简介: {{userData.signature}}
               </div>
-
-              <!-- <div>
-                社交网络: {{userData.signature}}
-              </div> -->
             </div>
           </el-col>
         </el-row>

@@ -4,83 +4,284 @@
       shadow="always"
       class="card"
     >
+      <h2>曲谱发布</h2>
       <el-form
         :model="scoreData"
         :rules="rules"
         ref="ruleForm"
         label-width="100px"
       >
-        <el-row>
-          <el-col :span="12">
-            <el-form-item
-              label="曲名"
-              prop="title"
-            >
-              <el-input v-model="scoreData.title"></el-input>
-            </el-form-item>
-            <el-form-item
-              label="翻译名"
-              prop="otherName"
-            >
-              <el-input v-model="scoreData.otherName"></el-input>
-            </el-form-item>
-            <el-form-item
-              label="专辑"
-              prop="otherName"
-            >
-              <el-input v-model="scoreData.tags"></el-input>
-            </el-form-item>
-            <el-form-item
-              label="标签"
-              prop="otherName"
-            >
-              <el-input v-model="scoreData.otherName"></el-input>
-            </el-form-item>
-            <el-form-item
-              label="简介"
-              prop="otherName"
-            >
-              <el-input v-model="scoreData.otherName"></el-input>
-            </el-form-item>
-            <el-form-item
-              label="头像上传"
-              prop="otherName"
-            >
-              <el-upload
-                class="avatar-uploader"
-                action="https://jsonplaceholder.typicode.com/posts/"
-                :show-file-list="false"
-                :on-success="handleAvatarSuccess"
-                :before-upload="beforeAvatarUpload"
-              >
-                <img
-                  v-if="imageUrl"
-                  :src="imageUrl"
-                  class="avatar"
+
+        <el-tabs v-model="activeName">
+          <el-tab-pane
+            label="基本信息"
+            name="first"
+            style="min-height:580px; position: relative;"
+          >
+            <el-row>
+              <el-col :span="8">
+                <el-form-item
+                  label="曲名:"
+                  prop="name"
                 >
-                <i
-                  v-else
-                  class="el-icon-plus avatar-uploader-icon"
-                ></i>
-              </el-upload>
-            </el-form-item>
-                <el-button type="primary" class="submit" size="small">提交</el-button>
-          </el-col>
-          <el-col :span="12">
-            <el-form-item
-              label="谱子内容:"
-              prop="context"
-            >
-              <el-input
-                type="textarea"
-                :rows="22"
-                placeholder="请输入内容"
-                v-model="scoreData.score_text"
-              >
-              </el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
+                  <el-input v-model="scoreData.name"></el-input>
+                </el-form-item>
+                <el-form-item>
+                  <div>
+                    必须是规范的原名<br>
+                    例如<br>
+                    鳥の詩 True<br>
+                    鸟之诗 False<br>
+                    鸟の詩 False<br>
+                  </div>
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item
+                  label="别名:"
+                  prop="alias"
+                >
+                  <el-input v-model="scoreData.alias"></el-input>
+                </el-form-item>
+                <el-form-item>
+                  <div>
+                    曲谱的通俗叫法,如翻译名俗称等<br>
+                    例如<br>
+                    鸟之诗 True<br>
+                    极乐净土 True<br>
+                    未闻花名op False<br>
+                  </div>
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item
+                  label="附加信息"
+                  prop="addtion"
+                >
+                  <el-input v-model="scoreData.addtion"></el-input>
+                </el-form-item>
+                <el-form-item>
+                  <div>
+                    曲谱的出处或者相关信息<br>
+                    例如<br>
+                    四月是你的谎言主题曲 True<br>
+                    未闻花名op True<br>
+                    极乐净土 False
+                  </div>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <div class="footer">
+              <el-button
+                type="primary"
+                size="small"
+                @click="activeName = 'second'"
+              >下一步</el-button>
+            </div>
+          </el-tab-pane>
+          <el-tab-pane
+            label="曲谱正文"
+            name="second"
+            style="min-height:580px; position: relative;"
+          >
+            <el-row>
+              <el-col :span="12">
+                <el-form-item
+                  label="曲谱图像:"
+                  prop="image_url"
+                >
+                  <el-upload
+                    class="avatar-uploader"
+                    action="/api/upload"
+                    :show-file-list="false"
+                    :on-success="handleAvatarSuccess"
+                  >
+                    <img
+                      v-if="scoreData.image_url"
+                      :src="scoreData.image_url"
+                      class="avatar"
+                    >
+                    <i
+                      v-else
+                      class="el-icon-plus avatar-uploader-icon"
+                    ></i>
+                  </el-upload>
+                </el-form-item>
+                <el-form-item
+                  label="曲谱描述:"
+                  prop="description"
+                >
+                  <el-input
+                    type="textarea"
+                    :rows="13"
+                    placeholder="非必填项,可以随便写点什么"
+                    v-model="scoreData.description"
+                  >
+                  </el-input>
+
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item
+                  label="谱册内容:"
+                  prop="score_text"
+                >
+                  <el-input
+                    type="textarea"
+                    :rows="23"
+                    placeholder="请注意换行节奏间距"
+                    v-model="scoreData.score_text"
+                  >
+                  </el-input>
+
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <div class="footer">
+              <el-row>
+                <el-button
+                  type="primary"
+                  size="small"
+                  @click="activeName = 'first'"
+                >上一步</el-button>
+                <el-button
+                  type="primary"
+                  size="small"
+                  @click="activeName = 'third'"
+                >下一步</el-button>
+              </el-row>
+            </div>
+          </el-tab-pane>
+          <el-tab-pane
+            label="版权信息"
+            name="third"
+            style="min-height:580px; position: relative;"
+          >
+            <el-row>
+              <el-col :span="24">
+                <el-form-item
+                  label="扒谱人:"
+                  prop="provider"
+                >
+                  <el-input v-model="scoreData.provider"></el-input>
+
+                  <p>非必填项</p>
+                </el-form-item>
+                <el-form-item
+                  label="扒谱人链接:"
+                  prop="provider_url"
+                >
+                  <el-input v-model="scoreData.provider_url"></el-input>
+
+                  <p>非必填项,一般情况下为百度用户信息主页链接</p>
+                </el-form-item>
+                <el-form-item
+                  label="第三方链接:"
+                  prop="other_url"
+                >
+                  <el-input v-model="scoreData.other_url"></el-input>
+
+                  <p>非必填项,可选填搬运地址,或者第三放乐谱站的链接</p>
+                </el-form-item>
+
+              </el-col>
+
+            </el-row>
+            <div class="footer">
+              <el-row>
+                <el-button
+                  type="primary"
+                  size="small"
+                  @click="activeName = 'second'"
+                >上一步</el-button>
+                <el-button
+                  type="primary"
+                  size="small"
+                  @click="activeName = 'fourth'"
+                >下一步</el-button>
+              </el-row>
+            </div>
+          </el-tab-pane>
+          <el-tab-pane
+            label="其他信息"
+            name="fourth"
+            style="min-height:580px; position: relative;"
+          >
+            <el-row>
+              <el-col :span="8">
+                <el-form-item
+                  label="图像简谱:"
+                  prop="other_img"
+                >
+                  <el-upload
+                    class="avatar-uploader"
+                    action="/api/upload"
+                    :show-file-list="false"
+                    :on-success="handleAvatarSuccess1"
+                  >
+                    <img
+                      v-if="scoreData.other_img"
+                      :src="scoreData.other_img"
+                      class="avatar"
+                    >
+                    <i
+                      v-else
+                      class="el-icon-plus avatar-uploader-icon"
+                    ></i>
+                  </el-upload>
+                  <br>
+                  图片形式的简谱或五线谱可以在此上传<br>尽量采用3*4的比例
+                </el-form-item>
+                <el-form-item
+                label="乐谱调性:"
+                prop="tonality"
+                >
+                  <el-select v-model="scoreData.tonality" placeholder="请选择">
+                    <el-option
+                      v-for="item in Scale1"
+                      :key="item.value"
+                      :label="item.text"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="14">
+                <el-form-item
+                  label="网易云友链:"
+                  prop="songs"
+                >
+                  <el-input v-model="scoreData.songs"></el-input>
+
+                  <p>非必填项,网易云音乐相关歌曲的链接</p>
+                </el-form-item>
+                  <el-form-item
+                  label="B站友链:"
+                  prop="performs"
+                >
+                  <el-input v-model="scoreData.performs"></el-input>
+
+                  <p>非必填项,B站相关表演视频链接</p>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <div class="footer">
+              <el-row>
+                <el-button
+                  type="primary"
+                  size="small"
+                  @click="activeName = 'third'"
+                >上一步</el-button>
+                <el-button
+                  type="success"
+                  size="small"
+                  icon="el-icon-success"
+                >提交</el-button>
+
+              </el-row>
+            </div>
+          </el-tab-pane>
+        </el-tabs>
       </el-form>
     </el-card>
   </div>
@@ -90,76 +291,94 @@ export default {
   data () {
     return {
       scoreData: {
-        image_url: 'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
-        title: '雪之花 雪の华',
-        author: 'dawn',
-        authorId: '12333',
-        album: '未命名专辑',
-        update: '2018-12-18',
-        uploader: 'TOKdawn',
-        otherName: '花花花花',
-        tags: [
-          {
-            tagName: '东方'
-          }
-        ],
-        score_text: `
-        (#4)(#4) #2#1#2#4#1
-        (#4)(#4)(#5)(7)(7)(#5)(#4)
-        (7)#1#2#1#2#5#4#2
-        #2#23#2#1(7)#2#1 (#4)(#4) #2#1#2#4#1
-        (#4)(#4)(#5)(7)(7)(#5)(#4)
-        (7)#1#2#1#2#5#4#2
-        #2#23#2#1(7)(7) (#5)(7)#4 3#2#1#1(7)(#6)(7)
-        (#5)(7)#4#5#43#2#1#2
-        (#5)(#5)#5#67#6#5#4#4
-        #56#5#43#2(7)(7)
-        (#5)(7)#55#5#6 #2#27#67#67 #67#6 #5#4#5[#2][#2]
-        #67[#1]#6#5#5#4#4
-        #23#4#433#5#4#2#1(7)
-        (#5)(7)#433#5#55#5#6 #2#27#67#67 #67#6 #5#4#5[#2][#2]
-        #67[#1]#6#5#5#4#4[#1]7
-        #23#4#433#4#2#1(7) (7)#5#57#67[#1]#6#4#2#4#5
-        #43#23#23#2#1(7)#1(7)#1#4#2
-        (7)#5#57#67[#1]#6#4#4[#1]7#67
-        #5#67#67#67#5#677[#1][#1][#2][3][#2] #2#27#67#67 #67#6 #5#4#5[#2][#2]
-        #67[#1]#6#5#5#4#4
-        #23#4#433#5#4#2#1(7)
-        (#5)(7)#433#5#55#5#6 #2#27#67#67 #67#6 #5#4#5[#2][#2]
-        #67[#1]#6#5#5#4#4[#1]7
-        #23#4#433#5#4#2#1(7)
-        (#5)(7)#433#5#55#5#6 #2#27#67#67 #67#6 #5#4#5[#4][3]
-        #67[#1]#6#5#5#4#4[#1]#67
-        #23#4#433#5#4#2#1(7)
-        (#5)(7)#433#5#477
-        #1#23#23#4#2#1(7) (#6)(#4)`,
-        otherLink: 'www.baidu.com'
+        name: '雪之花 雪の华', // 谱名
+        alias: '', // 别名
+        addtion: '', // 附加信息
+        image_url: '', // 头像链接
+        score_text: '', // 主体内容
+        description: '', // 曲谱描述
+        provider: '', // 扒谱人
+        provider_url: '', // 扒谱人链接
+        performs: '', // B站友链
+        songs: '', // 网易云友链
+        other_url: '', // 第三方谱站友链
+        other_img: '', // 图像简谱
+        tonality: '' // 乐谱调性
+        // uploader: {
+        //   name: '', // 上传者姓名
+        //   id: '' // 上传者id
+        // }
       },
-      imageUrl: '',
+      activeName: 'first',
       rules: {},
-      value: ''
-
+      value: '',
+      value2: '',
+      Scale1: [
+        {
+          text: 'A',
+          value: '0'
+        },
+        {
+          text: 'A#',
+          value: '1'
+        },
+        {
+          text: 'B',
+          value: '2'
+        },
+        {
+          text: 'C',
+          value: '3'
+        },
+        {
+          text: 'C#',
+          value: '4'
+        },
+        {
+          text: 'D',
+          value: '5'
+        },
+        {
+          text: 'D#',
+          value: '6'
+        },
+        {
+          text: 'E',
+          value: '7'
+        },
+        {
+          text: 'F',
+          value: '8'
+        },
+        {
+          text: 'F#',
+          value: '9'
+        },
+        {
+          text: 'G',
+          value: '10'
+        },
+        {
+          text: 'G#',
+          value: '11'
+        }
+      ]
     }
   },
-  created () {},
+  created () {
+
+  },
   methods: {
     handleAvatarSuccess (res, file) {
-      this.imageUrl = URL.createObjectURL(file.raw)
+      this.scoreData.image_url = URL.createObjectURL(file.raw)
+      console.log(URL.createObjectURL(file.raw))
     },
-    beforeAvatarUpload (file) {
-      const isJPG = file.type === 'image/jpeg'
-      const isLt2M = file.size / 1024 / 1024 < 2
-
-      if (!isJPG) {
-        this.$message.error('上传头像图片只能是 JPG 格式!')
-      }
-      if (!isLt2M) {
-        this.$message.error('上传头像图片大小不能超过 2MB!')
-      }
-      return isJPG && isLt2M
+    handleAvatarSuccess1 (res, file) {
+      this.scoreData.other_img = URL.createObjectURL(file.raw)
+      console.log(URL.createObjectURL(file.raw))
     }
-  }
 
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -183,7 +402,7 @@ export default {
       border-color: #409eff;
     }
     .avatar-uploader-icon {
-        border: 1px solid red;
+      border: 1px solid red;
       border-radius: 6px;
       font-size: 28px;
       color: #8c939d;
@@ -197,10 +416,19 @@ export default {
       height: 178px;
       display: block;
     }
-    .submit{
+    .submit {
       margin-top: -30px;
-      margin-left:20px;
+      margin-left: 20px;
       float: right;
+    }
+    .footer {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      bottom: 20px;
+      button {
+        margin: 0px 30px;
+      }
     }
   }
 }

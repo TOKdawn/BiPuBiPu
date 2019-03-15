@@ -27,8 +27,8 @@
             >
               <el-option
                 v-for="item in Scale2"
-                :value="item.value"
-                :key="item.value"
+                :value="item.text"
+                :key="item.text"
               >
                 {{item.text}}
               </el-option>
@@ -99,8 +99,9 @@
             </div>
           </div>
           <el-row>
-            <el-col :span="10"
-                :offset="1"
+            <el-col
+              :span="10"
+              :offset="1"
             >
               <el-input
                 v-model="value1"
@@ -109,8 +110,10 @@
                 placeholder="转换器的谱子在此输入....."
               > </el-input>
             </el-col>
-            <el-col :span="10"
-                :offset="2">
+            <el-col
+              :span="10"
+              :offset="2"
+            >
               <el-input
                 v-model="value2"
                 type="textarea"
@@ -294,7 +297,7 @@ export default {
           value: '0'
         },
         {
-          text: '#A',
+          text: 'A#',
           value: '1'
         },
         {
@@ -306,7 +309,7 @@ export default {
           value: '3'
         },
         {
-          text: '#C',
+          text: 'C#',
           value: '4'
         },
         {
@@ -314,7 +317,7 @@ export default {
           value: '5'
         },
         {
-          text: '#D',
+          text: 'D#',
           value: '6'
         },
         {
@@ -326,7 +329,7 @@ export default {
           value: '8'
         },
         {
-          text: '#F',
+          text: 'F#',
           value: '9'
         },
         {
@@ -334,7 +337,7 @@ export default {
           value: '10'
         },
         {
-          text: '#G',
+          text: 'G#',
           value: '11'
         }
       ],
@@ -344,7 +347,7 @@ export default {
           value: '0'
         },
         {
-          text: '#A',
+          text: 'A#',
           value: '1'
         },
         {
@@ -356,7 +359,7 @@ export default {
           value: '3'
         },
         {
-          text: '#C',
+          text: 'C#',
           value: '4'
         },
         {
@@ -364,7 +367,7 @@ export default {
           value: '5'
         },
         {
-          text: '#D',
+          text: 'D#',
           value: '6'
         },
         {
@@ -376,7 +379,7 @@ export default {
           value: '8'
         },
         {
-          text: '#F',
+          text: 'F#',
           value: '9'
         },
         {
@@ -384,10 +387,24 @@ export default {
           value: '10'
         },
         {
-          text: '#G',
+          text: 'G#',
           value: '11'
         }
-      ]
+      ],
+      changeVaule: {
+        A: 0,
+        'A#': 1,
+        B: 2,
+        C: 3,
+        'C#': 4,
+        D: 5,
+        'D#': 6,
+        E: 7,
+        F: 8,
+        'F#': 9,
+        G: 10,
+        'G#': 11
+      }
     }
   },
   components: {},
@@ -400,7 +417,9 @@ export default {
     },
     change1: function () {
       this.value2 = Transcore.tune(this.value1, {
-        offset: this.ScaleSelet2 - this.ScaleSelet1,
+        offset:
+          this.changeVaule[this.ScaleSelet2] -
+          this.changeVaule[this.ScaleSelet1],
         preferSharpE: this.flag[1],
         preferSharpB: this.flag[3]
       })

@@ -33,6 +33,7 @@ module.exports = app => {
     router.post('/volume/:vid/score', controller.volume.addVolumeScore); //增加谱子到谱册
     router.delete('/volume/:vid/score/:sid', controller.volume.deleteVolumeScore); //删除谱子
     router.post('/upload', controller.multipart.upload); //上传图像
+    router.post('/score/upload',controller.score.upload) //上传曲谱
     // router.post('/uploadScore', controller.multipart.uploadScore); //拥有者
     router.get('/volume/:vid/comment', controller.volume.getComment);//拉取评论
     router.post('/volume/:vid/comment', controller.volume.addComment); //添加评论
