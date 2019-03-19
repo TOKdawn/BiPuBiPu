@@ -42,9 +42,17 @@ module.exports = [{
     name: 'articleList',
     component: require('pages/article/articleList')
   }, {
-    path: 'volume/vid',
+    path: 'volume/:vid',
     name: 'volume',
     component: require('pages/volume/volume')
+  }, {
+    path: '403',
+    name: '403',
+    component: require('pages/system/403')
+  }, {
+    path: 'editVolume/:vid',
+    name: 'editVolume',
+    component: require('pages/volume/volumeEdit')
   }, {
     path: 'user/:uid',
     name: 'user',

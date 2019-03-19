@@ -16,8 +16,8 @@
             >
               <el-option
                 v-for="item in Scale1"
-                :value="item.value"
-                :key="item.value"
+                :value="item.text"
+                :key="item.text"
               >{{ item.text }}</el-option>
             </el-select> 转换后:
             <el-select

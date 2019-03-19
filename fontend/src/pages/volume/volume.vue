@@ -14,7 +14,6 @@
             <li>简介: {{scoreData.album}}</li>
 
           </ul>
-
           <el-row style="margin-top:15px;">
             <el-button
               type="primary"
@@ -25,6 +24,7 @@
               type="success"
               size="small"
               plain
+              @click="$router.push({ name: 'editVolume',  params: { vid: '123' }})"
             >修改信息</el-button>
             <el-button
               size="small"
@@ -73,6 +73,70 @@
 
               </el-table-column>
             </el-table>
+            <div class="movie_comment">
+              <el-row>
+                <el-col :span="18">
+                  <!-- <h1>507 评论</h1> -->
+                  <!-- <p class="movie_page"> 共34页 &nbsp; <span style="color:#128dca"> 1</span> &nbsp; 2 &nbsp; 3 &nbsp; 4 &nbsp; ... &nbsp; 34 &nbsp;下一页</p> -->
+
+                  <el-row>
+                    <el-col
+                      :span="4"
+                      class="comment_head"
+                    > <img
+                        src="./userhead1.png"
+                        alt=""
+                      ></el-col>
+                    <el-col :span="16">
+                      <el-input
+                        class="comment_main"
+                        type="textarea"
+                        placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。"
+                      ></el-input>
+
+                    </el-col>
+                    <el-col :span="4">
+                      <el-button
+                        type="info"
+                        class="comment_enter"
+                        size="small"
+                      >发送评论</el-button> </el-col>
+                  </el-row>
+
+                  <el-row>
+                    <el-col
+                      :span="4"
+                      class="comment_head"
+                    > <img
+                        src="./hedda2.png"
+                        alt=""
+                      ></el-col>
+                    <el-col
+                      :span="20"
+                      class="comment_say"
+                    >
+                      <h1> 阴影中的曙光</h1>
+                      <p> Vue是一套用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。</p>
+                      <el-row class="comm_info">
+                        <el-col :span="5">#1</el-col>
+                        <el-col :span="10">2019-03-24 20:23</el-col>
+                        <el-col :span="5"> 回复</el-col>
+                      </el-row>
+                    </el-col>
+                  </el-row>
+                </el-col>
+                <!-- <el-col span="5" class="dadsad"> <img src="./show.png" alt="" class="movie_showss"></el-col> -->
+              </el-row>
+            </div>
+          </div>
+          <div class="info">
+            <div>
+              <h2>
+                收藏此歌单的人
+              </h2>
+              <p>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -228,6 +292,76 @@ export default {
       p {
         float: right;
         margin-top: -26px;
+      }
+    }
+    .collection {
+      float: left;
+      float: left;
+      width: 100%;
+      padding-bottom: 20px;
+      .comment_head img {
+        margin: 10px 0px;
+        height: 80px;
+        border-radius: 40px;
+      }
+      .comment_main {
+        margin: 20px 0px 40px 0px;
+        line-height: 24px;
+      }
+      .comment_enter {
+        margin: 20px 0px 20px 30px;
+        height: 54px;
+      }
+      .comment_say {
+        border-top: 2px #eee solid;
+      }
+      .comment_head_min img {
+        width: 50px;
+      }
+      .comment_say {
+        padding: 10px 0px;
+      }
+      .comment_say h1 {
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+      .comment_say p {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 10px;
+      }
+      .comm_info {
+        color: #666;
+        font-weight: 400;
+        font-size: 13px;
+        cursor: pointer;
+        margin-bottom: 6px;
+      }
+      .comm_info i {
+        font-size: 18px;
+        margin-right: 3px;
+      }
+      .comment_say_min {
+        padding: 10px 0px 5px 0px;
+      }
+      .comment_say_min h1 {
+        display: inline-block;
+        width: 110px;
+        font-size: 13px;
+      }
+      .comment_say_min p {
+        display: inline-block;
+      }
+    }
+    .info {
+      float: right;
+      position: relative;
+      width: 290px;
+      margin-right: -343px;
+      padding-bottom: 20px;
+      h2 {
+        font-size: $--FontSizeL;
+        line-height: 46px;
       }
     }
   }
