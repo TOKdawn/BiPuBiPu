@@ -5,18 +5,23 @@
       class="card"
     >
       <h2>曲谱发布</h2>
-      <el-form
+      <!-- <el-form
         :model="scoreData"
-        :rules="rules"
+        :rules="rules1"
         ref="ruleForm"
         label-width="100px"
-      >
-
-        <el-tabs v-model="activeName">
-          <el-tab-pane
-            label="基本信息"
-            name="first"
-            style="min-height:580px; position: relative;"
+      > -->
+      <el-tabs v-model="activeName">
+        <el-tab-pane
+          label="基本信息"
+          name="first"
+          style="min-height:580px; position: relative;"
+        >
+          <el-form
+            :model="scoreData"
+            :rules="rules1"
+            ref="ruleForm1"
+            label-width="100px"
           >
             <el-row>
               <el-col :span="8">
@@ -75,14 +80,21 @@
               <el-button
                 type="primary"
                 size="small"
-                @click="activeName = 'second'"
+                @click="jump1"
               >下一步</el-button>
             </div>
-          </el-tab-pane>
-          <el-tab-pane
-            label="曲谱正文"
-            name="second"
-            style="min-height:580px; position: relative;"
+          </el-form>
+        </el-tab-pane>
+        <el-tab-pane
+          label="曲谱正文"
+          name="second"
+          style="min-height:580px; position: relative;"
+        >
+          <el-form
+            :model="scoreData"
+            :rules="rules2"
+            ref="ruleForm2"
+            label-width="100px"
           >
             <el-row>
               <el-col :span="12">
@@ -147,15 +159,22 @@
                 <el-button
                   type="primary"
                   size="small"
-                  @click="activeName = 'third'"
+                  @click="jump2"
                 >下一步</el-button>
               </el-row>
             </div>
-          </el-tab-pane>
-          <el-tab-pane
-            label="版权信息"
-            name="third"
-            style="min-height:580px; position: relative;"
+          </el-form>
+        </el-tab-pane>
+        <el-tab-pane
+          label="版权信息"
+          name="third"
+          style="min-height:580px; position: relative;"
+        >
+          <el-form
+            :model="scoreData"
+            :rules="rules3"
+            ref="ruleForm3"
+            label-width="100px"
           >
             <el-row>
               <el-col :span="24">
@@ -197,15 +216,22 @@
                 <el-button
                   type="primary"
                   size="small"
-                  @click="activeName = 'fourth'"
+                  @click="jump3"
                 >下一步</el-button>
               </el-row>
             </div>
-          </el-tab-pane>
-          <el-tab-pane
-            label="其他信息"
-            name="fourth"
-            style="min-height:580px; position: relative;"
+          </el-form>
+        </el-tab-pane>
+        <el-tab-pane
+          label="其他信息"
+          name="fourth"
+          style="min-height:580px; position: relative;"
+        >
+          <el-form
+            :model="scoreData"
+            :rules="rules4"
+            ref="ruleForm4"
+            label-width="100px"
           >
             <el-row>
               <el-col :span="8">
@@ -233,15 +259,19 @@
                   图片形式的简谱或五线谱可以在此上传<br>尽量采用3*4的比例
                 </el-form-item>
                 <el-form-item
-                label="乐谱调性:"
-                prop="tonality"
+                  label="乐谱调性:"
+                  prop="tonality"
                 >
-                  <el-select v-model="scoreData.tonality" placeholder="请选择">
+                  <el-select
+                    v-model="scoreData.tonality"
+                    placeholder="请选择"
+                  >
                     <el-option
                       v-for="item in Scale1"
                       :key="item.value"
                       :label="item.text"
-                      :value="item.value">
+                      :value="item.value"
+                    >
                     </el-option>
                   </el-select>
                 </el-form-item>
@@ -255,7 +285,7 @@
 
                   <p>非必填项,网易云音乐相关歌曲的链接</p>
                 </el-form-item>
-                  <el-form-item
+                <el-form-item
                   label="B站友链:"
                   prop="performs"
                 >
@@ -276,17 +306,26 @@
                   type="success"
                   size="small"
                   icon="el-icon-success"
+                  @click="submit"
                 >提交</el-button>
 
               </el-row>
             </div>
-          </el-tab-pane>
-        </el-tabs>
-      </el-form>
+          </el-form>
+        </el-tab-pane>
+      </el-tabs>
+      <!-- </el-form> -->
+      <img
+        src="../../assets/img/molisha.png"
+        title="帮助"
+        alt="help"
+        class="help"
+      >
     </el-card>
   </div>
 </template>
 <script>
+import { Upload } from 'common/urls'
 export default {
   data () {
     return {
@@ -362,12 +401,42 @@ export default {
           text: 'G#',
           value: '11'
         }
-      ]
+      ],
+      rules1: {
+        name: [
+          { required: true, message: '请输入乐谱名称', trigger: 'blur' },
+          { max: 30, message: '长度不能超过30个字符', trigger: 'blur' }
+        ],
+        alias: { max: 30, message: '长度不能超过30个字符', trigger: 'blur' },
+        addtion: { max: 30, message: '长度不能超过30个字符', trigger: 'blur' }
+      },
+      rules2: {
+        score_text: [
+          { required: true, message: '请输入曲谱正文', trigger: 'blur' }
+        ]
+      },
+      rules3: {
+        provider: [
+          { max: 10, message: '长度不能超过10个字符', trigger: 'blur' }
+        ],
+        provider_url: [
+          { max: 100, message: '长度不能超过100个字符', trigger: 'blur' }
+        ],
+        other_url: [
+          { max: 100, message: '长度不能超过100个字符', trigger: 'blur' }
+        ]
+      },
+      rules4: {
+        songs: [
+          { max: 100, message: '长度不能超过100个字符', trigger: 'blur' }
+        ],
+        performs: [
+          { max: 100, message: '长度不能超过100个字符', trigger: 'blur' }
+        ]
+      }
     }
   },
-  created () {
-
-  },
+  created () {},
   methods: {
     handleAvatarSuccess (res, file) {
       this.scoreData.image_url = URL.createObjectURL(file.raw)
@@ -376,9 +445,78 @@ export default {
     handleAvatarSuccess1 (res, file) {
       this.scoreData.other_img = URL.createObjectURL(file.raw)
       console.log(URL.createObjectURL(file.raw))
+    },
+    jump1 () {
+      this.$refs['ruleForm1'].validate((valid) => {
+        if (valid) {
+          this.activeName = 'second'
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
+    },
+    jump2 () {
+      this.$refs['ruleForm2'].validate((valid) => {
+        if (valid) {
+          this.activeName = 'third'
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
+    },
+    jump3 () {
+      this.$refs['ruleForm3'].validate((valid) => {
+        if (valid) {
+          this.activeName = 'fourth'
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
+    },
+    submit () {
+      console.log(this.scoreData)
+      this.$confirm('即将进行乐谱上传,请确认填写的信息无误', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$http({
+          method: 'post',
+          url: Upload.uploadScore,
+          data: {
+            scoreData: this.scoreData
+          }
+        }).then(res => {
+          if (res.status === 200) {
+            this.$message({
+              type: 'success',
+              duration: 2000,
+              message: '上传成功!'
+            })
+          } else {
+            this.$message({
+              showClose: true,
+              duration: 2000,
+              message: res.data.message,
+              type: 'error'
+            })
+          }
+        }).catch(() => {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: '登录失败',
+            type: 'error'
+          })
+        })
+      }).catch(() => {
+      })
     }
-
   }
+
 }
 </script>
 <style lang="scss" scoped>
@@ -429,6 +567,17 @@ export default {
       button {
         margin: 0px 30px;
       }
+    }
+  }
+  .help {
+    position: absolute;
+    width: 80px;
+    margin-top: -200px;
+    margin-left: -101px;
+    cursor: pointer;
+    transform: all 0.5s;
+    &:hover {
+      margin-top: -203px;
     }
   }
 }

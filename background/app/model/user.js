@@ -41,46 +41,32 @@ module.exports = app => {
             allowNull: false,
             defaultValue: 0, //1登录 ,0未登录,2管理员
         },
-        // like:{
-        //   type: INTEGER,
-        //   allowNull: false,
-        //   defaultValue: 0, //1登录 ,0未登录,2管理员
-        // },
-        // upload:{
-        //   type: INTEGER,
-        //   allowNull: false,
-        //   defaultValue: 0, //1登录 ,0未登录,2管理员
-        // },
-        // collection:{
-        //   type: INTEGER,
-        //   allowNull: false,
-        //   defaultValue: 0, //1登录 ,0未登录,2管理员
-        // },
-        // bilibili:{
-        //   type: STRING(200),
-        //   allowNull: true,
-        //   defaultValue: '',
-        // },
-        // weibo:{
-        //   type: STRING(200),
-        //   allowNull: true,
-        //   defaultValue: '',
-        // },
-        // fivesong:{
-        //   type: STRING(200),
-        //   allowNull: true,
-        //   defaultValue: '',
-        // },
-        // tieba:{
-        //   type: STRING(200),
-        //   allowNull: true,
-        //   defaultValue: '',
-        // },
-        // other:{
-        //   type: STRING(200),
-        //   allowNull: true,
-        //   defaultValue: '',
-        // },
+
+        bilibili:{
+          type: STRING(200),
+          allowNull: true,
+          defaultValue: '',
+        },
+        weibo:{
+          type: STRING(200),
+          allowNull: true,
+          defaultValue: '',
+        },
+        fivesong:{
+          type: STRING(200),
+          allowNull: true,
+          defaultValue: '',
+        },
+        tieba:{
+          type: STRING(200),
+          allowNull: true,
+          defaultValue: '',
+        },
+        other:{
+          type: STRING(200),
+          allowNull: true,
+          defaultValue: '',
+        },
         created_at: {
             type: DATE,
             allowNull: true,

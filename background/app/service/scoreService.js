@@ -9,6 +9,7 @@ class ScoreService extends Service {
     this.Volume = this.ctx.model.Volume;
     this.Auhtor = this.ctx.model.Authorization;
     this.Score = this.ctx.model.Score;
+    this.userUpload = this.ctx.userUpload;
   }
   async searchWord(keyword){
     
@@ -32,6 +33,12 @@ class ScoreService extends Service {
         other_url: scoreData.other_url,
         other_img: scoreData.other_img,
       });
+      await this.userUpload.create({
+        uid,
+        sid: data.get('id'),
+      })
+      await t.commit();
+      return data;
     } catch (err) {
       await t.rollback();
       return err;

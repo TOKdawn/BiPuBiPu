@@ -8,18 +8,7 @@ module.exports = {
       ARRAY,
       DATE,
     } = Sequelize;
-    await queryInterface.createTable('Tag',{
-      id: {
-        type: INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true,
-      },
-      content: {
-        type: INTEGER,
-        allowNull: false,
-      }
-    })
+
     await queryInterface.createTable('Score', {
       id: {
         type: INTEGER,
@@ -43,7 +32,15 @@ module.exports = {
         type: STRING,
         allowNull: false,
       },
+      tonality: {
+        type: STRING,
+        allowNull: false,
+      },
       score_text:{//内容本体
+        type: STRING,
+        allowNull: false,
+      },
+      description:{
         type: STRING,
         allowNull: false,
       },
@@ -59,14 +56,6 @@ module.exports = {
         type:STRING,
         allowNull:true,
       },
-      carrier:{ //传谱人
-        type:STRING,
-        allowNull:true,
-      },
-      // sid: {
-      //   type: INTEGER,
-      //   allowNull: false,
-      // },
       performs:{//B站作品
         type: INTEGER,
         allowNull: false,
@@ -74,6 +63,14 @@ module.exports = {
       songs:{ //网易云音乐
         type: INTEGER,
         allowNull: false,
+      },
+      other_url:{
+        type:STRING,
+        allowNull:true,
+      },
+      other_img:{
+        type:STRING,
+        allowNull:true,
       },
       created_at: DATE,
       updated_at: DATE,
@@ -84,34 +81,59 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-      },
-      avatar: {
+    },
+    email:{
+      type: STRING(15),
+      allowNull: false,
+    },
+    avatar: {
         type: STRING(200),
         allowNull: true,
-      },
-      email: {
-        type: STRING(15),
-        allowNull: false,
-      },
-      name: {
+    },
+    name: {
         type: STRING(20),
         allowNull: false,
         defaultValue: 'undefined',
-      },
-      password: {
-        type: STRING(100),
-        allowNull: false,
-      },
-      signature: {
+    },
+    password: {
+      type: STRING(100),
+      allowNull: false,
+    },
+    signature: {
         type: STRING(50),
         allowNull: true,
         defaultValue: 'undefined',
-      },
-      role: { //
+    },
+    role: { //
         type: INTEGER,
         allowNull: false,
-        defaultValue: 1,
-      },
+        defaultValue: 0, //1登录 ,0未登录,2管理员
+    },
+    bilibili:{
+      type: STRING(200),
+      allowNull: true,
+      defaultValue: '',
+    },
+    weibo:{
+      type: STRING(200),
+      allowNull: true,
+      defaultValue: '',
+    },
+    fivesong:{
+      type: STRING(200),
+      allowNull: true,
+      defaultValue: '',
+    },
+    tieba:{
+      type: STRING(200),
+      allowNull: true,
+      defaultValue: '',
+    },
+    other:{
+      type: STRING(200),
+      allowNull: true,
+      defaultValue: '',
+    },
       created_at: DATE,
       updated_at: DATE,
     });
@@ -238,6 +260,37 @@ module.exports = {
     });
 
 
+    await queryInterface.createTable('userFocus', {
+      id: {
+        type: INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      uid: { // 数组外键,用户关注
+        type: INTEGER({
+          references: {
+            model: 'User', // 对应外键表
+            key: 'id', // 对应字段
+            deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+          },
+          allowNull: true,
+        }),
+      },
+      otherid: { // 数组外键
+        type: INTEGER({
+          references: {
+            model: 'User', // 对应外键表
+            key: 'id', // 对应字段
+            deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+          },
+          allowNull: true,
+        }),
+      },
+      created_at: DATE,
+      updated_at: DATE,
+    });
+
     await queryInterface.createTable('userStar', {
       id: {
         type: INTEGER,
@@ -245,19 +298,62 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      uid: {
-        type: INTEGER,
-        allowNull: false,
+      uid: { // 数组外键,用户关注
+        type: INTEGER({
+          references: {
+            model: 'User', // 对应外键表
+            key: 'id', // 对应字段
+            deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+          },
+          allowNull: true,
+        }),
+      },
+      sid: { // 数组外键
+        type: INTEGER({
+          references: {
+            model: 'Score', // 对应外键表
+            key: 'id', // 对应字段
+            deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+          },
+          allowNull: true,
+        }),
+      },
+      created_at: DATE,
+      updated_at: DATE,
+    });
 
-      },
-      sid: {
+    await queryInterface.createTable('userUpload', {
+      id: {
         type: INTEGER,
         allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
       },
-    }, {
-      timestamps: false,
-      freezeTableName: true, // 默认表名会被加s,此选项强制表名跟model一致
-    })
+      uid: { // 数组外键,用户关注
+        type: INTEGER({
+          references: {
+            model: 'User', // 对应外键表
+            key: 'id', // 对应字段
+            deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+          },
+          allowNull: true,
+        }),
+      },
+      sid: { // 数组外键
+        type: INTEGER({
+          references: {
+            model: 'Score', // 对应外键表
+            key: 'id', // 对应字段
+            deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+          },
+          allowNull: true,
+        })
+      },
+      created_at: DATE,
+      updated_at: DATE,
+    });
+    
+    
 
     await queryInterface.createTable('scoreVolume', {
       id: {
@@ -266,10 +362,15 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      sid: {
-        type: INTEGER,
-        allowNull: false,
-        primaryKey: true,
+      sid: { // 数组外键,用于查评论表
+        type: INTEGER({
+          references: {
+            model: 'Score', // 对应外键表
+            key: 'id', // 对应字段
+            deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+          },
+          allowNull: true,
+        }),
       },
       vid: { // 数组外键,用于查评论表
         type: INTEGER({
@@ -282,6 +383,7 @@ module.exports = {
         }),
       },
     });
+
     await queryInterface.createTable('subComment', {
       id: {
         type: INTEGER,
@@ -369,14 +471,17 @@ module.exports = {
     await queryInterface.dropTable('scoreVolume');
     await queryInterface.dropTable('collectionVolume');
     await queryInterface.dropTable('ownVolume');
+    await queryInterface.dropTable('userStar');
+    await queryInterface.dropTable('userFocus');
+    await queryInterface.dropTable('userUpload');
     await queryInterface.dropTable('Volume');
     await queryInterface.dropTable('Comment');
     await queryInterface.dropTable('User');
     await queryInterface.dropTable('Score');
     await queryInterface.dropTable('subComment');
     await queryInterface.dropTable('Authorization')
-    await queryInterface.dropTable('userStar')
-    await queryInterface.dropTable('Tag')
+  
+   
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.

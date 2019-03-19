@@ -88,8 +88,8 @@
       </div>
       <div class="creat">
         <div class="title">
-          <h3>收藏的谱册</h3>
-
+          <h3>收藏的谱册 </h3>
+          <p> 新建谱册+ </p>
         </div>
         <div class="otherScoreListDiv">
           <div

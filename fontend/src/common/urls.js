@@ -16,7 +16,11 @@ const Login = {
 const System = {
   checkUser: baseUrl + '/system/checkuser'
 }
+const Upload = {
+  uploadScore: baseUrl + '/score/upload'
+}
 export {
   Login,
-  System
+  System,
+  Upload
 }
