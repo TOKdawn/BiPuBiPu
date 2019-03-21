@@ -106,11 +106,11 @@
                     class="avatar-uploader"
                     action="/api/upload"
                     :show-file-list="false"
-                    :on-success="handleAvatarSuccess"
+                    :on-success="handleAvatarSuccess1"
                   >
                     <img
-                      v-if="scoreData.image_url"
-                      :src="scoreData.image_url"
+                      v-if="img1"
+                      :src="img1"
                       class="avatar"
                     >
                     <i
@@ -243,11 +243,11 @@
                     class="avatar-uploader"
                     action="/api/upload"
                     :show-file-list="false"
-                    :on-success="handleAvatarSuccess1"
+                    :on-success="handleAvatarSuccess"
                   >
                     <img
-                      v-if="scoreData.other_img"
-                      :src="scoreData.other_img"
+                      v-if="img2"
+                      :src="img2"
                       class="avatar"
                     >
                     <i
@@ -348,6 +348,8 @@ export default {
         //   id: '' // 上传者id
         // }
       },
+      img1: '',
+      img2: '',
       activeName: 'first',
       rules: {},
       value: '',
@@ -439,12 +441,12 @@ export default {
   created () {},
   methods: {
     handleAvatarSuccess (res, file) {
-      this.scoreData.image_url = URL.createObjectURL(file.raw)
-      console.log(URL.createObjectURL(file.raw))
+      this.scoreData.other_img = res.url
+      this.img2 = URL.createObjectURL(file.raw)
     },
     handleAvatarSuccess1 (res, file) {
-      this.scoreData.other_img = URL.createObjectURL(file.raw)
-      console.log(URL.createObjectURL(file.raw))
+      this.scoreData.image_url = res.url
+      this.img1 = URL.createObjectURL(file.raw)
     },
     jump1 () {
       this.$refs['ruleForm1'].validate((valid) => {

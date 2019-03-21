@@ -28,7 +28,7 @@ class SystemController extends Controller {
     this.ctx.helper.applySMS(phone);
   }
   async checkUserInfo(){
-    console.log(this.ctx.session)
+    // console.log(this.ctx.session)
     if(this.ctx.session.user){
       this.ctx.helper.successRes('success',this.ctx.session.user)
     } else{

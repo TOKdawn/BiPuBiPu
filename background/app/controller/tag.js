@@ -32,7 +32,7 @@ class TagController extends Controller {
 
   async addTag(){
     const response = await this.TagService.addTag();
-    console.log('addTag'+response);
+    // console.log('addTag'+response);
     this.ctx.helper.successRes('sucess', response);
   }
 

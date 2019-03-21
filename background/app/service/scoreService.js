@@ -11,13 +11,19 @@ class ScoreService extends Service {
     this.Score = this.ctx.model.Score;
     this.userUpload = this.ctx.userUpload;
   }
-  async searchWord(keyword){
-    
+  async searchWord(sid){
+    const score = await this.Score.findOne({
+      where: {
+        id:sid
+      }
+    })
+    return score;
   }
+  
   async uploadScore(scoreData , uid){
     const t = await this.ctx.model.transaction();
     try {
-      const data = await this.Score.create( {
+      const data = await this.Score.create({
         name: scoreData.name,
         alias: scoreData.alias,
         addtion: scoreData.addtion,
