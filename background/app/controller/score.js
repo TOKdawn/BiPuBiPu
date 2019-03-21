@@ -14,7 +14,7 @@ class ScoreController extends Controller {
   async getScore() {
     const {
       sid
-    } = this.ctx.request.body;
+    } = this.ctx.params;
     const response = await this.scoreService.getScore(sid);
     return response
   }
@@ -29,10 +29,84 @@ class ScoreController extends Controller {
         scoreData.image_url = 'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/score.jpg'
       }
       const response = await this.scoreService.uploadScore(scoreData,this.ctx.session.user.id)
-      
+      return response
     }
-
   }
+  async addCollectionVolume() {
+    const {
+      vid
+    } = this.ctx.request.body;
+    if(this.ctx.session.user){
+      this.ctx.helper.createRes(203, '用户登录失效或权限不足')
+    } else{
+      const response = await this.scoreService.addCollectionVolume(vid,this.ctx.session.user.id)
+      return response
+    }
+  }
+
+  async deleteCollectionVolume() {
+    const {
+      vid
+    } = this.ctx.request.params;
+    if(this.ctx.session.user){
+      this.ctx.helper.createRes(203, '用户登录失效或权限不足')
+    } else{
+      const response = await this.scoreService.deleteCollectionVolume(vid,this.ctx.session.user.id)
+      return response
+    }
+  }
+
+  async addLikeScore() {
+    const {
+      vid
+    } = this.ctx.request.body;
+    if(this.ctx.session.user){
+      this.ctx.helper.createRes(203, '用户登录失效或权限不足')
+    } else{
+      const response = await this.scoreService.addLikeScore(vid,this.ctx.session.user.id)
+      return response
+    }
+  }
+
+  async deleteLikeScore() {
+    const {
+      vid
+    } = this.ctx.request.params;
+    if(this.ctx.session.user){
+      this.ctx.helper.createRes(203, '用户登录失效或权限不足')
+    } else{
+      const response = await this.scoreService.deleteLikeScore(vid,this.ctx.session.user.id)
+      return response
+    }
+  }
+
+
+  async addStarUser() {
+    const {
+      vid
+    } = this.ctx.request.body;
+    if(this.ctx.session.user){
+      this.ctx.helper.createRes(203, '用户登录失效或权限不足')
+    } else{
+      const response = await this.scoreService.addStarUser(vid,this.ctx.session.user.id)
+      return response
+    }
+  }
+
+  async deleteStarUser() {
+    const {
+      vid
+    } = this.ctx.request.params;
+    if(this.ctx.session.user){
+      this.ctx.helper.createRes(203, '用户登录失效或权限不足')
+    } else{
+      const response = await this.scoreService.deleteStarUser(vid,this.ctx.session.user.id)
+      return response
+    }
+  }
+
+  
+  
 
 }
 

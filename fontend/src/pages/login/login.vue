@@ -31,7 +31,6 @@
         <div class="aside fl">
           <h3 class="title">
             <p>登录</p>
-
           </h3>
         </div>
         <div class="content fl">
@@ -78,7 +77,6 @@
                   <p @click.stop="getCatcha">看不清,换一张</p>
                 </div>
               </div>
-
               <div
                 style="float:right;  cursor: pointer;"
                 @click="forget()"

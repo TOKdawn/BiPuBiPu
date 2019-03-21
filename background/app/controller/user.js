@@ -91,13 +91,13 @@ class UserController extends Controller {
       captcha
     } = this.ctx.request.body;
     if( await this.ctx.helper.checkCaptcha(captcha)){
-      console.log('res',this.ctx.helper.checkCaptcha(captcha))
+      // console.log('res',this.ctx.helper.checkCaptcha(captcha))
       this.ctx.helper.createRes(202, '验证码错误 凸(⊙▂⊙✖ )');
     }else if(!(await this.userService.checkPhone(phone))){
       this.ctx.helper.createRes(202, '此电话号未注册 凸(⊙▂⊙✖ )');
     }else{
       const response = await this.userService.Login(phone, password);
-      console.log( this.response)
+      // console.log( this.response)
       if(response == null){
         this.ctx.helper.createRes(202, '用户名或密码错误(ﾟДﾟ;)')
       }else{
@@ -124,7 +124,7 @@ class UserController extends Controller {
       this.ctx.helper.createRes(400, '短信验证码错误');
     }else{
       const response = await this.userService.Register(username, phone, password);
-      console.log('注册成功',this.ctx.session, '返回信息',response.dataValues)
+      // console.log('注册成功',this.ctx.session, '返回信息',response.dataValues)
       this.ctx.session.user = response.dataValues;
       this.ctx.helper.successRes('sucess',response); 
     }

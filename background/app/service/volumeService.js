@@ -93,7 +93,6 @@ class VolumeService extends Service {
       //如果无缓存
       try {
         const scoredata = await this.ctx.helper.getIssue(sid);
-
         console.log('scoredata:', scoredata, 'sid:', sid);
         await this.Score.findOrCreate({
           //缓存

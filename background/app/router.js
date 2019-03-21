@@ -15,9 +15,17 @@ module.exports = app => {
     router.get('/user/logout', controller.user.logout);//注销
     router.get('/user/collection/', controller.user.getMyCollection); //获取自己收藏
     router.get('/user/:uid', controller.user.getInfo);//获取其他用户信息
-    router.get('/user/collection/:uid', controller.user.getUserCollection); //拉取用户收藏
-    router.post('/user/collection', controller.user.addCollectionVolume); //收藏谱子
+    router.get('/user/collection/:uid', controller.user.getUserCollection); //拉取用户收藏谱册
+
+    router.post('/user/collection/', controller.user.addCollectionVolume); //收藏谱册
     router.delete('/user/collection/:vid', controller.user.deleteCollectionVolume); //删除谱子
+
+    router.post('/user/likescore/', controller.user.addLikeScore); //喜欢一个乐谱
+    router.delete('/user/likescore/:sid', controller.user.deleteLikeScore); //取消喜欢一个乐谱
+
+    router.post('/user/staruser/', controller.user.addStarUser); //关注一个用户
+    router.delete('/user/staruser/:uid', controller.user.deleteStarUser); //取消关注一个用户
+
     router.get('/system/catcha',controller.system.getCatcha);// 获取验证码
     router.post('/system/sms',controller.system.getSMS);// 发送短信验证码
     router.get('/system/search/:keyword',controller.system.searchWord);// 查询
@@ -34,6 +42,7 @@ module.exports = app => {
     router.delete('/volume/:vid/score/:sid', controller.volume.deleteVolumeScore); //删除谱子
     router.post('/upload', controller.multipart.upload); //上传图像
     router.post('/score/upload',controller.score.upload) //上传曲谱
+    router.get('/score/getscore:sid',controller.score.getScore) // 获取乐谱
     // router.post('/uploadScore', controller.multipart.uploadScore); //拥有者
     router.get('/volume/:vid/comment', controller.volume.getComment);//拉取评论
     router.post('/volume/:vid/comment', controller.volume.addComment); //添加评论

@@ -11,7 +11,6 @@ module.exports = {
     // this.ctx => context 对象
     // this.app => application 对象
     // console.log('错误码',status)
-   
     let Res = {
       message: text,
       data: text
@@ -53,7 +52,7 @@ module.exports = {
   },
   async checkCaptcha(captcha) {
     if (this.ctx.session.catcha + '' === captcha +'') {
-      console.log('验证svg',this.ctx.session.catcha, captcha)
+      // console.log('验证svg',this.ctx.session.catcha, captcha)
       return false //验证成功
     } else {
       return true //验证失败
@@ -78,10 +77,10 @@ module.exports = {
       "tpl_id": 285795
     }
     const sms =  parseInt(Math.random()*(9999-1000+1)+1000,10)  
-console.log('old:',this.ctx.session)
+    // console.log('old:',this.ctx.session)
     this.ctx.session.usersms = sms; 
        
-    console.log('theSMS:',this.ctx.session)
+    // console.log('theSMS:',this.ctx.session)
     const strMobile = phone; //tel 的 mobile 字段的内容
     const strAppKey = "6cd5a907422525162a450801eac5c94e"; //sdkappid 对应的 appkey，需要业务方高度保密
     const strTime = (Date.now()+'').substring(0, 10); //UNIX 时间戳
