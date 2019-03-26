@@ -14,6 +14,7 @@ class VolumeService extends Service {
     this.SubComment = this.ctx.model.SubComment;
     this.Score = this.ctx.model.Score;
   }
+
   async createVolume(title, describe, uid) {
     // console.log(this.app.model.sequelize)
     const t = await this.ctx.model.transaction();
@@ -38,7 +39,7 @@ class VolumeService extends Service {
       return err;
     }
   }
-  
+
   async editVolume(id, title, describe, url) {
     const data = await this.Volume.update({
       title,
@@ -51,6 +52,7 @@ class VolumeService extends Service {
     });
     return data;
   }
+
   async deleteVolume(vid, uid) {
     const t = await this.ctx.model.transaction();
     try {
@@ -74,6 +76,7 @@ class VolumeService extends Service {
       return err;
     }
   }
+
   async getVolumeInfo(vid) {
     const volume = await this.Volume.findOne({
       where: {
@@ -82,6 +85,7 @@ class VolumeService extends Service {
     });
     return volume;
   }
+  
   async addVolumeScore(vid, sid) {
     const t = await this.ctx.model.transaction();
     const score = await this.Score.findOne({
@@ -123,6 +127,7 @@ class VolumeService extends Service {
     });
     return data;
   }
+
   async deleteVolumeScore(vid, sid) {
     const data = await this.ScoreVolume.destroy({
       where: {
@@ -133,6 +138,7 @@ class VolumeService extends Service {
     // console.log(data);
     return data;
   }
+
   async getVolumeScore(vid, offset, pagesize) {
     await this.Volume.increment(['visits'], {
       by: 1,
@@ -161,9 +167,9 @@ class VolumeService extends Service {
       });
       result.push(score);
     }
-
     return result;
   }
+
   async addCommentToComment(id, text, uid, targetid) {
     const data = await this.SubComment.create({
       targetid,
@@ -173,6 +179,7 @@ class VolumeService extends Service {
     });
     return data;
   }
+
   async addCommentToVolume(id, text, uid) {
 
     // console.log(uid, id, text)
@@ -182,9 +189,8 @@ class VolumeService extends Service {
       text,
     });
     return data;
-
-
   }
+
   async getVolumeList(offset, pagesize, role) {
     // console.log(role)
     if (role == 'normal'); //目前只有常规查询;
@@ -197,8 +203,8 @@ class VolumeService extends Service {
       offset,
     });
     return data;
-
   }
+
   async getComment(vid) {
     this.Volume.hasMany(this.Comment);
     this.Comment.hasMany(this.SubComment)
@@ -219,6 +225,7 @@ class VolumeService extends Service {
     })
     return data;
   }
+
   async delectComment(cid) {
     await this.Comment.update({
       status: 2,
@@ -228,6 +235,7 @@ class VolumeService extends Service {
       },
     });
   }
+
   async delectSubcomment(cid) {
     await this.SubComment.update({
       status: 2,
@@ -237,6 +245,7 @@ class VolumeService extends Service {
       },
     });
   }
+  
   async findOwner(vid) {
     const data = await this.OwnVolume.findOne({
       where: {

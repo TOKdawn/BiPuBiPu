@@ -17,59 +17,59 @@ module.exports = {
         autoIncrement: true,
       },
       name: { //标题
-        type: STRING,
+        type: STRING(30),
         allowNull: false,
       },
       alias:{ //别名
-        type: STRING,
+        type: STRING(30),
         allowNull: true,
       },
       addtion:{ //简介
-        type: STRING,
+        type: STRING(30),
         allowNull: true,
       },
       image_url: { //图片
-        type: STRING,
+        type: STRING(300),
         allowNull: false,
       },
       tonality: {
-        type: STRING,
-        allowNull: false,
+        type: STRING(30),
+        allowNull: true,
       },
       score_text:{//内容本体
-        type: STRING,
+        type: STRING(3000),
         allowNull: false,
       },
       description:{
-        type: STRING,
-        allowNull: false,
+        type: STRING(3000),
+        allowNull: true,
       },
       source_url:{//原谱地址
-        type:STRING,
+        type:STRING(300),
         allowNull:true,
       },
       provider:{//扒谱人
-        type:STRING,
+        type:STRING(30),
         allowNull:true,
       },
       provider_url:{ //扒谱人url
-        type:STRING,
+        type:STRING(300),
         allowNull:true,
       },
       performs:{//B站作品
-        type: INTEGER,
-        allowNull: false,
+        type: STRING(300),
+        allowNull: true,
       },
       songs:{ //网易云音乐
-        type: INTEGER,
-        allowNull: false,
+        type: STRING(300),
+        allowNull: true,
       },
       other_url:{
-        type:STRING,
+        type:STRING(300),
         allowNull:true,
       },
       other_img:{
-        type:STRING,
+        type:STRING(300),
         allowNull:true,
       },
       created_at: DATE,
@@ -83,7 +83,7 @@ module.exports = {
         autoIncrement: true,
     },
     email:{
-      type: STRING(15),
+      type: STRING(30),
       allowNull: false,
     },
     avatar: {

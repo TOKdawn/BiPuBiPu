@@ -9,20 +9,23 @@ class ScoreService extends Service {
     this.Volume = this.ctx.model.Volume;
     this.Auhtor = this.ctx.model.Authorization;
     this.Score = this.ctx.model.Score;
-    this.userUpload = this.ctx.userUpload;
+    this.userUpload = this.ctx.model.userUpload;
+    this.collectionVolume = this.ctx.model.collectionVolume;
+    this.userStar = this.ctx.model.userStar;
+    this.userFocus = this.ctx.model.userFocus;
   }
-  async searchWord(sid){
+  async searchWord(sid) {
     const score = await this.Score.findOne({
       where: {
-        id:sid
+        id: sid
       }
     })
     return score;
   }
-  
-  async uploadScore(scoreData , uid){
+  async uploadScore(scoreData, uid) {
     const t = await this.ctx.model.transaction();
     try {
+      // console.log('server:',this.Score)
       const data = await this.Score.create({
         name: scoreData.name,
         alias: scoreData.alias,
@@ -47,10 +50,56 @@ class ScoreService extends Service {
       return data;
     } catch (err) {
       await t.rollback();
-      return err;
+      return false;
     }
   }
- 
+  
+  async addCollectionVolume(vid, uid) {
+    //  const t = await this.ctx.model.transaction();
+    const volume = await this.Volume.findOne({
+      where: {
+        id: vid
+      }
+    });
+    if (volume == null) {
+      return false
+    } else {
+      const data = await this.collectionVolume.findOrCreate({
+        where: {
+          vid,
+          uid
+        }
+      })
+      return data;
+    }
+  }
+  async deleteCollectionVolume(vid,uid) {
+    const volume = await this.Volume.findOne({
+      where: {
+        vid
+      }
+    });
+    if (volume == null) {
+      return false
+    } else {
+      const data = await this.collectionVolume.destroy({
+        where: {
+          vid,
+          uid
+        }
+      })
+      return data;
+    }
+  }
+
+  async getAllScore(offset, pagesize){
+    const data = await this.Volume.findAll({
+      // attributes: ['vid', 'uid'],
+      limit: pagesize,
+      offset,
+    });
+    return data;
+  }
 }
 
 module.exports = ScoreService;

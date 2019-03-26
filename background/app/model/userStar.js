@@ -2,7 +2,7 @@
 
 
 'use strict';
-
+// 用户喜欢
 module.exports = app => {
   const {
     INTEGER,

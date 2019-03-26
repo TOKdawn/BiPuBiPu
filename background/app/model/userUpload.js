@@ -1,13 +1,10 @@
 // 用户上传
-
-
 'use strict';
-
 module.exports = app => {
   const {
     INTEGER,
   } = app.Sequelize;
-  const userStarModel = app.model.define('userUpload', {
+  const userUploadModel = app.model.define('userUpload', {
     id: {
       type: INTEGER,
       allowNull: false,
@@ -28,5 +25,5 @@ module.exports = app => {
     freezeTableName: true, // 默认表名会被加s,此选项强制表名跟model一致
   });
 
-  return userStarModel;
+  return userUploadModel;
 };

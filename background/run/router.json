@@ -165,8 +165,8 @@
       "POST"
     ],
     "paramNames": [],
-    "path": "/user/collection",
-    "regexp": "/^\\/user\\/collection(?:\\/(?=$))?$/",
+    "path": "/score/collection/",
+    "regexp": "/^\\/score\\/collection(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -188,8 +188,91 @@
         "pattern": "[^\\/]+?"
       }
     ],
-    "path": "/user/collection/:vid",
-    "regexp": "/^\\/user\\/collection\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "path": "/score/collection/:vid",
+    "regexp": "/^\\/score\\/collection\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "POST"
+    ],
+    "paramNames": [],
+    "path": "/score/likescore/",
+    "regexp": "/^\\/score\\/likescore(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "DELETE"
+    ],
+    "paramNames": [
+      {
+        "name": "sid",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/score/likescore/:sid",
+    "regexp": "/^\\/score\\/likescore\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "POST"
+    ],
+    "paramNames": [],
+    "path": "/user/staruser/",
+    "regexp": "/^\\/user\\/staruser(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "DELETE"
+    ],
+    "paramNames": [
+      {
+        "name": "uid",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/user/staruser/:uid",
+    "regexp": "/^\\/user\\/staruser\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "HEAD",
+      "GET"
+    ],
+    "paramNames": [],
+    "path": "/score/allscore",
+    "regexp": "/^\\/score\\/allscore(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -237,8 +320,56 @@
         "pattern": "[^\\/]+?"
       }
     ],
-    "path": "/system/search/:keyword",
-    "regexp": "/^\\/system\\/search\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "path": "/system/user/:keyword",
+    "regexp": "/^\\/system\\/user\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "HEAD",
+      "GET"
+    ],
+    "paramNames": [
+      {
+        "name": "keyword",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/system/score/:keyword",
+    "regexp": "/^\\/system\\/score\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "HEAD",
+      "GET"
+    ],
+    "paramNames": [
+      {
+        "name": "keyword",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/system/volume/:keyword",
+    "regexp": "/^\\/system\\/volume\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -252,31 +383,6 @@
     "paramNames": [],
     "path": "/system/checkuser",
     "regexp": "/^\\/system\\/checkuser(?:\\/(?=$))?$/",
-    "stack": [
-      "wrappedController"
-    ]
-  },
-  {
-    "name": null,
-    "methods": [
-      "HEAD",
-      "GET"
-    ],
-    "paramNames": [],
-    "path": "/tag/alltag",
-    "regexp": "/^\\/tag\\/alltag(?:\\/(?=$))?$/",
-    "stack": [
-      "wrappedController"
-    ]
-  },
-  {
-    "name": null,
-    "methods": [
-      "POST"
-    ],
-    "paramNames": [],
-    "path": "/tag/uploadtag",
-    "regexp": "/^\\/tag\\/uploadtag(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -476,6 +582,30 @@
     "paramNames": [],
     "path": "/score/upload",
     "regexp": "/^\\/score\\/upload(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "HEAD",
+      "GET"
+    ],
+    "paramNames": [
+      {
+        "name": "sid",
+        "prefix": "",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/score/getscore:sid",
+    "regexp": "/^\\/score\\/getscore((?:[^\\/]+?))(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]

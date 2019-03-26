@@ -12,6 +12,7 @@ class VolumeController extends Controller {
     this.VolumeService = ctx.service.volumeService;
     // this.ctx.session.uid = 123; // 测试用
   }
+
   async getVolumeList() {
     const {
       offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE, role = 'normal'
@@ -90,7 +91,6 @@ class VolumeController extends Controller {
       vid
     } = this.ctx.params;
     const volume = await this.VolumeService.findOwner(vid);
-
     if (volume.get('uid') !== this.ctx.user.id) {
       this.ctx.helper.createRes(403, 'permission denied ಠ益ಠ');
     }

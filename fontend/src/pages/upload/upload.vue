@@ -510,7 +510,7 @@ export default {
           this.$message({
             showClose: true,
             duration: 2000,
-            message: '登录失败',
+            message: '请求失败',
             type: 'error'
           })
         })
