@@ -31,7 +31,7 @@ class UserService extends Service {
         email:phone
       }
     });
-    console.log( '检查电话结果',data)
+    // console.log( '检查电话结果',data)
     if(data){
       return true 
     } else {
@@ -79,6 +79,79 @@ class UserService extends Service {
     return data;
   }
 
+  async addLikeScore(uid,sid) {
+    const score = await this.Score.findOne({
+      where: {
+        id: sid
+      }
+    });
+    if (score == null) {
+      return false
+    } else {
+      const data = await this.userStar.findOrCreate({
+        where: {
+          sid,
+          uid
+        }
+      })
+      return data;
+    }
+  }
+
+  async deleteLikeScore(sid,uid) {
+    const score = await this.Score.findOne({
+      where: {
+        sid
+      }
+    });
+    if (score == null) {
+      return false
+    } else {
+      const data = await this.userStar.destroy({
+        where: {
+          sid,
+          uid
+        }
+      })
+      return data;
+    }
+  }
+  async addStarUser(otherId,uid) {
+    const User = await this.User.findOne({
+      where: {
+        id: otherId
+      }
+    });
+    if (User == null) {
+      return false
+    } else {
+      const data = await this.userFocus.findOrCreate({
+        where: {
+          otherid: otherId,
+          uid
+        }
+      })
+      return data;
+    }
+  }
+  async deleteStarUser(otherId,uid) {
+    const User = await this.User.findOne({
+      where: {
+        id: otherId
+      }
+    });
+    if (User == null) {
+      return false
+    } else {
+      const data = await this.userFocus.destroy({
+        where: {
+          otherid: otherId,
+          uid
+        }
+      })
+      return data;
+    }
+  }
 
   async Register(username, phone, password) {
     var crypto = require('crypto');

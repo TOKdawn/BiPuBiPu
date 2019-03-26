@@ -18,20 +18,31 @@ class ScoreController extends Controller {
     const response = await this.scoreService.getScore(sid);
     return response
   }
+
   async upload() {
     const {
       scoreData
     } = this.ctx.request.body;
-    if (this.ctx.session.user.role < 15) {
+    console.log('sessssss',this.ctx.session.user)
+    // if (this.ctx.session.user.role < 15) 
+   if( false) {
       this.ctx.helper.createRes(203, '用户登录失效或权限不足')
     } else {
-      if (scoreData.image_url) {
+      if (!scoreData.image_url) {
         scoreData.image_url = 'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/score.jpg'
       }
+      // console.log('data',scoreData,this.ctx.session.user.id)
       const response = await this.scoreService.uploadScore(scoreData,this.ctx.session.user.id)
-      return response
+      // console.log('res',response)
+      if(response){
+        this.ctx.helper.successRes('sucess', response);
+      } else{
+        this.ctx.helper.createRes(204, '数据库操作错误')
+      }
+      // return response
     }
   }
+
   async addCollectionVolume() {
     const {
       vid
@@ -40,7 +51,11 @@ class ScoreController extends Controller {
       this.ctx.helper.createRes(203, '用户登录失效或权限不足')
     } else{
       const response = await this.scoreService.addCollectionVolume(vid,this.ctx.session.user.id)
-      return response
+      if (!response){
+        this.ctx.helper.createRes(203, '数据库交互错误')
+      }else{
+        return response
+      }
     }
   }
 
@@ -56,58 +71,16 @@ class ScoreController extends Controller {
     }
   }
 
-  async addLikeScore() {
+
+
+  async getAllScore(){
     const {
-      vid
-    } = this.ctx.request.body;
-    if(this.ctx.session.user){
-      this.ctx.helper.createRes(203, '用户登录失效或权限不足')
-    } else{
-      const response = await this.scoreService.addLikeScore(vid,this.ctx.session.user.id)
-      return response
-    }
+      offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE
+    } = this.ctx.query;
+    const response = await this.scoreService.getAllScore(offset, pagesize);
+    return response
   }
-
-  async deleteLikeScore() {
-    const {
-      vid
-    } = this.ctx.request.params;
-    if(this.ctx.session.user){
-      this.ctx.helper.createRes(203, '用户登录失效或权限不足')
-    } else{
-      const response = await this.scoreService.deleteLikeScore(vid,this.ctx.session.user.id)
-      return response
-    }
-  }
-
-
-  async addStarUser() {
-    const {
-      vid
-    } = this.ctx.request.body;
-    if(this.ctx.session.user){
-      this.ctx.helper.createRes(203, '用户登录失效或权限不足')
-    } else{
-      const response = await this.scoreService.addStarUser(vid,this.ctx.session.user.id)
-      return response
-    }
-  }
-
-  async deleteStarUser() {
-    const {
-      vid
-    } = this.ctx.request.params;
-    if(this.ctx.session.user){
-      this.ctx.helper.createRes(203, '用户登录失效或权限不足')
-    } else{
-      const response = await this.scoreService.deleteStarUser(vid,this.ctx.session.user.id)
-      return response
-    }
-  }
-
   
-  
-
 }
 
 module.exports = ScoreController;

@@ -7,26 +7,57 @@ const Controller = require('egg').Controller;
 class SystemController extends Controller {
     // UserController 由框架负责实例化以及构造时传参
   constructor(ctx) { // UserController 构造函数;
-      super(ctx);
-      this.scoreService = ctx.service.scoreService;
+    super(ctx);
+    this.scoreService = ctx.service.scoreService;
       // this.ctx.session.uid = 123; // 测试用
   }
+
   async getCatcha(){
-      this.ctx.helper.applyCatcha();
+    this.ctx.helper.applyCatcha();
   }
-  async searchWord(){
+
+  async searchUser(){
     const{
       keyword
     } = this.ctx.params;
-    const response = await this.scoreService.searchWord(keyword);
+    const {
+      offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE,
+    } = this.ctx.query;
+    const response = await this.scoreService.searchUser(keyword,offset,pagesize);
     return response
   }
+
+  async searchScore(){
+    const{
+      keyword
+    } = this.ctx.params;
+    const {
+      offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE,
+    } = this.ctx.query;
+    const response = await this.scoreService.searchScore(keyword,offset,pagesize);
+    return response
+  }
+
+  async searchVolume(){
+    const{
+      keyword
+    } = this.ctx.params;
+    const {
+      offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE, 
+    } = this.ctx.query;
+    const response = await this.scoreService.searchVolume(keyword,offset,pagesize);
+    return response
+  }
+
+
   async getSMS(){
     const{
       phone
     } = this.ctx.request.body;
     this.ctx.helper.applySMS(phone);
+    this.ctx.helper.successRes('success',{})
   }
+
   async checkUserInfo(){
     // console.log(this.ctx.session)
     if(this.ctx.session.user){

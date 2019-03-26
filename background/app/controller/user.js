@@ -61,7 +61,40 @@ class UserController extends Controller {
     const response = await this.userService.getUserCollection(uid, offset, pagesize, owned);
     this.ctx.helper.successRes('sucess',response);
   }
-
+  async getMyLike() {
+    const uid = this.ctx.user.id;
+    if (uid) {
+      this.ctx.helper.createRes(404, 'User not find 凸(⊙▂⊙✖ )');
+      const {
+        offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE
+      } = this.ctx.query;
+      const response = await this.userService.getMyLike(uid, offset, pagesize, owned);
+      this.ctx.helper.successRes('sucess',response);
+    }
+  }
+  async starList() {
+    const uid = this.ctx.user.id;
+    if (uid) {
+      this.ctx.helper.createRes(404, 'User not find 凸(⊙▂⊙✖ )');
+      const {
+        offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE
+      } = this.ctx.query;
+      const response = await this.userService.starList(uid, offset, pagesize, owned);
+      this.ctx.helper.successRes('sucess',response);
+    }
+  }
+  async UploadList() {
+    const uid = this.ctx.user.id;
+    if (uid) {
+      this.ctx.helper.createRes(404, 'User not find 凸(⊙▂⊙✖ )');
+      const {
+        offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE
+      } = this.ctx.query;
+      const response = await this.userService.UploadList(uid, offset, pagesize, owned);
+      this.ctx.helper.successRes('sucess',response);
+    }
+  }
+  
   // async checkPhone() {
   //   const {phone}= this.ctx.params;
   //   const response = await this.userService.checkPhone(phone);
@@ -163,7 +196,54 @@ class UserController extends Controller {
     }
     this.ctx.helper.successRes('sucess',response);
   }
+  
+  async addStarUser() {
+    const {
+      uid
+    } = this.ctx.request.body;
+    if(this.ctx.session.user){
+      this.ctx.helper.createRes(203, '用户登录失效或权限不足')
+    } else{
+      const response = await this.userService.addStarUser(uid,this.ctx.session.user.id)
+      return response
+    }
+  }
 
+  async deleteStarUser() {
+    const {
+      uid
+    } = this.ctx.request.params;
+    if(this.ctx.session.user){
+      this.ctx.helper.createRes(203, '用户登录失效或权限不足')
+    } else{
+      const response = await this.userService.deleteStarUser(uid,this.ctx.session.user.id)
+      return response
+    }
+  }
+
+  async addLikeScore() {
+    const {
+      sid
+    } = this.ctx.request.body;
+    if(this.ctx.session.user){
+      this.ctx.helper.createRes(203, '用户登录失效或权限不足')
+    } else{
+      const response = await this.userService.addLikeScore(sid,this.ctx.session.user.id)
+      return response
+    }
+  }
+
+  async deleteLikeScore() {
+    const {
+      sid
+    } = this.ctx.request.params;
+    if(this.ctx.session.user){
+      this.ctx.helper.createRes(203, '用户登录失效或权限不足')
+    } else{
+      const response = await this.userService.deleteLikeScore(sid,this.ctx.session.user.id)
+      return response
+    }
+  }
 }
 
 module.exports = UserController;
