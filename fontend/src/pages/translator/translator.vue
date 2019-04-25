@@ -451,7 +451,7 @@ export default {
 <style>
 .translator {
   max-width: 1200px;
-  margin: 0px auto 50px auto;
+  margin: 30px auto 50px auto;
   min-width: 960px;
 }
 

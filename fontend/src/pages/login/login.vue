@@ -263,7 +263,8 @@ export default {
       })
     },
     forget () {
-      this.$router.push('/index')
+      console.log('sss')
+      this.$router.push('/forget')
     },
     register () {
       let isCheck = this.checkEmailAndPwd(this.res_phone, this.res_pwd, this.res_sms)
@@ -304,7 +305,6 @@ export default {
       })
         .then(res => {
           if (res.status === 200) {
-            // console.log(res.data.data)
             this.svg = res.data.data
           }
         })
@@ -337,12 +337,12 @@ export default {
           console.log(res.data.data)
         }
       }).catch(() => {
-        // this.$message({
-        //   showClose: true,
-        //   duration: 2000,
-        //   message: '获取短信失败',
-        //   type: 'error'
-        // })
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: '获取短信失败',
+          type: 'error'
+        })
       })
       let _this = this
       this.count = TIME_COUNT

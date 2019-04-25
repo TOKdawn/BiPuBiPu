@@ -22,7 +22,7 @@ module.exports = app => {
     },
   }, {
     timestamps: false,
-    tableName: 'ownVolume', // 设置表名
+    freezeTableName: true, // 设置表名
   });
 
   return ownVolumeModel;

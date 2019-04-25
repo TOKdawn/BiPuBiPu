@@ -9,23 +9,22 @@ class ScoreService extends Service {
     this.Volume = this.ctx.model.Volume;
     this.Auhtor = this.ctx.model.Authorization;
     this.Score = this.ctx.model.Score;
-    this.userUpload = this.ctx.model.userUpload;
-    this.collectionVolume = this.ctx.model.collectionVolume;
-    this.userStar = this.ctx.model.userStar;
-    this.userFocus = this.ctx.model.userFocus;
+    this.userUpload = this.ctx.model.UserUpload;
+    this.collectionVolume = this.ctx.model.CollectionVolume;
+    this.userStar = this.ctx.model.UserStar;
+    
   }
-  async searchWord(sid) {
-    const score = await this.Score.findOne({
-      where: {
-        id: sid
-      }
-    })
-    return score;
-  }
+  // async searchWord(sid) {
+  //   const score = await this.Score.findOne({
+  //     where: {
+  //       id: sid
+  //     }
+  //   })
+  //   return score;
+  // }
   async uploadScore(scoreData, uid) {
     const t = await this.ctx.model.transaction();
     try {
-      // console.log('server:',this.Score)
       const data = await this.Score.create({
         name: scoreData.name,
         alias: scoreData.alias,
@@ -76,7 +75,7 @@ class ScoreService extends Service {
   async deleteCollectionVolume(vid,uid) {
     const volume = await this.Volume.findOne({
       where: {
-        vid
+        id:vid
       }
     });
     if (volume == null) {
@@ -92,6 +91,14 @@ class ScoreService extends Service {
     }
   }
 
+  async getScore(sid){
+    const data = await this.Score.findOne({
+      where: {
+        id:sid
+      }
+    })
+    return data
+  }
   async getAllScore(offset, pagesize){
     const data = await this.Volume.findAll({
       // attributes: ['vid', 'uid'],

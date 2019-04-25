@@ -15,13 +15,14 @@ class VolumeService extends Service {
     this.Score = this.ctx.model.Score;
   }
 
-  async createVolume(title, describe, uid) {
+  async createVolume(title, describe,img, uid) {
     // console.log(this.app.model.sequelize)
     const t = await this.ctx.model.transaction();
     try {
       const data = await this.Volume.create({
         title,
         describe,
+        photo:img
       });
       // console.log(data.get('id'));
       await this.OwnVolume.create({

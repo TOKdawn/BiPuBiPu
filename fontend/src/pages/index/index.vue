@@ -16,7 +16,7 @@
               </a>
             </div>
             <div class="item">
-              <router-link :to="{ name: 'scorelist'}">
+              <router-link :to="{ name: 'volumelist'}">
                 <div class="butn"><i class="iconfont icon-shu"></i>
                   <p>谱册</p>
                 </div>
@@ -28,13 +28,6 @@
                   <p>文章</p>
                 </div>
               </router-link>
-              <!-- <div class="dropdown">
-                <el-row type="flex" class="row-bg" justify="space-between">
-                  <el-col :span="6"></el-col>
-                  <el-col :span="6"></el-col>
-                  <el-col :span="6"></el-col>
-                </el-row>
-              </div> -->
             </div>
             <div class="item">
               <router-link :to="{ name: 'translator'}">
@@ -88,7 +81,7 @@
         <Search></Search>
       </div>
       <Information></Information>
-      <ScoreList></ScoreList>
+      <Volumelist></Volumelist>
       <Other></Other>
       <Foot></Foot>
     </div>
@@ -100,7 +93,7 @@
 // import { URL, API_SUCCESS } from 'common/urls'
 import Search from '../search/search'
 import Information from './components/information'
-import ScoreList from './components/scoreList'
+import Volumelist from './components/volumelist'
 import Other from './components/other'
 import Foot from '../layout/footer'
 import store from 'vux/store.js'
@@ -116,19 +109,18 @@ export default {
     this.$http({
       method: 'get',
       url: System.checkUser
-    })
-      .then(res => {
-        if (res.status === 200) {
-          console.log('用户已登录', res.data)
-          store.commit('uploadUserData', res.data.data)
-          this.userRole = store.getters.role
-          this.userId = store.getters.phone
-        }
-      })
-      .catch(() => {
+    }).then(res => {
+      if (res.status === 200) {
+        console.log('用户已登录', res.data)
+        store.commit('uploadUserData', res.data.data)
+        this.userRole = store.getters.role
+        this.userId = store.getters.phone
+      } else {
         store.commit('logout')
-      })
-    console.log(store.state)
+      }
+    }).catch(() => {
+      store.commit('logout')
+    })
   },
   methods: {
     jump (type) {
@@ -146,7 +138,7 @@ export default {
   components: {
     Search,
     Information,
-    ScoreList,
+    Volumelist,
     Other,
     Foot
   }

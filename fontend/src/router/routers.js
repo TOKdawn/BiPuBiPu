@@ -10,13 +10,25 @@ module.exports = [{
   name: 'login',
   component: require('pages/login/login')
 }, {
+  path: '/forget',
+  name: 'forget',
+  component: require('pages/login/forget')
+}, {
   path: '/page',
   name: 'page',
   component: require('pages/page'),
   children: [{
-    path: 'scorelist',
-    name: 'scorelist',
-    component: require('pages/scorelist/scoreList')
+    path: 'download',
+    name: 'download',
+    component: require('pages/download/download')
+  }, {
+    path: 'about',
+    name: 'about',
+    component: require('pages/about/about')
+  }, {
+    path: 'volumelist',
+    name: 'volumelist',
+    component: require('pages/volumelist/volumeList')
   }, {
     path: 'translator',
     name: 'translator',

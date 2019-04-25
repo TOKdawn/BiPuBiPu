@@ -4,6 +4,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    id: '' || localStorage.getItem('id'),
     username: '' || localStorage.getItem('username'),
     avatar: '' || localStorage.getItem('avatar'),
     role: '' || localStorage.getItem('role'),
@@ -16,8 +17,8 @@ export default new Vuex.Store({
     username: (state) => state.username,
     avatar: (state) => state.avatar,
     signature: (state) => state.signature,
-    phone: (state) => state.phone
-
+    phone: (state) => state.phone,
+    id: (state) => state.id
   },
   mutations: {
     uploadUserData (state, userData) {
@@ -27,11 +28,13 @@ export default new Vuex.Store({
       state.avatar = userData.avatar
       state.signature = userData.signature
       state.phone = userData.email
+      state.id = userData.id
       localStorage.setItem('role', userData.role)
       localStorage.setItem('username', userData.name)
       localStorage.setItem('avatar', userData.avatar)
       localStorage.setItem('signature', userData.signature)
       localStorage.setItem('phone', userData.email)
+      localStorage.setItem('id', userData.id)
     },
     logout (state) {
       state.username = ''
@@ -39,11 +42,13 @@ export default new Vuex.Store({
       state.role = ''
       state.signature = ''
       state.phone = ''
+      state.id = ''
       localStorage.setItem('role', 0)
       localStorage.setItem('username', '未命名用户')
       localStorage.setItem('avatar', 'http://bipu.oss-cn-beijing.aliyuncs.com/egg-multipart-test/akari.jpg')
       localStorage.setItem('signature', '这个人很懒,啥也没写╮(╯_╰)╭')
       localStorage.setItem('phone', '000')
+      localStorage.setItem('id', '')
     },
 
     SET_USER_RULE (state, newrule) {
