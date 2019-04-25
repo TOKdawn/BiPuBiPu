@@ -23,15 +23,12 @@ class ScoreController extends Controller {
     const {
       scoreData
     } = this.ctx.request.body;
-    console.log('sessssss',this.ctx.session.user)
-    // if (this.ctx.session.user.role < 15) 
-   if( false) {
+   if( !this.ctx.session.user) {
       this.ctx.helper.createRes(203, '用户登录失效或权限不足')
     } else {
       if (!scoreData.image_url) {
         scoreData.image_url = 'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/score.jpg'
       }
-      // console.log('data',scoreData,this.ctx.session.user.id)
       const response = await this.scoreService.uploadScore(scoreData,this.ctx.session.user.id)
       // console.log('res',response)
       if(response){
@@ -39,7 +36,6 @@ class ScoreController extends Controller {
       } else{
         this.ctx.helper.createRes(204, '数据库操作错误')
       }
-      // return response
     }
   }
 
@@ -74,9 +70,6 @@ class ScoreController extends Controller {
 
 
   async getAllScore(){
-    const {
-      offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE
-    } = this.ctx.query;
     const response = await this.scoreService.getAllScore(offset, pagesize);
     return response
   }

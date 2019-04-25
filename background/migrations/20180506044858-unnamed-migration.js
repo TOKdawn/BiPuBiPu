@@ -83,7 +83,7 @@ module.exports = {
         autoIncrement: true,
     },
     email:{
-      type: STRING(30),
+      type: STRING(200),
       allowNull: false,
     },
     avatar: {

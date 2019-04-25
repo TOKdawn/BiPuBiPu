@@ -13,14 +13,20 @@ module.exports = app => {
     router.post('/user/changephone',controller.user.changephone); // 更改手机
     router.get('/user', controller.user.getMyInfo);//获取自己信息
     router.get('/user/logout', controller.user.logout);//注销
-
-    router.get('/user/collection', controller.user.getMyCollection); //获取自己收藏
-    router.get('/user/likeList', controller.user.getMyLike); //获取自己喜爱乐谱
-    router.get('/user/starList', controller.user.getMyStar); //获取自己关注
-    router.get('/user/UploadList', controller.user.getMyUpload); //获取自己上传
-
+    router.get('/user/collectionList', controller.user.getMyCollection); //获取自己收藏谱册 page  
+    router.get('/user/likeList', controller.user.getMyLike); //获取自己喜爱乐谱 page 
+    router.get('/user/starList', controller.user.getMyStar); //获取自己关注 page 
+    router.get('/user/uploadList', controller.user.getMyUpload); //获取自己上传 page 
+    router.get('/user/createList',controller.user.getMyCreate) //获取自己创建谱册 page
     router.get('/user/:uid', controller.user.getInfo);//获取其他用户信息
     router.get('/user/collection/:uid', controller.user.getUserCollection); //拉取用户收藏谱册
+
+    router.get('/user/updateNum/:uid',controller.user.getUpdateNum); //拉取用户上传的谱子数
+    router.get('/user/createNum/:uid',controller.user.getCreateNum); //拉取用户创建的谱册数 uid == own 为查询自己
+    router.get('/user/focusNum/:uid',controller.user.getFocusNum); //拉取用户上传的谱子数
+    
+    router.post('/user/updateInfo',controller.user.updateInfo); //更新用户信息
+    router.post('/user/thirdParty/:type',controller.user.thirdParty); //更新用户第三方数据
 
     router.post('/score/collection/', controller.score.addCollectionVolume); //收藏谱册
     router.delete('/score/collection/:vid', controller.score.deleteCollectionVolume); //删除谱子
@@ -32,8 +38,6 @@ module.exports = app => {
     router.delete('/user/staruser/:uid', controller.user.deleteStarUser); //取消关注一个用户
 
     router.get('/score/allscore',controller.score.getAllScore); //拉取所有乐谱
-   
-
     router.get('/system/catcha',controller.system.getCatcha);// 获取验证码
     router.post('/system/sms',controller.system.getSMS);// 发送短信验证码
 
@@ -45,19 +49,19 @@ module.exports = app => {
     // router.get('/tag/alltag',controller.tag.allTag); //拉取tag标签
     // router.post('/tag/uploadtag',controller.tag.upLoadTag); //创建标签
 
-    router.get('/volume', controller.volume.getVolumeList); //拉取歌单
+    router.get('/volume/volumeList', controller.volume.getVolumeList); //拉取歌单
 
-    router.post('/volume', controller.volume.createVolume); // 创建谱册
+    router.post('/volume/createVolume', controller.volume.createVolume); // 创建谱册
+
     router.delete('/volume/:vid', controller.volume.deleteVolume); //删除谱册
     router.put('/volume/:vid', controller.volume.editVolume); // 编辑谱册
-    
     router.get('/volume/:vid', controller.volume.getVolumeInfo); // 获取谱册信息
     router.get('/volume/:vid/score', controller.volume.getVolumeScore); // 拉取谱册内谱子
     router.post('/volume/:vid/score', controller.volume.addVolumeScore); //增加谱子到谱册
     router.delete('/volume/:vid/score/:sid', controller.volume.deleteVolumeScore); //删除谱子
     router.post('/upload', controller.multipart.upload); //上传图像
     router.post('/score/upload',controller.score.upload) //上传曲谱
-    router.get('/score/getscore:sid',controller.score.getScore) // 获取乐谱
+    router.get('/score/getscore/:sid',controller.score.getScore) // 获取乐谱
     // router.post('/uploadScore', controller.multipart.uploadScore); //拥有者
     router.get('/volume/:vid/comment', controller.volume.getComment);//拉取评论
     router.post('/volume/:vid/comment', controller.volume.addComment); //添加评论

@@ -105,8 +105,60 @@
       "GET"
     ],
     "paramNames": [],
-    "path": "/user/collection/",
-    "regexp": "/^\\/user\\/collection(?:\\/(?=$))?$/",
+    "path": "/user/collectionList",
+    "regexp": "/^\\/user\\/collectionList(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "HEAD",
+      "GET"
+    ],
+    "paramNames": [],
+    "path": "/user/likeList",
+    "regexp": "/^\\/user\\/likeList(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "HEAD",
+      "GET"
+    ],
+    "paramNames": [],
+    "path": "/user/starList",
+    "regexp": "/^\\/user\\/starList(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "HEAD",
+      "GET"
+    ],
+    "paramNames": [],
+    "path": "/user/uploadList",
+    "regexp": "/^\\/user\\/uploadList(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "HEAD",
+      "GET"
+    ],
+    "paramNames": [],
+    "path": "/user/createList",
+    "regexp": "/^\\/user\\/createList(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -162,6 +214,113 @@
   {
     "name": null,
     "methods": [
+      "HEAD",
+      "GET"
+    ],
+    "paramNames": [
+      {
+        "name": "uid",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/user/updateNum/:uid",
+    "regexp": "/^\\/user\\/updateNum\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "HEAD",
+      "GET"
+    ],
+    "paramNames": [
+      {
+        "name": "uid",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/user/createNum/:uid",
+    "regexp": "/^\\/user\\/createNum\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "HEAD",
+      "GET"
+    ],
+    "paramNames": [
+      {
+        "name": "uid",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/user/focusNum/:uid",
+    "regexp": "/^\\/user\\/focusNum\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "POST"
+    ],
+    "paramNames": [],
+    "path": "/user/updateInfo",
+    "regexp": "/^\\/user\\/updateInfo(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "POST"
+    ],
+    "paramNames": [
+      {
+        "name": "type",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/user/thirdParty/:type",
+    "regexp": "/^\\/user\\/thirdParty\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
       "POST"
     ],
     "paramNames": [],
@@ -200,8 +359,8 @@
       "POST"
     ],
     "paramNames": [],
-    "path": "/score/likescore/",
-    "regexp": "/^\\/score\\/likescore(?:\\/(?=$))?$/",
+    "path": "/user/likescore/",
+    "regexp": "/^\\/user\\/likescore(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -223,8 +382,8 @@
         "pattern": "[^\\/]+?"
       }
     ],
-    "path": "/score/likescore/:sid",
-    "regexp": "/^\\/score\\/likescore\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "path": "/user/likescore/:sid",
+    "regexp": "/^\\/user\\/likescore\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -394,8 +553,8 @@
       "GET"
     ],
     "paramNames": [],
-    "path": "/volume",
-    "regexp": "/^\\/volume(?:\\/(?=$))?$/",
+    "path": "/volume/volumeList",
+    "regexp": "/^\\/volume\\/volumeList(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -406,8 +565,8 @@
       "POST"
     ],
     "paramNames": [],
-    "path": "/volume",
-    "regexp": "/^\\/volume(?:\\/(?=$))?$/",
+    "path": "/volume/createVolume",
+    "regexp": "/^\\/volume\\/createVolume(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -595,7 +754,7 @@
     "paramNames": [
       {
         "name": "sid",
-        "prefix": "",
+        "prefix": "/",
         "delimiter": "/",
         "optional": false,
         "repeat": false,
@@ -604,8 +763,8 @@
         "pattern": "[^\\/]+?"
       }
     ],
-    "path": "/score/getscore:sid",
-    "regexp": "/^\\/score\\/getscore((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "path": "/score/getscore/:sid",
+    "regexp": "/^\\/score\\/getscore\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]

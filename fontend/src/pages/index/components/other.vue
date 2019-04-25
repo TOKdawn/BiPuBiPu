@@ -16,7 +16,7 @@
     <div class="threeBar">
       <div class="title">
         排行<span>/</span>
-        <router-link to="/index">More</router-link>
+        <router-link to="/page/scoreList">More</router-link>
       </div>
     </div>
     <div class="threeBar">

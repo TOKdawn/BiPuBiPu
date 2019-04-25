@@ -5,7 +5,6 @@
       <el-tabs
         v-model="activeName"
         type="card"
-        
       >
         <el-tab-pane
           label="基本设置"
@@ -13,7 +12,7 @@
         >
           <el-form
             :model="userData"
-            :rules="rules"
+            :rules="userRules"
             ref="userDataForm"
             label-width="80px"
             class="userDataForm"
@@ -21,8 +20,9 @@
             <el-form-item label="更换头像:">
               <el-upload
                 class="avatar-uploader"
-                action="https://jsonplaceholder.typicode.com/posts/"
+                action="/api/upload"
                 :show-file-list="false"
+                :on-success="handleAvatarSuccess"
               >
                 <img
                   v-if="userData.avatar"
@@ -49,10 +49,10 @@
             </el-form-item>
             <el-form-item
               label="个人介绍:"
-              prop="username"
+              prop="signature"
             >
               <el-input
-                v-model="userData.username"
+                v-model="userData.signature"
                 type="textarea"
                 :rows="2"
                 size="small"
@@ -160,19 +160,19 @@
         >
           <h2>修改密码</h2>
           <el-form
-            :model="userData"
-            :rules="rules"
-            ref="userDataForm"
+            :model="userSecurity"
+            :rules="securityRules"
+            ref="userSecurityForm"
             label-width="80px"
             class="userDataForm"
           >
 
             <el-form-item
               label="旧密码:"
-              prop="username"
+              prop="oldPass"
             >
               <el-input
-                v-model="userData.username"
+                v-model="userSecurity.oldPass"
                 size="small"
               >
 
@@ -180,16 +180,15 @@
             </el-form-item>
             <el-form-item
               label="新密码:"
-              prop="username"
+              prop="newPass"
             >
               <el-input
-                v-model="userData.username"
-           
+                v-model="userSecurity.newPass"
                 size="small"
               ></el-input>
             </el-form-item>
             <el-form-item>
-              
+
               <el-button size="small">
                 保存
               </el-button>
@@ -199,19 +198,19 @@
           <h2>更换手机</h2>
 
           <el-form
-            :model="userData"
-            :rules="rules"
-            ref="userDataForm"
+            :model="userPhone"
+            :rules="phoneRules"
+            ref="userPhoneForm"
             label-width="80px"
             class="userDataForm"
           >
 
             <el-form-item
               label="旧手机:"
-              prop="username"
+              prop="oldPhone"
             >
               <el-input
-                v-model="userData.username"
+                v-model="userPhone.oldPhone"
                 size="small"
               >
 
@@ -219,18 +218,17 @@
             </el-form-item>
             <el-form-item
               label="新手机:"
-              prop="username"
+              prop="newPhone"
             >
               <el-input
-                v-model="userData.username"
-             
+                v-model="userPhone.newPhone"
                 size="small"
               ></el-input>
             </el-form-item>
             <el-form-item>
               <el-input
                 placeholder="短信验证码"
-                v-model="res_sms"
+                v-model="userPhone.sms"
                 class="input-with-select"
               >
                 <el-button
@@ -241,20 +239,23 @@
               </el-input>
             </el-form-item>
             <el-form-item>
-              <el-button size="small">
+              <el-button size="small" @click="updataPhone">
                 保存
               </el-button>
             </el-form-item>
+              <p
+              class="errmsg"
+              v-if='loginTipMsg.length > 0'
+            >{{ loginTipMsg }}</p>
           </el-form>
-
         </el-tab-pane>
-
       </el-tabs>
     </el-card>
   </div>
 </template>
 <script>
 import store from 'vux/store.js'
+import {User} from 'common/urls'
 export default {
   data () {
     return {
@@ -265,13 +266,46 @@ export default {
         signature: '这个人很懒,啥也没写╮(╯_╰)╭',
         phone: 18700000000
       },
+      userSecurity: {
+        oldPass: '',
+        newPass: ''
+      },
+      userPhone: {
+        oldPhone: '',
+        newPhone: '',
+        sms: ''
+      },
+      userThree: {
+        bili: '',
+        weibo: '',
+        fivesong: '',
+        tieba: ''
+      },
       activeName: 'first',
       SMStext: '获取短信验证码',
-      rules: {
-
+      userRules: {
+        username: [
+            { required: true, message: '请输入用户名', trigger: 'blur' },
+            { min: 3, max: 15, message: '长度在 2 到 15 个字符', trigger: 'blur' }
+        ],
+        signature: [
+            { required: true, message: '请输入个人介绍', trigger: 'blur' },
+            { min: 3, max: 30, message: '长度在 1 到 30 个字符', trigger: 'blur' }
+        ]
+      },
+      securityRules: {
+        oldPass: [
+            { required: true, message: '请输入旧密码', trigger: 'blur' },
+            { min: 6, max: 16, message: '长度在 6 到 16 个字符', trigger: 'blur' }
+        ],
+        newPass: [
+            { required: true, message: '请输入新密码', trigger: 'blur' },
+            { min: 6, max: 16, message: '长度在 6 到 16 个字符', trigger: 'blur' }
+        ]
       },
       smsFlag: '',
-      res_sms: ''
+      res_sms: '',
+      loginTipMsg: ''
     }
   },
   components: {},
@@ -330,6 +364,52 @@ export default {
       }
     }, 1000)
     // }
+  },
+  handleAvatarSuccess1 (res, file) {
+    this.userData.avatar = res.url
+    this.userData.avatar = URL.createObjectURL(file.raw)
+  },
+  updataPhone () {
+    let isCheck = this.checkEmailAndPwd(this.userPhone.oldPass, this.userPhone.newPhone, this.userPhone.sms)
+    if (!isCheck) {
+      return
+    }
+    this.$http({
+      method: 'post',
+      url: User.changephone,
+      data: {
+        sms: this.res_sms,
+        phone: this.res_phone,
+        password: this.res_pwd
+      }
+    }).then(res => {
+      if (res.status === 200) {
+          // console.log('注册成功', res.data.data)
+        store.commit('uploadUserData', res.data.data)
+        this.$router.push('/')
+      }
+    })
+      .catch(() => {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: '注册失败',
+          type: 'error'
+        })
+      })
+  },
+  checkEmailAndPwd (oldPhone, newPhone, sms) {
+    var myreg = /^[1][3,4,5,7,8][0-9]{9}$/
+    if (oldPhone === '' || newPhone === '' || sms === '') {
+      this.loginTipMsg = '新旧手机及验证码不能为空！'
+      return false
+    } else if (!myreg.test(oldPhone) && !myreg.test(newPhone)) {
+      this.loginTipMsg = '请输入正确格式的手机号'
+      return false
+    } else {
+      this.loginTipMsg = ''
+      return true
+    }
   }
 }
 </script>

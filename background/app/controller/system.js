@@ -60,10 +60,10 @@ class SystemController extends Controller {
 
   async checkUserInfo(){
     // console.log(this.ctx.session)
-    if(this.ctx.session.user){
+    if( this.ctx.session.user && JSON.stringify(this.ctx.session.user) !== "{}"){
       this.ctx.helper.successRes('success',this.ctx.session.user)
     } else{
-      this.ctx.helper.createRes(403, '用户未登录 QAQ');
+      this.ctx.helper.createRes(203, '用户未登录 QAQ');
     }
   }
 }

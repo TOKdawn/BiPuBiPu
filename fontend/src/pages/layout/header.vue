@@ -6,16 +6,17 @@
       mode="horizontal"
       @select="handleSelect">
       <el-menu-item index="1" @click="$router.push({ path: `/index` })">主页</el-menu-item>
-      <el-menu-item index="2" @click="$router.push({ path: `/page/scorelist` })">谱册</el-menu-item>
-      <el-menu-item index="3"  >文章</el-menu-item>
-      <el-menu-item index="4">转谱</el-menu-item>
-      <el-menu-item index="5">关于</el-menu-item>
-      <el-menu-item index="6">下载</el-menu-item>
+      <el-menu-item index="2" @click="$router.push({ path: `/page/volumelist` })">谱册</el-menu-item>
+      <el-menu-item index="3"  @click="$router.push({name:'articleList' })">文章</el-menu-item>
+      <el-menu-item index="4" @click="$router.push({ name: 'translator' })">转谱</el-menu-item>
+      <el-menu-item index="5" @click="$router.push({ name: 'about' })">关于</el-menu-item>
+      <el-menu-item index="6" @click="$router.push({ name: 'download' })">下载</el-menu-item>
     </el-menu>
     <Search style="margin-top:-2px; margin-left:100px;"></Search>
     <div
-      v-if="false"
+      v-if="!logoutFlag"
       class="avatar"
+      @click="$router.push('/login')"
     >
       <img
         src="./Akkarin.jpg"
@@ -26,11 +27,11 @@
       placement="bottom"
       width="100"
       trigger="hover"
-      v-if="userRole!=0"
+      v-if="logoutFlag"
       class="avatar"
     >
-      <ul class="more-info">
-        <li style=" height:25px; line-height: 25px;  cursor: pointer;" @click="this.$router.push(`/page/user/${userId}`)">
+      <ul class="more-info" >
+        <li style=" height:25px; line-height: 25px; cursor: pointer;" @click="$router.push(`/page/user/${userId}`)">
           个人中心
         </li>
         <li style=" height:25px; line-height: 25px;  cursor: pointer;" @click="logout()">
@@ -38,7 +39,7 @@
         </li>
       </ul>
       <img
-        src="./justice_eternal.png"
+        :src="img"
         alt=""
         slot="reference"
       >
@@ -48,6 +49,7 @@
 <script>
 import Search from '../search/search'
 import store from 'vux/store.js'
+import {User} from 'common/urls'
 export default {
   props: {
     activeIndex: {
@@ -57,9 +59,10 @@ export default {
   },
   data () {
     return {
-
+      logoutFlag: false,
       userRole: 0,
-      userId: 123
+      userId: 123,
+      img: ''
     }
   },
   methods: {
@@ -67,7 +70,15 @@ export default {
       // console.log(key, keyPath)
     },
     logout () {
-
+      this.$http({
+        methods: 'get',
+        url: User.logout
+      }).then(res => {
+        if (res.status === 200) {
+          store.commit('logout')
+          this.$router.push('/index')
+        }
+      })
     }
   },
   components: {
@@ -76,6 +87,12 @@ export default {
   created () {
     this.userRole = store.getters.role
     this.userId = store.getters.phone
+    this.img = store.getters.avatar
+    if (this.userRole > 0) {
+      this.logoutFlag = true
+    } else {
+      this.logoutFlag = true
+    }
   }
 }
 </script>
@@ -122,6 +139,9 @@ export default {
         line-height: 20px;
         background-color: aqua;
         cursor: pointer;
+        &:hover{
+          background-color: aqua;
+        }
       }
     }
   }

@@ -22,13 +22,16 @@ class VolumeController extends Controller {
   }
 
   async createVolume() {
-    const {
+    let {
       title,
-      describe
+      describe,
+      img
     } = this.ctx.request.body;
-    const uid = this.ctx.user.id;
-    // const uid = 123; //测试用
-    const response = await this.VolumeService.createVolume(title, describe, uid);
+    if (img == null){
+      img = 'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/Spectrum.png'
+    }
+    const uid = this.ctx.session.user.id;
+    const response = await this.VolumeService.createVolume(title, describe,img, uid);
     this.ctx.helper.successRes('sucess', response);
   }
 
@@ -53,7 +56,7 @@ class VolumeController extends Controller {
     const {
       vid
     } = this.ctx.params;
-    const uid = this.ctx.user.id;
+    const uid = this.ctx.session.user.id;
     const response = await this.VolumeService.deleteVolume(vid, uid);
     if (response) {
       this.ctx.helper.createRes(200, 'Delete success QwQ');
@@ -128,7 +131,7 @@ class VolumeController extends Controller {
       text,
       targetid
     } = this.ctx.request.body;
-    const uid = this.ctx.user.id;
+    const uid = this.ctx.session.user.id;
     let response;
     if (replyid) {
       response = await this.VolumeService.addCommentToComment(replyid, text, uid, targetid);
