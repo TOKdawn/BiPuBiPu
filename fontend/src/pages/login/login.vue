@@ -284,6 +284,13 @@ export default {
           // console.log('注册成功', res.data.data)
           store.commit('uploadUserData', res.data.data)
           this.$router.push('/')
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.message,
+            type: 'error'
+          })
         }
       })
       .catch(() => {

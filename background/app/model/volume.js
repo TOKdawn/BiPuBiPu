@@ -20,7 +20,7 @@ module.exports = app => {
       type: STRING(200),
       allowNull: true,
     },
-    title: {
+    name: {
       type: STRING(50),
       allowNull: false,
       defaultValue: 'undefined',

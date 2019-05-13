@@ -394,7 +394,7 @@
       "POST"
     ],
     "paramNames": [],
-    "path": "/user/staruser/",
+    "path": "/user/staruser",
     "regexp": "/^\\/user\\/staruser(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
@@ -464,23 +464,11 @@
   {
     "name": null,
     "methods": [
-      "HEAD",
-      "GET"
+      "POST"
     ],
-    "paramNames": [
-      {
-        "name": "keyword",
-        "prefix": "/",
-        "delimiter": "/",
-        "optional": false,
-        "repeat": false,
-        "partial": false,
-        "asterisk": false,
-        "pattern": "[^\\/]+?"
-      }
-    ],
-    "path": "/system/user/:keyword",
-    "regexp": "/^\\/system\\/user\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "paramNames": [],
+    "path": "/system/searchAll",
+    "regexp": "/^\\/system\\/searchAll(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -488,23 +476,11 @@
   {
     "name": null,
     "methods": [
-      "HEAD",
-      "GET"
+      "POST"
     ],
-    "paramNames": [
-      {
-        "name": "keyword",
-        "prefix": "/",
-        "delimiter": "/",
-        "optional": false,
-        "repeat": false,
-        "partial": false,
-        "asterisk": false,
-        "pattern": "[^\\/]+?"
-      }
-    ],
-    "path": "/system/score/:keyword",
-    "regexp": "/^\\/system\\/score\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "paramNames": [],
+    "path": "/system/searchUser",
+    "regexp": "/^\\/system\\/searchUser(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -512,23 +488,23 @@
   {
     "name": null,
     "methods": [
-      "HEAD",
-      "GET"
+      "POST"
     ],
-    "paramNames": [
-      {
-        "name": "keyword",
-        "prefix": "/",
-        "delimiter": "/",
-        "optional": false,
-        "repeat": false,
-        "partial": false,
-        "asterisk": false,
-        "pattern": "[^\\/]+?"
-      }
+    "paramNames": [],
+    "path": "/system/searchScore",
+    "regexp": "/^\\/system\\/searchScore(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "POST"
     ],
-    "path": "/system/volume/:keyword",
-    "regexp": "/^\\/system\\/volume\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "paramNames": [],
+    "path": "/system/searchVolume",
+    "regexp": "/^\\/system\\/searchVolume(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]

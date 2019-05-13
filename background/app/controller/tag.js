@@ -1,8 +1,8 @@
 'use strict';
 const Controller = require('egg').Controller;
-// const DEFAULTOFFSET = 0;
-// const DEFAULTVOLUMEPAGESIZE = 10;
-// const DEFAULTSCOREPAGESIZE = 20;
+const DEFAULTOFFSET = 0;
+const DEFAULTVOLUMEPAGESIZE = 10;
+
 
 class TagController extends Controller {
     // UserController 由框架负责实例化以及构造时传参
