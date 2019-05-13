@@ -2,7 +2,7 @@
 const Controller = require('egg').Controller;
 const DEFAULTOFFSET = 0;
 const DEFAULTVOLUMEPAGESIZE = 10;
-// const DEFAULTSCOREPAGESIZE = 20;
+
 
 class UserController extends Controller {
   // UserController 由框架负责实例化以及构造时传参
@@ -368,7 +368,7 @@ class UserController extends Controller {
       this.ctx.helper.createRes(203, '用户登录失效或权限不足')
     } else{
       const response = await this.userService.addStarUser(uid,this.ctx.session.user.id)
-      return response
+      this.ctx.body = response
     }
   }
 
@@ -380,7 +380,7 @@ class UserController extends Controller {
       this.ctx.helper.createRes(203, '用户登录失效或权限不足')
     } else{
       const response = await this.userService.deleteStarUser(uid,this.ctx.session.user.id)
-      return response
+      this.ctx.body = response
     }
   }
 
@@ -392,7 +392,7 @@ class UserController extends Controller {
       this.ctx.helper.createRes(203, '用户登录失效或权限不足')
     } else{
       const response = await this.userService.addLikeScore(sid,this.ctx.session.user.id)
-      return response
+      this.ctx.body = response
     }
   }
 
@@ -404,7 +404,7 @@ class UserController extends Controller {
       this.ctx.helper.createRes(203, '用户登录失效或权限不足')
     } else{
       const response = await this.userService.deleteLikeScore(sid,this.ctx.session.user.id)
-      return response
+      this.ctx.body = response
     }
   }
 }

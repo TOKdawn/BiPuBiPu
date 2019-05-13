@@ -1,14 +1,14 @@
 'use strict';
 const Controller = require('egg').Controller;
-// const DEFAULTOFFSET = 0;
-// const DEFAULTVOLUMEPAGESIZE = 10;
-// const DEFAULTSCOREPAGESIZE = 20;
+const DEFAULTOFFSET = 0;
+const DEFAULTVOLUMEPAGESIZE = 10;
+
 
 class SystemController extends Controller {
     // UserController 由框架负责实例化以及构造时传参
   constructor(ctx) { // UserController 构造函数;
     super(ctx);
-    this.scoreService = ctx.service.scoreService;
+    this.systemService = ctx.service.systemService;
       // this.ctx.session.uid = 123; // 测试用
   }
 
@@ -19,34 +19,43 @@ class SystemController extends Controller {
   async searchUser(){
     const{
       keyword
-    } = this.ctx.params;
+    } = this.ctx.request.body;
     const {
       offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE,
     } = this.ctx.query;
-    const response = await this.scoreService.searchUser(keyword,offset,pagesize);
-    return response
+    const response = await this.systemService.searchUser(keyword,offset,pagesize);
+    this.ctx.body = response
   }
-
+  async searchAll(){
+    const{
+      keyword
+    } = this.ctx.request.body;
+    const {
+      offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE,
+    } = this.ctx.query;
+    const response = await this.systemService.searchAll(keyword,offset,pagesize);
+    this.ctx.body = response
+  }
   async searchScore(){
     const{
       keyword
-    } = this.ctx.params;
+    } = this.ctx.request.body;
     const {
       offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE,
     } = this.ctx.query;
-    const response = await this.scoreService.searchScore(keyword,offset,pagesize);
-    return response
+    const response = await this.systemService.searchScore(keyword,offset,pagesize);
+    this.ctx.body = response
   }
 
   async searchVolume(){
     const{
       keyword
-    } = this.ctx.params;
+    } = this.ctx.request.body;
     const {
       offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE, 
     } = this.ctx.query;
-    const response = await this.scoreService.searchVolume(keyword,offset,pagesize);
-    return response
+    const response = await this.systemService.searchVolume(keyword,offset,pagesize);
+    this.ctx.body = response
   }
 
 

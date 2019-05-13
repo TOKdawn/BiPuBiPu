@@ -14,7 +14,7 @@
             :model="userData"
             :rules="userRules"
             ref="userDataForm"
-            label-width="80px"
+            label-width="100px"
             class="userDataForm"
           >
             <el-form-item label="更换头像:">
@@ -59,7 +59,7 @@
               ></el-input>
             </el-form-item>
             <el-form-item>
-              <el-button size="small">
+              <el-button size="small" @click="updataUser">
                 保存
               </el-button>
             </el-form-item>
@@ -303,40 +303,49 @@ export default {
             { min: 6, max: 16, message: '长度在 6 到 16 个字符', trigger: 'blur' }
         ]
       },
+      phoneRules: {
+        oldPhone: [
+       { required: true, message: '请输入手机号', trigger: 'blur' },
+            { min: 11, max: 11, message: '请输入正确的手机号', trigger: 'blur' }
+        ],
+        newPhone: [
+       { required: true, message: '请输入手机号', trigger: 'blur' },
+            { min: 11, max: 11, message: '请输入正确的手机号', trigger: 'blur' }
+        ]
+      },
       smsFlag: '',
       res_sms: '',
       loginTipMsg: ''
     }
   },
   components: {},
-  methods: {
-    jump (type) {
-      switch (type) {
-      }
-    }
-  },
   created () {
     this.userData.username = store.getters.username
     this.userData.avatar = store.getters.avatar
     this.userData.signature = store.getters.signature
     this.userData.phone = store.getters.phone
   },
-  getSMS () {
-    var myreg = /^[1][3,4,5,7,8][0-9]{9}$/
-    if (!myreg.test(this.res_phone)) {
-      this.loginTipMsg = '请输入正确格式的手机号'
-      return false
-    }
-    this.smsFlag = true
-    this.SMStext = '重新发送(60)'
-    let TIME_COUNT = 60
-    this.$http({
-      method: 'post',
-      url: '',
-      data: {
-        phone: this.res_phone
+  methods: {
+    jump (type) {
+      switch (type) {
       }
-    })
+    },
+    getSMS () {
+      var myreg = /^[1][3,4,5,7,8][0-9]{9}$/
+      if (!myreg.test(this.res_phone)) {
+        this.loginTipMsg = '请输入正确格式的手机号'
+        return false
+      }
+      this.smsFlag = true
+      this.SMStext = '重新发送(60)'
+      let TIME_COUNT = 60
+      this.$http({
+        method: 'post',
+        url: '',
+        data: {
+          phone: this.res_phone
+        }
+      })
       .then(res => {
         if (res.status === 200) {
           console.log(res.data.data)
@@ -350,45 +359,45 @@ export default {
         //   type: 'error'
         // })
       })
-    let _this = this
-    this.count = TIME_COUNT
-    let timer = setInterval(() => {
-      if (this.count > 0 && this.count <= TIME_COUNT) {
-        this.count--
-        _this.smsFlag = true
-        _this.SMStext = '重新发送(' + this.count + ')'
-      } else {
-        clearInterval(timer)
-        _this.smsFlag = false
-        _this.SMStext = '获取短信验证码'
-      }
-    }, 1000)
+      let _this = this
+      this.count = TIME_COUNT
+      let timer = setInterval(() => {
+        if (this.count > 0 && this.count <= TIME_COUNT) {
+          this.count--
+          _this.smsFlag = true
+          _this.SMStext = '重新发送(' + this.count + ')'
+        } else {
+          clearInterval(timer)
+          _this.smsFlag = false
+          _this.SMStext = '获取短信验证码'
+        }
+      }, 1000)
     // }
-  },
-  handleAvatarSuccess1 (res, file) {
-    this.userData.avatar = res.url
-    this.userData.avatar = URL.createObjectURL(file.raw)
-  },
-  updataPhone () {
-    let isCheck = this.checkEmailAndPwd(this.userPhone.oldPass, this.userPhone.newPhone, this.userPhone.sms)
-    if (!isCheck) {
-      return
-    }
-    this.$http({
-      method: 'post',
-      url: User.changephone,
-      data: {
-        sms: this.res_sms,
-        phone: this.res_phone,
-        password: this.res_pwd
+    },
+    handleAvatarSuccess (res, file) {
+      this.userData.avatar = res.url
+      this.userData.avatar = URL.createObjectURL(file.raw)
+    },
+    updataPhone () {
+      let isCheck = this.checkEmailAndPwd(this.userPhone.oldPass, this.userPhone.newPhone, this.userPhone.sms)
+      if (!isCheck) {
+        return
       }
-    }).then(res => {
-      if (res.status === 200) {
+      this.$http({
+        method: 'post',
+        url: User.changephone,
+        data: {
+          sms: this.res_sms,
+          phone: this.res_phone,
+          password: this.res_pwd
+        }
+      }).then(res => {
+        if (res.status === 200) {
           // console.log('注册成功', res.data.data)
-        store.commit('uploadUserData', res.data.data)
-        this.$router.push('/')
-      }
-    })
+          store.commit('uploadUserData', res.data.data)
+          this.$router.push('/')
+        }
+      })
       .catch(() => {
         this.$message({
           showClose: true,
@@ -397,20 +406,49 @@ export default {
           type: 'error'
         })
       })
-  },
-  checkEmailAndPwd (oldPhone, newPhone, sms) {
-    var myreg = /^[1][3,4,5,7,8][0-9]{9}$/
-    if (oldPhone === '' || newPhone === '' || sms === '') {
-      this.loginTipMsg = '新旧手机及验证码不能为空！'
-      return false
-    } else if (!myreg.test(oldPhone) && !myreg.test(newPhone)) {
-      this.loginTipMsg = '请输入正确格式的手机号'
-      return false
-    } else {
-      this.loginTipMsg = ''
-      return true
+    },
+    checkEmailAndPwd (oldPhone, newPhone, sms) {
+      var myreg = /^[1][3,4,5,7,8][0-9]{9}$/
+      if (oldPhone === '' || newPhone === '' || sms === '') {
+        this.loginTipMsg = '新旧手机及验证码不能为空！'
+        return false
+      } else if (!myreg.test(oldPhone) && !myreg.test(newPhone)) {
+        this.loginTipMsg = '请输入正确格式的手机号'
+        return false
+      } else {
+        this.loginTipMsg = ''
+        return true
+      }
+    },
+    updataUser () {
+      this.$refs['userDataForm'].validate((valid) => {
+        if (valid) {
+          this.$http({
+            method: 'post',
+            url: User.updataInfo,
+            data: {
+              avatar: this.userData.avatar,
+              name: this.userData.name,
+              signature: this.userData.signature
+            }
+          }).then(res => {
+            if (res.status === 200) {
+              this.$message({
+                showClose: true,
+                duration: 2000,
+                message: '更新信息成功',
+                type: 'secuss'
+              })
+            }
+          })
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     }
   }
+
 }
 </script>
 <style lang="scss" scoped>

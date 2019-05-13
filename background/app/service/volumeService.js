@@ -20,7 +20,7 @@ class VolumeService extends Service {
     const t = await this.ctx.model.transaction();
     try {
       const data = await this.Volume.create({
-        title,
+        name:title,
         describe,
         photo:img
       });
@@ -43,7 +43,7 @@ class VolumeService extends Service {
 
   async editVolume(id, title, describe, url) {
     const data = await this.Volume.update({
-      title,
+      name:title,
       describe,
       photo: url,
     }, {
@@ -97,15 +97,15 @@ class VolumeService extends Service {
     if (score == null) {
       //如果无缓存
       try {
-        const scoredata = await this.ctx.helper.getIssue(sid);
-        console.log('scoredata:', scoredata, 'sid:', sid);
-        await this.Score.findOrCreate({
-          //缓存
-          where: {
-            name: scoredata.title,
-            sid: sid
-          },
-        });
+        // const scoredata = await this.ctx.helper.getIssue(sid);
+        // console.log('scoredata:', scoredata, 'sid:', sid);
+        // await this.Score.findOrCreate({
+        //   //缓存
+        //   where: {
+        //     name: scoredata.title,
+        //     sid: sid
+        //   },
+        // });
         const data = await this.ScoreVolume.findOrCreate({
           where: {
             sid,

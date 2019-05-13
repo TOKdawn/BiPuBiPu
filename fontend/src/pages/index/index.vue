@@ -97,7 +97,7 @@ import Volumelist from './components/volumelist'
 import Other from './components/other'
 import Foot from '../layout/footer'
 import store from 'vux/store.js'
-import { System } from 'common/urls'
+import { systemUrl } from 'common/urls'
 export default {
   data () {
     return {
@@ -108,7 +108,7 @@ export default {
   created () {
     this.$http({
       method: 'get',
-      url: System.checkUser
+      url: systemUrl.checkUser
     }).then(res => {
       if (res.status === 200) {
         console.log('用户已登录', res.data)

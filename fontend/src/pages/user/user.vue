@@ -14,7 +14,7 @@
             >
             <div
               class="img-info"
-              @click="jump(1)"
+              @click="jump(2)"
             >更换头像</div>
           </el-col>
           <el-col :span="18">

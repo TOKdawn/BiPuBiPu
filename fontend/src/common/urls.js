@@ -32,8 +32,12 @@ const User = {
 const Volume = {
   createVolume: baseUrl + '/volume/createVolume'
 }
-const System = {
-  checkUser: baseUrl + '/system/checkuser'
+const systemUrl = {
+  checkUser: baseUrl + '/system/checkuser',
+  getScore: baseUrl + '/system/searchScore',
+  getVolume: baseUrl + '/system/searchVolume',
+  getUser: baseUrl + '/system/searchUser',
+  getAll: baseUrl + '/system/searchAll'
 }
 const Upload = {
   uploadScore: baseUrl + '/score/upload'
@@ -44,9 +48,10 @@ const Score = {
 
 export {
   Login,
-  System,
+
   Upload,
   User,
   Volume,
-  Score
+  Score,
+  systemUrl
 }

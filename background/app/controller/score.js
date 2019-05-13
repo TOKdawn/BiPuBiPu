@@ -1,8 +1,8 @@
 'use strict';
 const Controller = require('egg').Controller;
-// const DEFAULTOFFSET = 0;
-// const DEFAULTVOLUMEPAGESIZE = 10;
-// const DEFAULTSCOREPAGESIZE = 20;
+const DEFAULTOFFSET = 0;
+const DEFAULTVOLUMEPAGESIZE = 10;
+const DEFAULTSCOREPAGESIZE = 20;
 
 class ScoreController extends Controller {
   // UserController 由框架负责实例化以及构造时传参
@@ -16,7 +16,7 @@ class ScoreController extends Controller {
       sid
     } = this.ctx.params;
     const response = await this.scoreService.getScore(sid);
-    return response
+    this.ctx.body = response
   }
 
   async upload() {
@@ -50,7 +50,7 @@ class ScoreController extends Controller {
       if (!response){
         this.ctx.helper.createRes(203, '数据库交互错误')
       }else{
-        return response
+        this.ctx.body = response
       }
     }
   }
@@ -63,15 +63,18 @@ class ScoreController extends Controller {
       this.ctx.helper.createRes(203, '用户登录失效或权限不足')
     } else{
       const response = await this.scoreService.deleteCollectionVolume(vid,this.ctx.session.user.id)
-      return response
+      this.ctx.body = response
     }
   }
 
 
 
   async getAllScore(){
+    const {
+      offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE
+    } = this.ctx.query;
     const response = await this.scoreService.getAllScore(offset, pagesize);
-    return response
+    this.ctx.body = response
   }
   
 }

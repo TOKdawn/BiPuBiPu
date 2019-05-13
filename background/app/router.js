@@ -20,39 +20,29 @@ module.exports = app => {
     router.get('/user/createList',controller.user.getMyCreate) //获取自己创建谱册 page
     router.get('/user/:uid', controller.user.getInfo);//获取其他用户信息
     router.get('/user/collection/:uid', controller.user.getUserCollection); //拉取用户收藏谱册
-
     router.get('/user/updateNum/:uid',controller.user.getUpdateNum); //拉取用户上传的谱子数
     router.get('/user/createNum/:uid',controller.user.getCreateNum); //拉取用户创建的谱册数 uid == own 为查询自己
     router.get('/user/focusNum/:uid',controller.user.getFocusNum); //拉取用户上传的谱子数
-    
     router.post('/user/updateInfo',controller.user.updateInfo); //更新用户信息
     router.post('/user/thirdParty/:type',controller.user.thirdParty); //更新用户第三方数据
-
     router.post('/score/collection/', controller.score.addCollectionVolume); //收藏谱册
     router.delete('/score/collection/:vid', controller.score.deleteCollectionVolume); //删除谱子
-
     router.post('/user/likescore/', controller.user.addLikeScore); //喜欢一个乐谱
     router.delete('/user/likescore/:sid', controller.user.deleteLikeScore); //取消喜欢一个乐谱
-
-    router.post('/user/staruser/', controller.user.addStarUser); //关注一个用户
+    router.post('/user/staruser', controller.user.addStarUser); //关注一个用户
     router.delete('/user/staruser/:uid', controller.user.deleteStarUser); //取消关注一个用户
-
     router.get('/score/allscore',controller.score.getAllScore); //拉取所有乐谱
     router.get('/system/catcha',controller.system.getCatcha);// 获取验证码
     router.post('/system/sms',controller.system.getSMS);// 发送短信验证码
-
-    router.get('/system/user/:keyword',controller.system.searchUser);// 查询用户
-    router.get('/system/score/:keyword',controller.system.searchScore);// 查询乐谱
-    router.get('/system/volume/:keyword',controller.system.searchVolume);// 查询谱册
-
+    router.post('/system/searchAll',controller.system.searchAll)
+    router.post('/system/searchUser',controller.system.searchUser);// 查询用户
+    router.post('/system/searchScore',controller.system.searchScore);// 查询乐谱
+    router.post('/system/searchVolume',controller.system.searchVolume);// 查询谱册 keyword
     router.get('/system/checkuser',controller.system.checkUserInfo) //查询用户登录状态
     // router.get('/tag/alltag',controller.tag.allTag); //拉取tag标签
     // router.post('/tag/uploadtag',controller.tag.upLoadTag); //创建标签
-
     router.get('/volume/volumeList', controller.volume.getVolumeList); //拉取歌单
-
     router.post('/volume/createVolume', controller.volume.createVolume); // 创建谱册
-
     router.delete('/volume/:vid', controller.volume.deleteVolume); //删除谱册
     router.put('/volume/:vid', controller.volume.editVolume); // 编辑谱册
     router.get('/volume/:vid', controller.volume.getVolumeInfo); // 获取谱册信息

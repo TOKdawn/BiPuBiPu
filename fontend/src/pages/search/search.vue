@@ -4,8 +4,11 @@
       v-model="searchText"
       :fetch-suggestions="querySearchAsync"
       placeholder="你又想要什么奇怪的谱子"
-      @select="handleSelect"
+     
     >
+    <template slot-scope="{ item }">
+      <div class="name">{{ item.name }}</div>
+    </template>
     </el-autocomplete>
     <i
       slot="prefix"
@@ -15,16 +18,78 @@
   </div>
 </template>
 <script>
+import {systemUrl} from 'common/urls'
 export default {
   data () {
     return {
-      searchText: ''
+      searchText: '',
+      allData: [],
+      show: [],
+      dataFlag: false
     }
   },
   methods: {
-    querySearchAsync () {},
-    handleSelect () {
-      // console.log('aaaa')
+    querySearchAsync (queryString, cb) {
+      // var restaurants = this.restaurants
+      console.log('11')
+      // var results = queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants
+      if (queryString.length > 0 && this.dataFlag === false) {
+        this.getData(queryString, cb)
+      } else if (queryString.length === 0) {
+        this.clearData()
+        // cb([])
+      } else {
+        // this.show = this.allData.filter(this.createStateFilter(queryString))
+        cb(this.show)
+      }
+    },
+    getData (key, cd) {
+      console.log(' HTTP get: ', key)
+      this.$http({
+        method: 'post',
+        url: systemUrl.getAll,
+        data: {
+          keyword: key
+        }
+      }).then(res => {
+        if (res.status === 200) {
+          console.log('拉取成功：', res.data)
+          this.allData = res.data.score.concat(res.data.volume)
+          this.show = this.allData
+          cd(this.show)
+          console.log(this.allData)
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.data.message,
+            type: 'error'
+          })
+        }
+      })
+      .catch((res) => {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: '请求失败',
+          type: 'error'
+        })
+      })
+
+      this.dataFlag = true
+    },
+    // createStateFilter (queryString) {
+    //   return (state) => {
+    //     return (state.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0)
+    //   }
+    // },
+    clearData () {
+      console.log(' clearData: ')
+      this.allData = []
+      this.dataFlag = false
+    },
+    handleSelect (item) {
+      console.log(item)
       this.$router.push(`/page/searchres/${this.searchText}`)
     }
   }
