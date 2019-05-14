@@ -39,6 +39,23 @@ class ScoreController extends Controller {
     }
   }
 
+  async getScoreAuthor(){
+    const {
+      sid
+    } = this.ctx.params;
+    const response = await this.ScoreService.getVolumeAuthor(sid);
+    this.ctx.helper.successRes('sucess', response);
+  }
+  async getScoreCollector(){
+    const {
+      sid
+    } = this.ctx.params;
+    const {
+      offset = DEFAULTOFFSET, pagesize = DEFAULTSCOREPAGESIZE
+    } = this.ctx.query;
+    const response = await this.ScoreService.getVolumeCollector(sid,offset,pagesize);
+    this.ctx.helper.successRes('sucess', response);
+  }
   async addCollectionVolume() {
     const {
       vid

@@ -3,15 +3,15 @@
     <div class="main-context">
       <div>
         <img
-          :src="scoreData.image_url"
+          :src="volumeData.image_url"
           alt=""
           style="width:250px; height:250px; float:left;"
         >
         <div class="score-info">
-          <h1>{{scoreData.name}}-{{scoreData.addtion}}</h1>
-          <div class="uploader">@{{scoreData.author}}</div>
+          <h1>{{volumeData.name}}</h1>
+          <div class="uploader" @click="$router.push({ name: 'user', params: { uid: author.id } })">@{{author.name}}</div>
           <ul>
-            <li>简介: {{scoreData.album}}</li>
+            <li>简介: {{volumeData.describe}}</li>
 
           </ul>
           <el-row style="margin-top:15px;">
@@ -45,8 +45,8 @@
               </p>
             </div>
             <el-table
-              ref="userCollection"
-              :data="userCollection"
+              ref="volumeList"
+              :data="volumeList"
               highlight-current-row
               style="width: 100%; margin-bottom:30px;"
             >
@@ -73,11 +73,9 @@
 
               </el-table-column>
             </el-table>
-            <div class="movie_comment">
+            <!-- <div class="movie_comment">
               <el-row>
                 <el-col :span="18">
-                  <!-- <h1>507 评论</h1> -->
-                  <!-- <p class="movie_page"> 共34页 &nbsp; <span style="color:#128dca"> 1</span> &nbsp; 2 &nbsp; 3 &nbsp; 4 &nbsp; ... &nbsp; 34 &nbsp;下一页</p> -->
 
                   <el-row>
                     <el-col
@@ -125,9 +123,9 @@
                     </el-col>
                   </el-row>
                 </el-col>
-                <!-- <el-col span="5" class="dadsad"> <img src="./show.png" alt="" class="movie_showss"></el-col> -->
+
               </el-row>
-            </div>
+            </div> -->
           </div>
           <div class="info">
             <div>
@@ -144,95 +142,104 @@
   </div>
 </template>
 <script>
+import store from 'vux/store.js'
+import {Volume} from 'common/urls'
 export default {
   data () {
     return {
-      scoreData: {
-        image_url:
-          'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
-        name: '示例谱册',
-        addtion: '',
-        author: 'dawn',
-        authorId: '12333',
-        album:
-          '这里是谱册简介这里是谱册简介这里是谱册简介这里是谱册简介这里是谱册简介这里是谱册简介这里是谱册简介这里是谱册简介这里是谱册简介这里是谱册简介',
-        update: '2018-12-18',
-        uploader: 'TOKdawn',
-        otherName: '花花花花',
-        tagList: [
-          {
-            tagName: '东方'
-          }
-        ],
-        context: '',
-        otherLink: 'www.baidu.com'
+      volumeData: {
+        describe: '',
+        photo: '',
+        name: ''
       },
+      author: {
+
+      },
+      VolumeCollector: {
+
+      },
+      userId: '',
+      userRole: '',
+      owned: 'false',
       value3: '',
-      userCollection: [
-        {
-          id: 2,
-          photo: null,
-          name: '鳥の詩',
-          addtion: '《AIR》片头曲',
-          status: 1,
-          visits: 0,
-          created_at: '2018-07-11T09:14:04.137Z',
-          updated_at: '2018-07-11T09:14:04.137Z'
-        },
-        {
-          id: 3,
-          photo: null,
-          name: '鳥の詩222',
-          addtion: '《AIR》片头曲',
-          status: 1,
-          visits: 0,
-          created_at: '2018-08-06T07:10:53.202Z',
-          updated_at: '2018-08-06T07:10:53.202Z'
-        },
-        {
-          id: 4,
-          photo: null,
-          name: '鳥の詩333',
-          addtion: '《AIR》片头曲',
-          status: 1,
-          visits: 0,
-          created_at: '2018-08-06T07:10:57.168Z',
-          updated_at: '2018-08-06T07:10:57.168Z'
-        },
-        {
-          id: 1,
-          photo: null,
-          name: '鳥の詩444',
-          addtion: '《AIR》片头曲',
-          status: 1,
-          visits: 1,
-          created_at: '2018-07-11T09:13:53.001Z',
-          updated_at: '2018-07-11T09:15:02.142Z'
-        },
-        {
-          id: 4,
-          photo: null,
-          name: '鳥の詩333',
-          addtion: '《AIR》片头曲',
-          status: 1,
-          visits: 0,
-          created_at: '2018-08-06T07:10:57.168Z',
-          updated_at: '2018-08-06T07:10:57.168Z'
-        },
-        {
-          id: 1,
-          photo: null,
-          name: '鳥の詩444',
-          addtion: '《AIR》片头曲',
-          status: 1,
-          visits: 1,
-          created_at: '2018-07-11T09:13:53.001Z',
-          updated_at: '2018-07-11T09:15:02.142Z'
-        }
-      ]
+      volumeList: []
     }
   },
-  created () {}
+  created () {
+    this.userRole = store.getters.role
+    this.userId = store.getters.phone
+    this.$http({
+      method: 'get',
+      url: Volume.getVolumeInfo + this.$route.params.vid
+    }).then(res => {
+      if (res.status === 200) {
+        console.log(res.data)
+        this.volumeData = res.data.data
+      } else {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: res.data.message,
+          type: 'error'
+        })
+      }
+    }).catch((res) => {
+      this.$message({
+        showClose: true,
+        duration: 2000,
+        message: '请求失败',
+        type: 'error'
+      })
+    })
+
+    this.$http({
+      method: 'get',
+      url: Volume.getVolumeAuthor + this.$route.params.vid
+    }).then(res => {
+      if (res.status === 200) {
+        console.log(res.data)
+        this.author = res.data.data[0]
+      } else {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: res.data.message,
+          type: 'error'
+        })
+      }
+    }).catch((res) => {
+      this.$message({
+        showClose: true,
+        duration: 2000,
+        message: '请求失败',
+        type: 'error'
+      })
+    })
+
+    this.$http({
+      method: 'get',
+      url: Volume.getVolumeCollector + this.$route.params.vid
+    }).then(res => {
+      if (res.status === 200) {
+        console.log(res.data)
+        this.VolumeCollector = res.data.data
+      } else {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: res.data.message,
+          type: 'error'
+        })
+      }
+    }).catch((res) => {
+      this.$message({
+        showClose: true,
+        duration: 2000,
+        message: '请求失败',
+        type: 'error'
+      })
+    })
+  }
 }
 </script>
 <style lang="scss" scoped>

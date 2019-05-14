@@ -4,10 +4,10 @@
       v-model="searchText"
       :fetch-suggestions="querySearchAsync"
       placeholder="你又想要什么奇怪的谱子"
-     
+ 
     >
     <template slot-scope="{ item }">
-      <div class="name">{{ item.name }}</div>
+      <div class="name" @click="jump(item.name)">{{ item.name }}</div>
     </template>
     </el-autocomplete>
     <i
@@ -33,7 +33,7 @@ export default {
       // var restaurants = this.restaurants
       console.log('11')
       // var results = queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants
-      if (queryString.length > 0 && this.dataFlag === false) {
+      if (queryString && queryString.length > 0 && this.dataFlag === false) {
         this.getData(queryString, cb)
       } else if (queryString.length === 0) {
         this.clearData()
@@ -91,6 +91,9 @@ export default {
     handleSelect (item) {
       console.log(item)
       this.$router.push(`/page/searchres/${this.searchText}`)
+    },
+    jump (key) {
+      this.$router.push(`/page/searchres/${key}`)
     }
   }
 }

@@ -6,13 +6,13 @@
       mode="horizontal"
       @select="handleSelect">
       <el-menu-item index="1" @click="$router.push({ path: `/index` })">主页</el-menu-item>
-      <el-menu-item index="2" @click="$router.push({ path: `/page/volumelist` })">谱册</el-menu-item>
+      <el-menu-item index="2" @click="$router.push({ name: `volumelist` })">谱册</el-menu-item>
       <el-menu-item index="3"  @click="$router.push({name:'articleList' })">文章</el-menu-item>
       <el-menu-item index="4" @click="$router.push({ name: 'translator' })">转谱</el-menu-item>
       <el-menu-item index="5" @click="$router.push({ name: 'about' })">关于</el-menu-item>
       <el-menu-item index="6" @click="$router.push({ name: 'download' })">下载</el-menu-item>
     </el-menu>
-    <Search style="margin-top:-2px; margin-left:100px;"></Search>
+    <Search style="margin-top:-2px; right:170px; position:absolute"></Search>
     <div
       v-if="!logoutFlag"
       class="avatar"
@@ -86,8 +86,9 @@ export default {
   },
   created () {
     this.userRole = store.getters.role
-    this.userId = store.getters.phone
+    this.userId = store.getters.id
     this.img = store.getters.avatar
+
     if (this.userRole > 0) {
       this.logoutFlag = true
     } else {

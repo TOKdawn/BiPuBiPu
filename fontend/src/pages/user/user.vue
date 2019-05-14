@@ -19,8 +19,7 @@
           </el-col>
           <el-col :span="18">
             <div class="header">
-
-              <h2>{{userData.username}}</h2>
+              <h2>{{userData.name}}</h2>
               <el-button
                 @click="jump(2)"
                 type="primary"
@@ -98,12 +97,13 @@
             :key="index"
           >
             <img
-              :src="item.img"
+              :src="item.photo"
+              @click="$router.push(`/page/volume/${item.id}`)"
               alt=""
             >
-            <h1> {{item.title}}</h1>
+            <h1 @click="$router.push(`/page/volume/${item.id}`)"> {{item.name}}</h1>
             <p> {{item.describe}}}</p>
-            <div>收藏数:{{item.star}}</div>
+            <div>收藏数:{{item.visits}}</div>
           </div>
         </div>
       </div>
@@ -142,7 +142,7 @@ export default {
   data () {
     return {
       userData: {
-        username: '未命名用户',
+        name: '未命名用户',
         avatar:
           'http://bipu.oss-cn-beijing.aliyuncs.com/egg-multipart-test/akari.jpg',
         signature: '这个人很懒,啥也没写╮(╯_╰)╭',
@@ -151,186 +151,8 @@ export default {
       createNum: 0,
       focusNum: 0,
       uploadNum: 0,
-      userCollection: [
-        {
-          id: 2,
-          photo: null,
-          name: '鳥の詩',
-          addtion: '《AIR》片头曲',
-          status: 1,
-          visits: 0,
-          created_at: '2018-07-11T09:14:04.137Z',
-          updated_at: '2018-07-11T09:14:04.137Z'
-        },
-        {
-          id: 3,
-          photo: null,
-          name: '鳥の詩222',
-          addtion: '《AIR》片头曲',
-          status: 1,
-          visits: 0,
-          created_at: '2018-08-06T07:10:53.202Z',
-          updated_at: '2018-08-06T07:10:53.202Z'
-        },
-        {
-          id: 4,
-          photo: null,
-          name: '鳥の詩333',
-          addtion: '《AIR》片头曲',
-          status: 1,
-          visits: 0,
-          created_at: '2018-08-06T07:10:57.168Z',
-          updated_at: '2018-08-06T07:10:57.168Z'
-        },
-        {
-          id: 1,
-          photo: null,
-          name: '鳥の詩444',
-          addtion: '《AIR》片头曲',
-          status: 1,
-          visits: 1,
-          created_at: '2018-07-11T09:13:53.001Z',
-          updated_at: '2018-07-11T09:15:02.142Z'
-        },
-        {
-          id: 4,
-          photo: null,
-          name: '鳥の詩333',
-          addtion: '《AIR》片头曲',
-          status: 1,
-          visits: 0,
-          created_at: '2018-08-06T07:10:57.168Z',
-          updated_at: '2018-08-06T07:10:57.168Z'
-        },
-        {
-          id: 1,
-          photo: null,
-          name: '鳥の詩444',
-          addtion: '《AIR》片头曲',
-          status: 1,
-          visits: 1,
-          created_at: '2018-07-11T09:13:53.001Z',
-          updated_at: '2018-07-11T09:15:02.142Z'
-        }
-      ],
-      myVolumeList: [
-        {
-          img:
-            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186139-102.jpg',
-          title: '东ass方啊实打实大所大所大所大叔大婶大所大所大所大所谱册',
-          star: '100',
-          describe: '一个谱册的介绍',
-          list: [
-            {
-              title: '谱子1',
-              id: '121'
-            },
-            {
-              title: '谱子2',
-              id: '122'
-            },
-            {
-              title: '谱子3',
-              id: '123'
-            },
-            {
-              title: '谱子4',
-              id: '124'
-            },
-            {
-              title: '谱子5',
-              id: '125'
-            }
-          ]
-        },
-        {
-          img:
-            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186146-102.jpg',
-          title: '东方谱册',
-          star: '100',
-          describe: '一个谱册的介绍',
-          list: [
-            {
-              title: '谱子1',
-              id: '121'
-            },
-            {
-              title: '谱子2',
-              id: '122'
-            },
-            {
-              title: '谱子3',
-              id: '123'
-            },
-            {
-              title: '谱子4',
-              id: '124'
-            },
-            {
-              title: '谱子5',
-              id: '125'
-            }
-          ]
-        },
-        {
-          img:
-            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186139-102.jpg',
-          title: '东方谱册',
-          star: '100',
-          describe: '一个谱册的介绍',
-          list: [
-            {
-              title: '谱子1',
-              id: '121'
-            },
-            {
-              title: '谱子2',
-              id: '122'
-            },
-            {
-              title: '谱子3',
-              id: '123'
-            },
-            {
-              title: '谱子4',
-              id: '124'
-            },
-            {
-              title: '谱子5',
-              id: '125'
-            }
-          ]
-        },
-        {
-          img:
-            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
-          title: '东ass方啊实打实大所大所大所大叔大婶大所大所大所大所谱册',
-          star: '100',
-          describe: '一个谱册的介绍',
-          list: [
-            {
-              title: '谱子1',
-              id: '121'
-            },
-            {
-              title: '谱子2',
-              id: '122'
-            },
-            {
-              title: '谱子3',
-              id: '123'
-            },
-            {
-              title: '谱子4',
-              id: '124'
-            },
-            {
-              title: '谱子5',
-              id: '125'
-            }
-          ]
-        }
-      ],
+      userCollection: [],
+      myVolumeList: [],
       dialogVisible: false,
       volumeForm: {
         title: '未命名谱册',
@@ -369,6 +191,10 @@ export default {
           }).then(res => {
             if (res.status === 200) {
               this.dialogVisible = false
+              this.myVolumeList.splice(0, this.myVolumeList.length, [])
+              console.log('创建', this.myVolumeList)
+              // this.getCreate()
+              this.getVolume()
             } else {
               this.$message({
                 showClose: true,
@@ -377,15 +203,16 @@ export default {
                 type: 'error'
               })
             }
-          }).catch(res => {
-            console.log(res)
-            this.$message({
-              showClose: true,
-              duration: 2000,
-              message: '发送请求失败',
-              type: 'error'
-            })
           })
+          // .catch(res => {
+          //   console.log(res)
+          //   this.$message({
+          //     showClose: true,
+          //     duration: 2000,
+          //     message: '发送请求失败',
+          //     type: 'error'
+          //   })
+          // })
         } else {
           return false
         }
@@ -394,10 +221,19 @@ export default {
     getVolume () {
       this.$http({
         method: 'get',
-        url: User.getMyCollection
+        url: User.getMyCollection + this.$route.params.uid
       }).then(res => {
-        // console.log(res)
-        this.myVolumeList = res.data.data
+        if (res.status === 200) {
+          this.myVolumeList = this.myVolumeList.concat(res.data.data)
+          console.log('收藏', this.myVolumeList)
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.message,
+            type: 'error'
+          })
+        }
       }).catch(res => {
         this.$message({
           showClose: true,
@@ -410,9 +246,19 @@ export default {
     getScore () {
       this.$http({
         method: 'get',
-        url: User.getMyLike
+        url: User.getMyLike + this.$route.params.uid
       }).then(res => {
-        console.log(res)
+        if (res.status === 200) {
+          // console.log('注册成功', res.data.data)
+          this.userCollection = this.userCollection.concat(res.data.data)
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.message,
+            type: 'error'
+          })
+        }
       }).catch(res => {
         this.$message({
           showClose: true,
@@ -423,20 +269,89 @@ export default {
       })
     },
     getUpload () {
-      this.$
+      this.$http({
+        method: 'get',
+        url: User.getMyUpload + this.$route.params.uid
+      }).then(res => {
+        if (res.status === 200) {
+          // console.log('注册成功', res.data.data)
+          this.userCollection = this.userCollection.concat(res.data.data)
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.message,
+            type: 'error'
+          })
+        }
+      }).catch(res => {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: '拉取信息失败',
+          type: 'error'
+        })
+      })
+    },
+    getCreate () {
+      this.$http({
+        method: 'get',
+        url: User.getMyCreate + this.$route.params.uid
+      }).then(res => {
+        if (res.status === 200) {
+          // console.log('注册成功', res.data.data)
+          this.myVolumeList = this.myVolumeList.concat(res.data.data)
+          console.log('创建', this.myVolumeList)
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.message,
+            type: 'error'
+          })
+        }
+      }).catch(res => {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: '拉取信息失败',
+          type: 'error'
+        })
+      })
     }
-
   },
   created () {
-    this.getVolume()
-    this.userData.username = store.getters.username
-    this.userData.avatar = store.getters.avatar
-    this.userData.signature = store.getters.signature
-    this.userData.phone = store.getters.phone
-    this.userData.id = store.getters.id
     this.$http({
       method: 'get',
-      url: User.getUpdateNum + this.userData.id
+      url: User.getInfo + this.$route.params.uid
+    }).then(res => {
+      if (res.status === 200) {
+          // console.log('getUpdateNum', res)
+        this.userData = res.data.data
+      } else {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: res.data.message,
+          type: 'error'
+        })
+      }
+    }).catch(res => {
+      console.log(res)
+      this.$message({
+        showClose: true,
+        duration: 2000,
+        message: '拉取信息失败',
+        type: 'error'
+      })
+    })
+    this.getVolume()
+    this.getScore()
+    this.getUpload()
+    // this.getCreate()
+    this.$http({
+      method: 'get',
+      url: User.getUpdateNum + this.$route.params.uid
     }).then(res => {
       if (res.status === 200) {
           // console.log('getUpdateNum', res)
@@ -461,7 +376,7 @@ export default {
 
     this.$http({
       method: 'get',
-      url: User.getCreateNum + this.userData.id
+      url: User.getCreateNum + this.$route.params.uid
     })
       .then(res => {
         if (res.status === 200) {
@@ -488,7 +403,7 @@ export default {
 
     this.$http({
       method: 'get',
-      url: User.getFocusNum + this.userData.id
+      url: User.getFocusNum + this.$route.params.uid
     })
       .then(res => {
         if (res.status === 200) {

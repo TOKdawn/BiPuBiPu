@@ -2,19 +2,7 @@
   <div class="searchRes">
     <div class="bannder">
       <div class="bg">
-        <el-autocomplete
-          v-model="searchText"
-          :fetch-suggestions="querySearchAsync"
-          placeholder="你又想要什么奇怪的谱子"
-          @select="handleSelect"
-          class="search-input"
-        >
-        </el-autocomplete>
-        <i
-          slot="prefix"
-          class=" el-icon-search"
-          @click="handleSelect()"
-        ></i>
+ 
       </div>
     </div>
     <div class="conText">
@@ -28,10 +16,11 @@
           name="first"
         >
           <el-table
-            ref="userCollection"
-            :data="userCollection"
+            :data="scoreData"
             highlight-current-row
-            style="width: 100%; margin-bottom:20px;"
+            style="width: 100%; margin-bottom:20px; table-layout: fixed;"
+              height="500"
+              @cell-click="scoreJump"
           >
             <el-table-column
               type="index"
@@ -45,32 +34,82 @@
             >
             </el-table-column>
             <el-table-column
-              property="addtion"
+              property="alias"
               label="别名"
+                width="120"
             >
             </el-table-column>
-
+         <el-table-column
+              property="addtion"
+              label="更多信息"
+                width="240"
+            >
+            </el-table-column>
+                     <el-table-column
+              property="FREEDOM54"
+              label="扒谱人"
+                width="120"
+            >
+            </el-table-column>
+              <el-table-column
+              property="score_text"
+              label="预览"
+            >
+            <template slot-scope="scope">
+                  {{ scope.row.score_text.slice(0,70) }}
+              </template>
+            </el-table-column>
           </el-table>
         </el-tab-pane>
         <el-tab-pane
           label="谱册"
           name="second"
         >
-          <div class="otherScoreListDiv">
-            <div
-              class="copies"
-              v-for="(item,index) in myScoreList"
-              :key="index"
+          <el-table
+            :data="volumeData"
+            highlight-current-row
+            style="width: 100%; margin-bottom:20px; table-layout: fixed;"
+              height="500"
+              @cell-click="volumeJump"
+          >
+            <el-table-column
+              type="index"
+              width="50"
             >
-              <img
-                :src="item.img"
-                alt=""
-              >
-              <h1> {{item.title}}</h1>
-              <p> {{item.describe}}}</p>
-              <div>收藏数:{{item.star}}</div>
-            </div>
-          </div>
+            </el-table-column>
+            <el-table-column
+              property="name"
+              label="谱册名"
+              width="120"
+            >
+            </el-table-column>
+            <el-table-column
+              property="alias"
+              label="别名"
+                width="120"
+            >
+            </el-table-column>
+         <el-table-column
+              property="addtion"
+              label="更多信息"
+                width="240"
+            >
+            </el-table-column>
+            <el-table-column
+              property="FREEDOM54"
+              label="扒谱人"
+                width="120"
+            >
+            </el-table-column>
+              <el-table-column
+              property="score_text"
+              label="预览"
+            >
+            <template slot-scope="scope">
+                  {{ scope.row.score_text.slice(0,70) }}
+              </template>
+            </el-table-column>
+          </el-table>
         </el-tab-pane>
         <el-tab-pane
           label="用户"
@@ -85,295 +124,138 @@
   </div>
 </template>
 <script>
-import Search from '../search/search'
+// import Search from '../search/search'
+import {systemUrl} from 'common/urls'
 export default {
   data () {
     return {
       activeName: 'first',
       searchText: '',
-      userCollection: [
-        {
-          id: 2,
-          photo: null,
-          name: '鳥の詩',
-          addtion: '《AIR》片头曲',
-          status: 1,
-          visits: 0,
-          created_at: '2018-07-11T09:14:04.137Z',
-          updated_at: '2018-07-11T09:14:04.137Z'
-        },
-        {
-          id: 3,
-          photo: null,
-          name: '鳥の詩222',
-          addtion: '《AIR》片头曲',
-          status: 1,
-          visits: 0,
-          created_at: '2018-08-06T07:10:53.202Z',
-          updated_at: '2018-08-06T07:10:53.202Z'
-        },
-        {
-          id: 4,
-          photo: null,
-          name: '鳥の詩333',
-          addtion: '《AIR》片头曲',
-          status: 1,
-          visits: 0,
-          created_at: '2018-08-06T07:10:57.168Z',
-          updated_at: '2018-08-06T07:10:57.168Z'
-        },
-        {
-          id: 1,
-          photo: null,
-          name: '鳥の詩444',
-          addtion: '《AIR》片头曲',
-          status: 1,
-          visits: 1,
-          created_at: '2018-07-11T09:13:53.001Z',
-          updated_at: '2018-07-11T09:15:02.142Z'
-        },
-        {
-          id: 4,
-          photo: null,
-          name: '鳥の詩333',
-          addtion: '《AIR》片头曲',
-          status: 1,
-          visits: 0,
-          created_at: '2018-08-06T07:10:57.168Z',
-          updated_at: '2018-08-06T07:10:57.168Z'
-        },
-        {
-          id: 1,
-          photo: null,
-          name: '鳥の詩444',
-          addtion: '《AIR》片头曲',
-          status: 1,
-          visits: 1,
-          created_at: '2018-07-11T09:13:53.001Z',
-          updated_at: '2018-07-11T09:15:02.142Z'
-        }
-      ],
-      myScoreList: [
-        {
-          img:
-            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186139-102.jpg',
-          title: '东ass方啊实打实大所大所大所大叔大婶大所大所大所大所谱册',
-          star: '100',
-          describe: '一个谱册的介绍',
-          list: [
-            {
-              title: '谱子1',
-              id: '121'
-            },
-            {
-              title: '谱子2',
-              id: '122'
-            },
-            {
-              title: '谱子3',
-              id: '123'
-            },
-            {
-              title: '谱子4',
-              id: '124'
-            },
-            {
-              title: '谱子5',
-              id: '125'
-            }
-          ]
-        },
-        {
-          img:
-            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186146-102.jpg',
-          title: '东方谱册',
-          star: '100',
-          describe: '一个谱册的介绍',
-          list: [
-            {
-              title: '谱子1',
-              id: '121'
-            },
-            {
-              title: '谱子2',
-              id: '122'
-            },
-            {
-              title: '谱子3',
-              id: '123'
-            },
-            {
-              title: '谱子4',
-              id: '124'
-            },
-            {
-              title: '谱子5',
-              id: '125'
-            }
-          ]
-        },
-        {
-          img:
-            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186139-102.jpg',
-          title: '东方谱册',
-          star: '100',
-          describe: '一个谱册的介绍',
-          list: [
-            {
-              title: '谱子1',
-              id: '121'
-            },
-            {
-              title: '谱子2',
-              id: '122'
-            },
-            {
-              title: '谱子3',
-              id: '123'
-            },
-            {
-              title: '谱子4',
-              id: '124'
-            },
-            {
-              title: '谱子5',
-              id: '125'
-            }
-          ]
-        },
-        {
-          img:
-            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186139-102.jpg',
-          title: '东方谱册',
-          star: '100',
-          describe: '一个谱册的介绍',
-          list: [
-            {
-              title: '谱子1',
-              id: '121'
-            },
-            {
-              title: '谱子2',
-              id: '122'
-            },
-            {
-              title: '谱子3',
-              id: '123'
-            },
-            {
-              title: '谱子4',
-              id: '124'
-            },
-            {
-              title: '谱子5',
-              id: '125'
-            }
-          ]
-        },
-        {
-          img:
-            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186139-102.jpg',
-          title: '东方谱册',
-          star: '100',
-          describe: '一个谱册的介绍',
-          list: [
-            {
-              title: '谱子1',
-              id: '121'
-            },
-            {
-              title: '谱子2',
-              id: '122'
-            },
-            {
-              title: '谱子3',
-              id: '123'
-            },
-            {
-              title: '谱子4',
-              id: '124'
-            },
-            {
-              title: '谱子5',
-              id: '125'
-            }
-          ]
-        },
-        {
-          img:
-            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186139-102.jpg',
-          title: '东方谱册',
-          star: '100',
-          describe: '一个谱册的介绍',
-          list: [
-            {
-              title: '谱子1',
-              id: '121'
-            },
-            {
-              title: '谱子2',
-              id: '122'
-            },
-            {
-              title: '谱子3',
-              id: '123'
-            },
-            {
-              title: '谱子4',
-              id: '124'
-            },
-            {
-              title: '谱子5',
-              id: '125'
-            }
-          ]
-        },
-        {
-          img:
-            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
-          title: '东ass方啊实打实大所大所大所大叔大婶大所大所大所大所谱册',
-          star: '100',
-          describe: '一个谱册的介绍',
-          list: [
-            {
-              title: '谱子1',
-              id: '121'
-            },
-            {
-              title: '谱子2',
-              id: '122'
-            },
-            {
-              title: '谱子3',
-              id: '123'
-            },
-            {
-              title: '谱子4',
-              id: '124'
-            },
-            {
-              title: '谱子5',
-              id: '125'
-            }
-          ]
-        }
-      ]
+      userData: [],
+      scoreData: [],
+      volumeData: []
     }
   },
   components: {
-    Search
+    // Search
   },
   created () {
-    console.log('aabbbdddaa')
-    console.log(this.$route.params.searchtext)
     this.searchText = this.$route.params.searchtext
+    this.getScore()
   },
   methods: {
-    handleClick () {},
-    querySearchAsync () {},
+    rowClass () {
+      return {
+        'height': '30px;',
+        'background-color': 'red'
+      }
+    },
+    handleClick (tab, event) {
+      console.log(tab.name, event)
+    },
+    scoreJump (row, column, cell, event) {
+      console.log(row)
+      this.$router.push(`/page/score/${row.id}`)
+    },
+    volumeJump (row, column, cell, event) {
+      this.$router.push(`/page/volume/${row.id}`)
+    },
+    userJump (row, column, cell, event) {
+      this.$router.push(`/page/user/${row.id}`)
+    },
+    querySearchAsync (row, column, cell, event) {
+      console.log(row)
+    },
     handleSelect () {
       // console.log('aaaa')
       this.$router.push(`/page/searchres/${this.searchText}`)
+    },
+    getScore () {
+      this.$http({
+        method: 'post',
+        url: systemUrl.getScore,
+        data: {
+          keyword: this.searchText
+        }
+      }).then(res => {
+        if (res.status === 200) {
+          console.log('拉取成功：', res.data)
+          this.scoreData.splice(0, this.scoreData.length, ...res.data)
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.data.message,
+            type: 'error'
+          })
+        }
+      })
+      .catch((res) => {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: '请求失败',
+          type: 'error'
+        })
+      })
+    },
+    getVolume () {
+      this.$http({
+        method: 'post',
+        url: systemUrl.getVolume,
+        data: {
+          keyword: this.searchText
+        }
+      }).then(res => {
+        if (res.status === 200) {
+          console.log('拉取成功：', res.data)
+          this.scoreData.splice(0, this.volumeData.length, ...res.data)
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.data.message,
+            type: 'error'
+          })
+        }
+      })
+      .catch((res) => {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: '请求失败',
+          type: 'error'
+        })
+      })
+    },
+    getUser () {
+      this.$http({
+        method: 'post',
+        url: systemUrl.getUser,
+        data: {
+          keyword: this.searchText
+        }
+      }).then(res => {
+        if (res.status === 200) {
+          console.log('拉取成功：', res.data)
+          this.scoreData.splice(0, this.userData.length, ...res.data)
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.data.message,
+            type: 'error'
+          })
+        }
+      })
+      .catch((res) => {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: '请求失败',
+          type: 'error'
+        })
+      })
     }
   }
 }
@@ -384,7 +266,7 @@ export default {
   .bannder {
     height: 200px;
     width: 100%;
-    background: url("./bg.jpg") 0% 85% /100% auto no-repeat;
+    background: url("./bg.jpg") 0% 78% /100% auto no-repeat;
     text-align: center;
     .bg {
       width: 100%;
@@ -392,6 +274,7 @@ export default {
       background: #333;
       opacity: 0.7;
       padding-top: 60px;
+      
       i {
         display: inline-block;
         font-weight: 600;
@@ -481,5 +364,15 @@ export default {
 }
 .searchRes input:focus {
   border-color: rgb(242, 103, 98);
+}
+.el-table__header tr,
+  .el-table__header th {
+    padding: 0;
+    height: 40px;
+}
+.el-table__body tr,
+  .el-table__body td {
+    padding: 0;
+    height: 40px;
 }
 </style>

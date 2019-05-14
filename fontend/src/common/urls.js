@@ -15,11 +15,11 @@ const Login = {
 
 }
 const User = {
-  getMyCollection: baseUrl + '/user/collectionList',
-  getMyLike: baseUrl + '/user/likeList',
-  getMyStar: baseUrl + '/user/starList',
-  getMyUpload: baseUrl + '/user/uploadList',
-  getMyCreate: baseUrl + '/user/createList',
+  getMyCollection: baseUrl + '/user/collectionList/',
+  getMyLike: baseUrl + '/user/likeList/',
+  getMyStar: baseUrl + '/user/starList/',
+  getMyUpload: baseUrl + '/user/uploadList/',
+  getMyCreate: baseUrl + '/user/createList/',
   getUpdateNum: baseUrl + '/user/updateNum/',
   getCreateNum: baseUrl + '/user/createNum/',
   getFocusNum: baseUrl + '/user/focusNum/',
@@ -27,10 +27,18 @@ const User = {
   logout: baseUrl + '/user/logout',
   updateInfo: baseUrl + '/user/updateInfo',
   thirdParty: baseUrl + '/user/thirdParty/',
-  changephone: baseUrl + '/user/changephone'
+  changephone: baseUrl + '/user/changephone',
+  getInfo: baseUrl + '/user/'
 }
 const Volume = {
-  createVolume: baseUrl + '/volume/createVolume'
+  createVolume: baseUrl + '/volume/createVolume',
+  getVolumeList: baseUrl + '/volume/volumeList',
+  getVolumeInfo: baseUrl + '/volume/',
+  getVolumeScore: baseUrl + '/getVolume/score/',
+  addVolumeScore: baseUrl + '/postVolume/score/',
+  deleteVolumeScore: baseUrl + '/deleteVolume/score/',
+  getVolumeAuthor: baseUrl + '/volume/author/',
+  getVolumeCollector: baseUrl + '/volume/collector/'
 }
 const systemUrl = {
   checkUser: baseUrl + '/system/checkuser',
@@ -43,7 +51,9 @@ const Upload = {
   uploadScore: baseUrl + '/score/upload'
 }
 const Score = {
-  getAllScore: baseUrl + '/score/allscore'
+  getAllScore: baseUrl + '/score/allscore',
+  getScoreAuthor: baseUrl + '/Score/author/',
+  getScoreCollector: baseUrl + '/Score/collector/'
 }
 
 export {

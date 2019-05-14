@@ -63,6 +63,12 @@ class VolumeService extends Service {
           vid,
         },
       });
+      await this.CollectionVolume.destroy({
+        where: {
+          uid,
+          vid,
+        },
+      });
       await this.Volume.update({
         status: 2,
       }, {
@@ -86,6 +92,37 @@ class VolumeService extends Service {
     });
     return volume;
   }
+
+  async getVolumeAuthor(vid){
+    const data = await this.User.findAll({
+      where: {
+        id: {
+          $in: this.app.Sequelize.literal(
+            `(SELECT uid FROM "ownVolume" WHERE vid = ${vid})`
+          ),
+        },
+      }
+   
+    })
+    return data;
+  }
+  async getVolumeCollector(vid, offset, pagesize) {
+
+    const data = await this.User.findAll({
+ 
+      where: {
+        id: {
+          $in: this.app.Sequelize.literal(
+            `(SELECT uid FROM "collectionVolume" WHERE vid = ${vid})`
+          ),
+        },
+      },
+      limit: pagesize,
+      offset,
+    });
+    return data;
+  }
+  
   
   async addVolumeScore(vid, sid) {
     const t = await this.ctx.model.transaction();

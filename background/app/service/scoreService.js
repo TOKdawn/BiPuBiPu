@@ -10,7 +10,7 @@ class ScoreService extends Service {
     this.Auhtor = this.ctx.model.Authorization;
     this.Score = this.ctx.model.Score;
     this.userUpload = this.ctx.model.UserUpload;
-    this.collectionVolume = this.ctx.model.CollectionVolume;
+
     this.userStar = this.ctx.model.UserStar;
     
   }
@@ -53,6 +53,32 @@ class ScoreService extends Service {
     }
   }
   
+  async getScoreAuthor(sid){
+    const data = await this.User.findAll({
+      where: {
+        id: {
+          $in: this.app.Sequelize.literal(
+            `(SELECT uid FROM "userUpload" WHERE sid = ${sid})`
+          ),
+        },
+      }
+    })
+    return data;
+  }
+  async getScoreCollector(sid, offset, pagesize) {
+    const data = await this.User.findAll({
+      where: {
+        id: {
+          $in: this.app.Sequelize.literal(
+            `(SELECT uid FROM "userStar" WHERE sid = ${sid})`
+          ),
+        },
+      },
+      limit: pagesize,
+      offset,
+    });
+    return data;
+  }
   async addCollectionVolume(vid, uid) {
     //  const t = await this.ctx.model.transaction();
     const volume = await this.Volume.findOne({
