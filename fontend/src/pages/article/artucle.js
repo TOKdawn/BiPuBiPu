@@ -33,6 +33,11 @@ const articleDate = {
     title: '花几分钟就让你入门',
     data: require('./articleData/花几分钟就让你入门.md'),
     time: '2019-3-11'
+  },
+  about: {
+    title: '关于',
+    data: require('../../../../README.md'),
+    time: '2019-3-11'
   }
 }
 export {

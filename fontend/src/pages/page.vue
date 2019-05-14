@@ -22,14 +22,23 @@ export default {
   created () {
     console.log(this.$route.name)
     switch (this.$route.name) {
-      case 'scorelist':
+      case 'volumelist':
         this.headData = '2'
         break
+      // case 'volumelist':
+      //   this.headData = '2'
+      //   break
       case 'articleList':
         this.headData = '3'
         break
       case 'translator':
         this.headData = '4'
+        break
+      case 'about':
+        this.headData = '5'
+        break
+      case 'download':
+        this.headData = '6'
         break
       default :
         this.headData = '10'

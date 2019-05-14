@@ -37,19 +37,20 @@
               </router-link>
             </div>
             <div class="item">
-              <router-link :to="{ name: 'volume',  params: { vid: '123' }}">
+              <router-link :to="{ name: 'about'}">
                 <div class="butn"><i class="iconfont icon-guanyu"></i>
                   <p>关于</p>
                 </div>
               </router-link>
             </div>
             <div class="item">
+               <router-link :to="{ name: 'download'}">
               <div
-                class="butn"
-                @click="jump(6)"
+              class="butn"
               ><i class="iconfont icon-xiazai"></i>
                 <p>下载</p>
               </div>
+               </router-link>
             </div>
             <div class="item">
               <router-link
@@ -114,7 +115,7 @@ export default {
         console.log('用户已登录', res.data)
         store.commit('uploadUserData', res.data.data)
         this.userRole = store.getters.role
-        this.userId = store.getters.phone
+        this.userId = store.getters.id
       } else {
         store.commit('logout')
       }

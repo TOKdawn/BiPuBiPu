@@ -1,4 +1,4 @@
-# 自由神社曲谱库 后端部分
+# 自由神社曲谱库 
 
 ## [项目地址](https://github.com/zytx121/je)
 ## [线上地址](http://bipubipu.com/)

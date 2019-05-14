@@ -104,9 +104,20 @@
       "HEAD",
       "GET"
     ],
-    "paramNames": [],
-    "path": "/user/collectionList",
-    "regexp": "/^\\/user\\/collectionList(?:\\/(?=$))?$/",
+    "paramNames": [
+      {
+        "name": "uid",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/user/collectionList/:uid",
+    "regexp": "/^\\/user\\/collectionList\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -117,9 +128,20 @@
       "HEAD",
       "GET"
     ],
-    "paramNames": [],
-    "path": "/user/likeList",
-    "regexp": "/^\\/user\\/likeList(?:\\/(?=$))?$/",
+    "paramNames": [
+      {
+        "name": "uid",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/user/likeList/:uid",
+    "regexp": "/^\\/user\\/likeList\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -130,9 +152,20 @@
       "HEAD",
       "GET"
     ],
-    "paramNames": [],
-    "path": "/user/starList",
-    "regexp": "/^\\/user\\/starList(?:\\/(?=$))?$/",
+    "paramNames": [
+      {
+        "name": "uid",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/user/starList/:uid",
+    "regexp": "/^\\/user\\/starList\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -143,9 +176,20 @@
       "HEAD",
       "GET"
     ],
-    "paramNames": [],
-    "path": "/user/uploadList",
-    "regexp": "/^\\/user\\/uploadList(?:\\/(?=$))?$/",
+    "paramNames": [
+      {
+        "name": "uid",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/user/uploadList/:uid",
+    "regexp": "/^\\/user\\/uploadList\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -156,9 +200,20 @@
       "HEAD",
       "GET"
     ],
-    "paramNames": [],
-    "path": "/user/createList",
-    "regexp": "/^\\/user\\/createList(?:\\/(?=$))?$/",
+    "paramNames": [
+      {
+        "name": "uid",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/user/createList/:uid",
+    "regexp": "/^\\/user\\/createList\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -635,8 +690,8 @@
         "pattern": "[^\\/]+?"
       }
     ],
-    "path": "/volume/:vid/score",
-    "regexp": "/^\\/volume\\/((?:[^\\/]+?))\\/score(?:\\/(?=$))?$/",
+    "path": "/getVolume/score/:vid",
+    "regexp": "/^\\/getVolume\\/score\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -658,8 +713,8 @@
         "pattern": "[^\\/]+?"
       }
     ],
-    "path": "/volume/:vid/score",
-    "regexp": "/^\\/volume\\/((?:[^\\/]+?))\\/score(?:\\/(?=$))?$/",
+    "path": "/postVolume/score/:vid",
+    "regexp": "/^\\/postVolume\\/score\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -667,7 +722,7 @@
   {
     "name": null,
     "methods": [
-      "DELETE"
+      "POST"
     ],
     "paramNames": [
       {
@@ -679,7 +734,45 @@
         "partial": false,
         "asterisk": false,
         "pattern": "[^\\/]+?"
-      },
+      }
+    ],
+    "path": "/deleteVolume/score/:vid",
+    "regexp": "/^\\/deleteVolume\\/score\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "HEAD",
+      "GET"
+    ],
+    "paramNames": [
+      {
+        "name": "vid",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/volume/author/:vid",
+    "regexp": "/^\\/volume\\/author\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "HEAD",
+      "GET"
+    ],
+    "paramNames": [
       {
         "name": "sid",
         "prefix": "/",
@@ -691,8 +784,56 @@
         "pattern": "[^\\/]+?"
       }
     ],
-    "path": "/volume/:vid/score/:sid",
-    "regexp": "/^\\/volume\\/((?:[^\\/]+?))\\/score\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "path": "/socre/author/:sid",
+    "regexp": "/^\\/socre\\/author\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "HEAD",
+      "GET"
+    ],
+    "paramNames": [
+      {
+        "name": "vid",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/volume/collector/:vid",
+    "regexp": "/^\\/volume\\/collector\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "HEAD",
+      "GET"
+    ],
+    "paramNames": [
+      {
+        "name": "sid",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/socre/collector/:sid",
+    "regexp": "/^\\/socre\\/collector\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]

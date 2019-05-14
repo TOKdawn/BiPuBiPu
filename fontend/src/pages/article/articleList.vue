@@ -3,7 +3,7 @@
     <div
       class="card"
       v-for="(item,index) in pageIndex[page]"
-      :key=index
+      :key="index"
     >
       <h2 class="title" @click="jump(item)">{{allDate[item].title}}</h2>
 

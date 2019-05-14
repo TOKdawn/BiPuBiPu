@@ -23,18 +23,18 @@ export default new Vuex.Store({
   mutations: {
     uploadUserData (state, userData) {
       console.log(userData)
-      state.role = userData.role
-      state.username = userData.name
-      state.avatar = userData.avatar
-      state.signature = userData.signature
-      state.phone = userData.email
-      state.id = userData.id
-      localStorage.setItem('role', userData.role)
-      localStorage.setItem('username', userData.name)
-      localStorage.setItem('avatar', userData.avatar)
-      localStorage.setItem('signature', userData.signature)
-      localStorage.setItem('phone', userData.email)
-      localStorage.setItem('id', userData.id)
+      state.role = userData.role || state.role
+      state.username = userData.name || state.username
+      state.avatar = userData.avatar || state.avatar
+      state.signature = userData.signature || state.signature
+      state.phone = userData.email || state.phone
+      state.id = userData.id || userData.id
+      localStorage.setItem('role', state.role)
+      localStorage.setItem('username', state.username)
+      localStorage.setItem('avatar', state.avatar)
+      localStorage.setItem('signature', state.signature)
+      localStorage.setItem('phone', state.phone)
+      localStorage.setItem('id', state.id)
     },
     logout (state) {
       state.username = ''

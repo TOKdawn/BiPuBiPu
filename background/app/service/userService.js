@@ -7,6 +7,7 @@ class UserService extends Service {
     this.CollectionVolume = this.ctx.model.CollectionVolume;
     this.User = this.ctx.model.User;
     this.Volume = this.ctx.model.Volume;
+    this.Score = this.ctx.model.Score;
     this.Auhtor = this.ctx.model.Authorization;
     this.userFocus = this.ctx.model.UserFocus;
     this.userUpload = this.ctx.model.UserUpload;
@@ -48,7 +49,8 @@ class UserService extends Service {
 
   async getUserCollection(uid, offset, pagesize, owned) {
     // this.Volume.belongsTo(this.CollectionVolume, { foreignKey: 'vid', sourceKey: 'id' });
-    const tablename = !owned ? 'collectionVolume' : 'ownVolume';
+    // const tablename = !owned ? 'collectionVolume' : 'ownVolume';
+    const tablename = 'collectionVolume'
     const data = await this.Volume.findAll({
       // attributes: ['vid', 'uid'],
       where: {
@@ -65,11 +67,11 @@ class UserService extends Service {
   }
 
   async getMyLike(uid, offset, pagesize){
-    const data = await this.Score.findAll({
+    const data = await this.User.findAll({
       where: {
         id: {
           $in: this.app.Sequelize.literal(
-            `(SELECT sid FROM "userStar" WHERE uid = ${uid})`
+            `(SELECT otherid FROM "userFocus" WHERE uid = ${uid})`
           ),
         },
       },
@@ -94,7 +96,7 @@ class UserService extends Service {
     return data;
   }
 
-  async getMyUpload(uid, offset, pagesize){
+  async getMyCreate(uid, offset, pagesize){
     const data = await this.Volume.findAll({
       where: {
         id: {
@@ -114,7 +116,7 @@ class UserService extends Service {
       where: {
         id: {
           $in: this.app.Sequelize.literal(
-            `(SELECT otherid FROM "userUpload" WHERE uid = ${uid})`
+            `(SELECT sid FROM "userStar" WHERE uid = ${uid})`
           ),
         },
       },

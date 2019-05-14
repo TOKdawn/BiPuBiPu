@@ -121,7 +121,7 @@ class UserController extends Controller {
 
 
 
-  async getUserCollection() {
+  async getUserCollection() { //收藏的谱册
     const {
       uid
     } = this.ctx.params;
@@ -135,12 +135,14 @@ class UserController extends Controller {
     this.ctx.helper.successRes('sucess',response);
   }
 
-  async getMyCollection() {
+  async getMyCollection() { //收藏的谱册
     // 获取session里的uid
-    const uid = this.ctx.session.user.id;
+    const {
+      uid
+    } = this.ctx.params;
     if (uid) {
       const {
-        offset, pagesize, owned 
+        offset, pagesize, owned = false
       } = this.ctx.query;
       const response = await this.userService.getUserCollection(uid, offset, pagesize, owned);
       this.ctx.helper.successRes('sucess',response);
@@ -151,8 +153,10 @@ class UserController extends Controller {
   }
 
 
-  async getMyLike() {
-    const uid = this.ctx.session.user.id;
+  async getMyLike() { //关注的人
+    const {
+      uid
+    } = this.ctx.params;
     if (uid) {
       const {
         offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE
@@ -163,8 +167,10 @@ class UserController extends Controller {
       this.ctx.helper.createRes(404, 'User not find 凸(⊙▂⊙✖ )');
     }
   }
-  async getMyStar() {
-    const uid = this.ctx.session.user.id;
+  async getMyStar() { //收藏的乐谱
+    const {
+      uid
+    } = this.ctx.params;
     if (uid) {
       
       const {
@@ -176,8 +182,10 @@ class UserController extends Controller {
       this.ctx.helper.createRes(404, 'User not find 凸(⊙▂⊙✖ )');
     }
   }
-  async getMyUpload() {
-    const uid = this.ctx.session.user.id;
+  async getMyUpload() { //上传的乐谱
+    const {
+      uid
+    } = this.ctx.params;
     if (uid) {
 
       const {
@@ -189,8 +197,10 @@ class UserController extends Controller {
       this.ctx.helper.createRes(404, 'User not find 凸(⊙▂⊙✖ )');
     }
   }
-  async getMyCreate() {
-    const uid = this.ctx.session.user.id;
+  async getMyCreate() { //上传的谱册
+    const {
+      uid
+    } = this.ctx.params;
     if (uid) {
  
       const {

@@ -376,7 +376,6 @@ export default {
     },
     handleAvatarSuccess (res, file) {
       this.userData.avatar = res.url
-      this.userData.avatar = URL.createObjectURL(file.raw)
     },
     updataPhone () {
       let isCheck = this.checkEmailAndPwd(this.userPhone.oldPass, this.userPhone.newPhone, this.userPhone.sms)
@@ -425,21 +424,40 @@ export default {
         if (valid) {
           this.$http({
             method: 'post',
-            url: User.updataInfo,
+            url: User.updateInfo,
             data: {
               avatar: this.userData.avatar,
-              name: this.userData.name,
+              name: this.userData.username,
               signature: this.userData.signature
             }
           }).then(res => {
             if (res.status === 200) {
+              store.commit('uploadUserData', {
+                avatar: this.userData.avatar,
+                name: this.userData.username,
+                signature: this.userData.signature
+              })
               this.$message({
                 showClose: true,
                 duration: 2000,
                 message: '更新信息成功',
                 type: 'secuss'
               })
+            } else {
+              this.$message({
+                showClose: true,
+                duration: 2000,
+                message: res.data.message,
+                type: 'error'
+              })
             }
+          }).catch(() => {
+            this.$message({
+              showClose: true,
+              duration: 2000,
+              message: '注册失败',
+              type: 'error'
+            })
           })
         } else {
           console.log('error submit!!')

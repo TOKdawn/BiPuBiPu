@@ -34,6 +34,23 @@ class VolumeController extends Controller {
     const response = await this.VolumeService.createVolume(title, describe,img, uid);
     this.ctx.helper.successRes('sucess', response);
   }
+  async getVolumeAuthor(){
+    const {
+      vid
+    } = this.ctx.params;
+    const response = await this.VolumeService.getVolumeAuthor(vid);
+    this.ctx.helper.successRes('sucess', response);
+  }
+  async getVolumeCollector(){
+    const {
+      vid
+    } = this.ctx.params;
+    const {
+      offset = DEFAULTOFFSET, pagesize = DEFAULTSCOREPAGESIZE
+    } = this.ctx.query;
+    const response = await this.VolumeService.getVolumeCollector(vid, offset, pagesize);
+    this.ctx.helper.successRes('sucess', response);
+  }
 
   async editVolume() {
     const {
@@ -103,8 +120,10 @@ class VolumeController extends Controller {
 
   async deleteVolumeScore() {
     const {
-      vid,
       sid
+    } = this.ctx.request.body;
+    const {
+      vid,
     } = this.ctx.params;
     const volume = await this.VolumeService.findOwner(vid);
     if (volume.get('uid') !== this.ctx.user.id) {
