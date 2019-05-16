@@ -22,7 +22,8 @@ class VolumeService extends Service {
       const data = await this.Volume.create({
         name:title,
         describe,
-        photo:img
+        photo:img,
+        visits:1
       });
       // console.log(data.get('id'));
       await this.OwnVolume.create({
@@ -40,12 +41,34 @@ class VolumeService extends Service {
       return err;
     }
   }
+  async getVolumeType(vid, uid){
 
-  async editVolume(id, title, describe, url) {
+    const author = await this.OwnVolume.findOne({
+      where:{
+        uid,
+        vid,
+      }
+    })
+    const collector = await this.CollectionVolume.findOne({
+      where:{
+        uid,
+        vid,
+      }
+    })
+    console.log(author, collector)
+    if(author){
+      return 'author'
+    }else if(collector){
+      return 'collector'
+    }else {
+      return 'visitor'
+    }
+  }
+  async editVolume(id, name, describe, photo) {
     const data = await this.Volume.update({
-      name:title,
+      name,
       describe,
-      photo: url,
+      photo,
     }, {
       where: {
         id,
@@ -178,12 +201,7 @@ class VolumeService extends Service {
   }
 
   async getVolumeScore(vid, offset, pagesize) {
-    await this.Volume.increment(['visits'], {
-      by: 1,
-      where: {
-        id: vid
-      }
-    })
+
     const data = await this.ScoreVolume.findAll({
       // attributes: ['vid', 'uid'],
       where: {
@@ -234,6 +252,9 @@ class VolumeService extends Service {
     if (role == 'normal'); //目前只有常规查询;
     const data = await this.Volume.findAll({
       // attributes: ['vid', 'uid'],
+      where: {
+        status: 1
+      },
       order: [
         'visits'
       ],

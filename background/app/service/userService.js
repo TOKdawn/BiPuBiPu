@@ -13,9 +13,6 @@ class UserService extends Service {
     this.userUpload = this.ctx.model.UserUpload;
     this.ownVolume = this.ctx.model.OwnVolume;
   }
-
-
-
   async getInfo(uid) {
     if (!uid) return {
       error: true,
@@ -59,10 +56,13 @@ class UserService extends Service {
             `(SELECT vid FROM "${tablename}" WHERE uid = ${uid})`
           ),
         },
+          status: 1
+        
       },
       limit: pagesize,
       offset,
     });
+    console.log('dddd',data)
     return data;
   }
 
@@ -104,6 +104,7 @@ class UserService extends Service {
             `(SELECT vid FROM "ownVolume" WHERE uid = ${uid})`
           ),
         },
+        status: 1
       },
       limit: pagesize,
       offset,

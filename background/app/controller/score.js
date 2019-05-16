@@ -38,7 +38,20 @@ class ScoreController extends Controller {
       }
     }
   }
-
+  async getVolumeType(){
+    const {
+      sid
+    } = this.ctx.params;
+    const uid = this.ctx.session.user.id
+    const response = await this.ScoreService.getScoreType(sid, uid);
+    if (response === 'author') {
+      this.ctx.helper.successRes('success', { type :'author'});
+    } else if (response === 'collector') {
+      this.ctx.helper.successRes('success', { type :'collector'});
+    } else {
+      this.ctx.helper.successRes('success',{type: 'visitor'})
+    }
+  }
   async getScoreAuthor(){
     const {
       sid
@@ -59,8 +72,8 @@ class ScoreController extends Controller {
   async addCollectionVolume() {
     const {
       vid
-    } = this.ctx.request.body;
-    if(this.ctx.session.user){
+    } = this.ctx.params;
+    if(!this.ctx.session.user){
       this.ctx.helper.createRes(203, '用户登录失效或权限不足')
     } else{
       const response = await this.scoreService.addCollectionVolume(vid,this.ctx.session.user.id)
@@ -75,8 +88,8 @@ class ScoreController extends Controller {
   async deleteCollectionVolume() {
     const {
       vid
-    } = this.ctx.request.params;
-    if(this.ctx.session.user){
+    } = this.ctx.params;
+    if(!this.ctx.session.user){
       this.ctx.helper.createRes(203, '用户登录失效或权限不足')
     } else{
       const response = await this.scoreService.deleteCollectionVolume(vid,this.ctx.session.user.id)

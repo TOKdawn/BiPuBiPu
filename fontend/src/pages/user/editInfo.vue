@@ -38,10 +38,10 @@
             </el-form-item>
             <el-form-item
               label="昵称:"
-              prop="username"
+              prop="name"
             >
               <el-input
-                v-model="userData.username"
+                v-model="userData.name"
                 size="small"
               >
 
@@ -260,7 +260,7 @@ export default {
   data () {
     return {
       userData: {
-        username: '未命名用户',
+        name: '未命名用户',
         avatar:
           'http://bipu.oss-cn-beijing.aliyuncs.com/egg-multipart-test/akari.jpg',
         signature: '这个人很懒,啥也没写╮(╯_╰)╭',
@@ -284,7 +284,7 @@ export default {
       activeName: 'first',
       SMStext: '获取短信验证码',
       userRules: {
-        username: [
+        name: [
             { required: true, message: '请输入用户名', trigger: 'blur' },
             { min: 3, max: 15, message: '长度在 2 到 15 个字符', trigger: 'blur' }
         ],
@@ -320,10 +320,30 @@ export default {
   },
   components: {},
   created () {
-    this.userData.username = store.getters.username
-    this.userData.avatar = store.getters.avatar
-    this.userData.signature = store.getters.signature
-    this.userData.phone = store.getters.phone
+    this.$http({
+      method: 'get',
+      url: User.getInfo + this.$route.params.uid
+    }).then(res => {
+      if (res.status === 200) {
+          // console.log('getUpdateNum', res)
+        this.userData = res.data.data
+      } else {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: res.data.message,
+          type: 'error'
+        })
+      }
+    }).catch(res => {
+      console.log(res)
+      this.$message({
+        showClose: true,
+        duration: 2000,
+        message: '拉取信息失败',
+        type: 'error'
+      })
+    })
   },
   methods: {
     jump (type) {
@@ -392,9 +412,14 @@ export default {
         }
       }).then(res => {
         if (res.status === 200) {
-          // console.log('注册成功', res.data.data)
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: '更新信息成功',
+            type: 'secuss'
+          })
           store.commit('uploadUserData', res.data.data)
-          this.$router.push('/')
+          this.$router.push(`/page/user/${this.$route.params.uid}`)
         }
       })
       .catch(() => {
@@ -427,14 +452,14 @@ export default {
             url: User.updateInfo,
             data: {
               avatar: this.userData.avatar,
-              name: this.userData.username,
+              name: this.userData.name,
               signature: this.userData.signature
             }
           }).then(res => {
             if (res.status === 200) {
               store.commit('uploadUserData', {
                 avatar: this.userData.avatar,
-                name: this.userData.username,
+                name: this.userData.name,
                 signature: this.userData.signature
               })
               this.$message({

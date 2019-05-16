@@ -38,7 +38,12 @@ const Volume = {
   addVolumeScore: baseUrl + '/postVolume/score/',
   deleteVolumeScore: baseUrl + '/deleteVolume/score/',
   getVolumeAuthor: baseUrl + '/volume/author/',
-  getVolumeCollector: baseUrl + '/volume/collector/'
+  getVolumeCollector: baseUrl + '/volume/collector/',
+  editVolume: baseUrl + '/volume/',
+  deleteVolume: baseUrl + '/volume/',
+  addCollectionVolume: baseUrl + '/volumeCollection/',
+  deleteCollectionVolume: baseUrl + '/volumeCollection/'
+
 }
 const systemUrl = {
   checkUser: baseUrl + '/system/checkuser',

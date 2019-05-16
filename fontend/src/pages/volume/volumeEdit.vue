@@ -4,21 +4,22 @@
       <h2 style="margin-bottom:20px; font-weight:600">谱册设置</h2>
 
       <el-form
-        :model="userData"
+        :model="volumeData"
         :rules="rules"
-        ref="userDataForm"
-        label-width="80px"
+        ref="volumeDataForm"
+        label-width="100px"
         class="userDataForm"
       >
         <el-form-item label="更换封面:">
           <el-upload
             class="avatar-uploader"
-            action="https://jsonplaceholder.typicode.com/posts/"
+            action="/api/upload"
             :show-file-list="false"
+             :on-success="handleAvatarSuccess"
           >
             <img
-              v-if="userData.avatar"
-              :src="userData.avatar"
+              v-if="volumeData.photo"
+              :src="volumeData.photo"
               class="avatar"
             >
             <i
@@ -30,27 +31,27 @@
         </el-form-item>
         <el-form-item
           label="谱册名:"
-          prop="username"
+          prop="name"
         >
           <el-input
-            v-model="userData.username"
+            v-model="volumeData.name"
             size="small"
           >
           </el-input>
         </el-form-item>
         <el-form-item
           label="谱册介绍:"
-          prop="username"
+          prop="describe"
         >
           <el-input
-            v-model="userData.username"
+            v-model="volumeData.describe"
             type="textarea"
             :rows="2"
             size="small"
           ></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button size="small">
+          <el-button size="small" @click="updata">
             保存
           </el-button>
         </el-form-item>
@@ -59,81 +60,107 @@
   </div>
 </template>
 <script>
-import store from 'vux/store.js'
+// import store from 'vux/store.js'
+import {Volume} from 'common/urls'
 export default {
   data () {
     return {
-      userData: {
-        username: '未命名用户',
-        avatar:
-          'http://bipu.oss-cn-beijing.aliyuncs.com/egg-multipart-test/akari.jpg',
-        signature: '这个人很懒,啥也没写╮(╯_╰)╭',
-        phone: 18700000000
+      volumeData: {
+        describe: '',
+        photo: '',
+        name: '',
+        id: ''
+      },
+      rules: {
+        name: [
+            { required: true, message: '请输入谱册名', trigger: 'blur' },
+            { min: 3, max: 15, message: '长度在 2 到 15 个字符', trigger: 'blur' }
+        ],
+        describe: [
+            { required: true, message: '请输入谱册描述', trigger: 'blur' },
+            { min: 3, max: 30, message: '长度在 1 到 30 个字符', trigger: 'blur' }
+        ]
       },
       activeName: 'first',
       SMStext: '获取短信验证码',
-      rules: {},
       smsFlag: '',
       res_sms: ''
     }
   },
   components: {},
   methods: {
-    jump (type) {
-      switch (type) {
-      }
+    handleAvatarSuccess (res, file) {
+      this.volumeData.photo = res.url
+    },
+    updata () {
+      this.$refs['volumeDataForm'].validate((valid) => {
+        if (valid) {
+          this.$http({
+            method: 'put',
+            url: Volume.editVolume + this.$route.params.vid,
+            data: {
+              photo: this.volumeData.photo,
+              name: this.volumeData.name,
+              describe: this.volumeData.describe
+            }
+          }).then(res => {
+            if (res.status === 200) {
+              this.$message({
+                showClose: true,
+                duration: 2000,
+                message: '更新信息成功',
+                type: 'secuss'
+              })
+              this.$router.push(`/page/volume/${this.$route.params.vid}`)
+            } else {
+              this.$message({
+                showClose: true,
+                duration: 2000,
+                message: res.data.message,
+                type: 'error'
+              })
+            }
+          }).catch(() => {
+            this.$message({
+              showClose: true,
+              duration: 2000,
+              message: '注册失败',
+              type: 'error'
+            })
+          })
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     }
   },
   created () {
-    this.userData.username = store.getters.username
-    this.userData.avatar = store.getters.avatar
-    this.userData.signature = store.getters.signature
-    this.userData.phone = store.getters.phone
-  },
-  getSMS () {
-    var myreg = /^[1][3,4,5,7,8][0-9]{9}$/
-    if (!myreg.test(this.res_phone)) {
-      this.loginTipMsg = '请输入正确格式的手机号'
-      return false
-    }
-    this.smsFlag = true
-    this.SMStext = '重新发送(60)'
-    let TIME_COUNT = 60
     this.$http({
-      method: 'post',
-      url: '',
-      data: {
-        phone: this.res_phone
+      method: 'get',
+      url: Volume.getVolumeInfo + this.$route.params.vid
+    }).then(res => {
+      if (res.status === 200) {
+        this.volumeData = res.data.data
+      } else {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: res.data.message,
+          type: 'error'
+        })
       }
     })
-      .then(res => {
-        if (res.status === 200) {
-          console.log(res.data.data)
-        }
+    .catch((res) => {
+      this.$message({
+        showClose: true,
+        duration: 2000,
+        message: '请求失败',
+        type: 'error'
       })
-      .catch(() => {
-        // this.$message({
-        //   showClose: true,
-        //   duration: 2000,
-        //   message: '获取短信失败',
-        //   type: 'error'
-        // })
-      })
-    let _this = this
-    this.count = TIME_COUNT
-    let timer = setInterval(() => {
-      if (this.count > 0 && this.count <= TIME_COUNT) {
-        this.count--
-        _this.smsFlag = true
-        _this.SMStext = '重新发送(' + this.count + ')'
-      } else {
-        clearInterval(timer)
-        _this.smsFlag = false
-        _this.SMStext = '获取短信验证码'
-      }
-    }, 1000)
-    // }
+    })
   }
+
 }
 </script>
 <style lang="scss" scoped>
