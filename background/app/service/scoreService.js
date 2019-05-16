@@ -89,14 +89,21 @@ class ScoreService extends Service {
     if (volume == null) {
       return false
     } else {
-      const data = await this.collectionVolume.findOrCreate({
+      const data = await this.CollectionVolume.findOrCreate({
         where: {
           vid,
           uid
         }
       })
+      await this.Volume.increment(['visits'], {
+        by: 1,
+        where: {
+          id: vid
+        }
+      })
       return data;
     }
+
   }
   async deleteCollectionVolume(vid,uid) {
     const volume = await this.Volume.findOne({
@@ -107,10 +114,16 @@ class ScoreService extends Service {
     if (volume == null) {
       return false
     } else {
-      const data = await this.collectionVolume.destroy({
+      const data = await this.CollectionVolume.destroy({
         where: {
           vid,
           uid
+        }
+      })
+      await this.Volume.decrement(['visits'], {
+        by: 1,
+        where: {
+          id: vid
         }
       })
       return data;

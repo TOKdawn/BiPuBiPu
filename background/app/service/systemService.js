@@ -23,7 +23,10 @@ class systemService extends Service {
             name: {
               $like: `%${keyword}%`
             }
-          }]
+          }],
+          $and:{
+            status: 1
+          }
         },
         limit: pagesize,
         offset,
@@ -43,7 +46,10 @@ class systemService extends Service {
             addtion: {
               $like: `%${keyword}%`
             }
-          }]
+          }],
+          $and:{
+            status: 1
+          }
         },
         limit: pagesize,
         offset,
@@ -78,7 +84,10 @@ class systemService extends Service {
           name: {
             $like: `%${keyword}%`
           }
-        }]
+        }],
+        $and:{
+          status: 1
+        }
       },
       limit: pagesize,
       offset,

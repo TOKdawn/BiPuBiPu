@@ -9,32 +9,13 @@
       <el-radio-button label="最新"></el-radio-button>
       <el-radio-button label="全部"></el-radio-button>
     </el-radio-group>
-    <div
+    <!-- <div
       class="myScoreList"
       v-if="login"
     >
       <h2>我的谱册</h2>
       <div class="line"></div>
       <div class="myScoreListDiv">
-        <div
-          class="copies"
-          v-for="(item,index) in myScoreList"
-          :key="index"
-        >
-          <img
-            :src="item.img"
-            alt="" 
-          >
-          <h1> {{item.title}}</h1>
-          <p> {{item.describe}}}</p>
-          <div>收藏数:{{item.star}}</div>
-        </div>
-      </div>
-    </div>
-    <div :class="{ 'allSocreList': !login, 'otherSocreList':login }">
-      <h2>全部谱册</h2>
-      <div class="line"></div>
-      <div class="otherScoreListDiv">
         <div
           class="copies"
           v-for="(item,index) in myScoreList"
@@ -49,6 +30,26 @@
           <div>收藏数:{{item.star}}</div>
         </div>
       </div>
+    </div> -->
+    <div :class="{ 'allSocreList': !login, 'otherSocreList':login }">
+      <h2>全部谱册</h2>
+      <div class="line"></div>
+      <div class="otherScoreListDiv">
+        <div
+          class="copies"
+          v-for="(item,index) in allScoreList"
+          :key="index"
+        >
+          <img
+            :src="item.photo"
+            @click="$router.push(`/page/volume/${item.id}`)"
+            alt=""
+          >
+          <h1 @click="$router.push(`/page/volume/${item.id}`)"> {{item.name}}</h1>
+          <p> {{item.describe}}</p>
+          <div>收藏数:{{item.visits}}</div>
+        </div>
+      </div>
     </div>
     <el-pagination
       background
@@ -60,16 +61,44 @@
   </div>
 </template>
 <script>
+import { Volume } from 'common/urls'
 export default {
   data () {
     return {
       myScoreList: [],
       allScoreList: [],
-      login: true,
+      login: false,
       radio3: '全部',
       DEFAULTOFFSET: '',
       DEFAULTVOLUMEPAGESIZE: ''
     }
+  },
+  mounted () {
+    this.$http({
+      method: 'get',
+      url: Volume.getVolumeList
+    })
+      .then(res => {
+        if (res.status === 200) {
+          this.allScoreList.splice(0, 0, ...res.data.data)
+          console.log(res.data.data)
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.data.message,
+            type: 'error'
+          })
+        }
+      })
+      .catch(res => {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: '请求失败',
+          type: 'error'
+        })
+      })
   },
   components: {}
 }
@@ -86,7 +115,7 @@ export default {
       overflow: auto;
     }
     .copies {
-      width: 25%;
+      width: 20%;
     }
     .block {
       background-color: transparent;
@@ -95,14 +124,19 @@ export default {
   .allSocreList {
     width: 100%;
     // height: 600px;
-    padding-right: 20%;
+    // padding-right: 20%;
+    margin-bottom: 100px;
+     .copies {
+      width: 20%;
+    }
+
   }
   .pagination {
     height: 33px;
     text-align: center;
     position: absolute;
     left: 30%;
-    margin-top: 5px;
+    margin-top: -60px;
   }
   .myScoreList {
     width: 20%;

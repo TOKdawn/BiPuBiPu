@@ -61,10 +61,11 @@
           <p> 查看更多>> </p>
         </div>
         <el-table
-          ref="userCollection"
           :data="userCollection"
           highlight-current-row
-          style="width: 100%"
+          style="width: 100%; margin-bottom:20px; table-layout: fixed; cursor: pointer;"
+          height="500"
+          @cell-click="scoreJump"
         >
           <el-table-column
             type="index"
@@ -78,17 +79,40 @@
           >
           </el-table-column>
           <el-table-column
-            property="addtion"
+            property="alias"
             label="别名"
+            width="120"
           >
           </el-table-column>
-
+          <el-table-column
+            property="addtion"
+            label="更多信息"
+            width="240"
+          >
+          </el-table-column>
+          <el-table-column
+            property="FREEDOM54"
+            label="扒谱人"
+            width="120"
+          >
+          </el-table-column>
+          <el-table-column
+            property="score_text"
+            label="预览"
+          >
+            <template slot-scope="scope">
+              {{ scope.row.score_text.slice(0,30) }}
+            </template>
+          </el-table-column>
         </el-table>
       </div>
       <div class="creat">
         <div class="title">
           <h3>收藏的谱册 </h3>
-          <p @click="dialogVisible = true" style="  cursor: pointer;"> 新建谱册+ </p>
+          <p
+            @click="dialogVisible = true"
+            style="  cursor: pointer;"
+          > 新建谱册+ </p>
         </div>
         <div class="otherScoreListDiv">
           <div
@@ -102,7 +126,7 @@
               alt=""
             >
             <h1 @click="$router.push(`/page/volume/${item.id}`)"> {{item.name}}</h1>
-            <p> {{item.describe}}}</p>
+            <p> {{item.describe}}</p>
             <div>收藏数:{{item.visits}}</div>
           </div>
         </div>
@@ -113,14 +137,26 @@
       :visible.sync="dialogVisible"
       width="30%"
     >
-  <el-form :model="volumeForm" :rules="volumerules" ref="volumeForm" label-width="100px" class="demo-ruleForm">
-  <el-form-item label="谱册名称" prop="title">
-    <el-input v-model="volumeForm.title"></el-input>
-  </el-form-item>
-    <el-form-item label="谱册描述" prop="describe">
-    <el-input v-model="volumeForm.describe"></el-input>
-  </el-form-item>
-  </el-form>
+      <el-form
+        :model="volumeForm"
+        :rules="volumerules"
+        ref="volumeForm"
+        label-width="100px"
+        class="demo-ruleForm"
+      >
+        <el-form-item
+          label="谱册名称"
+          prop="title"
+        >
+          <el-input v-model="volumeForm.title"></el-input>
+        </el-form-item>
+        <el-form-item
+          label="谱册描述"
+          prop="describe"
+        >
+          <el-input v-model="volumeForm.describe"></el-input>
+        </el-form-item>
+      </el-form>
 
       <span
         slot="footer"
@@ -160,8 +196,8 @@ export default {
       },
       volumerules: {
         title: [
-            { required: true, message: '请输入活动名称', trigger: 'blur' },
-            { max: 20, message: '长度不要超过20个字符', trigger: 'blur' }
+          { required: true, message: '请输入活动名称', trigger: 'blur' },
+          { max: 20, message: '长度不要超过20个字符', trigger: 'blur' }
         ]
       }
     }
@@ -169,17 +205,17 @@ export default {
   components: {},
   methods: {
     jump (type) {
-      console.log(`page/editInfo/${store.getters.phone}`)
+      // console.log(`page/editInfo/${store.getters.id}`)
       switch (type) {
         case 1:
-          this.$router.push(`/page/uploadimg/${store.getters.phone}`)
+          this.$router.push(`/page/uploadimg/${store.getters.id}`)
           break
         case 2:
-          this.$router.push(`/page/editInfo/${store.getters.phone}`)
+          this.$router.push(`/page/editInfo/${store.getters.id}`)
       }
     },
     createVolume () {
-      this.$refs['volumeForm'].validate((valid) => {
+      this.$refs['volumeForm'].validate(valid => {
         if (valid) {
           this.$http({
             method: 'post',
@@ -222,129 +258,142 @@ export default {
       this.$http({
         method: 'get',
         url: User.getMyCollection + this.$route.params.uid
-      }).then(res => {
-        if (res.status === 200) {
-          this.myVolumeList = this.myVolumeList.concat(res.data.data)
-          console.log('收藏', this.myVolumeList)
-        } else {
+      })
+        .then(res => {
+          if (res.status === 200) {
+            this.myVolumeList = this.myVolumeList.concat(res.data.data)
+            console.log('收藏', this.myVolumeList)
+          } else {
+            this.$message({
+              showClose: true,
+              duration: 2000,
+              message: res.message,
+              type: 'error'
+            })
+          }
+        })
+        .catch(res => {
           this.$message({
             showClose: true,
             duration: 2000,
-            message: res.message,
+            message: '拉取信息失败',
             type: 'error'
           })
-        }
-      }).catch(res => {
-        this.$message({
-          showClose: true,
-          duration: 2000,
-          message: '拉取信息失败',
-          type: 'error'
         })
-      })
     },
     getScore () {
       this.$http({
         method: 'get',
         url: User.getMyLike + this.$route.params.uid
-      }).then(res => {
-        if (res.status === 200) {
-          // console.log('注册成功', res.data.data)
-          this.userCollection = this.userCollection.concat(res.data.data)
-        } else {
+      })
+        .then(res => {
+          if (res.status === 200) {
+            // console.log('注册成功', res.data.data)
+            this.userCollection = this.userCollection.concat(res.data.data)
+          } else {
+            this.$message({
+              showClose: true,
+              duration: 2000,
+              message: res.message,
+              type: 'error'
+            })
+          }
+        })
+        .catch(res => {
           this.$message({
             showClose: true,
             duration: 2000,
-            message: res.message,
+            message: '拉取信息失败',
             type: 'error'
           })
-        }
-      }).catch(res => {
-        this.$message({
-          showClose: true,
-          duration: 2000,
-          message: '拉取信息失败',
-          type: 'error'
         })
-      })
     },
     getUpload () {
       this.$http({
         method: 'get',
         url: User.getMyUpload + this.$route.params.uid
-      }).then(res => {
-        if (res.status === 200) {
-          // console.log('注册成功', res.data.data)
-          this.userCollection = this.userCollection.concat(res.data.data)
-        } else {
+      })
+        .then(res => {
+          if (res.status === 200) {
+            // console.log('注册成功', res.data.data)
+            this.userCollection = this.userCollection.concat(res.data.data)
+          } else {
+            this.$message({
+              showClose: true,
+              duration: 2000,
+              message: res.message,
+              type: 'error'
+            })
+          }
+        })
+        .catch(res => {
           this.$message({
             showClose: true,
             duration: 2000,
-            message: res.message,
+            message: '拉取信息失败',
             type: 'error'
           })
-        }
-      }).catch(res => {
-        this.$message({
-          showClose: true,
-          duration: 2000,
-          message: '拉取信息失败',
-          type: 'error'
         })
-      })
     },
     getCreate () {
       this.$http({
         method: 'get',
         url: User.getMyCreate + this.$route.params.uid
-      }).then(res => {
-        if (res.status === 200) {
-          // console.log('注册成功', res.data.data)
-          this.myVolumeList = this.myVolumeList.concat(res.data.data)
-          console.log('创建', this.myVolumeList)
-        } else {
+      })
+        .then(res => {
+          if (res.status === 200) {
+            // console.log('注册成功', res.data.data)
+            this.myVolumeList = this.myVolumeList.concat(res.data.data)
+            console.log('创建', this.myVolumeList)
+          } else {
+            this.$message({
+              showClose: true,
+              duration: 2000,
+              message: res.message,
+              type: 'error'
+            })
+          }
+        })
+        .catch(res => {
           this.$message({
             showClose: true,
             duration: 2000,
-            message: res.message,
+            message: '拉取信息失败',
             type: 'error'
           })
-        }
-      }).catch(res => {
-        this.$message({
-          showClose: true,
-          duration: 2000,
-          message: '拉取信息失败',
-          type: 'error'
         })
-      })
+    },
+    scoreJump (row, column, cell, event) {
+      this.$router.push(`/page/score/${row.id}`)
     }
   },
   created () {
     this.$http({
       method: 'get',
       url: User.getInfo + this.$route.params.uid
-    }).then(res => {
-      if (res.status === 200) {
+    })
+      .then(res => {
+        if (res.status === 200) {
           // console.log('getUpdateNum', res)
-        this.userData = res.data.data
-      } else {
+          this.userData = res.data.data
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.data.message,
+            type: 'error'
+          })
+        }
+      })
+      .catch(res => {
+        console.log(res)
         this.$message({
           showClose: true,
           duration: 2000,
-          message: res.data.message,
+          message: '拉取信息失败',
           type: 'error'
         })
-      }
-    }).catch(res => {
-      console.log(res)
-      this.$message({
-        showClose: true,
-        duration: 2000,
-        message: '拉取信息失败',
-        type: 'error'
       })
-    })
     this.getVolume()
     this.getScore()
     this.getUpload()
@@ -352,27 +401,29 @@ export default {
     this.$http({
       method: 'get',
       url: User.getUpdateNum + this.$route.params.uid
-    }).then(res => {
-      if (res.status === 200) {
+    })
+      .then(res => {
+        if (res.status === 200) {
           // console.log('getUpdateNum', res)
-        this.uploadNum = res.data.data
-      } else {
+          this.uploadNum = res.data.data
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.data.message,
+            type: 'error'
+          })
+        }
+      })
+      .catch(res => {
+        console.log(res)
         this.$message({
           showClose: true,
           duration: 2000,
-          message: res.data.message,
+          message: '拉取信息失败',
           type: 'error'
         })
-      }
-    }).catch(res => {
-      console.log(res)
-      this.$message({
-        showClose: true,
-        duration: 2000,
-        message: '拉取信息失败',
-        type: 'error'
       })
-    })
 
     this.$http({
       method: 'get',
@@ -464,7 +515,6 @@ export default {
           position: relative;
           &:hover {
             color: $--basicColor;
-  
           }
         }
       }

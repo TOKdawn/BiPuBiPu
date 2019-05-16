@@ -25,8 +25,8 @@ module.exports = app => {
     router.get('/user/focusNum/:uid',controller.user.getFocusNum); //拉取用户上传的谱子数
     router.post('/user/updateInfo',controller.user.updateInfo); //更新用户信息
     router.post('/user/thirdParty/:type',controller.user.thirdParty); //更新用户第三方数据
-    router.post('/score/collection/', controller.score.addCollectionVolume); //收藏谱册
-    router.delete('/score/collection/:vid', controller.score.deleteCollectionVolume); //删除谱子
+    router.get('/volumeCollection/:vid', controller.score.addCollectionVolume); //收藏谱册
+    router.delete('/volumeCollection/:vid', controller.score.deleteCollectionVolume); //删除收藏谱册
     router.post('/user/likescore/', controller.user.addLikeScore); //喜欢一个乐谱
     router.delete('/user/likescore/:sid', controller.user.deleteLikeScore); //取消喜欢一个乐谱
     router.post('/user/staruser', controller.user.addStarUser); //关注一个用户
@@ -53,7 +53,8 @@ module.exports = app => {
     router.get('/socre/author/:sid',controller.score.getScoreAuthor ); //获取谱册作者
     router.get('/volume/collector/:vid',controller.volume.getVolumeCollector ); //获取谱册作者
     router.get('/socre/collector/:sid',controller.score.getScoreCollector ); //获取谱册作者
-    
+    // router.get('/scoreType/:sid',controller.score.getScoreType);
+    // router.get('/volumeType/:vid',controller.volume.getVolumeType);
     router.post('/upload', controller.multipart.upload); //上传图像
     router.post('/score/upload',controller.score.upload) //上传曲谱
     router.get('/score/getscore/:sid',controller.score.getScore) // 获取乐谱

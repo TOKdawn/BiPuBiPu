@@ -376,11 +376,23 @@
   {
     "name": null,
     "methods": [
-      "POST"
+      "HEAD",
+      "GET"
     ],
-    "paramNames": [],
-    "path": "/score/collection/",
-    "regexp": "/^\\/score\\/collection(?:\\/(?=$))?$/",
+    "paramNames": [
+      {
+        "name": "vid",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/volumeCollection/:vid",
+    "regexp": "/^\\/volumeCollection\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -402,8 +414,8 @@
         "pattern": "[^\\/]+?"
       }
     ],
-    "path": "/score/collection/:vid",
-    "regexp": "/^\\/score\\/collection\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "path": "/volumeCollection/:vid",
+    "regexp": "/^\\/volumeCollection\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
