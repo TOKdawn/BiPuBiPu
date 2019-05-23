@@ -148,8 +148,14 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "src/assets/style.scss";
+@media  screen and (max-width: 1100px) {
+  .title-info{
+    background-color: #4caf50 !important;
+    display: none;
+  }
+}
 .index {
-  // min-width: 1200px;
+  min-width: 930px;
   width: 100%;
   .container {
     width: 100%;
@@ -181,6 +187,7 @@ export default {
   }
   .banner {
     width: 100%;
+    min-width: 930px;
     height: 500px;
     background: $--bannerImg 0 0 /100% auto no-repeat;
     position: fixed;

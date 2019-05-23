@@ -40,27 +40,27 @@ export default {
       informationCarousel: [
         {
           img:
-            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185971-102.jpg',
-          title: '新手谱册推荐',
+            'http://bipu.oss-cn-beijing.aliyuncs.com/egg-multipart-test/186950-102.jpg',
+          title: '新手曲目推荐',
           describe:
-            '这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述',
-          router: '/index'
+            '来加入口琴大家庭吧',
+          router: '/page/volume/13'
         },
         {
           img:
-            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185979-102.jpg',
-          title: '新手谱册推荐',
+            'http://bipu.oss-cn-beijing.aliyuncs.com/egg-multipart-test/185894-102.jpg',
+          title: '全部乐谱',
           describe:
-            '这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述',
-          router: '/index'
+            '传说这里是王的宝库，最古老的用户，把一切谱子都存在这里',
+          router: '/page/volume/1'
         },
         {
           img:
-            'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185981-102.jpg',
-          title: '新手谱册推荐',
+            'http://bipu.oss-cn-beijing.aliyuncs.com/egg-multipart-test/187506-102.jpg',
+          title: 'Key社',
           describe:
-            '这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述这里是描述',
-          router: '/index'
+            '自古Key社出神作',
+          router: '/page/volume/12'
         }
       ],
       articlesData: [{
