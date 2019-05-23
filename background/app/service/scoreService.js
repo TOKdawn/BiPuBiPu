@@ -171,10 +171,10 @@ class ScoreService extends Service {
         id:sid
       }
     });
-    if (volume == null) {
+    if (Score == null) {
       return false
     } else {
-      const data = await this.CollectionScore.destroy({
+      const data = await this.userStar.destroy({
         where: {
           sid,
           uid

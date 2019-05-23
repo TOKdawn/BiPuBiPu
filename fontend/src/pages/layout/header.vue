@@ -88,7 +88,7 @@ export default {
     this.userRole = store.getters.role
     this.userId = store.getters.id
     this.img = store.getters.avatar
-    console.log('header:', this.userRole, this.userId, this.userimg)
+    console.log('header:', this.userRole, this.userId)
     if (this.userRole > 0) {
       this.logoutFlag = true
     } else {
