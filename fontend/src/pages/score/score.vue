@@ -285,7 +285,7 @@ export default {
         .then(() => {
           this.$http({
             method: 'delete',
-            url: Score.deleteCollectionVolume + this.$route.params.sid
+            url: Score.deleteCollectionScore + this.$route.params.sid
           })
             .then(res => {
               if (res.status === 200) {
