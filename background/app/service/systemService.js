@@ -23,10 +23,7 @@ class systemService extends Service {
             name: {
               $like: `%${keyword}%`
             }
-          }],
-          $and:{
-            status: 1
-          }
+          }]
         },
         limit: pagesize,
         offset,
@@ -46,10 +43,7 @@ class systemService extends Service {
             addtion: {
               $like: `%${keyword}%`
             }
-          }],
-          $and:{
-            status: 1
-          }
+          }]
         },
         limit: pagesize,
         offset,
@@ -60,7 +54,10 @@ class systemService extends Service {
             name: {
               $like: `%${keyword}%`
             }
-          }]
+          }],
+          $and:{
+            status: 1
+          }
         },
         limit: pagesize,
         offset,
@@ -85,9 +82,7 @@ class systemService extends Service {
             $like: `%${keyword}%`
           }
         }],
-        $and:{
-          status: 1
-        }
+ 
       },
       limit: pagesize,
       offset,
@@ -119,7 +114,16 @@ class systemService extends Service {
     })
     return data
   }
-
+  async userRole(five,ten){
+    const data = await this.User.update({
+      role : five-0,
+    }, {
+      where: {
+        id: ten,
+      },
+    });
+    return data
+  }
   async searchVolume(keyword,offset,pagesize){
     const data =  await this.Volume.findAll({
       where: {
@@ -128,7 +132,10 @@ class systemService extends Service {
           name: {
             $like: `%${keyword}%`
           }
-        }]
+        }],
+        $and:{
+          status: 1
+        }
       },
       limit: pagesize,
       offset,

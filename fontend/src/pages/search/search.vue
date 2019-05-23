@@ -31,11 +31,11 @@ export default {
   methods: {
     querySearchAsync (queryString, cb) {
       // var restaurants = this.restaurants
-      console.log('11')
+
       // var results = queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants
       if (queryString && queryString.length > 0 && this.dataFlag === false) {
         this.getData(queryString, cb)
-      } else if (queryString.length === 0) {
+      } else if (!queryString || queryString.length === 0) {
         this.clearData()
         // cb([])
       } else {

@@ -50,15 +50,20 @@ const systemUrl = {
   getScore: baseUrl + '/system/searchScore',
   getVolume: baseUrl + '/system/searchVolume',
   getUser: baseUrl + '/system/searchUser',
-  getAll: baseUrl + '/system/searchAll'
+  getAll: baseUrl + '/system/searchAll',
+  dsadas: baseUrl + '/dsadasdcxzc'
 }
 const Upload = {
   uploadScore: baseUrl + '/score/upload'
 }
 const Score = {
   getAllScore: baseUrl + '/score/allscore',
-  getScoreAuthor: baseUrl + '/Score/author/',
-  getScoreCollector: baseUrl + '/Score/collector/'
+  getScoreAuthor: baseUrl + '/score/author/',
+  getScoreCollector: baseUrl + '/score/collector/',
+  getScoreInfo: baseUrl + '/score/',
+  deleteScore: baseUrl + '/score/',
+  addCollectionScore: baseUrl + '/scoreCollection/',
+  deleteCollectionScore: baseUrl + '/scoreCollection/'
 }
 
 export {

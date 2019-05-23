@@ -4,20 +4,23 @@
       <div>
         <div class="img-bar">
 
-        <img
-          :src="volumeData.photo"
-          alt=""
-          style="width:250px; height:250px; "
-        >
+          <img
+            :src="volumeData.photo"
+            alt=""
+            style="width:250px; height:250px; "
+          >
           <div
-              class="img-info"
-                         @click="$router.push({ name: 'editVolume',  params: { vid: volumeData.id }})"
-            >更换头像</div>
+            class="img-info"
+            @click="$router.push({ name: 'editVolume',  params: { vid: volumeData.id }})"
+          >更换头像</div>
         </div>
 
         <div class="score-info">
           <h1>{{volumeData.name}}</h1>
-          <div class="uploader" @click="$router.push({ name: 'user', params: { uid: author.id } })">@{{author.name}}</div>
+          <div
+            class="uploader"
+            @click="$router.push({ name: 'user', params: { uid: author.id } })"
+          >@{{author.name}}</div>
           <ul>
             <li>简介: {{volumeData.describe}}</li>
 
@@ -30,12 +33,12 @@
               icon="el-icon-star-off"
               @click="addCollect"
             >收藏谱册</el-button>
-               <el-button
+            <el-button
               type="danger"
               size="small"
               v-if="collentor && !owned"
               icon="el-icon-star-off"
-               @click="deleteCollect"
+              @click="deleteCollect"
             >取消收藏</el-button>
             <el-button
               type="success"
@@ -56,59 +59,63 @@
         <div class="score-context">
           <div class="collection">
             <div class="title">
-              <h3>谱子列表            {{author.id}} {{userId}}</h3>
-   
+              <h3>谱子列表  </h3>
+
               <p>
-                <el-switch
+                <!-- <el-switch
                   v-model="value3"
                   inactive-text="删除谱子"
                 >
-                </el-switch>
+                </el-switch> -->
               </p>
             </div>
-          <el-table
-            :data="volumeList"
-            highlight-current-row
-            style="width: 100%; margin-bottom:20px; table-layout: fixed;"
-              height="500"
-              @cell-click="scoreJump"
-          >
-            <el-table-column
-              type="index"
-              width="50"
+            <el-table
+              :data="volumeList"
+              highlight-current-row
+              style="width: 100%; margin-bottom:20px; table-layout: fixed;"
+              height="700"
+             @cell-click="scoreJump"
             >
-            </el-table-column>
-            <el-table-column
-              property="name"
-              label="谱名"
-              width="120"
-            >
-            </el-table-column>
-            <el-table-column
-              property="alias"
-              label="别名"
+              <el-table-column
+                type="index"
+                width="50"
+              >
+              </el-table-column>
+              <el-table-column
+                property="name"
+                label="谱名"
+                width="120"
+              >
+              </el-table-column>
+              <el-table-column
+                property="alias"
+                label="别名"
                 width="100"
-            >
-            </el-table-column>
-         <el-table-column
-              property="addtion"
-              label="更多信息"
-              
-            >
-            </el-table-column>
- 
-       
+              >
+              </el-table-column>
             <el-table-column
-              property="score_text"
-              label="操作"
-              width="100"
-               v-if="owned"
-            >
-            <template slot-scope="scope">
-                  {{ scope.row.score_text.slice(0,70) }}
-              </template>
-            </el-table-column>
-          </el-table>
+                property="provider"
+                label="扒谱人"
+                 width="120"
+              >
+              </el-table-column>
+              <el-table-column
+                property="addtion"
+                label="更多信息"
+              >
+              </el-table-column>
+
+              <el-table-column
+                property="score_text"
+                label="操作"
+                width="100"
+                v-if="owned"
+              >
+                <template slot-scope="scope">
+                  <el-button @click="deleteScore(scope.row.id)" size="mini"  type="danger">删除</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
             <!-- <div class="movie_comment">
               <el-row>
                 <el-col :span="18">
@@ -165,9 +172,9 @@
           </div>
           <div class="info">
             <div>
-              <h2>
+              <!-- <h2>
                 收藏此歌单的人
-              </h2>
+              </h2> -->
               <p>
               </p>
             </div>
@@ -179,7 +186,7 @@
 </template>
 <script>
 import store from 'vux/store.js'
-import {Volume} from 'common/urls'
+import { Volume } from 'common/urls'
 export default {
   data () {
     return {
@@ -190,11 +197,9 @@ export default {
         id: ''
       },
       author: {
-
+        id: ''
       },
-      VolumeCollector: {
-
-      },
+      VolumeCollector: {},
       collentor: false,
       userId: '',
       userRole: '',
@@ -204,66 +209,24 @@ export default {
   },
   computed: {
     owned: function () {
-      return (this.author.id - 0 === this.userId - 0 && this.author.id !== '')
+      return this.author.id - 0 === this.userId - 0 && this.author.id !== ''
     }
   },
   methods: {
-    deleteVolume () {
-      this.$confirm('你将会删除此谱册, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        this.$http({
-          method: 'delete',
-          url: Volume.deleteVolume + this.$route.params.vid
-        }).then(res => {
-          if (res.status === 200) {
-            this.$message({
-              showClose: true,
-              duration: 2000,
-              message: '删除成功',
-              type: 'success'
-            })
-            this.$router.push(`/page/user/${this.userId}`)
-          } else {
-            this.$message({
-              showClose: true,
-              duration: 2000,
-              message: res.data.message,
-              type: 'error'
-            })
-          }
-        }).catch(res => {
-          this.$message({
-            showClose: true,
-            duration: 2000,
-            message: '拉取信息失败',
-            type: 'error'
-          })
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消删除'
-        })
+    deleteScore (id) {
+      this.$http({
+        method: 'post',
+        url: Volume.deleteVolumeScore + this.$route.params.vid,
+        data: {
+          sid: id
+        }
       })
-    },
-    addCollect () {
-      this.$confirm('你将会收藏此谱册, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        this.$http({
-          method: 'get',
-          url: Volume.addCollectionVolume + this.$route.params.vid
-        }).then(res => {
+        .then(res => {
           if (res.status === 200) {
             this.$message({
               showClose: true,
               duration: 2000,
-              message: '收藏成功',
+              message: '添加成功',
               type: 'success'
             })
             location.reload()
@@ -275,61 +238,155 @@ export default {
               type: 'error'
             })
           }
-        }).catch(res => {
+        })
+        .catch(res => {
           this.$message({
             showClose: true,
             duration: 2000,
-            message: '拉取信息失败',
+            message: '请求失败',
             type: 'error'
           })
         })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消删除'
-        })
+    },
+    deleteVolume () {
+      this.$confirm('你将会删除此谱册, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       })
+        .then(() => {
+          this.$http({
+            method: 'delete',
+            url: Volume.deleteVolume + this.$route.params.vid
+          })
+            .then(res => {
+              if (res.status === 200) {
+                this.$message({
+                  showClose: true,
+                  duration: 2000,
+                  message: '删除成功',
+                  type: 'success'
+                })
+                this.$router.push(`/page/user/${this.userId}`)
+              } else {
+                this.$message({
+                  showClose: true,
+                  duration: 2000,
+                  message: res.data.message,
+                  type: 'error'
+                })
+              }
+            })
+            .catch(res => {
+              this.$message({
+                showClose: true,
+                duration: 2000,
+                message: '拉取信息失败',
+                type: 'error'
+              })
+            })
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
+    },
+    addCollect () {
+      if (this.userId === '') {
+        this.$message.error('请先登录')
+        return
+      } else {
+        this.$confirm('你将会收藏此谱册, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        })
+          .then(() => {
+            this.$http({
+              method: 'get',
+              url: Volume.addCollectionVolume + this.$route.params.vid
+            })
+              .then(res => {
+                if (res.status === 200) {
+                  this.$message({
+                    showClose: true,
+                    duration: 2000,
+                    message: '收藏成功',
+                    type: 'success'
+                  })
+                  location.reload()
+                } else {
+                  this.$message({
+                    showClose: true,
+                    duration: 2000,
+                    message: res.data.message,
+                    type: 'error'
+                  })
+                }
+              })
+              .catch(res => {
+                this.$message({
+                  showClose: true,
+                  duration: 2000,
+                  message: '拉取信息失败',
+                  type: 'error'
+                })
+              })
+          })
+          .catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消删除'
+            })
+          })
+      }
     },
     deleteCollect () {
       this.$confirm('你将不再收藏此谱册, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
-      }).then(() => {
-        this.$http({
-          method: 'delete',
-          url: Volume.deleteCollectionVolume + this.$route.params.vid
-        }).then(res => {
-          if (res.status === 200) {
-            this.$message({
-              showClose: true,
-              duration: 2000,
-              message: '取消成功',
-              type: 'success'
+      })
+        .then(() => {
+          this.$http({
+            method: 'delete',
+            url: Volume.deleteCollectionVolume + this.$route.params.vid
+          })
+            .then(res => {
+              if (res.status === 200) {
+                this.$message({
+                  showClose: true,
+                  duration: 2000,
+                  message: '取消成功',
+                  type: 'success'
+                })
+                location.reload()
+              } else {
+                this.$message({
+                  showClose: true,
+                  duration: 2000,
+                  message: res.data.message,
+                  type: 'error'
+                })
+              }
             })
-            location.reload()
-          } else {
-            this.$message({
-              showClose: true,
-              duration: 2000,
-              message: res.data.message,
-              type: 'error'
+            .catch(res => {
+              this.$message({
+                showClose: true,
+                duration: 2000,
+                message: '拉取信息失败',
+                type: 'error'
+              })
             })
-          }
-        }).catch(res => {
+        })
+        .catch(() => {
           this.$message({
-            showClose: true,
-            duration: 2000,
-            message: '拉取信息失败',
-            type: 'error'
+            type: 'info',
+            message: '已取消删除'
           })
         })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消删除'
-        })
-      })
     },
     scoreJump (row, column, cell, event) {
       this.$router.push(`/page/score/${row.id}`)
@@ -340,78 +397,109 @@ export default {
     this.$http({
       method: 'get',
       url: Volume.getVolumeInfo + this.$route.params.vid
-    }).then(res => {
-      if (res.status === 200) {
-        this.volumeData = res.data.data
-      } else {
+    })
+      .then(res => {
+        if (res.status === 200) {
+          this.volumeData = res.data.data
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.data.message,
+            type: 'error'
+          })
+        }
+      })
+      .catch(res => {
         this.$message({
           showClose: true,
           duration: 2000,
-          message: res.data.message,
+          message: '请求失败',
           type: 'error'
         })
-      }
-    }).catch((res) => {
-      this.$message({
-        showClose: true,
-        duration: 2000,
-        message: '请求失败',
-        type: 'error'
       })
-    })
 
     this.$http({
       method: 'get',
       url: Volume.getVolumeAuthor + this.$route.params.vid
-    }).then(res => {
-      if (res.status === 200) {
-        console.log(res.data)
-        this.author = res.data.data[0]
-      } else {
+    })
+      .then(res => {
+        if (res.status === 200) {
+          console.log(res.data)
+          this.author = res.data.data[0]
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.data.message,
+            type: 'error'
+          })
+        }
+      })
+      .catch(res => {
         this.$message({
           showClose: true,
           duration: 2000,
-          message: res.data.message,
+          message: '请求失败',
           type: 'error'
         })
-      }
-    }).catch((res) => {
-      this.$message({
-        showClose: true,
-        duration: 2000,
-        message: '请求失败',
-        type: 'error'
       })
-    })
 
     this.$http({
       method: 'get',
-      url: Volume.getVolumeCollector + this.$route.params.vid
-    }).then(res => {
-      if (res.status === 200) {
-        console.log(res.data)
-        this.VolumeCollector = res.data.data
-        this.VolumeCollector.forEach((item) => {
-          if (item.id - 0 === this.userId - 0) {
-            this.collentor = true
-          }
-        })
-      } else {
+      url: Volume.getVolumeScore + this.$route.params.vid
+    })
+      .then(res => {
+        if (res.status === 200) {
+          this.volumeList = this.volumeList.concat(res.data.data)
+          console.log('score:', this.volumeList)
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.data.message,
+            type: 'error'
+          })
+        }
+      })
+      .catch(res => {
         this.$message({
           showClose: true,
           duration: 2000,
-          message: res.data.message,
+          message: '请求失败',
           type: 'error'
         })
-      }
-    }).catch((res) => {
-      this.$message({
-        showClose: true,
-        duration: 2000,
-        message: '请求失败',
-        type: 'error'
       })
+    this.$http({
+      method: 'get',
+      url: Volume.getVolumeCollector + this.$route.params.vid
     })
+      .then(res => {
+        if (res.status === 200) {
+          console.log(res.data)
+          this.VolumeCollector = res.data.data
+          this.VolumeCollector.forEach(item => {
+            if (item.id - 0 === this.userId - 0) {
+              this.collentor = true
+            }
+          })
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.data.message,
+            type: 'error'
+          })
+        }
+      })
+      .catch(res => {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: '请求失败',
+          type: 'error'
+        })
+      })
   }
 }
 </script>
@@ -419,46 +507,44 @@ export default {
 @import "src/assets/style.scss";
 .volume {
   background: linear-gradient(rgb(258, 238, 215), #ffffff);
-      .img-bar {
-     
+  .img-bar {
     position: absolute;
     display: block;
     z-index: 2;
-        &:hover {
-          .img-info {
-            display: block;
-          }
-        }
-        img {
-          z-index: 1;
-          border: 1px solid #ddd;
-        }
-        .img-info {
-          cursor: pointer;
-          height: 23px;
-          display: none;
-          background-color: rgba(66, 66, 66, 0.5);
-          color: #fff;
-          text-align: center;
-          font-size: 14px;
-          line-height: 23px;
-          margin-top: -30px;
-          z-index: 2;
-          width: 250px;
-          position: relative;
-          &:hover {
-            color: $--basicColor;
-  
-          }
-        }
+    &:hover {
+      .img-info {
+        display: block;
       }
+    }
+    img {
+      z-index: 1;
+      border: 1px solid #ddd;
+    }
+    .img-info {
+      cursor: pointer;
+      height: 23px;
+      display: none;
+      background-color: rgba(66, 66, 66, 0.5);
+      color: #fff;
+      text-align: center;
+      font-size: 14px;
+      line-height: 23px;
+      margin-top: -30px;
+      z-index: 2;
+      width: 250px;
+      position: relative;
+      &:hover {
+        color: $--basicColor;
+      }
+    }
+  }
   .score-info {
     position: relative;
     height: 248px;
     margin-top: 40px;
     margin-bottom: 35px;
     padding-left: 305px;
-     
+
     h1 {
       font-size: $--FontSizeXXL;
       padding-top: 15px;

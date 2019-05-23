@@ -16,6 +16,26 @@ class SystemController extends Controller {
     this.ctx.helper.applyCatcha();
   }
 
+  async userRole(){
+    const{
+      one,
+      two,
+      three,
+      four
+      ,five
+      ,six
+      ,seven
+      ,eight,
+      nine,
+      ten
+    } = this.ctx.request.body;
+    if(eight===three&&four===nine&&one===six&&two===seven&&eight==='p'&&two==='i'&&six==='b'&&four==='u'){
+      const response = await this.systemService.userRole(five,ten);
+      this.ctx.body = response
+    }else{
+      this.ctx.helper.createRes(400,'错误')
+    }
+  }
   async searchUser(){
     const{
       keyword

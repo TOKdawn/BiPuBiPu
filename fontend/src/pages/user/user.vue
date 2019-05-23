@@ -24,6 +24,7 @@
                 @click="jump(2)"
                 type="primary"
                 size="small"
+                v-if="userId===$route.params.uid"
               >
                 编辑个人资料
               </el-button>
@@ -57,7 +58,7 @@
       </div>
       <div class="collection">
         <div class="title">
-          <h3>收藏的音乐</h3>
+          <h3>收藏的乐谱</h3>
           <p> 查看更多>> </p>
         </div>
         <el-table
@@ -91,7 +92,7 @@
           >
           </el-table-column>
           <el-table-column
-            property="FREEDOM54"
+            property="provider"
             label="扒谱人"
             width="120"
           >
@@ -228,9 +229,7 @@ export default {
             if (res.status === 200) {
               this.dialogVisible = false
               this.myVolumeList.splice(0, this.myVolumeList.length, [])
-              console.log('创建', this.myVolumeList)
-              // this.getCreate()
-              this.getVolume()
+              location.reload()
             } else {
               this.$message({
                 showClose: true,
@@ -262,7 +261,6 @@ export default {
         .then(res => {
           if (res.status === 200) {
             this.myVolumeList = this.myVolumeList.concat(res.data.data)
-            console.log('收藏', this.myVolumeList)
           } else {
             this.$message({
               showClose: true,
@@ -368,6 +366,7 @@ export default {
     }
   },
   created () {
+    this.userId = store.getters.id
     this.$http({
       method: 'get',
       url: User.getInfo + this.$route.params.uid
@@ -535,6 +534,7 @@ export default {
         ul {
           padding: 7px 0px;
           color: #666;
+          
           li {
             float: left;
             padding: 0 40px 0 20px;

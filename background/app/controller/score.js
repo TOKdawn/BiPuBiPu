@@ -43,7 +43,7 @@ class ScoreController extends Controller {
       sid
     } = this.ctx.params;
     const uid = this.ctx.session.user.id
-    const response = await this.ScoreService.getScoreType(sid, uid);
+    const response = await this.scoreService.getScoreType(sid, uid);
     if (response === 'author') {
       this.ctx.helper.successRes('success', { type :'author'});
     } else if (response === 'collector') {
@@ -56,7 +56,7 @@ class ScoreController extends Controller {
     const {
       sid
     } = this.ctx.params;
-    const response = await this.ScoreService.getVolumeAuthor(sid);
+    const response = await this.scoreService.getScoreAuthor(sid);
     this.ctx.helper.successRes('sucess', response);
   }
   async getScoreCollector(){
@@ -66,7 +66,7 @@ class ScoreController extends Controller {
     const {
       offset = DEFAULTOFFSET, pagesize = DEFAULTSCOREPAGESIZE
     } = this.ctx.query;
-    const response = await this.ScoreService.getVolumeCollector(sid,offset,pagesize);
+    const response = await this.scoreService.getScoreCollector(sid,offset,pagesize);
     this.ctx.helper.successRes('sucess', response);
   }
   async addCollectionVolume() {
@@ -84,6 +84,28 @@ class ScoreController extends Controller {
       }
     }
   }
+  async addCollectionScore() {
+    const {
+      sid
+    } = this.ctx.params;
+    if(!this.ctx.session.user){
+      this.ctx.helper.createRes(203, '用户登录失效或权限不足')
+    } else{
+      const response = await this.scoreService.addCollectionScore(sid,this.ctx.session.user.id)
+      if (!response){
+        this.ctx.helper.createRes(203, '数据库交互错误')
+      }else{
+        this.ctx.body = response
+      }
+    }
+  }
+  async getScoreInfo() {
+    const {
+      sid
+    } = this.ctx.params;
+    const response = await this.scoreService.getScoreInfo(sid);
+    this.ctx.helper.successRes('sucess', response);
+  }
 
   async deleteCollectionVolume() {
     const {
@@ -93,6 +115,30 @@ class ScoreController extends Controller {
       this.ctx.helper.createRes(203, '用户登录失效或权限不足')
     } else{
       const response = await this.scoreService.deleteCollectionVolume(vid,this.ctx.session.user.id)
+      this.ctx.body = response
+    }
+  }
+  async deleteScore() {
+    const {
+      sid
+    } = this.ctx.params;
+    const uid = this.ctx.session.user.id;
+    const response = await this.scoreService.deleteScore(sid, uid);
+    if (response) {
+      this.ctx.helper.createRes(200, 'Delete success QwQ');
+    } else {
+      this.ctx.helper.createRes(409, 'Delete err Orz  ');
+    }
+  }
+
+  async deleteCollectionScore() {
+    const {
+      sid
+    } = this.ctx.params;
+    if(!this.ctx.session.user){
+      this.ctx.helper.createRes(203, '用户登录失效或权限不足')
+    } else{
+      const response = await this.scoreService.deleteCollectionScore(sid,this.ctx.session.user.id)
       this.ctx.body = response
     }
   }

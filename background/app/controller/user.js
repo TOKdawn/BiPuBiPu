@@ -187,7 +187,6 @@ class UserController extends Controller {
       uid
     } = this.ctx.params;
     if (uid) {
-
       const {
         offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE
       } = this.ctx.query;

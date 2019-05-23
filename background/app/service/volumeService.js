@@ -88,7 +88,7 @@ class VolumeService extends Service {
       });
       await this.CollectionVolume.destroy({
         where: {
-          uid,
+          
           vid,
         },
       });
@@ -149,36 +149,36 @@ class VolumeService extends Service {
   
   async addVolumeScore(vid, sid) {
     const t = await this.ctx.model.transaction();
-    const score = await this.Score.findOne({
-      where: {
-        sid
-      }
-    });
-    if (score == null) {
-      //如果无缓存
-      try {
-        // const scoredata = await this.ctx.helper.getIssue(sid);
-        // console.log('scoredata:', scoredata, 'sid:', sid);
-        // await this.Score.findOrCreate({
-        //   //缓存
-        //   where: {
-        //     name: scoredata.title,
-        //     sid: sid
-        //   },
-        // });
-        const data = await this.ScoreVolume.findOrCreate({
-          where: {
-            sid,
-            vid,
-          },
-        });
-        await t.commit();
-        return data;
-      } catch (err) {
-        await t.rollback();
-        return err;
-      }
-    }
+    // const score = await this.Score.findOne({
+    //   where: {
+    //     sid
+    //   }
+    // });
+    // if (score == null) {
+    //   //如果无缓存
+    //   try {
+    //     // const scoredata = await this.ctx.helper.getIssue(sid);
+    //     // console.log('scoredata:', scoredata, 'sid:', sid);
+    //     // await this.Score.findOrCreate({
+    //     //   //缓存
+    //     //   where: {
+    //     //     name: scoredata.title,
+    //     //     sid: sid
+    //     //   },
+    //     // });
+    //     const data = await this.ScoreVolume.findOrCreate({
+    //       where: {
+    //         sid,
+    //         vid,
+    //       },
+    //     });
+    //     await t.commit();
+    //     return data;
+    //   } catch (err) {
+    //     await t.rollback();
+    //     return err;
+    //   }
+    // }
 
     const data = await this.ScoreVolume.findOrCreate({
       where: {
@@ -201,7 +201,6 @@ class VolumeService extends Service {
   }
 
   async getVolumeScore(vid, offset, pagesize) {
-
     const data = await this.ScoreVolume.findAll({
       // attributes: ['vid', 'uid'],
       where: {
@@ -218,7 +217,7 @@ class VolumeService extends Service {
       // result.push(temp); //issues 获取
       const score = await this.Score.findOne({
         where: {
-          sid: data[tiem].get('sid')
+          id: data[tiem].get('sid')
         }
       });
       result.push(score);

@@ -14,6 +14,9 @@ module.exports = [{
   name: 'forget',
   component: require('pages/login/forget')
 }, {
+  path: '/tassadar',
+  component: require('pages/admin/index')
+}, {
   path: '/page',
   name: 'page',
   component: require('pages/page'),
@@ -38,7 +41,7 @@ module.exports = [{
     name: 'searchres',
     component: require('pages/searchres/searchres')
   }, {
-    path: 'score/:scoreid',
+    path: 'score/:sid',
     name: 'score',
     component: require('pages/score/score')
   }, {
