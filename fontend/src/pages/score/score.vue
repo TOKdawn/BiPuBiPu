@@ -8,27 +8,73 @@
           style="width:250px; height:250px; float:left;"
         >
         <div class="score-info">
-          <h1>{{scoreData.name}}-{{scoreData.addtion}}</h1>
-          <div class="uploader">@{{scoreData.author}}</div>
+          <h1>{{scoreData.name}} - {{scoreData.alias}}</h1>
+          <div
+            class="uploader"
+            @click="$router.push({ name: 'user', params: { uid: author.id } })"
+          >@{{author.name}}</div>
           <ul>
-            <li>专辑: {{scoreData.album}}</li>
-            <li>作者: {{scoreData.uploader}}</li>
-            <li>上传时间: {{scoreData.update}}</li>
-            <li>别名: {{scoreData.otherName}}</li>
+
+            <li
+              @click="jump(scoreData.provider_url)"
+              style="cursor: pointer; "
+            >扒谱人: @{{scoreData.provider}}</li>
+            <li style="width: 400px">更多信息: {{scoreData.addtion}}</li>
+            <li>上传时间: {{scoreData.created_at.slice(0,10)}}</li>
+            <li>调性: {{Scale1[scoreData.tonality]}} </li>
+
           </ul>
-          <p>标签:</p>
-          <el-row style="margin-top:15px;">
-            <el-button type="primary" size="small" icon="el-icon-star-off">收藏曲谱</el-button>
-            <el-button type="success" size="small" icon="el-icon-plus" plain>加至歌单</el-button>
-            <el-button  size="small" plain icon="el-icon-more-outline">更多功能</el-button>
+
+          <el-row style="margn-top:25px;">
+            <el-button
+              type="primary"
+              size="small"
+              v-if="!collentor && !owned"
+              icon="el-icon-star-off"
+              @click="addCollect "
+            >收藏谱册</el-button>
+            <el-button
+              type="danger"
+              size="small"
+              v-if="collentor && !owned"
+              icon="el-icon-star-off"
+              @click="deleteCollect"
+            >取消收藏</el-button>
+            <el-button
+              type="success"
+              size="small"
+              icon="el-icon-plus"
+              v-if="this.userId !== ''"
+              plain
+              @click="dialogVisible = true"
+            >加至谱册</el-button>
+            <el-button
+              size="small"
+              type="danger"
+              v-if="owned"
+              icon="el-icon-delete"
+              plain
+              @click="deleteScore"
+            >删除乐谱</el-button>
+
+            <el-button
+              size="small"
+              icon="el-icon-download"
+              @click="handleDownload"
+              plain
+            >下载乐谱</el-button>
           </el-row>
         </div>
         <div class="score-context">
           <div class="context">
             <div class="avatar">
-              <img :src="scoreData.image_url" alt="" style="width:100%;height:100%; z-index:1;">
+              <img
+                :src="scoreData.image_url"
+                alt=""
+                style="width:100%;height:100%; z-index:1;"
+              >
             </div>
-            <div class="translator-button-one">
+            <!-- <div class="translator-button-one">
               升一调
             </div>
             <div class="translator-button-two">
@@ -39,41 +85,34 @@
             </div>
             <div class="translator-button-fou">
               转数字
-            </div>
+            </div> -->
             <div class="score-type">
-              <p>图片简谱</p>
-              <p>外链线谱</p>
+              <p
+                :class="{ 'without': !scoreData.other_img}"
+                @click="showImg"
+              >图片简谱</p>
+              <p
+                :class="{ 'without': !scoreData.other_url}"
+                @click="jump(scoreData.other_url)"
+              >乐谱来源</p>
             </div>
-            <el-card class="box-card">
-              (#4)(#4) #2#1#2#4#1<br>
-              (#4)(#4)(#5)(7)(7)(#5)(#4)<br>
-              (7)#1#2#1#2#5#4#2<br>
-              #2#23#2#1(7)#2#1 (#4)(#4) #2#1#2#4#1<br>
-              (#4)(#4)(#5)(7)(7)(#5)(#4)<br>
-              (7)#1#2#1#2#5#4#2<br>
-              #2#23#2#1(7)(7) (#5)(7)#4 3#2#1#1(7)(#6)(7)<br>
-              (#5)(7)#4#5#43#2#1#2<br>
-              (#5)(#5)#5#67#6#5#4#4<br>
-              #56#5#43#2(7)(7)<br>
-              (#5)(7)#55#5#6 #2#27#67#67 #67#6 #5#4#5[#2][#2]<br>
-              #67[#1]#6#5#5#4#4<br>
-              #23#4#433#5#4#2#1(7)<br>
-              (#5)(7)#433#5#55#5#6 #2#27#67#67 #67#6 #5#4#5[#2][#2]<br>
-              #67[#1]#6#5#5#4#4[#1]7<br>
-              #23#4#433#4#2#1(7) (7)#5#57#67[#1]#6#4#2#4#5<br>
-              #43#23#23#2#1(7)#1(7)#1#4#2<br>
-              (7)#5#57#67[#1]#6#4#4[#1]7#67<br>
-              #5#67#67#67#5#677[#1][#1][#2][3][#2] #2#27#67#67 #67#6 #5#4#5[#2][#2]<br>
-              #67[#1]#6#5#5#4#4<br>
-              #23#4#433#5#4#2#1(7)<br>
-              (#5)(7)#433#5#55#5#6 #2#27#67#67 #67#6 #5#4#5[#2][#2]<br>
-              #67[#1]#6#5#5#4#4[#1]7<br>
-              #23#4#433#5#4#2#1(7)<br>
-              (#5)(7)#433#5#55#5#6 #2#27#67#67 #67#6 #5#4#5[#4][3]<br>
-              #67[#1]#6#5#5#4#4[#1]#67<br>
-              #23#4#433#5#4#2#1(7)<br>
-              (#5)(7)#433#5#477<br>
-              #1#23#23#4#2#1(7) (#6)(#4)<br>
+            <el-card
+              class="box-card"
+              style="white-space: pre-line"
+              v-show="flag"
+            >
+              {{scoreData.score_text}}
+            </el-card>
+            <el-card
+              class="box-card"
+              style="white-space: pre-line"
+              v-show="!flag"
+            >
+              <img
+                :src="scoreData.other_img"
+                alt=""
+              >
+              {{scoreData.other_img}}
             </el-card>
           </div>
           <div class="info">
@@ -81,80 +120,414 @@
               <h2>
                 简介
               </h2>
+              {{scoreData.description}}
               <p>
               </p>
             </div>
-            <div>
+            <!-- <div>
               <h2>
                 收藏此谱的热门谱册
               </h2>
-            </div>
+            </div> -->
             <div>
               <h2>
                 相关演奏视频
               </h2>
+              <a
+                :href="scoreData.performs"
+                style="color:rgb(242, 103, 98) "
+              >{{scoreData.performs}}</a>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <el-dialog
+      title="请选择谱册"
+      :visible.sync="dialogVisible"
+      width="30%"
+    >
+      <div
+        v-for="item in myVolumeList"
+        :key="item.id"
+        @click="addVolume(item.id)"
+        class="node"
+      >
+        <img
+          :src="item.photo"
+          alt=""
+        >
+        <p>{{item.name}}</p>
+      </div>
+      <span
+        slot="footer"
+        class="dialog-footer"
+      >
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <!-- <el-button type="primary" @click="dialogVisible = false">确 定</el-button> -->
+      </span>
+    </el-dialog>
+
   </div>
 </template>
 <script>
-
+import store from 'vux/store.js'
+import { Score, Volume, User } from 'common/urls'
 export default {
   data () {
     return {
       scoreData: {
-        image_url: 'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
-        name: '雪之花 雪の华',
+        image_url:
+          'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
+        name: '',
         addtion: '',
-        author: 'dawn',
-        authorId: '12333',
-        album: '未命名专辑',
-        update: '2018-12-18',
+        tonality: '未命名专辑',
+        created_at: '2018-12-18',
         uploader: 'TOKdawn',
-        otherName: '花花花花',
-        tagList: [
-          {
-            tagName: '东方'
-          }
-        ],
-        context: `谱子示例
-        (#4)(#4) #2#1#2#4#1
-        (#4)(#4)(#5)(7)(7)(#5)(#4)
-        (7)#1#2#1#2#5#4#2
-        #2#23#2#1(7)#2#1 (#4)(#4) #2#1#2#4#1
-        (#4)(#4)(#5)(7)(7)(#5)(#4)
-        (7)#1#2#1#2#5#4#2
-        #2#23#2#1(7)(7) (#5)(7)#4 3#2#1#1(7)(#6)(7)
-        (#5)(7)#4#5#43#2#1#2
-        (#5)(#5)#5#67#6#5#4#4
-        #56#5#43#2(7)(7)
-        (#5)(7)#55#5#6 #2#27#67#67 #67#6 #5#4#5[#2][#2]
-        #67[#1]#6#5#5#4#4
-        #23#4#433#5#4#2#1(7)
-        (#5)(7)#433#5#55#5#6 #2#27#67#67 #67#6 #5#4#5[#2][#2]
-        #67[#1]#6#5#5#4#4[#1]7
-        #23#4#433#4#2#1(7) (7)#5#57#67[#1]#6#4#2#4#5
-        #43#23#23#2#1(7)#1(7)#1#4#2
-        (7)#5#57#67[#1]#6#4#4[#1]7#67
-        #5#67#67#67#5#677[#1][#1][#2][3][#2] #2#27#67#67 #67#6 #5#4#5[#2][#2]
-        #67[#1]#6#5#5#4#4
-        #23#4#433#5#4#2#1(7)
-        (#5)(7)#433#5#55#5#6 #2#27#67#67 #67#6 #5#4#5[#2][#2]
-        #67[#1]#6#5#5#4#4[#1]7
-        #23#4#433#5#4#2#1(7)
-        (#5)(7)#433#5#55#5#6 #2#27#67#67 #67#6 #5#4#5[#4][3]
-        #67[#1]#6#5#5#4#4[#1]#67
-        #23#4#433#5#4#2#1(7)
-        (#5)(7)#433#5#477
-        #1#23#23#4#2#1(7) (#6)(#4)`,
-        otherLink: 'www.baidu.com'
-      }
+        alias: '',
+        description: '',
+        score_text: ``,
+        other_url: '',
+        other_img:
+          'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
+        provider: '',
+        provider_url: ''
+      },
+      Scale1: ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'],
+      author: {
+        id: '',
+        name: ''
+      },
+      flag: true,
+      collentor: false,
+      ScoreCollector: [],
+      myVolumeList: [],
+      dialogVisible: false
     }
   },
-  created () {}
+  methods: {
+    handleDownload () {
+      var element = document.createElement('a')
+      element.setAttribute(
+        'href',
+        'data:text/plain;charset=utf-8,' +
+          encodeURIComponent(this.scoreData.score_text)
+      )
+      element.setAttribute('download', `${this.scoreData.name}.txt`)
+
+      element.style.display = 'none'
+      document.body.appendChild(element)
+
+      element.click()
+
+      document.body.removeChild(element)
+    },
+    jump (url) {
+      window.location.href = url
+    },
+    addCollect () {
+      if (this.userId === '') {
+        this.$message.error('请先登录')
+        return
+      } else {
+        this.$confirm('你将会收藏此乐谱, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        })
+          .then(() => {
+            this.$http({
+              method: 'get',
+              url: Score.addCollectionScore + this.$route.params.sid
+            })
+              .then(res => {
+                if (res.status === 200) {
+                  this.$message({
+                    showClose: true,
+                    duration: 2000,
+                    message: '收藏成功',
+                    type: 'success'
+                  })
+                  location.reload()
+                } else {
+                  this.$message({
+                    showClose: true,
+                    duration: 2000,
+                    message: res.data.message,
+                    type: 'error'
+                  })
+                }
+              })
+              .catch(res => {
+                this.$message({
+                  showClose: true,
+                  duration: 2000,
+                  message: '拉取信息失败',
+                  type: 'error'
+                })
+              })
+          })
+          .catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消删除'
+            })
+          })
+      }
+    },
+    deleteCollect () {
+      this.$confirm('你将不再收藏此乐谱, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          this.$http({
+            method: 'delete',
+            url: Score.deleteCollectionVolume + this.$route.params.sid
+          })
+            .then(res => {
+              if (res.status === 200) {
+                this.$message({
+                  showClose: true,
+                  duration: 2000,
+                  message: '取消成功',
+                  type: 'success'
+                })
+                location.reload()
+              } else {
+                this.$message({
+                  showClose: true,
+                  duration: 2000,
+                  message: res.data.message,
+                  type: 'error'
+                })
+              }
+            })
+            .catch(res => {
+              this.$message({
+                showClose: true,
+                duration: 2000,
+                message: '拉取信息失败',
+                type: 'error'
+              })
+            })
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
+    },
+    showImg () {
+      this.flag = !this.flag
+    },
+    deleteScore () {
+      this.$confirm('你将会删除此乐谱, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          this.$http({
+            method: 'delete',
+            url: Score.deleteScore + this.$route.params.sid
+          })
+            .then(res => {
+              if (res.status === 200) {
+                this.$message({
+                  showClose: true,
+                  duration: 2000,
+                  message: '删除成功',
+                  type: 'success'
+                })
+                this.$router.push(`/page/user/${this.userId}`)
+              } else {
+                this.$message({
+                  showClose: true,
+                  duration: 2000,
+                  message: res.data.message,
+                  type: 'error'
+                })
+              }
+            })
+            .catch(res => {
+              this.$message({
+                showClose: true,
+                duration: 2000,
+                message: '拉取信息失败',
+                type: 'error'
+              })
+            })
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
+    },
+    addVolume (id) {
+      // console.log('aaa', id + '')
+      this.$http({
+        method: 'post',
+        url: Volume.addVolumeScore + id,
+        data: {
+          sid: this.$route.params.sid
+        }
+      })
+        .then(res => {
+          if (res.status === 200) {
+            this.$message({
+              showClose: true,
+              duration: 2000,
+              message: '添加成功',
+              type: 'success'
+            })
+          } else {
+            this.$message({
+              showClose: true,
+              duration: 2000,
+              message: res.data.message,
+              type: 'error'
+            })
+          }
+        })
+        .catch(res => {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: '请求失败',
+            type: 'error'
+          })
+        })
+    }
+  },
+  created () {
+    this.userId = store.getters.id
+    this.$http({
+      method: 'get',
+      url: Score.getScoreInfo + this.$route.params.sid
+    })
+      .then(res => {
+        if (res.status === 200) {
+          this.scoreData = res.data.data
+          // console.log(this.scoreData, this.$route.params)
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.data.message,
+            type: 'error'
+          })
+        }
+      })
+      .catch(res => {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: '请求失败',
+          type: 'error'
+        })
+      })
+    this.$http({
+      method: 'get',
+      url: Score.getScoreAuthor + this.$route.params.sid
+    })
+      .then(res => {
+        if (res.status === 200) {
+          // console.log(res.data)
+          this.author = res.data.data[0]
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.data.message,
+            type: 'error'
+          })
+        }
+      })
+      .catch(res => {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: '请求失败',
+          type: 'error'
+        })
+      })
+    this.$http({
+      method: 'get',
+      url: Score.getScoreCollector + this.$route.params.sid
+    })
+      .then(res => {
+        if (res.status === 200) {
+          this.ScoreCollector = res.data.data
+          // console.log('coll', res.data)
+          this.ScoreCollector.forEach(item => {
+            // console.log('sssss', item.id - 0 === this.userId - 0, item.id, this.userId)
+            if (item.id - 0 === this.userId - 0) {
+              this.collentor = true
+            }
+          })
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.data.message,
+            type: 'error'
+          })
+        }
+      })
+      .catch(res => {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: '请求失败',
+          type: 'error'
+        })
+      })
+
+    if (this.userId !== '') {
+      this.$http({
+        method: 'get',
+        url: User.getMyCreate + this.userId
+      })
+        .then(res => {
+          if (res.status === 200) {
+            // console.log('注册成功', res.data.data)
+            this.myVolumeList = this.myVolumeList.concat(res.data.data)
+          } else {
+            this.$message({
+              showClose: true,
+              duration: 2000,
+              message: res.message,
+              type: 'error'
+            })
+          }
+        })
+        .catch(res => {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: '拉取信息失败',
+            type: 'error'
+          })
+        })
+    }
+  },
+  computed: {
+    owned: function () {
+      return this.author.id - 0 === this.userId - 0 && this.author.id !== ''
+    },
+    download () {
+      return (
+        'data:text/plain;charset=utf-8,' +
+        encodeURIComponent(this.scoreData.score_text)
+      )
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -171,15 +544,16 @@ export default {
       font-size: $--FontSizeXXL;
       padding-top: 15px;
     }
-    .uploader{
+    .uploader {
       font-size: $--FontSizeL;
       color: $--linkBlue;
       cursor: pointer;
     }
-    ul{
-      width: 450px;
+    ul {
+      width: 650px;
       overflow: hidden;
       padding-top: 5px;
+      padding-bottom: 15px;
       font-size: $--FontSizeM;
       line-height: $--FontSizeL;
       li {
@@ -192,22 +566,22 @@ export default {
         text-overflow: ellipsis;
       }
     }
-    p{
+    p {
       width: 450px;
       overflow: hidden;
       font-size: $--FontSizeM;
       line-height: $--FontSizeL;
     }
   }
-  .score-context{
+  .score-context {
     padding-right: 343px;
-    .context{
+    .context {
       // background-color: aqua;
       float: left;
       width: 100%;
       padding-bottom: 20px;
       // height: 200px;
-      .avatar{
+      .avatar {
         width: 100px;
         height: 100px;
         border-radius: 50%;
@@ -216,34 +590,38 @@ export default {
         display: block;
         cursor: pointer;
       }
-      .box-card{
+      .box-card {
         margin: -50px 0px 0px 50px;
         z-index: 10;
         display: block;
         position: relative;
       }
-      .score-type{
-        position:absolute;
-        transform:rotate(90deg) rotateX(180deg) rotateY(180deg);
+      .score-type {
+        position: absolute;
+        transform: rotate(90deg) rotateX(180deg) rotateY(180deg);
         margin-top: 70px;
         margin-left: -40px;
         font-size: 18px;
-        p{
+        p {
           display: inline-block;
           color: #d52484;
           transition: 1s;
           font-weight: 500;
           padding: 0 2px;
           cursor: pointer;
-          &:hover{
+          &:hover {
             text-shadow: 0 0 1px, 0 0 2px;
-         }
+          }
         }
       }
-      .translator-button-one{
+      .without {
+        color: transparent !important;
+        cursor: default !important;
+      }
+      .translator-button-one {
         position: absolute;
         // position: relative;
-        padding-top:20px;
+        padding-top: 20px;
         color: antiquewhite;
         width: 90px;
         height: 90px;
@@ -252,10 +630,11 @@ export default {
         text-align: center;
         margin: -94px 0px 0px 101px;
       }
-      .translator-button-two{
+
+      .translator-button-two {
         position: absolute;
         // position: relative;
-                padding-top:15px;
+        padding-top: 15px;
         color: antiquewhite;
         width: 80px;
         height: 80px;
@@ -264,10 +643,10 @@ export default {
         text-align: center;
         margin: -89px 0px 0px 191px;
       }
-      .translator-button-thr{
+      .translator-button-thr {
         position: absolute;
         // position: relative;
-                padding-top:10px;
+        padding-top: 10px;
         color: antiquewhite;
         width: 70px;
         height: 70px;
@@ -276,10 +655,10 @@ export default {
         text-align: center;
         margin: -84px 0px 0px 271px;
       }
-      .translator-button-fou{
+      .translator-button-fou {
         position: absolute;
         // position: relative;
-                padding-top:5px;
+        padding-top: 5px;
         color: antiquewhite;
         width: 60px;
         height: 60px;
@@ -288,18 +667,42 @@ export default {
         text-align: center;
         margin: -79px 0px 0px 341px;
       }
-
     }
-    .info{
+    .info {
       float: right;
       position: relative;
       width: 290px;
       margin-right: -343px;
       padding-bottom: 20px;
-      h2{
+      h2 {
         font-size: $--FontSizeL;
         line-height: 46px;
       }
+    }
+  }
+  .node {
+    p {
+      height: 60px;
+      line-height: 60px;
+      // background-color: #d52484;
+      cursor: pointer;
+      border-radius: 5px;
+      padding-left: 65px;
+      translate: all 0.5s;
+      margin: 3px 0px;
+      font-size: 16px;
+      &:hover {
+        background-color: #eee;
+      }
+    }
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      position: absolute;
+      margin-top: 10px;
+      margin-left: 10px;
     }
   }
 }

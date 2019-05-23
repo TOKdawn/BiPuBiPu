@@ -10,7 +10,7 @@ class ScoreService extends Service {
     this.Auhtor = this.ctx.model.Authorization;
     this.Score = this.ctx.model.Score;
     this.userUpload = this.ctx.model.UserUpload;
-
+    this.ScoreVolume = this.ctx.model.ScoreVolume
     this.userStar = this.ctx.model.UserStar;
     
   }
@@ -45,9 +45,14 @@ class ScoreService extends Service {
         uid,
         sid: data.get('id'),
       })
+      await this.ScoreVolume.create({
+        vid: 1,
+        sid: data.get('id'),
+      })
       await t.commit();
       return data;
     } catch (err) {
+      console.error(err)
       await t.rollback();
       return false;
     }
@@ -105,6 +110,37 @@ class ScoreService extends Service {
     }
 
   }
+
+  async addCollectionScore(sid, uid) {
+    //  const t = await this.ctx.model.transaction();
+    const Score = await this.Score.findOne({
+      where: {
+        id: sid
+      }
+    });
+    if (Score == null) {
+      return false
+    } else {
+      const data = await this.userStar.findOrCreate({
+        where: {
+          sid,
+          uid
+        }
+      })
+ 
+      return data;
+    }
+
+  }
+
+  async getScoreInfo(sid) {
+    const score = await this.Score.findOne({
+      where: {
+        id: sid,
+      },
+    });
+    return score;
+  }
   async deleteCollectionVolume(vid,uid) {
     const volume = await this.Volume.findOne({
       where: {
@@ -129,6 +165,53 @@ class ScoreService extends Service {
       return data;
     }
   }
+  async deleteCollectionScore(sid,uid) {
+    const Score = await this.Score.findOne({
+      where: {
+        id:sid
+      }
+    });
+    if (volume == null) {
+      return false
+    } else {
+      const data = await this.CollectionScore.destroy({
+        where: {
+          sid,
+          uid
+        }
+      })
+ 
+      return data;
+    }
+  }
+  async deleteScore(sid, uid) {
+    const t = await this.ctx.model.transaction();
+    console.log('ssssss',sid)
+    try {
+      const dele = await this.userUpload.destroy({
+        where: {
+          uid,
+          sid,
+        },
+      });
+      await this.userStar.destroy({
+        where: {
+          sid,
+        },
+      });
+      await this.Score.destroy( {
+        where: {
+          id: sid,
+        },
+      });
+      await t.commit();
+      return dele;
+    } catch (err) {
+      await t.rollback();
+      return err;
+    }
+  }
+
 
   async getScore(sid){
     const data = await this.Score.findOne({

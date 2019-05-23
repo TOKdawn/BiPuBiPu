@@ -330,7 +330,7 @@ export default {
   data () {
     return {
       scoreData: {
-        name: '雪之花 雪の华', // 谱名
+        name: '', // 谱名
         alias: '', // 别名
         addtion: '', // 附加信息
         image_url: '', // 头像链接

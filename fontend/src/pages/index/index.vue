@@ -78,6 +78,7 @@
         <p
           class="upload"
           @click=" $router.push({name: 'upload'})"
+          v-if="this.userRole === 2"
         >发布曲谱 ＼_(･ω･`)ｺｺ</p>
         <Search></Search>
       </div>

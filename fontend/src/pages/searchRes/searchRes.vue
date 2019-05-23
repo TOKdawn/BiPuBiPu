@@ -64,61 +64,33 @@
         <el-tab-pane
           label="谱册"
           name="second"
+           
         >
-          <el-table
-            :data="volumeData"
-            highlight-current-row
-            style="width: 100%; margin-bottom:20px; table-layout: fixed;"
-              height="500"
-              @cell-click="volumeJump"
+          <div class="otherScoreListDiv">
+        <div
+          class="copies"
+          v-for="(item,index) in volumeData"
+          :key="index"
+        >
+          <img
+            :src="item.photo"
+            @click="$router.push(`/page/volume/${item.id}`)"
+            alt=""
           >
-            <el-table-column
-              type="index"
-              width="50"
-            >
-            </el-table-column>
-            <el-table-column
-              property="name"
-              label="谱册名"
-              width="120"
-            >
-            </el-table-column>
-            <el-table-column
-              property="alias"
-              label="别名"
-                width="120"
-            >
-            </el-table-column>
-         <el-table-column
-              property="addtion"
-              label="更多信息"
-                width="240"
-            >
-            </el-table-column>
-            <el-table-column
-              property="FREEDOM54"
-              label="扒谱人"
-                width="120"
-            >
-            </el-table-column>
-              <el-table-column
-              property="score_text"
-              label="预览"
-            >
-            <template slot-scope="scope">
-                  {{ scope.row.score_text.slice(0,70) }}
-              </template>
-            </el-table-column>
-          </el-table>
+          <h1 @click="$router.push(`/page/volume/${item.id}`)"> {{item.name}}</h1>
+          <p> {{item.describe}}</p>
+          <div>收藏数:{{item.visits}}</div>
+        </div>
+      </div>
         </el-tab-pane>
-        <el-tab-pane
+        <!-- <el-tab-pane
           label="用户"
           name="third"
         >
           <div style="height:800px; width:100%; text-align:center; padding-top:50px;">
             暂无数据
           </div>
-        </el-tab-pane>
+        </el-tab-pane> -->
       </el-tabs>
     </div>
   </div>
@@ -134,6 +106,7 @@ export default {
       userData: [],
       scoreData: [],
       volumeData: []
+
     }
   },
   components: {
@@ -142,6 +115,7 @@ export default {
   created () {
     this.searchText = this.$route.params.searchtext
     this.getScore()
+    this.getVolume()
   },
   methods: {
     rowClass () {
@@ -209,7 +183,7 @@ export default {
       }).then(res => {
         if (res.status === 200) {
           console.log('拉取成功：', res.data)
-          this.scoreData.splice(0, this.volumeData.length, ...res.data)
+          this.volumeData.splice(0, this.volumeData.length, ...res.data)
         } else {
           this.$message({
             showClose: true,
@@ -292,6 +266,17 @@ export default {
       }
     }
   }
+    .otherScoreListDiv {
+      min-height: 600px;
+      max-height: 1120px;
+      overflow: auto;
+    }
+        .copies {
+      width: 20%;
+    }
+    .block {
+      background-color: transparent;
+    }
   .conText {
     max-width: 1200px;
     min-width: 760px;

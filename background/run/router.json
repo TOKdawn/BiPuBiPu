@@ -423,6 +423,65 @@
   {
     "name": null,
     "methods": [
+      "HEAD",
+      "GET"
+    ],
+    "paramNames": [
+      {
+        "name": "sid",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/scoreCollection/:sid",
+    "regexp": "/^\\/scoreCollection\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "DELETE"
+    ],
+    "paramNames": [
+      {
+        "name": "sid",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/scoreCollection/:sid",
+    "regexp": "/^\\/scoreCollection\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "POST"
+    ],
+    "paramNames": [],
+    "path": "/dsadasdcxzc",
+    "regexp": "/^\\/dsadasdcxzc(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
       "POST"
     ],
     "paramNames": [],
@@ -640,6 +699,29 @@
   {
     "name": null,
     "methods": [
+      "DELETE"
+    ],
+    "paramNames": [
+      {
+        "name": "sid",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/score/:sid",
+    "regexp": "/^\\/score\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
       "PUT"
     ],
     "paramNames": [
@@ -656,6 +738,30 @@
     ],
     "path": "/volume/:vid",
     "regexp": "/^\\/volume\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "stack": [
+      "wrappedController"
+    ]
+  },
+  {
+    "name": null,
+    "methods": [
+      "HEAD",
+      "GET"
+    ],
+    "paramNames": [
+      {
+        "name": "sid",
+        "prefix": "/",
+        "delimiter": "/",
+        "optional": false,
+        "repeat": false,
+        "partial": false,
+        "asterisk": false,
+        "pattern": "[^\\/]+?"
+      }
+    ],
+    "path": "/score/:sid",
+    "regexp": "/^\\/score\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -796,8 +902,8 @@
         "pattern": "[^\\/]+?"
       }
     ],
-    "path": "/socre/author/:sid",
-    "regexp": "/^\\/socre\\/author\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "path": "/score/author/:sid",
+    "regexp": "/^\\/score\\/author\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]
@@ -844,8 +950,8 @@
         "pattern": "[^\\/]+?"
       }
     ],
-    "path": "/socre/collector/:sid",
-    "regexp": "/^\\/socre\\/collector\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
+    "path": "/score/collector/:sid",
+    "regexp": "/^\\/score\\/collector\\/((?:[^\\/]+?))(?:\\/(?=$))?$/",
     "stack": [
       "wrappedController"
     ]

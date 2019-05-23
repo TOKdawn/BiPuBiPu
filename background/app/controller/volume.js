@@ -98,7 +98,6 @@ class VolumeController extends Controller {
     } else {
       this.ctx.helper.createRes(409, 'Delete err Orz  ');
     }
-   
   }
 
   async getVolumeInfo() {
@@ -129,7 +128,7 @@ class VolumeController extends Controller {
       vid
     } = this.ctx.params;
     const volume = await this.VolumeService.findOwner(vid);
-    if (volume.get('uid') !== this.ctx.user.id) {
+    if (volume.get('uid') !== this.ctx.session.user.id) {
       this.ctx.helper.createRes(403, 'permission denied ಠ益ಠ');
     }
     const response = await this.VolumeService.addVolumeScore(vid, sid);
@@ -144,7 +143,7 @@ class VolumeController extends Controller {
       vid,
     } = this.ctx.params;
     const volume = await this.VolumeService.findOwner(vid);
-    if (volume.get('uid') !== this.ctx.user.id) {
+    if (volume.get('uid') !== this.ctx.session.user.id) {
       this.ctx.helper.createRes(403, 'permission denied ಠ益ಠ');
     }
     const response = await this.VolumeService.deleteVolumeScore(vid, sid);
