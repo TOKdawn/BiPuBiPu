@@ -32,7 +32,7 @@
               v-if="!collentor && !owned"
               icon="el-icon-star-off"
               @click="addCollect "
-            >收藏谱册</el-button>
+            >收藏乐谱</el-button>
             <el-button
               type="danger"
               size="small"

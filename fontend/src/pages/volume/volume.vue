@@ -112,7 +112,7 @@
                 v-if="owned"
               >
                 <template slot-scope="scope">
-                  <el-button @click="deleteScore(scope.row.id)" size="mini"  type="danger">删除</el-button>
+                  <el-button @click.stop="deleteScore(scope.row.id,$event)" size="mini"  type="danger">删除</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -213,7 +213,8 @@ export default {
     }
   },
   methods: {
-    deleteScore (id) {
+    deleteScore (id, event) {
+      event.preventDefault()
       this.$http({
         method: 'post',
         url: Volume.deleteVolumeScore + this.$route.params.vid,

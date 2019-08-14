@@ -10,7 +10,7 @@
           <p>{{item.day}}</p>
           <p>{{item.year}}</p>
         </div>
-        <h2>{{item.title}}</h2>
+        <a :href="item.router"><h2>{{item.title}}</h2></a>
       </div>
     </div>
     <div class="threeBar">
@@ -33,25 +33,25 @@ export default {
   data () {
     return {
       weeklyData: [{
-        title: '哔谱哔谱口琴月排行榜#哔谱哔谱口琴月排行榜哔谱哔谱口琴月排行榜哔谱哔谱口琴月排行榜1',
-        day: '28',
-        year: '2018 11',
-        router: '/index'
+        title: '【年度企划大揭秘】',
+        day: '31',
+        year: '2018 7',
+        router: 'https://www.bilibili.com/read/cv846500'
       }, {
-        title: '哔谱哔谱口琴月排行榜#1',
-        day: '28',
-        year: '2018 11',
-        router: '/index'
+        title: '【血小板天下第一】',
+        day: '10',
+        year: '2018 7',
+        router: 'https://www.bilibili.com/read/cv709474'
       }, {
-        title: '哔谱哔谱口琴月排行榜#1',
-        day: '28',
-        year: '2018 11',
-        router: '/index'
+        title: '【樱花飘落的速度是秒速五厘米】',
+        day: '02',
+        year: '2018 7',
+        router: 'https://www.bilibili.com/read/cv667618'
       }, {
-        title: '哔谱哔谱口琴月排行榜#1',
-        day: '28',
-        year: '2018 11',
-        router: '/index'
+        title: '【十年今日】',
+        day: '26',
+        year: '2018 6',
+        router: 'https://www.bilibili.com/read/cv640693'
       }]
     }
   }

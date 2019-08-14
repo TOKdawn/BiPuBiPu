@@ -2,7 +2,7 @@
   <div class="score">
     <div class="title">
       谱册<span>/</span>
-      <router-link to="/page/volumeList">More</router-link>
+      <router-link to="/page/volumeList">建设中</router-link>
     </div>
     <div>
       <div style="display: flex; flex-wrap: wrap;">
@@ -41,7 +41,7 @@ export default {
         {
           img:
             'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
-          title: '东方谱册',
+          title: '示例用谱册',
           star: '100',
           describe: '一个谱册的介绍',
           list: [
@@ -70,8 +70,8 @@ export default {
         {
           img:
             'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186146-102.jpg',
-          title: '东方谱册',
-          star: '100',
+          title: '示例用谱册',
+          star: '99',
           describe: '一个谱册的介绍',
           list: [
             {
@@ -99,8 +99,8 @@ export default {
         {
           img:
             'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186139-102.jpg',
-          title: '东方谱册',
-          star: '100',
+          title: '示例用谱册',
+          star: '109',
           describe: '一个谱册的介绍',
           list: [
             {
@@ -128,8 +128,8 @@ export default {
         {
           img:
             'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/186036-102.jpg',
-          title: '东方谱册',
-          star: '100',
+          title: '示例用谱册',
+          star: '10',
           describe: '一个谱册的介绍',
           list: [
             {
@@ -157,8 +157,8 @@ export default {
         {
           img:
             'https://bipu.oss-cn-beijing.aliyuncs.com/bipuText/185998-102.jpg',
-          title: '东方谱册',
-          star: '100',
+          title: '示例用谱册',
+          star: '50',
           describe: '一个谱册的介绍',
           list: [
             {
