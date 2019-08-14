@@ -62,7 +62,7 @@ class UserService extends Service {
       limit: pagesize,
       offset,
     });
-    console.log('dddd',data)
+    // console.log('dddd',data)
     return data;
   }
 

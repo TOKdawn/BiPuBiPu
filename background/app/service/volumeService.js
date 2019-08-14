@@ -88,13 +88,10 @@ class VolumeService extends Service {
       });
       await this.CollectionVolume.destroy({
         where: {
-          
           vid,
         },
       });
-      await this.Volume.update({
-        status: 2,
-      }, {
+      await this.Volume.destroy({
         where: {
           id: vid,
         },
