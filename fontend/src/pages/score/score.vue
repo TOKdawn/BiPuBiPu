@@ -98,7 +98,7 @@
             </div>
             <el-card
               class="box-card"
-              style="white-space: pre-line"
+              style="white-space: pre-line; font-size:16px;"
               v-show="flag"
             >
               {{scoreData.score_text}}

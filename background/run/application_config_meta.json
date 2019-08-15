@@ -26,7 +26,7 @@
       "value": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-security/config/config.default.js"
     },
     "hsts": {
-      "enable": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-security/config/config.local.js",
+      "enable": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-security/config/config.default.js",
       "maxAge": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-security/config/config.default.js",
       "includeSubdomains": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-security/config/config.default.js"
     },
@@ -113,11 +113,19 @@
     "dir": "/Users/dawn/GitHub/BiPuBiPu/background/config/config.default.js",
     "dynamic": "/Users/dawn/GitHub/BiPuBiPu/background/config/config.default.js",
     "preload": "/Users/dawn/GitHub/BiPuBiPu/background/config/config.default.js",
-    "buffer": "/Users/dawn/GitHub/BiPuBiPu/background/config/config.default.js",
-    "maxFiles": "/Users/dawn/GitHub/BiPuBiPu/background/config/config.default.js"
+    "buffer": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-static/config/config.prod.js",
+    "maxFiles": "/Users/dawn/GitHub/BiPuBiPu/background/config/config.default.js",
+    "maxAge": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-static/config/config.prod.js"
   },
   "keys": "/Users/dawn/GitHub/BiPuBiPu/background/config/config.default.js",
   "middleware": "/Users/dawn/GitHub/BiPuBiPu/background/config/config.default.js",
+  "cluster": {
+    "listen": {
+      "port": "/Users/dawn/GitHub/BiPuBiPu/background/config/config.prod.js",
+      "hostname": "/Users/dawn/GitHub/BiPuBiPu/background/config/config.prod.js",
+      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/config.default.js"
+    }
+  },
   "helper": {
     "shtml": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-security/config/config.default.js"
   },
@@ -139,7 +147,7 @@
     "cookieMaxAge": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-i18n/config/config.default.js"
   },
   "watcher": {
-    "type": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-watcher/config/config.local.js",
+    "type": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-watcher/config/config.default.js",
     "eventSources": {
       "default": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-watcher/config/config.default.js",
       "development": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-watcher/config/config.default.js"
@@ -154,13 +162,6 @@
   "schedule": {
     "directory": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-schedule/config/config.default.js"
   },
-  "development": {
-    "watchDirs": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-development/config/config.default.js",
-    "ignoreDirs": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-development/config/config.default.js",
-    "fastReady": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-development/config/config.default.js",
-    "reloadOnDebug": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-development/config/config.default.js",
-    "overrideDefault": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-development/config/config.default.js"
-  },
   "logrotator": {
     "filesRotateByHour": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-logrotator/config/config.default.js",
     "hourDelimiter": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-logrotator/config/config.default.js",
@@ -172,7 +173,7 @@
   },
   "view": {
     "root": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-view/config/config.default.js",
-    "cache": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-view/config/config.local.js",
+    "cache": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-view/config/config.default.js",
     "defaultExtension": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-view/config/config.default.js",
     "defaultViewEngine": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-view/config/config.default.js",
     "mapping": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-view/config/config.default.js"
@@ -287,9 +288,7 @@
     "coreLogName": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/config.default.js",
     "agentLogName": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/config.default.js",
     "errorLogName": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/config.default.js",
-    "coreLogger": {
-      "consoleLevel": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/config.local.js"
-    },
+    "coreLogger": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/config.default.js",
     "allowDebugAtProd": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/config.default.js"
   },
   "httpclient": {
@@ -319,13 +318,6 @@
   "coreMiddleware": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/config.default.js",
   "workerStartTimeout": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/config.default.js",
   "serverTimeout": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/config.default.js",
-  "cluster": {
-    "listen": {
-      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/config.default.js",
-      "port": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/config.default.js",
-      "hostname": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/config.default.js"
-    }
-  },
   "clusterClient": {
     "maxWaitTime": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/config.default.js",
     "responseTimeout": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/config.default.js"
