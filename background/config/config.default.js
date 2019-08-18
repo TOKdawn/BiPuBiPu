@@ -5,10 +5,10 @@ module.exports = appInfo => {
         sequelize: {
             dialect: 'postgres',
             database: 'bipu',
-            host: 'localhost',
+            host: 'db',
             port: '5432',
-            username: 'dawn',
-            password: '',
+            username: 'root',
+            password: 'bipubipu',
         },
         security: {
             // enable: false
