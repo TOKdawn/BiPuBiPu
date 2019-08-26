@@ -1,0 +1,128 @@
+2019-08-21 02:32:47,967 INFO 2590 [model] [35mSHOW SERVER_VERSION[39m (0ms)
+2019-08-21 02:32:47,979 INFO 2590 [model] [35mSELECT 1+1 AS result[39m (0ms)
+2019-08-21 02:32:47,586 INFO 2590 [egg:logger] init all loggers with options: {"dir":"/Users/dawn/GitHub/BiPuBiPu/backend/logs/BiPu","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"BiPu-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-08-21 02:32:47,910 INFO 2590 [egg:core] dump config after load, 9ms
+2019-08-21 02:32:47,938 INFO 2590 [egg-watcher] Start watching: ["/Users/dawn/GitHub/BiPuBiPu/backend/app","/Users/dawn/GitHub/BiPuBiPu/backend/config","/Users/dawn/GitHub/BiPuBiPu/backend/mocks","/Users/dawn/GitHub/BiPuBiPu/backend/mocks_proxy","/Users/dawn/GitHub/BiPuBiPu/backend/app.js"]
+2019-08-21 02:32:47,938 INFO 2590 [egg-watcher] Start watching: "/Users/dawn/GitHub/BiPuBiPu/backend/app"
+2019-08-21 02:32:47,939 INFO 2590 [egg-watcher] Start watching: "/Users/dawn/GitHub/BiPuBiPu/backend/config"
+2019-08-21 02:32:47,939 INFO 2590 [egg-watcher] Start watching: "/Users/dawn/GitHub/BiPuBiPu/backend/mocks"
+2019-08-21 02:32:47,939 INFO 2590 [egg-watcher] Start watching: "/Users/dawn/GitHub/BiPuBiPu/backend/mocks_proxy"
+2019-08-21 02:32:47,939 INFO 2590 [egg-watcher] Start watching: "/Users/dawn/GitHub/BiPuBiPu/backend/app.js"
+2019-08-21 02:32:47,939 INFO 2590 [egg-watcher:agent] watcher start success
+2019-08-21 02:32:47,986 INFO 2590 [egg:core] dump config after ready, 5ms
+2019-08-24 21:41:57,067 INFO 11065 [egg:logger] init all loggers with options: {"dir":"/Users/dawn/GitHub/BiPuBiPu/backend/logs/BiPu","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"BiPu-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-08-24 21:41:57,438 INFO 11065 [egg:core] dump config after load, 6ms
+2019-08-24 21:41:57,466 INFO 11065 [egg-watcher] Start watching: ["/Users/dawn/GitHub/BiPuBiPu/backend/app","/Users/dawn/GitHub/BiPuBiPu/backend/config","/Users/dawn/GitHub/BiPuBiPu/backend/mocks","/Users/dawn/GitHub/BiPuBiPu/backend/mocks_proxy","/Users/dawn/GitHub/BiPuBiPu/backend/app.js"]
+2019-08-24 21:41:57,466 INFO 11065 [egg-watcher] Start watching: "/Users/dawn/GitHub/BiPuBiPu/backend/app"
+2019-08-24 21:41:57,467 INFO 11065 [egg-watcher] Start watching: "/Users/dawn/GitHub/BiPuBiPu/backend/config"
+2019-08-24 21:41:57,467 INFO 11065 [egg-watcher] Start watching: "/Users/dawn/GitHub/BiPuBiPu/backend/mocks"
+2019-08-24 21:41:57,467 INFO 11065 [egg-watcher] Start watching: "/Users/dawn/GitHub/BiPuBiPu/backend/mocks_proxy"
+2019-08-24 21:41:57,467 INFO 11065 [egg-watcher] Start watching: "/Users/dawn/GitHub/BiPuBiPu/backend/app.js"
+2019-08-24 21:41:57,467 INFO 11065 [egg-watcher:agent] watcher start success
+2019-08-24 21:41:57,498 ERROR 11065 nodejs.SequelizeHostNotFoundError: getaddrinfo ENOTFOUND db db:5432
+    at connection.connect.err (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/sequelize/lib/dialects/postgres/connection-manager.js:119:24)
+    at Connection.connectingErrorHandler (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/pg/lib/client.js:140:14)
+    at Connection.emit (events.js:180:13)
+    at Socket.reportStreamError (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/pg/lib/connection.js:71:10)
+    at Socket.emit (events.js:180:13)
+    at emitErrorNT (internal/streams/destroy.js:64:8)
+    at process._tickCallback (internal/process/next_tick.js:114:19)
+From previous event:
+    at ConnectionManager.connect (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/sequelize/lib/dialects/postgres/connection-manager.js:107:12)
+    at sequelize.runHooks.then (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:320:50)
+    at runCallback (timers.js:763:18)
+    at tryOnImmediate (timers.js:734:5)
+    at processImmediate (timers.js:716:5)
+From previous event:
+    at ConnectionManager._connect (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:320:8)
+    at ConnectionManager.getConnection (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:250:46)
+    at Promise.try (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/sequelize/lib/sequelize.js:554:34)
+From previous event:
+    at Promise.resolve.retryParameters (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/sequelize/lib/sequelize.js:454:64)
+    at /Users/dawn/GitHub/BiPuBiPu/backend/node_modules/retry-as-promised/index.js:39:21
+    at retryAsPromised (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/retry-as-promised/index.js:29:10)
+    at Sequelize.query (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/sequelize/lib/sequelize.js:454:28)
+    at Sequelize.authenticate (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/sequelize/lib/sequelize.js:783:17)
+    at authenticate (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-sequelize/lib/loader.js:59:21)
+    at authenticate.next (<anonymous>)
+    at onFulfilled (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/co/index.js:65:19)
+    at /Users/dawn/GitHub/BiPuBiPu/backend/node_modules/co/index.js:54:5
+    at new Promise (<anonymous>)
+    at co (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/co/index.js:50:10)
+    at toPromise (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/co/index.js:118:63)
+    at next (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/co/index.js:99:29)
+    at onFulfilled (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/co/index.js:69:7)
+    at /Users/dawn/GitHub/BiPuBiPu/backend/node_modules/co/index.js:54:5
+    at new Promise (<anonymous>)
+    at co (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/co/index.js:50:10)
+    at createPromise (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/co/index.js:30:15)
+    at Object.callFn (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-core/lib/utils/index.js:46:42)
+    at process.nextTick (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-core/lib/lifecycle.js:249:13)
+    at process._tickCallback (internal/process/next_tick.js:112:11)
+    at Function.Module.runMain (module.js:692:11)
+    at startup (bootstrap_node.js:194:16)
+name: "SequelizeHostNotFoundError"
+parent: {"message":"getaddrinfo ENOTFOUND db db:5432","errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"db","host":"db","port":5432}
+original: {"message":"getaddrinfo ENOTFOUND db db:5432","errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"db","host":"db","port":5432}
+pid: 11065
+hostname: MacBook-3.local
+
+2019-08-24 21:41:57,508 INFO 11065 [egg:core] dump config after ready, 4ms
+2019-08-24 21:43:13,871 INFO 11163 [egg:logger] init all loggers with options: {"dir":"/Users/dawn/GitHub/BiPuBiPu/backend/logs/BiPu","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"BiPu-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2019-08-24 21:43:14,196 INFO 11163 [egg:core] dump config after load, 5ms
+2019-08-24 21:43:14,218 INFO 11163 [egg-watcher] Start watching: ["/Users/dawn/GitHub/BiPuBiPu/backend/app","/Users/dawn/GitHub/BiPuBiPu/backend/config","/Users/dawn/GitHub/BiPuBiPu/backend/mocks","/Users/dawn/GitHub/BiPuBiPu/backend/mocks_proxy","/Users/dawn/GitHub/BiPuBiPu/backend/app.js"]
+2019-08-24 21:43:14,219 INFO 11163 [egg-watcher] Start watching: "/Users/dawn/GitHub/BiPuBiPu/backend/app"
+2019-08-24 21:43:14,219 INFO 11163 [egg-watcher] Start watching: "/Users/dawn/GitHub/BiPuBiPu/backend/config"
+2019-08-24 21:43:14,219 INFO 11163 [egg-watcher] Start watching: "/Users/dawn/GitHub/BiPuBiPu/backend/mocks"
+2019-08-24 21:43:14,219 INFO 11163 [egg-watcher] Start watching: "/Users/dawn/GitHub/BiPuBiPu/backend/mocks_proxy"
+2019-08-24 21:43:14,219 INFO 11163 [egg-watcher] Start watching: "/Users/dawn/GitHub/BiPuBiPu/backend/app.js"
+2019-08-24 21:43:14,219 INFO 11163 [egg-watcher:agent] watcher start success
+2019-08-24 21:43:14,241 ERROR 11163 nodejs.SequelizeHostNotFoundError: getaddrinfo ENOTFOUND db db:5432
+    at connection.connect.err (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/sequelize/lib/dialects/postgres/connection-manager.js:119:24)
+    at Connection.connectingErrorHandler (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/pg/lib/client.js:140:14)
+    at Connection.emit (events.js:180:13)
+    at Socket.reportStreamError (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/pg/lib/connection.js:71:10)
+    at Socket.emit (events.js:180:13)
+    at emitErrorNT (internal/streams/destroy.js:64:8)
+    at process._tickCallback (internal/process/next_tick.js:114:19)
+From previous event:
+    at ConnectionManager.connect (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/sequelize/lib/dialects/postgres/connection-manager.js:107:12)
+    at sequelize.runHooks.then (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:320:50)
+    at runCallback (timers.js:763:18)
+    at tryOnImmediate (timers.js:734:5)
+    at processImmediate (timers.js:716:5)
+From previous event:
+    at ConnectionManager._connect (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:320:8)
+    at ConnectionManager.getConnection (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:250:46)
+    at Promise.try (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/sequelize/lib/sequelize.js:554:34)
+From previous event:
+    at Promise.resolve.retryParameters (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/sequelize/lib/sequelize.js:454:64)
+    at /Users/dawn/GitHub/BiPuBiPu/backend/node_modules/retry-as-promised/index.js:39:21
+    at retryAsPromised (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/retry-as-promised/index.js:29:10)
+    at Sequelize.query (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/sequelize/lib/sequelize.js:454:28)
+    at Sequelize.authenticate (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/sequelize/lib/sequelize.js:783:17)
+    at authenticate (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-sequelize/lib/loader.js:59:21)
+    at authenticate.next (<anonymous>)
+    at onFulfilled (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/co/index.js:65:19)
+    at /Users/dawn/GitHub/BiPuBiPu/backend/node_modules/co/index.js:54:5
+    at new Promise (<anonymous>)
+    at co (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/co/index.js:50:10)
+    at toPromise (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/co/index.js:118:63)
+    at next (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/co/index.js:99:29)
+    at onFulfilled (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/co/index.js:69:7)
+    at /Users/dawn/GitHub/BiPuBiPu/backend/node_modules/co/index.js:54:5
+    at new Promise (<anonymous>)
+    at co (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/co/index.js:50:10)
+    at createPromise (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/co/index.js:30:15)
+    at Object.callFn (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-core/lib/utils/index.js:46:42)
+    at process.nextTick (/Users/dawn/GitHub/BiPuBiPu/backend/node_modules/egg-core/lib/lifecycle.js:249:13)
+    at process._tickCallback (internal/process/next_tick.js:112:11)
+    at Function.Module.runMain (module.js:692:11)
+    at startup (bootstrap_node.js:194:16)
+name: "SequelizeHostNotFoundError"
+parent: {"message":"getaddrinfo ENOTFOUND db db:5432","errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"db","host":"db","port":5432}
+original: {"message":"getaddrinfo ENOTFOUND db db:5432","errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"db","host":"db","port":5432}
+pid: 11163
+hostname: MacBook-3.local
+
+2019-08-24 21:43:14,248 INFO 11163 [egg:core] dump config after ready, 4ms

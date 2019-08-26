@@ -100,6 +100,7 @@
         "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-watcher/config/locales",
         "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-schedule/config/locales",
         "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-multipart/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-development/config/locales",
         "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-logrotator/config/locales",
         "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-static/config/locales",
         "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-view/config/locales",
@@ -118,7 +119,7 @@
       "functionName": "__"
     },
     "watcher": {
-      "type": "default",
+      "type": "development",
       "eventSources": {
         "default": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-watcher/lib/event-sources/default",
         "development": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-watcher/lib/event-sources/development"
@@ -127,7 +128,7 @@
     "customLogger": {
       "scheduleLogger": {
         "consoleLevel": "NONE",
-        "file": "/Users/dawn/logs/bipu/egg-schedule.log"
+        "file": "/Users/dawn/GitHub/BiPuBiPu/background/logs/bipu/egg-schedule.log"
       }
     },
     "schedule": {
@@ -152,6 +153,13 @@
         "cron": "0 30 4 * * *"
       }
     },
+    "development": {
+      "watchDirs": [],
+      "ignoreDirs": [],
+      "fastReady": false,
+      "reloadOnDebug": true,
+      "overrideDefault": false
+    },
     "logrotator": {
       "filesRotateByHour": null,
       "hourDelimiter": "-",
@@ -166,14 +174,13 @@
       "dir": "/Users/dawn/GitHub/BiPuBiPu/background/app/public",
       "dynamic": true,
       "preload": false,
-      "buffer": true,
+      "buffer": false,
       "maxFiles": 100000,
-      "maxAge": 31536000,
       "files": "<LRU>"
     },
     "view": {
       "root": "/Users/dawn/GitHub/BiPuBiPu/background/app/view",
-      "cache": true,
+      "cache": false,
       "defaultExtension": ".html",
       "defaultViewEngine": "",
       "mapping": {}
@@ -181,10 +188,10 @@
     "sequelize": {
       "dialect": "postgres",
       "database": "bipu",
-      "host": "localhost",
+      "host": "db",
       "port": "5432",
       "username": "dawn",
-      "password": "<String len: 0>"
+      "password": "<String len: 8>"
     },
     "oss": {
       "default": {
@@ -231,7 +238,7 @@
         "User-Agent": "passport-weibo"
       }
     },
-    "env": "prod",
+    "env": "local",
     "name": "bipu",
     "keys": "<String len: 23>",
     "proxy": false,
@@ -331,19 +338,21 @@
       "returnRawBody": true
     },
     "logger": {
-      "dir": "/Users/dawn/logs/bipu",
+      "dir": "/Users/dawn/GitHub/BiPuBiPu/background/logs/bipu",
       "encoding": "utf8",
-      "env": "prod",
+      "env": "local",
       "level": "INFO",
       "consoleLevel": "INFO",
-      "disableConsoleAfterReady": true,
+      "disableConsoleAfterReady": false,
       "outputJSON": false,
       "buffer": true,
       "appLogName": "bipu-web.log",
       "coreLogName": "egg-web.log",
       "agentLogName": "egg-agent.log",
       "errorLogName": "common-error.log",
-      "coreLogger": {},
+      "coreLogger": {
+        "consoleLevel": "WARN"
+      },
       "allowDebugAtProd": false,
       "type": "application"
     },
@@ -386,6 +395,7 @@
       "session",
       "securities",
       "i18n",
+      "eggLoaderTrace",
       "passportInitialize",
       "passportSession"
     ],
@@ -395,7 +405,7 @@
       "listen": {
         "path": "",
         "port": 7001,
-        "hostname": "0.0.0.0"
+        "hostname": ""
       }
     },
     "clusterClient": {
@@ -516,6 +526,21 @@
       "from": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/plugin.js",
       "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-multipart",
       "version": "2.3.0"
+    },
+    "development": {
+      "enable": true,
+      "package": "egg-development",
+      "name": "development",
+      "dependencies": [
+        "watcher"
+      ],
+      "optionalDependencies": [],
+      "env": [
+        "local"
+      ],
+      "from": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/plugin.js",
+      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-development",
+      "version": "2.4.1"
     },
     "logrotator": {
       "enable": true,

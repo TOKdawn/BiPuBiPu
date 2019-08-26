@@ -1,21 +1,25 @@
 {
   "config": {
     "session": {
-      "maxAge": 3600000,
+      "maxAge": 86400000,
       "key": "EGG_SESS",
       "httpOnly": true,
-      "encrypt": true
+      "encrypt": true,
+      "overwrite": true,
+      "signed": true,
+      "autoCommit": true,
+      "encode": "<Function encode>",
+      "decode": "<Function decode>",
+      "genid": "<Function anonymous>"
     },
     "security": {
-      "domainWhiteList": [
-        "http://localhost:8888"
-      ],
+      "domainWhiteList": [],
       "protocolWhiteList": [],
       "defaultMiddleware": "csrf,hsts,methodnoallow,noopen,nosniff,csp,xssProtection,xframe,dta",
       "csrf": {
         "enable": false,
         "useSession": false,
-        "ignoreJSON": true,
+        "ignoreJSON": false,
         "cookieName": "csrfToken",
         "sessionName": "csrfToken",
         "headerName": "x-csrf-token",
@@ -24,7 +28,8 @@
       },
       "xframe": {
         "enable": true,
-        "value": "SAMEORIGIN"
+        "value": "SAMEORIGIN",
+        "matching": "<Function anonymous>"
       },
       "hsts": {
         "enable": false,
@@ -32,16 +37,20 @@
         "includeSubdomains": false
       },
       "dta": {
-        "enable": true
+        "enable": true,
+        "matching": "<Function anonymous>"
       },
       "methodnoallow": {
-        "enable": true
+        "enable": true,
+        "matching": "<Function anonymous>"
       },
       "noopen": {
-        "enable": true
+        "enable": true,
+        "matching": "<Function anonymous>"
       },
       "nosniff": {
-        "enable": true
+        "enable": true,
+        "matching": "<Function anonymous>"
       },
       "referrerPolicy": {
         "enable": false,
@@ -49,7 +58,8 @@
       },
       "xssProtection": {
         "enable": true,
-        "value": "1; mode=block"
+        "value": "1; mode=block",
+        "matching": "<Function anonymous>"
       },
       "csp": {
         "enable": false,
@@ -79,10 +89,31 @@
     },
     "i18n": {
       "defaultLocale": "en_US",
-      "dirs": [],
+      "dirs": [
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-session/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-security/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-jsonp/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-onerror/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-i18n/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-watcher/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-schedule/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-multipart/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-development/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-logrotator/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-static/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-view/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-sequelize/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-oss/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-passport/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-passport-github/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-cors/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg/config/locales",
+        "/Users/dawn/GitHub/BiPuBiPu/background/config/locales"
+      ],
       "queryField": "locale",
       "cookieField": "locale",
-      "cookieMaxAge": "1y"
+      "cookieMaxAge": "1y",
+      "functionName": "__"
     },
     "watcher": {
       "type": "development",
@@ -105,9 +136,9 @@
       "autoFields": false,
       "defaultCharset": "utf8",
       "fieldNameSize": 100,
-      "fieldSize": "100kb",
+      "fieldSize": 102400,
       "fields": 10,
-      "fileSize": "3mb",
+      "fileSize": 3145728,
       "files": 10,
       "fileExtensions": [],
       "whitelist": [
@@ -141,7 +172,8 @@
       "dynamic": true,
       "preload": false,
       "buffer": false,
-      "maxFiles": 100000
+      "maxFiles": 100000,
+      "files": "<LRU>"
     },
     "view": {
       "root": "/Users/dawn/GitHub/BiPuBiPu/background/app/view",
@@ -153,10 +185,10 @@
     "sequelize": {
       "dialect": "postgres",
       "database": "bipu",
-      "host": "db",
+      "host": "localhost",
       "port": "5432",
       "username": "dawn",
-      "password": "<String len: 8>"
+      "password": "<String len: 0>"
     },
     "oss": {
       "default": {
@@ -174,16 +206,20 @@
     "passportGithub": {
       "key": "f6fce18e5524663f25f8",
       "secret": "<String len: 40>",
-      "callbackURL": "http://127.0.0.1:7001/passport/github/callback"
+      "callbackURL": "http://127.0.0.1:7001/passport/github/callback",
+      "passReqToCallback": true,
+      "clientID": "f6fce18e5524663f25f8",
+      "clientSecret": "<String len: 40>",
+      "authorizationURL": "https://github.com/login/oauth/authorize",
+      "tokenURL": "https://github.com/login/oauth/access_token",
+      "scopeSeparator": ",",
+      "customHeaders": {
+        "User-Agent": "passport-github"
+      }
     },
     "cors": {
-      "origin": "*",
+      "origin": "https://github.com/",
       "allowMethods": "GET,HEAD,PUT,POST,DELETE,PATCH"
-    },
-    "passportWeibo": {
-      "key": "1056843709",
-      "secret": "<String len: 32>",
-      "callbackURL": "http://127.0.0.1:7001/passport/weibo/callback"
     },
     "env": "local",
     "name": "bipu",
@@ -281,7 +317,8 @@
         "arrayLimit": 100,
         "depth": 5,
         "parameterLimit": 1000
-      }
+      },
+      "returnRawBody": true
     },
     "logger": {
       "dir": "/Users/dawn/GitHub/BiPuBiPu/background/logs/bipu",
@@ -300,7 +337,7 @@
         "consoleLevel": "WARN"
       },
       "allowDebugAtProd": false,
-      "type": "agent"
+      "type": "application"
     },
     "httpclient": {
       "enableDNSCache": false,
@@ -331,11 +368,19 @@
       "logging": false
     },
     "coreMiddleware": [
+      "cors",
       "meta",
       "siteFile",
       "notfound",
+      "static",
       "bodyParser",
-      "overrideMethod"
+      "overrideMethod",
+      "session",
+      "securities",
+      "i18n",
+      "eggLoaderTrace",
+      "passportInitialize",
+      "passportSession"
     ],
     "workerStartTimeout": 600000,
     "serverTimeout": null,
@@ -354,7 +399,19 @@
     "middleware": [],
     "coreMiddlewares": "~config~coreMiddleware",
     "appMiddlewares": "~config~middleware",
-    "appMiddleware": "~config~middleware"
+    "appMiddleware": "~config~middleware",
+    "multipartParseOptions": {
+      "autoFields": false,
+      "defCharset": "utf8",
+      "limits": {
+        "fieldNameSize": 100,
+        "fieldSize": 102400,
+        "fields": 10,
+        "fileSize": 3145728,
+        "files": 10
+      },
+      "checkFile": "<Function checkFile>"
+    }
   },
   "plugins": {
     "session": {
@@ -561,19 +618,6 @@
       "from": "/Users/dawn/GitHub/BiPuBiPu/background/config/plugin.js",
       "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-cors",
       "version": "2.1.2"
-    },
-    "passportWeibo": {
-      "enable": true,
-      "package": "egg-passport-weibo",
-      "name": "passportWeibo",
-      "dependencies": [
-        "passport"
-      ],
-      "optionalDependencies": [],
-      "env": [],
-      "from": "/Users/dawn/GitHub/BiPuBiPu/background/config/plugin.js",
-      "path": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-passport-weibo",
-      "version": "1.0.0"
     }
   }
 }
