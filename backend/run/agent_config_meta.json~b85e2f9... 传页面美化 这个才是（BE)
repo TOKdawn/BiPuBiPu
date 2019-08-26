@@ -10,15 +10,15 @@
   "security": {
     "csrf": {
       "enable": "/Users/dawn/GitHub/BiPuBiPu/background/config/config.default.js",
-      "ignoreJSON": "/Users/dawn/GitHub/BiPuBiPu/background/config/config.default.js",
       "useSession": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-security/config/config.default.js",
+      "ignoreJSON": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-security/config/config.default.js",
       "cookieName": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-security/config/config.default.js",
       "sessionName": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-security/config/config.default.js",
       "headerName": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-security/config/config.default.js",
       "bodyName": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-security/config/config.default.js",
       "queryName": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-security/config/config.default.js"
     },
-    "domainWhiteList": "/Users/dawn/GitHub/BiPuBiPu/background/config/config.default.js",
+    "domainWhiteList": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-security/config/config.default.js",
     "protocolWhiteList": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-security/config/config.default.js",
     "defaultMiddleware": "/Users/dawn/GitHub/BiPuBiPu/background/node_modules/egg-security/config/config.default.js",
     "xframe": {

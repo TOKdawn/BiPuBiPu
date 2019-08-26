@@ -1,21 +1,19 @@
 {
   "config": {
     "session": {
-      "maxAge": 3600000,
+      "maxAge": 86400000,
       "key": "EGG_SESS",
       "httpOnly": true,
       "encrypt": true
     },
     "security": {
-      "domainWhiteList": [
-        "http://localhost:8888"
-      ],
+      "domainWhiteList": [],
       "protocolWhiteList": [],
       "defaultMiddleware": "csrf,hsts,methodnoallow,noopen,nosniff,csp,xssProtection,xframe,dta",
       "csrf": {
         "enable": false,
         "useSession": false,
-        "ignoreJSON": true,
+        "ignoreJSON": false,
         "cookieName": "csrfToken",
         "sessionName": "csrfToken",
         "headerName": "x-csrf-token",
@@ -153,10 +151,10 @@
     "sequelize": {
       "dialect": "postgres",
       "database": "bipu",
-      "host": "db",
+      "host": "localhost",
       "port": "5432",
       "username": "dawn",
-      "password": "<String len: 8>"
+      "password": "<String len: 0>"
     },
     "oss": {
       "default": {
@@ -177,7 +175,7 @@
       "callbackURL": "http://127.0.0.1:7001/passport/github/callback"
     },
     "cors": {
-      "origin": "*",
+      "origin": "https://github.com/",
       "allowMethods": "GET,HEAD,PUT,POST,DELETE,PATCH"
     },
     "passportWeibo": {

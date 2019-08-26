@@ -7,7 +7,7 @@ module.exports = appInfo => {
             database: 'bipu',
             host: 'db',
             port: '5432',
-            username: 'root',
+            username: 'dawn',
             password: 'bipubipu',
         },
         security: {
