@@ -98,7 +98,7 @@
             </div>
             <el-card
               class="box-card"
-              style="white-space: pre-line; font-size:16px;"
+              style="white-space: pre-line; font-size:17px; line-height:1.5; "
               v-show="flag"
             >
               {{scoreData.score_text}}
@@ -322,7 +322,10 @@ export default {
         })
     },
     showImg () {
-      this.flag = !this.flag
+      if (!this.scoreData.other_img) {
+      } else {
+        this.flag = !this.flag
+      }
     },
     deleteScore () {
       this.$confirm('你将会删除此乐谱, 是否继续?', '提示', {
