@@ -9,7 +9,7 @@ exports.cluster = {
     //     prefix: '/',
     //     dir: path.join(appInfo.baseDir, 'app/public'),
     //     dynamic: true,
-    //     preload: false,
+    //     preload: false,ss
     //     buffer: false,
     //     maxFiles: 100000
     // }
