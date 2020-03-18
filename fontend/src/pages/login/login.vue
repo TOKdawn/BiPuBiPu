@@ -325,7 +325,7 @@ export default {
         })
     },
     getSMS () {
-      var myreg = /^[1][3,4,5,7,8][0-9]{9}$/
+      var myreg = /^[1][3,6,4,5,7,8,9][0-9]{9}$/
       if (!myreg.test(this.res_phone)) {
         this.loginTipMsg = '请输入正确格式的手机号'
         return false
