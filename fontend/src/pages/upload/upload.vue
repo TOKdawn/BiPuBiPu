@@ -316,7 +316,7 @@
       </el-tabs>
       <!-- </el-form> -->
       <img
-        src="../../assets/img/molisha.png"
+        src="https://bipu.oss-cn-beijing.aliyuncs.com/website/molisha.png"
         title="帮助"
         alt="help"
         class="help"

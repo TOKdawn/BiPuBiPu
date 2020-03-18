@@ -19,7 +19,7 @@
       @click="$router.push('/login')"
     >
       <img
-        src="./Akkarin.jpg"
+        src="https://bipu.oss-cn-beijing.aliyuncs.com/website/Akkarin.jpg"
         alt=""
       >
     </div>
