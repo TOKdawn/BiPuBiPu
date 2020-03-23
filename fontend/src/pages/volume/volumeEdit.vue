@@ -13,7 +13,7 @@
         <el-form-item label="更换封面:">
           <el-upload
             class="avatar-uploader"
-            action="/api/upload"
+            action="/upload"
             :show-file-list="false"
              :on-success="handleAvatarSuccess"
           >
@@ -60,7 +60,7 @@
   </div>
 </template>
 <script>
-// import store from 'vux/store.js'
+import store from 'vux/store.js'
 import {Volume} from 'common/urls'
 export default {
   data () {
@@ -129,13 +129,42 @@ export default {
             })
           })
         } else {
-          console.log('error submit!!')
+        //   console.log('error submit!!')
           return false
         }
       })
     }
   },
   created () {
+    this.$http({
+      method: 'get',
+      url: Volume.getVolumeAuthor + this.$route.params.vid
+    })
+      .then(res => {
+        if (res.status === 200) {
+        //   console.log(res.data)
+          if (res.data.data[0].id !== store.getters.id) {
+            this.$router.push(`/403`)
+          }
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.data.message,
+            type: 'error'
+          })
+          this.$router.push(`/403`)
+        }
+      })
+      .catch(res => {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: '请求失败',
+          type: 'error'
+        })
+        this.$router.push(`/403`)
+      })
     this.$http({
       method: 'get',
       url: Volume.getVolumeInfo + this.$route.params.vid

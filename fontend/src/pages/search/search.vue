@@ -44,7 +44,7 @@ export default {
       }
     },
     getData (key, cd) {
-      console.log(' HTTP get: ', key)
+    //   console.log(' HTTP get: ', key)
       this.$http({
         method: 'post',
         url: systemUrl.getAll,
@@ -53,11 +53,11 @@ export default {
         }
       }).then(res => {
         if (res.status === 200) {
-          console.log('拉取成功：', res.data)
+        //   console.log('拉取成功：', res.data)
           this.allData = res.data.score.concat(res.data.volume)
           this.show = this.allData
           cd(this.show)
-          console.log(this.allData)
+        //   console.log(this.allData)
         } else {
           this.$message({
             showClose: true,
@@ -84,12 +84,12 @@ export default {
     //   }
     // },
     clearData () {
-      console.log(' clearData: ')
+    //   console.log(' clearData: ')
       this.allData = []
       this.dataFlag = false
     },
     handleSelect (item) {
-      console.log(item)
+    //   console.log(item)
       this.$router.push(`/page/searchres/${this.searchText}`)
     },
     jump (key) {

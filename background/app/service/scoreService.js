@@ -186,7 +186,7 @@ class ScoreService extends Service {
   }
   async deleteScore(sid, uid) {
     const t = await this.ctx.model.transaction();
-    console.log('ssssss',sid)
+    // console.log('ssssss',sid)
     try {
       const dele = await this.userUpload.destroy({
         where: {

@@ -98,10 +98,12 @@
             </div>
             <el-card
               class="box-card"
-              style="white-space: pre-line; font-size:17px; line-height:1.5; "
+              
               v-show="flag"
             >
+            <div  style="white-space: pre-line; font-size:17px; line-height:2.5;">
               {{scoreData.score_text}}
+            </div>
             </el-card>
             <el-card
               class="box-card"
@@ -224,6 +226,9 @@ export default {
       document.body.removeChild(element)
     },
     jump (url) {
+      if (url === '') {
+        return
+      }
       window.location.href = url
     },
     addCollect () {
@@ -608,7 +613,7 @@ export default {
         p {
           display: inline-block;
           color: #d52484;
-          transition: 1s;
+          
           font-weight: 500;
           padding: 0 2px;
           cursor: pointer;

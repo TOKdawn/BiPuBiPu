@@ -81,7 +81,7 @@ export default {
       .then(res => {
         if (res.status === 200) {
           this.allScoreList.splice(0, 0, ...res.data.data)
-          console.log(res.data.data)
+        //   console.log(res.data.data)
         } else {
           this.$message({
             showClose: true,
@@ -123,7 +123,7 @@ export default {
   }
   .allSocreList {
     width: 100%;
-    // height: 600px;
+    min-height: 600px;
     // padding-right: 20%;
     margin-bottom: 100px;
      .copies {

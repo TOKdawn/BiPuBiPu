@@ -104,7 +104,7 @@
                 >
                   <el-upload
                     class="avatar-uploader"
-                    action="/api/upload"
+                    action="/upload"
                     :show-file-list="false"
                     :on-success="handleAvatarSuccess1"
                   >
@@ -241,7 +241,7 @@
                 >
                   <el-upload
                     class="avatar-uploader"
-                    action="/api/upload"
+                    action="/upload"
                     :show-file-list="false"
                     :on-success="handleAvatarSuccess"
                   >
@@ -326,6 +326,7 @@
 </template>
 <script>
 import { Upload } from 'common/urls'
+import store from 'vux/store.js'
 export default {
   data () {
     return {
@@ -438,7 +439,11 @@ export default {
       }
     }
   },
-  created () {},
+  created () {
+    if (store.getters.id !== 2) {
+      this.$router.push(`/403`)
+    }
+  },
   methods: {
     handleAvatarSuccess (res, file) {
       this.scoreData.other_img = res.url
@@ -453,7 +458,7 @@ export default {
         if (valid) {
           this.activeName = 'second'
         } else {
-          console.log('error submit!!')
+        //   console.log('error submit!!')
           return false
         }
       })
@@ -463,7 +468,7 @@ export default {
         if (valid) {
           this.activeName = 'third'
         } else {
-          console.log('error submit!!')
+        //   console.log('error submit!!')
           return false
         }
       })
@@ -473,13 +478,13 @@ export default {
         if (valid) {
           this.activeName = 'fourth'
         } else {
-          console.log('error submit!!')
+        //   console.log('error submit!!')
           return false
         }
       })
     },
     submit () {
-      console.log(this.scoreData)
+    //   console.log(this.scoreData)
       this.$confirm('即将进行乐谱上传,请确认填写的信息无误', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',

@@ -65,8 +65,7 @@ export default {
       user_num: '',
       user_pwd: '',
       user_catcha: '',
-      img:
-        'https://mc.qcloudimg.com/static/img/d9d167216e715474d67ee8031a436d39/image.png',
+      img: 'https://mc.qcloudimg.com/static/img/d9d167216e715474d67ee8031a436d39/image.png',
       isShowPwd: false,
       loginTipMsg: '',
       loginSwitch: 'login',
@@ -101,7 +100,7 @@ export default {
         }
       }).then(res => {
         if (res.status === 200) {
-          console.log('更改成功', res.data.data)
+        //   console.log('更改成功', res.data.data)
           // store.commit('uploadUserData', res.data.data)
           this.$router.push('/')
         }
@@ -117,7 +116,7 @@ export default {
     },
 
     getSMS () {
-      var myreg = /^[1][3,4,5,7,8][0-9]{9}$/
+      var myreg = /^[1][3,4,6,9,5,7,8][0-9]{9}$/
       if (!myreg.test(this.res_phone)) {
         this.loginTipMsg = '请输入正确格式的手机号'
         return false
@@ -133,7 +132,7 @@ export default {
         }
       }).then(res => {
         if (res.status === 200) {
-          console.log(res.data.data)
+        //   console.log(res.data.data)
         }
       }).catch(() => {
         // this.$message({
@@ -159,7 +158,7 @@ export default {
       // }
     },
     checkEmailAndPwd (email, pwd, catcha) {
-      var myreg = /^[1][3,4,5,7,8][0-9]{9}$/
+      var myreg = /^[1][3,4,5,6,9,7,8][0-9]{9}$/
       if (email === '' || pwd === '' || catcha === '') {
         this.loginTipMsg = '账号及密码或验证码不能为空！'
         return false

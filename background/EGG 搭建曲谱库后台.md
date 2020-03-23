@@ -25,7 +25,7 @@
                 }
             }
         });
-        console.log(data)
+        // console.log(data)
         return data;
     }
 ```
@@ -42,7 +42,7 @@
                 uid
             }
         })
-        console.log(data)
+        // console.log(data)
         return data;
     }
 ```
