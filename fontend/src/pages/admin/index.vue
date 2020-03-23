@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     http () {
-      console.log(this.formLabelAlign)
+    //   console.log(this.formLabelAlign)
       this.$http({
         method: 'post',
         url: systemUrl.dsadas,

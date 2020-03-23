@@ -125,10 +125,10 @@ export default {
       }
     },
     handleClick (tab, event) {
-      console.log(tab.name, event)
+    //   console.log(tab.name, event)
     },
     scoreJump (row, column, cell, event) {
-      console.log(row)
+    //   console.log(row)
       this.$router.push(`/page/score/${row.id}`)
     },
     volumeJump (row, column, cell, event) {
@@ -138,7 +138,7 @@ export default {
       this.$router.push(`/page/user/${row.id}`)
     },
     querySearchAsync (row, column, cell, event) {
-      console.log(row)
+    //   console.log(row)
     },
     handleSelect () {
       // console.log('aaaa')
@@ -153,7 +153,7 @@ export default {
         }
       }).then(res => {
         if (res.status === 200) {
-          console.log('拉取成功：', res.data)
+        //   console.log('拉取成功：', res.data)
           this.scoreData.splice(0, this.scoreData.length, ...res.data)
         } else {
           this.$message({
@@ -182,7 +182,7 @@ export default {
         }
       }).then(res => {
         if (res.status === 200) {
-          console.log('拉取成功：', res.data)
+        //   console.log('拉取成功：', res.data)
           this.volumeData.splice(0, this.volumeData.length, ...res.data)
         } else {
           this.$message({
@@ -211,7 +211,7 @@ export default {
         }
       }).then(res => {
         if (res.status === 200) {
-          console.log('拉取成功：', res.data)
+        //   console.log('拉取成功：', res.data)
           this.scoreData.splice(0, this.userData.length, ...res.data)
         } else {
           this.$message({

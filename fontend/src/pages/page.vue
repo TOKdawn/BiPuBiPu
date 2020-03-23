@@ -20,7 +20,7 @@ export default {
     Foot
   },
   created () {
-    console.log(this.$route.name)
+    // console.log(this.$route.name)
     switch (this.$route.name) {
       case 'volumelist':
         this.headData = '2'

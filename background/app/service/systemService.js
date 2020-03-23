@@ -87,7 +87,7 @@ class systemService extends Service {
       limit: pagesize,
       offset,
     })
-    console.log('user:',data)
+    // console.log('user:',data)
     return data
   }
 

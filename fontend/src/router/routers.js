@@ -17,6 +17,10 @@ module.exports = [{
   path: '/tassadar',
   component: require('pages/admin/index')
 }, {
+  path: '/403',
+  name: '403',
+  component: require('pages/system/403')
+}, {
   path: '/page',
   name: 'page',
   component: require('pages/page'),
@@ -47,7 +51,10 @@ module.exports = [{
   }, {
     path: 'upload',
     name: 'upload',
-    component: require('pages/upload/upload')
+    component: require('pages/upload/upload'),
+    meta: {
+      adminAuth: true
+    }
   }, {
     path: 'article/:Atitle',
     name: 'article',
@@ -61,19 +68,17 @@ module.exports = [{
     name: 'volume',
     component: require('pages/volume/volume')
   }, {
-    path: '403',
-    name: '403',
-    component: require('pages/system/403')
-  }, {
     path: 'editVolume/:vid',
     name: 'editVolume',
     component: require('pages/volume/volumeEdit')
+
   }, {
     path: 'user/:uid',
     name: 'user',
     component: require('pages/user/user'),
     meta: {
       requireAuth: true
+
     }
   }, {
     path: 'uploadimg/:uid',

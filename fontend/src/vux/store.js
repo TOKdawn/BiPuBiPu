@@ -13,16 +13,16 @@ export default new Vuex.Store({
     activahead: 1
   },
   getters: {
-    role: (state) => state.role,
+    role: (state) => { return state.role || localStorage.getItem('role') },
     username: (state) => state.username,
     avatar: (state) => state.avatar,
     signature: (state) => state.signature,
     phone: (state) => state.phone,
-    id: (state) => state.id
+    id: (state) => { return state.id || localStorage.getItem('id') }
   },
   mutations: {
     uploadUserData (state, userData) {
-      console.log(userData)
+    //   console.log(userData)
       state.role = userData.role || state.role
       state.username = userData.name || state.username
       state.avatar = userData.avatar || state.avatar

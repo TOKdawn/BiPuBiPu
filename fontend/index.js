@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
 
       res.send(500)
     } catch (e) {
-      console.log('error when exit', e.stack)
+    //   console.log('error when exit', e.stack)
     }
   })
 
@@ -60,11 +60,11 @@ app.use('/dist', express.static('./dist'))
 
 module.exports = app.listen(port, function (err) {
   if (err) {
-    console.log(err)
+    // console.log(err)
     return
   }
   var uri = 'http://localhost:' + port
-  console.log('Listening at ' + uri + '\n')
+//   console.log('Listening at ' + uri + '\n')
 })
 
 app.use(function (err, req, res, next) {
@@ -74,7 +74,7 @@ app.use(function (err, req, res, next) {
 
 // uncaughtException 避免程序崩溃
 process.on('uncaughtException', function (err) {
-  console.log(err)
+//   console.log(err)
 
   try {
     var killTimer = setTimeout(function () {
@@ -84,6 +84,6 @@ process.on('uncaughtException', function (err) {
 
     server.close()
   } catch (e) {
-    console.log('error when exit', e.stack)
+    // console.log('error when exit', e.stack)
   }
 })

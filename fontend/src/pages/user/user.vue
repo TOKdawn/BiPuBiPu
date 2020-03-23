@@ -15,6 +15,7 @@
             <div
               class="img-info"
               @click="jump(2)"
+               v-if="userId===$route.params.uid"
             >更换头像</div>
           </el-col>
           <el-col :span="18">

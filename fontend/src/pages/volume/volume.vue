@@ -11,6 +11,7 @@
           >
           <div
             class="img-info"
+            v-if="owned"
             @click="$router.push({ name: 'editVolume',  params: { vid: volumeData.id }})"
           >更换头像</div>
         </div>
@@ -72,7 +73,7 @@
             <el-table
               :data="volumeList"
               highlight-current-row
-              style="width: 100%; margin-bottom:20px; table-layout: fixed;"
+              style="width: 100%; margin-bottom:20px; table-layout: fixed; box-shadow:0 2px 12px 0 rgba(0,0,0,.1);"
               height="700"
              @cell-click="scoreJump"
             >
@@ -84,7 +85,7 @@
               <el-table-column
                 property="name"
                 label="谱名"
-                width="120"
+                width="160"
               >
               </el-table-column>
               <el-table-column
@@ -426,7 +427,7 @@ export default {
     })
       .then(res => {
         if (res.status === 200) {
-          console.log(res.data)
+        //   console.log(res.data)
           this.author = res.data.data[0]
         } else {
           this.$message({
@@ -453,7 +454,7 @@ export default {
       .then(res => {
         if (res.status === 200) {
           this.volumeList = this.volumeList.concat(res.data.data)
-          console.log('score:', this.volumeList)
+        //   console.log('score:', this.volumeList)
         } else {
           this.$message({
             showClose: true,
@@ -477,7 +478,7 @@ export default {
     })
       .then(res => {
         if (res.status === 200) {
-          console.log(res.data)
+        //   console.log(res.data)
           this.VolumeCollector = res.data.data
           this.VolumeCollector.forEach(item => {
             if (item.id - 0 === this.userId - 0) {
@@ -579,7 +580,7 @@ export default {
     }
   }
   .score-context {
-    padding-right: 343px;
+    padding-right: 300px;
     .title {
       height: 38px;
       border-bottom: 3px solid #ec908c;
@@ -658,7 +659,7 @@ export default {
       float: right;
       position: relative;
       width: 290px;
-      margin-right: -343px;
+      margin-right: -300px;
       padding-bottom: 20px;
       h2 {
         font-size: $--FontSizeL;

@@ -17,7 +17,7 @@ describe('test/app/controller/user.test.js', () => {
     beforeEach(async function() {
       /* eslint-disable no-unused-vars */
       app.mockService('userService', 'getInfo', async function(uid) {
-        console.log(uid);
+        // console.log(uid);
         if (uid === '123') {
           return Promise.resolve({
             id: 123,

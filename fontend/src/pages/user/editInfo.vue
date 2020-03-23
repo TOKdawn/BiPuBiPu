@@ -20,7 +20,7 @@
             <el-form-item label="更换头像:">
               <el-upload
                 class="avatar-uploader"
-                action="/api/upload"
+                action="/upload"
                 :show-file-list="false"
                 :on-success="handleAvatarSuccess"
               >
@@ -336,7 +336,7 @@ export default {
         })
       }
     }).catch(res => {
-      console.log(res)
+    //   console.log(res)
       this.$message({
         showClose: true,
         duration: 2000,
@@ -351,7 +351,7 @@ export default {
       }
     },
     getSMS () {
-      var myreg = /^[1][3,4,5,7,8][0-9]{9}$/
+      var myreg = /^[1][3,4,6,9,5,7,8][0-9]{9}$/
       if (!myreg.test(this.res_phone)) {
         this.loginTipMsg = '请输入正确格式的手机号'
         return false
@@ -368,16 +368,10 @@ export default {
       })
       .then(res => {
         if (res.status === 200) {
-          console.log(res.data.data)
+        //   console.log(res.data.data)
         }
       })
       .catch(() => {
-        // this.$message({
-        //   showClose: true,
-        //   duration: 2000,
-        //   message: '获取短信失败',
-        //   type: 'error'
-        // })
       })
       let _this = this
       this.count = TIME_COUNT
@@ -432,7 +426,7 @@ export default {
       })
     },
     checkEmailAndPwd (oldPhone, newPhone, sms) {
-      var myreg = /^[1][3,4,5,7,8][0-9]{9}$/
+      var myreg = /^[1][3,6,9,4,5,7,8][0-9]{9}$/
       if (oldPhone === '' || newPhone === '' || sms === '') {
         this.loginTipMsg = '新旧手机及验证码不能为空！'
         return false
@@ -485,7 +479,7 @@ export default {
             })
           })
         } else {
-          console.log('error submit!!')
+        //   console.log('error submit!!')
           return false
         }
       })

@@ -25,7 +25,7 @@
             <el-table-column
               property="name"
               label="谱名"
-              width="120"
+              width="140"
             >
             </el-table-column>
             <el-table-column
@@ -80,8 +80,8 @@ export default {
     Search
   },
   created () {
-    console.log('aabbbdddaa')
-    console.log(this.$route.params.searchtext)
+    // console.log('aabbbdddaa')
+    // console.log(this.$route.params.searchtext)
     this.searchText = this.$route.params.searchtext
   },
   methods: {
