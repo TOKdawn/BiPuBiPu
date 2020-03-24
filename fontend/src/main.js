@@ -25,14 +25,15 @@ Vue.use(mavonEditor)
 Vue.prototype.Utils = Utils
 router.beforeEach((to, from, next) => {
   if (to.meta.requireAuth) {
-    if (store.state.role === 0) {
-      next({
-        path: '/login',
-        query: {
-          redirect: to.fullPath
-        }
-      })
-    }
+    // if (store.state.role === 0) {
+    //   next({
+    //     path: '/login',
+    //     query: {
+    //       redirect: to.fullPath
+    //     }
+    //   })
+    // }
+    next()
   } else {
     next()
   }

@@ -320,6 +320,9 @@ export default {
   },
   components: {},
   created () {
+    if (store.getters.id !== this.$route.params.uid) {
+      this.$router.push(`/403`)
+    }
     this.$http({
       method: 'get',
       url: User.getInfo + this.$route.params.uid

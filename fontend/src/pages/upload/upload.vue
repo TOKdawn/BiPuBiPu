@@ -440,7 +440,7 @@ export default {
     }
   },
   created () {
-    if (store.getters.id !== 2) {
+    if (store.getters.role !== 2) {
       this.$router.push(`/403`)
     }
   },
