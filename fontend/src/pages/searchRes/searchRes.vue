@@ -18,7 +18,7 @@
           <el-table
             :data="scoreData"
             highlight-current-row
-            style="width: 100%; margin-bottom:20px; table-layout: fixed;"
+            style="width: 100%; margin-bottom:20px; table-layout: fixed; box-shadow:0 2px 12px 0 rgba(0,0,0,.1); cursor: pointer;"
               height="500"
               @cell-click="scoreJump"
           >
@@ -30,13 +30,13 @@
             <el-table-column
               property="name"
               label="谱名"
-              width="120"
+              width="160"
             >
             </el-table-column>
             <el-table-column
               property="alias"
               label="别名"
-                width="120"
+                width="180"
             >
             </el-table-column>
          <el-table-column

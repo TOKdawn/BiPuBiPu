@@ -321,7 +321,9 @@ export default {
   components: {},
   created () {
     if (store.getters.id !== this.$route.params.uid) {
-      this.$router.push(`/403`)
+      console.log('id:', store.getters.id, this.$route.params.uid)
+    //   this.$router.push(`/403`)
+      return
     }
     this.$http({
       method: 'get',

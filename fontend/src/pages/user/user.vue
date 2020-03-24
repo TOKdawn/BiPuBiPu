@@ -77,19 +77,19 @@
           <el-table-column
             property="name"
             label="谱名"
-            width="120"
+            width="160"
           >
           </el-table-column>
           <el-table-column
             property="alias"
             label="别名"
-            width="120"
+            width="180"
           >
           </el-table-column>
           <el-table-column
             property="addtion"
             label="更多信息"
-            width="240"
+            width="280"
           >
           </el-table-column>
           <el-table-column

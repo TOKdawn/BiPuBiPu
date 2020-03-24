@@ -73,7 +73,7 @@
             <el-table
               :data="volumeList"
               highlight-current-row
-              style="width: 100%; margin-bottom:20px; table-layout: fixed; box-shadow:0 2px 12px 0 rgba(0,0,0,.1);"
+              style="width: 100%; margin-bottom:20px; table-layout: fixed; box-shadow:0 2px 12px 0 rgba(0,0,0,.1); cursor: pointer;"
               height="700"
              @cell-click="scoreJump"
             >
@@ -91,7 +91,7 @@
               <el-table-column
                 property="alias"
                 label="别名"
-                width="100"
+                width="180"
               >
               </el-table-column>
             <el-table-column
