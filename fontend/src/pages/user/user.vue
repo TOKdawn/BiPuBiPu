@@ -89,7 +89,7 @@
           <el-table-column
             property="addtion"
             label="更多信息"
-            width="280"
+            width="160"
           >
           </el-table-column>
           <el-table-column
@@ -103,7 +103,7 @@
             label="预览"
           >
             <template slot-scope="scope">
-              {{ scope.row.score_text.slice(0,30) }}
+              {{ scope.row.score_text.slice(0,25) }}
             </template>
           </el-table-column>
         </el-table>

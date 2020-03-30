@@ -78,6 +78,7 @@ class ScoreService extends Service {
             `(SELECT uid FROM "userStar" WHERE sid = ${sid})`
           ),
         },
+        
       },
       limit: pagesize,
       offset,
@@ -195,6 +196,11 @@ class ScoreService extends Service {
         },
       });
       await this.userStar.destroy({
+        where: {
+          sid,
+        },
+      });
+      await this.ScoreVolume.destroy({
         where: {
           sid,
         },

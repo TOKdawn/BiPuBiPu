@@ -18,7 +18,7 @@
             <li
               @click="jump(scoreData.provider_url)"
               style="cursor: pointer; "
-            >扒谱人: @{{scoreData.provider}}</li>
+            >扒谱人: @{{scoreData.provider || '佚名'}}</li>
             <li style="width: 400px">更多信息: {{scoreData.addtion}}</li>
             <li>上传时间: {{scoreData.created_at.slice(0,10)}}</li>
             <li>调性: {{Scale1[scoreData.tonality]}} </li>
