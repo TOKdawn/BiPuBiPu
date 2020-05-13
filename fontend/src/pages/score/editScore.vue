@@ -322,7 +322,8 @@
   </div>
 </template>
 <script>
-import { Upload } from 'common/urls'
+
+import { Score, Upload } from 'common/urls'
 import store from 'vux/store.js'
 export default {
   data () {
@@ -433,13 +434,51 @@ export default {
         performs: [
           { max: 100, message: '长度不能超过100个字符', trigger: 'blur' }
         ]
-      }
+      },
+      SID: ''
     }
   },
   created () {
     if (store.getters.role !== 2) {
       this.$router.push(`/403`)
     }
+    this.$http({
+      method: 'get',
+      url: Score.getScoreInfo + this.$route.params.sid
+    })
+      .then(res => {
+        if (res.status === 200) {
+        //   this.scoreData = res.data.data
+          this.scoreData.name = res.data.data.name
+          this.scoreData.image_url = res.data.data.image_url
+          this.scoreData.addtion = res.data.data.addtion
+          this.scoreData.tonality = res.data.data.tonality
+          this.scoreData.alias = res.data.data.alias
+          this.scoreData.description = res.data.data.description
+          this.scoreData.score_text = res.data.data.score_text
+          this.scoreData.other_url = res.data.data.other_url
+          this.scoreData.other_img = res.data.data.other_img
+          this.scoreData.provider = res.data.data.provider
+          this.scoreData.provider_url = res.data.data.provider_url
+          this.img1 = res.data.data.image_url
+          this.img2 = res.data.data.other_img
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.data.message,
+            type: 'error'
+          })
+        }
+      })
+      .catch(res => {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: '请求失败',
+          type: 'error'
+        })
+      })
   },
   methods: {
     handleAvatarSuccess (res, file) {

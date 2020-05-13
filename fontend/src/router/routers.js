@@ -49,6 +49,10 @@ module.exports = [{
     name: 'score',
     component: require('pages/score/score')
   }, {
+    path: 'editscore/:sid',
+    name: 'editscore',
+    component: require('pages/score/editscore')
+  }, {
     path: 'upload',
     name: 'upload',
     component: require('pages/upload/upload'),
