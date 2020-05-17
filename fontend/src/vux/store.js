@@ -22,7 +22,7 @@ export default new Vuex.Store({
   },
   mutations: {
     uploadUserData (state, userData) {
-      console.log(userData)
+    //   console.log(userData)
       state.role = userData.role || state.role
       state.username = userData.name || state.username
       state.avatar = userData.avatar || state.avatar

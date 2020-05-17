@@ -20,7 +20,7 @@
             <el-form-item label="更换头像:">
               <el-upload
                 class="avatar-uploader"
-                action="/api/upload"
+                action="/upload"
                 :show-file-list="false"
                 :on-success="handleAvatarSuccess"
               >
@@ -320,6 +320,14 @@ export default {
   },
   components: {},
   created () {
+<<<<<<< HEAD
+=======
+    if (store.getters.id !== this.$route.params.uid) {
+      console.log('id:', store.getters.id, this.$route.params.uid)
+    //   this.$router.push(`/403`)
+      return
+    }
+>>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
     this.$http({
       method: 'get',
       url: User.getInfo + this.$route.params.uid
@@ -336,7 +344,11 @@ export default {
         })
       }
     }).catch(res => {
+<<<<<<< HEAD
       console.log(res)
+=======
+    //   console.log(res)
+>>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
       this.$message({
         showClose: true,
         duration: 2000,
@@ -351,7 +363,11 @@ export default {
       }
     },
     getSMS () {
+<<<<<<< HEAD
       var myreg = /^[1][3,4,5,7,8][0-9]{9}$/
+=======
+      var myreg = /^[1][3,4,6,9,5,7,8][0-9]{9}$/
+>>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
       if (!myreg.test(this.res_phone)) {
         this.loginTipMsg = '请输入正确格式的手机号'
         return false
@@ -368,6 +384,7 @@ export default {
       })
       .then(res => {
         if (res.status === 200) {
+<<<<<<< HEAD
           console.log(res.data.data)
         }
       })
@@ -378,6 +395,12 @@ export default {
         //   message: '获取短信失败',
         //   type: 'error'
         // })
+=======
+        //   console.log(res.data.data)
+        }
+      })
+      .catch(() => {
+>>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
       })
       let _this = this
       this.count = TIME_COUNT
@@ -432,7 +455,11 @@ export default {
       })
     },
     checkEmailAndPwd (oldPhone, newPhone, sms) {
+<<<<<<< HEAD
       var myreg = /^[1][3,4,5,7,8][0-9]{9}$/
+=======
+      var myreg = /^[1][3,6,9,4,5,7,8][0-9]{9}$/
+>>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
       if (oldPhone === '' || newPhone === '' || sms === '') {
         this.loginTipMsg = '新旧手机及验证码不能为空！'
         return false
@@ -485,7 +512,11 @@ export default {
             })
           })
         } else {
+<<<<<<< HEAD
           console.log('error submit!!')
+=======
+        //   console.log('error submit!!')
+>>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
           return false
         }
       })

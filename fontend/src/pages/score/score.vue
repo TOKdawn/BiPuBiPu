@@ -18,7 +18,11 @@
             <li
               @click="jump(scoreData.provider_url)"
               style="cursor: pointer; "
+<<<<<<< HEAD
             >扒谱人: @{{scoreData.provider}}</li>
+=======
+            >扒谱人: @{{scoreData.provider || '佚名'}}</li>
+>>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
             <li style="width: 400px">更多信息: {{scoreData.addtion}}</li>
             <li>上传时间: {{scoreData.created_at.slice(0,10)}}</li>
             <li>调性: {{Scale1[scoreData.tonality]}} </li>
@@ -98,10 +102,19 @@
             </div>
             <el-card
               class="box-card"
+<<<<<<< HEAD
               style="white-space: pre-line; font-size:17px; line-height:1.5; "
               v-show="flag"
             >
               {{scoreData.score_text}}
+=======
+              
+              v-show="flag"
+            >
+            <div  style="white-space: pre-line; font-size:17px; line-height:2.5;">
+              {{scoreData.score_text}}
+            </div>
+>>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
             </el-card>
             <el-card
               class="box-card"
@@ -224,6 +237,12 @@ export default {
       document.body.removeChild(element)
     },
     jump (url) {
+<<<<<<< HEAD
+=======
+      if (url === '') {
+        return
+      }
+>>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
       window.location.href = url
     },
     addCollect () {
@@ -608,7 +627,11 @@ export default {
         p {
           display: inline-block;
           color: #d52484;
+<<<<<<< HEAD
           transition: 1s;
+=======
+          
+>>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
           font-weight: 500;
           padding: 0 2px;
           cursor: pointer;

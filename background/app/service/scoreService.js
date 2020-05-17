@@ -78,6 +78,7 @@ class ScoreService extends Service {
             `(SELECT uid FROM "userStar" WHERE sid = ${sid})`
           ),
         },
+        
       },
       limit: pagesize,
       offset,
@@ -186,7 +187,7 @@ class ScoreService extends Service {
   }
   async deleteScore(sid, uid) {
     const t = await this.ctx.model.transaction();
-    console.log('ssssss',sid)
+    // console.log('ssssss',sid)
     try {
       const dele = await this.userUpload.destroy({
         where: {
@@ -195,6 +196,11 @@ class ScoreService extends Service {
         },
       });
       await this.userStar.destroy({
+        where: {
+          sid,
+        },
+      });
+      await this.ScoreVolume.destroy({
         where: {
           sid,
         },

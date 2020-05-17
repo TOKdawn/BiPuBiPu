@@ -104,11 +104,7 @@
                 >
                   <el-upload
                     class="avatar-uploader"
-<<<<<<< HEAD
-                    action="/api/upload"
-=======
                     action="/upload"
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
                     :show-file-list="false"
                     :on-success="handleAvatarSuccess1"
                   >
@@ -245,11 +241,7 @@
                 >
                   <el-upload
                     class="avatar-uploader"
-<<<<<<< HEAD
-                    action="/api/upload"
-=======
                     action="/upload"
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
                     :show-file-list="false"
                     :on-success="handleAvatarSuccess"
                   >
@@ -290,10 +282,6 @@
                   prop="songs"
                 >
                   <el-input v-model="scoreData.songs"></el-input>
-<<<<<<< HEAD
-
-=======
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
                   <p>非必填项,网易云音乐相关歌曲的链接</p>
                 </el-form-item>
                 <el-form-item
@@ -301,10 +289,6 @@
                   prop="performs"
                 >
                   <el-input v-model="scoreData.performs"></el-input>
-<<<<<<< HEAD
-
-=======
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
                   <p>非必填项,B站相关表演视频链接</p>
                 </el-form-item>
               </el-col>
@@ -322,10 +306,6 @@
                   icon="el-icon-success"
                   @click="submit"
                 >提交</el-button>
-<<<<<<< HEAD
-
-=======
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
               </el-row>
             </div>
           </el-form>
@@ -333,11 +313,7 @@
       </el-tabs>
       <!-- </el-form> -->
       <img
-<<<<<<< HEAD
-        src="../../assets/img/molisha.png"
-=======
         src="https://bipu.oss-cn-beijing.aliyuncs.com/website/molisha.png"
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
         title="帮助"
         alt="help"
         class="help"
@@ -346,11 +322,9 @@
   </div>
 </template>
 <script>
-import { Upload } from 'common/urls'
-<<<<<<< HEAD
-=======
+
+import { Score, Upload } from 'common/urls'
 import store from 'vux/store.js'
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
 export default {
   data () {
     return {
@@ -373,13 +347,8 @@ export default {
         //   id: '' // 上传者id
         // }
       },
-<<<<<<< HEAD
-      img1: '',
-      img2: '',
-=======
       img1: '', // 曲谱头像
       img2: '', // 图像简谱
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
       activeName: 'first',
       rules: {},
       value: '',
@@ -465,18 +434,52 @@ export default {
         performs: [
           { max: 100, message: '长度不能超过100个字符', trigger: 'blur' }
         ]
-      }
+      },
+      SID: ''
     }
   },
-<<<<<<< HEAD
-  created () {},
-=======
   created () {
     if (store.getters.role !== 2) {
       this.$router.push(`/403`)
     }
+    this.$http({
+      method: 'get',
+      url: Score.getScoreInfo + this.$route.params.sid
+    })
+      .then(res => {
+        if (res.status === 200) {
+        //   this.scoreData = res.data.data
+          this.scoreData.name = res.data.data.name
+          this.scoreData.image_url = res.data.data.image_url
+          this.scoreData.addtion = res.data.data.addtion
+          this.scoreData.tonality = res.data.data.tonality
+          this.scoreData.alias = res.data.data.alias
+          this.scoreData.description = res.data.data.description
+          this.scoreData.score_text = res.data.data.score_text
+          this.scoreData.other_url = res.data.data.other_url
+          this.scoreData.other_img = res.data.data.other_img
+          this.scoreData.provider = res.data.data.provider
+          this.scoreData.provider_url = res.data.data.provider_url
+          this.img1 = res.data.data.image_url
+          this.img2 = res.data.data.other_img
+        } else {
+          this.$message({
+            showClose: true,
+            duration: 2000,
+            message: res.data.message,
+            type: 'error'
+          })
+        }
+      })
+      .catch(res => {
+        this.$message({
+          showClose: true,
+          duration: 2000,
+          message: '请求失败',
+          type: 'error'
+        })
+      })
   },
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
   methods: {
     handleAvatarSuccess (res, file) {
       this.scoreData.other_img = res.url
@@ -491,11 +494,7 @@ export default {
         if (valid) {
           this.activeName = 'second'
         } else {
-<<<<<<< HEAD
-          console.log('error submit!!')
-=======
         //   console.log('error submit!!')
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
           return false
         }
       })
@@ -505,11 +504,7 @@ export default {
         if (valid) {
           this.activeName = 'third'
         } else {
-<<<<<<< HEAD
-          console.log('error submit!!')
-=======
         //   console.log('error submit!!')
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
           return false
         }
       })
@@ -519,11 +514,7 @@ export default {
         if (valid) {
           this.activeName = 'fourth'
         } else {
-<<<<<<< HEAD
-          console.log('error submit!!')
-=======
         //   console.log('error submit!!')
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
           return false
         }
       })

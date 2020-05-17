@@ -35,7 +35,7 @@ const msToDate = (_ms, _format) => {
  */
 const dateFromNow = ms => {
   const time = parseFloat(ms) / 1000
-  console.log('time: ', time)
+//   console.log('time: ', time)
   let result = ''
   if (time) {
     if (time > 60 && time < 3600) {

@@ -44,7 +44,7 @@ export default {
           title: '新手曲目推荐',
           describe:
             '来加入口琴大家庭吧',
-          router: '/page/volume/13'
+          router: '/page/volume/2'
         },
         {
           img:
@@ -60,7 +60,7 @@ export default {
           title: 'Key社',
           describe:
             '自古Key社出神作',
-          router: '/page/volume/12'
+          router: '/page/volume/3'
         }
       ],
       articlesData: [{

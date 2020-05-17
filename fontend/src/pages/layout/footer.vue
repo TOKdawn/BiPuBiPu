@@ -1,15 +1,14 @@
 <template>
 <div class="footer">
   <div class="logo">
-    <img src="./justice_eternal.png" alt="logo">
+    <img src="https://bipu.oss-cn-beijing.aliyuncs.com/website/justice_eternal.png" alt="logo">
   </div>
   <div class="info">
     <h2>BipuBipu曲谱站</h2>
-       <div>QQ群:690514210  &nbsp; B站账号:<a style="color:rgb(210, 239, 89); font-weight: 500">@哔谱哔谱</a></div>
+       <div>QQ群:690514210  &nbsp; B站账号:<a href="https://space.bilibili.com/1596911?from=search&seid=5311097110335751132" style="color:rgb(210, 239, 89); font-weight: 500">@哔谱哔谱</a></div>
     <p>Made with ❤️by  <a href="http://dawninshadow.com/">TOKdawn</a> </p>
-    
- 
-    <div>Copyright 2018-2019 BipuBipu </div>
+    <div>Copyright 2018-2020 BipuBipu </div>
+    <div>黔ICP备17010756号 | 贵公网安备52011102002222号</div>
   </div>
   <div>
 

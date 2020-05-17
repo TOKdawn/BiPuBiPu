@@ -19,7 +19,7 @@
       @click="$router.push('/login')"
     >
       <img
-        src="./Akkarin.jpg"
+        src="https://bipu.oss-cn-beijing.aliyuncs.com/website/Akkarin.jpg"
         alt=""
       >
     </div>
@@ -88,7 +88,11 @@ export default {
     this.userRole = store.getters.role
     this.userId = store.getters.id
     this.img = store.getters.avatar
+<<<<<<< HEAD
     console.log('header:', this.userRole, this.userId)
+=======
+    // console.log('header:', this.userRole, this.userId)
+>>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
     if (this.userRole > 0) {
       this.logoutFlag = true
     } else {

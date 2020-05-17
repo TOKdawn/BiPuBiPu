@@ -11,6 +11,7 @@
           >
           <div
             class="img-info"
+            v-if="owned"
             @click="$router.push({ name: 'editVolume',  params: { vid: volumeData.id }})"
           >更换头像</div>
         </div>
@@ -72,7 +73,11 @@
             <el-table
               :data="volumeList"
               highlight-current-row
+<<<<<<< HEAD
               style="width: 100%; margin-bottom:20px; table-layout: fixed;"
+=======
+              style="width: 100%; margin-bottom:20px; table-layout: fixed; box-shadow:0 2px 12px 0 rgba(0,0,0,.1); cursor: pointer;"
+>>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
               height="700"
              @cell-click="scoreJump"
             >
@@ -84,13 +89,21 @@
               <el-table-column
                 property="name"
                 label="谱名"
+<<<<<<< HEAD
                 width="120"
+=======
+                width="160"
+>>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
               >
               </el-table-column>
               <el-table-column
                 property="alias"
                 label="别名"
+<<<<<<< HEAD
                 width="100"
+=======
+                width="180"
+>>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
               >
               </el-table-column>
             <el-table-column
@@ -426,7 +439,11 @@ export default {
     })
       .then(res => {
         if (res.status === 200) {
+<<<<<<< HEAD
           console.log(res.data)
+=======
+        //   console.log(res.data)
+>>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
           this.author = res.data.data[0]
         } else {
           this.$message({
@@ -453,7 +470,11 @@ export default {
       .then(res => {
         if (res.status === 200) {
           this.volumeList = this.volumeList.concat(res.data.data)
+<<<<<<< HEAD
           console.log('score:', this.volumeList)
+=======
+        //   console.log('score:', this.volumeList)
+>>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
         } else {
           this.$message({
             showClose: true,
@@ -477,7 +498,11 @@ export default {
     })
       .then(res => {
         if (res.status === 200) {
+<<<<<<< HEAD
           console.log(res.data)
+=======
+        //   console.log(res.data)
+>>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
           this.VolumeCollector = res.data.data
           this.VolumeCollector.forEach(item => {
             if (item.id - 0 === this.userId - 0) {
@@ -579,7 +604,11 @@ export default {
     }
   }
   .score-context {
+<<<<<<< HEAD
     padding-right: 343px;
+=======
+    padding-right: 300px;
+>>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
     .title {
       height: 38px;
       border-bottom: 3px solid #ec908c;
@@ -658,7 +687,11 @@ export default {
       float: right;
       position: relative;
       width: 290px;
+<<<<<<< HEAD
       margin-right: -343px;
+=======
+      margin-right: -300px;
+>>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
       padding-bottom: 20px;
       h2 {
         font-size: $--FontSizeL;

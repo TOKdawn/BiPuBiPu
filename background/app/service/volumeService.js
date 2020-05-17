@@ -55,7 +55,7 @@ class VolumeService extends Service {
         vid,
       }
     })
-    console.log(author, collector)
+    // console.log(author, collector)
     if(author){
       return 'author'
     }else if(collector){
@@ -146,37 +146,6 @@ class VolumeService extends Service {
   
   async addVolumeScore(vid, sid) {
     const t = await this.ctx.model.transaction();
-    // const score = await this.Score.findOne({
-    //   where: {
-    //     sid
-    //   }
-    // });
-    // if (score == null) {
-    //   //如果无缓存
-    //   try {
-    //     // const scoredata = await this.ctx.helper.getIssue(sid);
-    //     // console.log('scoredata:', scoredata, 'sid:', sid);
-    //     // await this.Score.findOrCreate({
-    //     //   //缓存
-    //     //   where: {
-    //     //     name: scoredata.title,
-    //     //     sid: sid
-    //     //   },
-    //     // });
-    //     const data = await this.ScoreVolume.findOrCreate({
-    //       where: {
-    //         sid,
-    //         vid,
-    //       },
-    //     });
-    //     await t.commit();
-    //     return data;
-    //   } catch (err) {
-    //     await t.rollback();
-    //     return err;
-    //   }
-    // }
-
     const data = await this.ScoreVolume.findOrCreate({
       where: {
         sid,

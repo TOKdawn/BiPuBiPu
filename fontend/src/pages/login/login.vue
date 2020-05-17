@@ -240,7 +240,7 @@ export default {
         }
       }).then(res => {
         if (res.status === 200) {
-          console.log('登录成功', res.data)
+        //   console.log('登录成功', res.data)
           store.commit('uploadUserData', res.data.data)
           this.$router.push('/')
         } else {
@@ -253,7 +253,7 @@ export default {
         }
       })
       .catch((res) => {
-        console.log(res)
+        // console.log(res)
         this.$message({
           showClose: true,
           duration: 2000,
@@ -263,7 +263,7 @@ export default {
       })
     },
     forget () {
-      console.log('sss')
+    //   console.log('sss')
       this.$router.push('/forget')
     },
     register () {
@@ -325,7 +325,7 @@ export default {
         })
     },
     getSMS () {
-      var myreg = /^[1][3,4,5,7,8][0-9]{9}$/
+      var myreg = /^[1][3,6,4,5,7,8,9][0-9]{9}$/
       if (!myreg.test(this.res_phone)) {
         this.loginTipMsg = '请输入正确格式的手机号'
         return false
@@ -341,7 +341,7 @@ export default {
         }
       }).then(res => {
         if (res.status === 200) {
-          console.log(res.data.data)
+        //   console.log(res.data.data)
         }
       }).catch(() => {
         this.$message({
@@ -367,7 +367,7 @@ export default {
       // }
     },
     checkEmailAndPwd (email, pwd, catcha) {
-      var myreg = /^[1][3,4,5,7,8][0-9]{9}$/
+      var myreg = /^[1][3,4,6,9,5,7,8][0-9]{9}$/
       if (email === '' || pwd === '' || catcha === '') {
         this.loginTipMsg = '账号及密码或验证码不能为空！'
         return false
