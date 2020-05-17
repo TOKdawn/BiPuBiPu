@@ -17,6 +17,9 @@ module.exports = [{
   path: '/tassadar',
   component: require('pages/admin/index')
 }, {
+  path: '/dawninshadow',
+  component: require('pages/admin/upload')
+}, {
   path: '/page',
   name: 'page',
   component: require('pages/page'),

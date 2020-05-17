@@ -1,6 +1,5 @@
 <template>
 <div>
-
 <el-form  label-width="80px" :model="formLabelAlign">
   <el-form-item label="">
     <el-input v-model="formLabelAlign.one"></el-input>
