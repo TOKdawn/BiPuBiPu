@@ -60,11 +60,7 @@
   </div>
 </template>
 <script>
-<<<<<<< HEAD
-// import store from 'vux/store.js'
-=======
 import store from 'vux/store.js'
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
 import {Volume} from 'common/urls'
 export default {
   data () {
@@ -133,11 +129,7 @@ export default {
             })
           })
         } else {
-<<<<<<< HEAD
-          console.log('error submit!!')
-=======
         //   console.log('error submit!!')
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
           return false
         }
       })
@@ -146,8 +138,6 @@ export default {
   created () {
     this.$http({
       method: 'get',
-<<<<<<< HEAD
-=======
       url: Volume.getVolumeAuthor + this.$route.params.vid
     })
       .then(res => {
@@ -177,7 +167,6 @@ export default {
       })
     this.$http({
       method: 'get',
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
       url: Volume.getVolumeInfo + this.$route.params.vid
     }).then(res => {
       if (res.status === 200) {

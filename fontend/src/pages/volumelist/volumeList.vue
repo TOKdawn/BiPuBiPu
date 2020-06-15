@@ -1,6 +1,6 @@
 <template>
   <div class="main-context">
-    <!-- <el-radio-group
+    <el-radio-group
       v-model="radio3"
       size="small"
       style="margin:20px 0px 15px 0px;"
@@ -8,8 +8,8 @@
       <el-radio-button label="推荐"></el-radio-button>
       <el-radio-button label="最新"></el-radio-button>
       <el-radio-button label="全部"></el-radio-button>
-    </el-radio-group> -->
-    <!-- <div
+    </el-radio-group>
+    <div
       class="myScoreList"
       v-if="login"
     >
@@ -30,7 +30,7 @@
           <div>收藏数:{{item.star}}</div>
         </div>
       </div>
-    </div> -->
+    </div>
     <div :class="{ 'allSocreList': !login, 'otherSocreList':login }">
       <h2>全部谱册</h2>
       <div class="line"></div>
@@ -51,13 +51,13 @@
         </div>
       </div>
     </div>
-    <!-- <el-pagination
+    <el-pagination
       background
       layout="prev, pager, next"
       :total="50"
       class="pagination"
     >
-    </el-pagination> -->
+    </el-pagination>
   </div>
 </template>
 <script>

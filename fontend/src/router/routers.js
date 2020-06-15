@@ -49,11 +49,6 @@ module.exports = [{
     name: 'score',
     component: require('pages/score/score')
   }, {
-<<<<<<< HEAD
-    path: 'upload',
-    name: 'upload',
-    component: require('pages/upload/upload')
-=======
     path: 'editscore/:sid',
     name: 'editscore',
     component: require('pages/score/editscore')
@@ -64,7 +59,6 @@ module.exports = [{
     meta: {
       adminAuth: true
     }
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
   }, {
     path: 'article/:Atitle',
     name: 'article',
@@ -78,30 +72,16 @@ module.exports = [{
     name: 'volume',
     component: require('pages/volume/volume')
   }, {
-<<<<<<< HEAD
-    path: '403',
-    name: '403',
-    component: require('pages/system/403')
-  }, {
-    path: 'editVolume/:vid',
-    name: 'editVolume',
-    component: require('pages/volume/volumeEdit')
-=======
     path: 'editVolume/:vid',
     name: 'editVolume',
     component: require('pages/volume/volumeEdit')
 
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
   }, {
     path: 'user/:uid',
     name: 'user',
     component: require('pages/user/user'),
     meta: {
       requireAuth: true
-<<<<<<< HEAD
-=======
-
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
     }
   }, {
     path: 'uploadimg/:uid',
