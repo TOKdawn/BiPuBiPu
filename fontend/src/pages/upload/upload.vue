@@ -245,11 +245,7 @@
                 >
                   <el-upload
                     class="avatar-uploader"
-<<<<<<< HEAD
-                    action="/api/upload"
-=======
                     action="/upload"
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
                     :show-file-list="false"
                     :on-success="handleAvatarSuccess"
                   >
