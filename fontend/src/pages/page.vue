@@ -20,14 +20,10 @@ export default {
     Foot
   },
   created () {
-    // console.log(this.$route.name)
     switch (this.$route.name) {
       case 'volumelist':
         this.headData = '2'
         break
-      // case 'volumelist':
-      //   this.headData = '2'
-      //   break
       case 'articleList':
         this.headData = '3'
         break

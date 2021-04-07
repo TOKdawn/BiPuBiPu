@@ -18,11 +18,7 @@
           <el-table
             :data="scoreData"
             highlight-current-row
-<<<<<<< HEAD
-            style="width: 100%; margin-bottom:20px; table-layout: fixed;"
-=======
             style="width: 100%; margin-bottom:20px; table-layout: fixed; box-shadow:0 2px 12px 0 rgba(0,0,0,.1); cursor: pointer;"
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
               height="500"
               @cell-click="scoreJump"
           >
@@ -34,21 +30,13 @@
             <el-table-column
               property="name"
               label="谱名"
-<<<<<<< HEAD
-              width="120"
-=======
               width="160"
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
             >
             </el-table-column>
             <el-table-column
               property="alias"
               label="别名"
-<<<<<<< HEAD
-                width="120"
-=======
                 width="180"
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
             >
             </el-table-column>
          <el-table-column
@@ -137,17 +125,10 @@ export default {
       }
     },
     handleClick (tab, event) {
-<<<<<<< HEAD
-      console.log(tab.name, event)
-    },
-    scoreJump (row, column, cell, event) {
-      console.log(row)
-=======
     //   console.log(tab.name, event)
     },
     scoreJump (row, column, cell, event) {
     //   console.log(row)
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
       this.$router.push(`/page/score/${row.id}`)
     },
     volumeJump (row, column, cell, event) {
@@ -157,11 +138,7 @@ export default {
       this.$router.push(`/page/user/${row.id}`)
     },
     querySearchAsync (row, column, cell, event) {
-<<<<<<< HEAD
-      console.log(row)
-=======
     //   console.log(row)
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
     },
     handleSelect () {
       // console.log('aaaa')
@@ -176,11 +153,7 @@ export default {
         }
       }).then(res => {
         if (res.status === 200) {
-<<<<<<< HEAD
-          console.log('拉取成功：', res.data)
-=======
         //   console.log('拉取成功：', res.data)
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
           this.scoreData.splice(0, this.scoreData.length, ...res.data)
         } else {
           this.$message({
@@ -209,11 +182,7 @@ export default {
         }
       }).then(res => {
         if (res.status === 200) {
-<<<<<<< HEAD
-          console.log('拉取成功：', res.data)
-=======
         //   console.log('拉取成功：', res.data)
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
           this.volumeData.splice(0, this.volumeData.length, ...res.data)
         } else {
           this.$message({
@@ -242,11 +211,7 @@ export default {
         }
       }).then(res => {
         if (res.status === 200) {
-<<<<<<< HEAD
-          console.log('拉取成功：', res.data)
-=======
         //   console.log('拉取成功：', res.data)
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
           this.scoreData.splice(0, this.userData.length, ...res.data)
         } else {
           this.$message({

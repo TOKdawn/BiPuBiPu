@@ -104,11 +104,7 @@
                 >
                   <el-upload
                     class="avatar-uploader"
-<<<<<<< HEAD
-                    action="/api/upload"
-=======
                     action="/upload"
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
                     :show-file-list="false"
                     :on-success="handleAvatarSuccess1"
                   >
@@ -286,10 +282,6 @@
                   prop="songs"
                 >
                   <el-input v-model="scoreData.songs"></el-input>
-<<<<<<< HEAD
-
-=======
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
                   <p>非必填项,网易云音乐相关歌曲的链接</p>
                 </el-form-item>
                 <el-form-item
@@ -297,10 +289,6 @@
                   prop="performs"
                 >
                   <el-input v-model="scoreData.performs"></el-input>
-<<<<<<< HEAD
-
-=======
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
                   <p>非必填项,B站相关表演视频链接</p>
                 </el-form-item>
               </el-col>
@@ -318,10 +306,6 @@
                   icon="el-icon-success"
                   @click="submit"
                 >提交</el-button>
-<<<<<<< HEAD
-
-=======
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
               </el-row>
             </div>
           </el-form>
@@ -329,11 +313,7 @@
       </el-tabs>
       <!-- </el-form> -->
       <img
-<<<<<<< HEAD
-        src="../../assets/img/molisha.png"
-=======
         src="https://bipu.oss-cn-beijing.aliyuncs.com/website/molisha.png"
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
         title="帮助"
         alt="help"
         class="help"
@@ -343,10 +323,7 @@
 </template>
 <script>
 import { Upload } from 'common/urls'
-<<<<<<< HEAD
-=======
 import store from 'vux/store.js'
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
 export default {
   data () {
     return {
@@ -369,13 +346,8 @@ export default {
         //   id: '' // 上传者id
         // }
       },
-<<<<<<< HEAD
-      img1: '',
-      img2: '',
-=======
       img1: '', // 曲谱头像
       img2: '', // 图像简谱
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
       activeName: 'first',
       rules: {},
       value: '',
@@ -464,15 +436,11 @@ export default {
       }
     }
   },
-<<<<<<< HEAD
-  created () {},
-=======
   created () {
     if (store.getters.role !== 2) {
       this.$router.push(`/403`)
     }
   },
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
   methods: {
     handleAvatarSuccess (res, file) {
       this.scoreData.other_img = res.url
@@ -487,11 +455,7 @@ export default {
         if (valid) {
           this.activeName = 'second'
         } else {
-<<<<<<< HEAD
-          console.log('error submit!!')
-=======
         //   console.log('error submit!!')
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
           return false
         }
       })
@@ -501,11 +465,7 @@ export default {
         if (valid) {
           this.activeName = 'third'
         } else {
-<<<<<<< HEAD
-          console.log('error submit!!')
-=======
         //   console.log('error submit!!')
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
           return false
         }
       })
@@ -515,11 +475,7 @@ export default {
         if (valid) {
           this.activeName = 'fourth'
         } else {
-<<<<<<< HEAD
-          console.log('error submit!!')
-=======
         //   console.log('error submit!!')
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
           return false
         }
       })

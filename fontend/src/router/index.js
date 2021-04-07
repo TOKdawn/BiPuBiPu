@@ -1,10 +1,10 @@
-import Vue from 'vue'
+// import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from 'vux/store'
 
 const commit = store.commit
 
-Vue.use(VueRouter)
+// Vue.use(VueRouter)
 // component: resolve => require(['pages/home'], resolve),
 const routes = require('./routers')
 const router = new VueRouter({

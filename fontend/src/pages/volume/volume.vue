@@ -63,11 +63,6 @@
               <h3>谱子列表  </h3>
 
               <p>
-                <!-- <el-switch
-                  v-model="value3"
-                  inactive-text="删除谱子"
-                >
-                </el-switch> -->
               </p>
             </div>
             <el-table
@@ -173,11 +168,7 @@
           </div>
           <div class="info">
             <div>
-              <!-- <h2>
-                收藏此歌单的人
-              </h2> -->
-              <p>
-              </p>
+              <p></p>
             </div>
           </div>
         </div>

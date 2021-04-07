@@ -25,11 +25,7 @@
             <el-table-column
               property="name"
               label="谱名"
-<<<<<<< HEAD
-              width="120"
-=======
               width="140"
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
             >
             </el-table-column>
             <el-table-column
@@ -84,13 +80,8 @@ export default {
     Search
   },
   created () {
-<<<<<<< HEAD
-    console.log('aabbbdddaa')
-    console.log(this.$route.params.searchtext)
-=======
     // console.log('aabbbdddaa')
     // console.log(this.$route.params.searchtext)
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
     this.searchText = this.$route.params.searchtext
   },
   methods: {

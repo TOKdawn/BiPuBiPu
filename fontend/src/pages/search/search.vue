@@ -44,11 +44,7 @@ export default {
       }
     },
     getData (key, cd) {
-<<<<<<< HEAD
-      console.log(' HTTP get: ', key)
-=======
     //   console.log(' HTTP get: ', key)
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
       this.$http({
         method: 'post',
         url: systemUrl.getAll,
@@ -57,19 +53,11 @@ export default {
         }
       }).then(res => {
         if (res.status === 200) {
-<<<<<<< HEAD
-          console.log('拉取成功：', res.data)
-          this.allData = res.data.score.concat(res.data.volume)
-          this.show = this.allData
-          cd(this.show)
-          console.log(this.allData)
-=======
         //   console.log('拉取成功：', res.data)
           this.allData = res.data.score.concat(res.data.volume)
           this.show = this.allData
           cd(this.show)
         //   console.log(this.allData)
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
         } else {
           this.$message({
             showClose: true,
@@ -96,20 +84,12 @@ export default {
     //   }
     // },
     clearData () {
-<<<<<<< HEAD
-      console.log(' clearData: ')
-=======
     //   console.log(' clearData: ')
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
       this.allData = []
       this.dataFlag = false
     },
     handleSelect (item) {
-<<<<<<< HEAD
-      console.log(item)
-=======
     //   console.log(item)
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
       this.$router.push(`/page/searchres/${this.searchText}`)
     },
     jump (key) {
