@@ -135,12 +135,7 @@ export default {
         //   console.log(res.data.data)
         }
       }).catch(() => {
-        // this.$message({
-        //   showClose: true,
-        //   duration: 2000,
-        //   message: '获取短信失败',
-        //   type: 'error'
-        // })
+
       })
       let _this = this
       this.count = TIME_COUNT
@@ -186,7 +181,6 @@ export default {
 
 <style lang="scss" scoped>
  .form-wrap{
-   
    width: 400px;
    height: 300px;
    margin: 80px auto 0px auto;

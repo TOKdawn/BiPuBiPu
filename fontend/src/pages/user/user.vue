@@ -77,31 +77,19 @@
           <el-table-column
             property="name"
             label="谱名"
-<<<<<<< HEAD
-            width="120"
-=======
             width="160"
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
           >
           </el-table-column>
           <el-table-column
             property="alias"
             label="别名"
-<<<<<<< HEAD
-            width="120"
-=======
             width="180"
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
           >
           </el-table-column>
           <el-table-column
             property="addtion"
             label="更多信息"
-<<<<<<< HEAD
-            width="240"
-=======
             width="160"
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
           >
           </el-table-column>
           <el-table-column
@@ -115,11 +103,7 @@
             label="预览"
           >
             <template slot-scope="scope">
-<<<<<<< HEAD
-              {{ scope.row.score_text.slice(0,30) }}
-=======
               {{ scope.row.score_text.slice(0,25) }}
->>>>>>> 1d0f3391a870da68a92c2aef505a84ac70d65de0
             </template>
           </el-table-column>
         </el-table>
